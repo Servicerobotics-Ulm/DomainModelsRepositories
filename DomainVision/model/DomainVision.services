@@ -32,6 +32,10 @@ ServiceDefRepository DomainVision version 1.0 {
 	ForkingServiceDefinition DepthImagePushService{
 		PushPattern <DataType=DomainVision.CommDepthImage>
 	}
+	
+	ForkingServiceDefinition PointCloudPushService {
+		PushPattern <DataType=DomainVision.Comm3dPointCloud>
+	}
 
 	CoordinationServiceDefinition VisionCoordinationService {
 		ParameterPattern < EmptyDefaultParameterSet >
