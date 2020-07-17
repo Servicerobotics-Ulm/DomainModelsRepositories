@@ -40,6 +40,12 @@
 ##### Communication Objects
 # see https://robmosys.eu/wiki/modeling:metamodels:commobject 
 # Note: this will later not be provided by the software component
+:CommAnalogOutputRequest a robmosys:CommunicationObject;
+	rdfs:label "CommAnalogOutputRequest";
+	t1:shortDescription "CommunicationObject CommAnalogOutputRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
 :CommBasePose a robmosys:CommunicationObject;
 	rdfs:label "CommBasePose";
 	t1:shortDescription "CommunicationObject CommBasePose";
@@ -136,6 +142,30 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
 .
 
+:CommDigitalInputEventParameter a robmosys:CommunicationObject;
+	rdfs:label "CommDigitalInputEventParameter";
+	t1:shortDescription "CommunicationObject CommDigitalInputEventParameter";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
+:CommDigitalInputEventResult a robmosys:CommunicationObject;
+	rdfs:label "CommDigitalInputEventResult";
+	t1:shortDescription "CommunicationObject CommDigitalInputEventResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
+:CommDigitalInputEventState a robmosys:CommunicationObject;
+	rdfs:label "CommDigitalInputEventState";
+	t1:shortDescription "CommunicationObject CommDigitalInputEventState";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
+:CommDigitalOutputRequest a robmosys:CommunicationObject;
+	rdfs:label "CommDigitalOutputRequest";
+	t1:shortDescription "CommunicationObject CommDigitalOutputRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
 :CommDirection3d a robmosys:CommunicationObject;
 	rdfs:label "CommDirection3d";
 	t1:shortDescription "CommunicationObject CommDirection3d";
@@ -193,6 +223,12 @@
 :CommIMUData a robmosys:CommunicationObject;
 	rdfs:label "CommIMUData";
 	t1:shortDescription "CommunicationObject CommIMUData";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
+:CommIOValues a robmosys:CommunicationObject;
+	rdfs:label "CommIOValues";
+	t1:shortDescription "CommunicationObject CommIOValues";
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
 .
 
@@ -433,6 +469,22 @@
 	];
 .
 
+:CommDigitalInputEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CommDigitalInputEvent";
+	t1:shortDescription "ServiceDefinition CommDigitalInputEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommDigitalInputEventResult;
+		t1:activationType :CommDigitalInputEventParameter;
+		t1:eventStateType :CommDigitalInputEventState;
+	];
+.
+
 :CommFileMoveEvent a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;
@@ -476,6 +528,35 @@
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:requestType :CommFileWriteRequest;
 		t1:answerType :CommFileWriteAnswer;
+	];
+.
+
+:CommIOForkingService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CommIOForkingService";
+	t1:shortDescription "ServiceDefinition CommIOForkingService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommIOValues;
+	];
+.
+
+:CommIOValuesQueryService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CommIOValuesQueryService";
+	t1:shortDescription "ServiceDefinition CommIOValuesQueryService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommIOValues;
+		t1:answerType :CommIOValues;
 	];
 .
 

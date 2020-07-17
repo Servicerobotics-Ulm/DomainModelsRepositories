@@ -180,4 +180,33 @@ ServiceDefRepository CommBasicObjects version 1.0
 		PushPattern<DataType=CommBasicObjects.CommMobileUltrasonicScan>
 	}
 	
+	
+	CoordinationServiceDefinition SequencerHLCoordinationServer {
+		StatePattern <lifecycle ComponentLifecycle>
+		ParameterPattern < EmptyDefaultParameterSet > //TODO
+		CommunicationServiceUsage HLCommandServer uses SequnecerHLInterfaceEvent
+		CommunicationServiceUsage HLCommandResponseClient uses SequnecerHLInterfaceSend
+	}
+	
+	
+	/// Analog Digital IO Services////////////////////
+	RequestAnswerServiceDefinition CommIOValuesQueryService {
+		QueryPattern < 
+			RequestType 	= CommBasicObjects.CommIOValues
+			AnswerType 		= CommBasicObjects.CommIOValues 
+		>
+	}
+	
+	ForkingServiceDefinition CommIOForkingService {
+		PushPattern <DataType=CommBasicObjects.CommIOValues>
+	}	
+	
+	ForkingServiceDefinition CommDigitalInputEvent {
+		EventPattern < 
+			ActivationType 	= CommBasicObjects.CommDigitalInputEventParameter
+			EventType 		= CommBasicObjects.CommDigitalInputEventResult
+			EventStateType 	= CommBasicObjects.CommDigitalInputEventState
+		>
+	}
+	
 }

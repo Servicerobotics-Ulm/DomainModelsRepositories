@@ -376,6 +376,42 @@ Structure of Communication Object:
 - yellow: Boolean 
 - green: Boolean 
 
+\class CommBasicObjects::CommAnalogOutputRequestCore
+
+Structure of Communication Object:
+- outputNumber: UInt32 
+- outputValue: Double 
+
+\class CommBasicObjects::CommDigitalOutputRequestCore
+
+Structure of Communication Object:
+- outputNumber: UInt32 
+- outputValue: Boolean 
+
+\class CommBasicObjects::CommIOValuesCore
+
+Structure of Communication Object:
+- analogInputValues: Float[*] 
+- digitalInputValues: Boolean[*] 
+- analogOutputValues: CommBasicObjects::CommAnalogOutputRequest[*] 
+- digitalOutputValues: CommBasicObjects::CommDigitalOutputRequest[*] 
+
+\class CommBasicObjects::CommDigitalInputEventResultCore
+
+Structure of Communication Object:
+- digitalInputValues: Boolean[*] 
+
+\class CommBasicObjects::CommDigitalInputEventStateCore
+
+Structure of Communication Object:
+- digitalInputValues: Boolean[*] 
+
+\class CommBasicObjects::CommDigitalInputEventParameterCore
+
+Structure of Communication Object:
+- digitalInputValuesNumber: UInt32 
+- digitalInputValue: Boolean 
+
 \class CommBasicObjects::RobotComponentEnum
 
 Structure of Enumeration:
@@ -820,6 +856,42 @@ Class Reference: CommBasicObjects::CommSkillMsgCore
 - green: Boolean  
 
 Class Reference: CommBasicObjects::CommTrafficLightsCore
+<hr>
+@section CommAnalogOutputRequest CommAnalogOutputRequest
+- outputNumber: UInt32  
+- outputValue: Double  
+
+Class Reference: CommBasicObjects::CommAnalogOutputRequestCore
+<hr>
+@section CommDigitalOutputRequest CommDigitalOutputRequest
+- outputNumber: UInt32  
+- outputValue: Boolean  
+
+Class Reference: CommBasicObjects::CommDigitalOutputRequestCore
+<hr>
+@section CommIOValues CommIOValues
+- analogInputValues: Float[*]  
+- digitalInputValues: Boolean[*]  
+- analogOutputValues: @ref CommAnalogOutputRequest[*] (CommObj) 
+- digitalOutputValues: @ref CommDigitalOutputRequest[*] (CommObj) 
+
+Class Reference: CommBasicObjects::CommIOValuesCore
+<hr>
+@section CommDigitalInputEventResult CommDigitalInputEventResult
+- digitalInputValues: Boolean[*]  
+
+Class Reference: CommBasicObjects::CommDigitalInputEventResultCore
+<hr>
+@section CommDigitalInputEventState CommDigitalInputEventState
+- digitalInputValues: Boolean[*]  
+
+Class Reference: CommBasicObjects::CommDigitalInputEventStateCore
+<hr>
+@section CommDigitalInputEventParameter CommDigitalInputEventParameter
+- digitalInputValuesNumber: UInt32  
+- digitalInputValue: Boolean  
+
+Class Reference: CommBasicObjects::CommDigitalInputEventParameterCore
 <hr>
 @section RobotComponentEnum RobotComponentEnum
 - ROBOT_BASE_COMPONENT 

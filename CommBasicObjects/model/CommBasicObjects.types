@@ -373,4 +373,37 @@ CommObjectsRepository CommBasicObjects version 1.0.0 {
 		yellow: Boolean
 		green: Boolean
 	}
+	
+	
+	// Analog / Digital IO
+	CommObject CommAnalogOutputRequest {
+		outputNumber : UInt32
+		outputValue : Double
+	}
+	
+	CommObject CommDigitalOutputRequest {
+		outputNumber : UInt32
+		outputValue : Boolean
+	}
+	
+	CommObject CommIOValues {
+		analogInputValues : Float [*]
+		digitalInputValues : Boolean [*]
+		analogOutputValues : CommAnalogOutputRequest [*]
+		digitalOutputValues : CommDigitalOutputRequest [*]
+	}
+	
+	CommObject CommDigitalInputEventResult {
+		digitalInputValues : Boolean [*]
+	}
+	
+	CommObject CommDigitalInputEventState {
+		digitalInputValues : Boolean [*]
+	}
+	
+	CommObject CommDigitalInputEventParameter {
+		digitalInputValuesNumber : UInt32
+		digitalInputValue : Boolean
+	}
+	
 }
