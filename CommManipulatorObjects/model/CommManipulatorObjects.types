@@ -103,4 +103,32 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		GRIPPER_EMTPY
 		GRIPPER_FULL
 	}
+	
+	
+	// vacuum gripper types
+	CommObject CommVacummGripperState {
+		state : VacuumGraspState
+		vacuumLevel : Double
+	}
+	
+	CommObject CommVacuumGripperEventResult {
+		state : VacuumGraspState	
+	}
+	
+	CommObject CommVacuumGripperEventParameter {
+		state : VacuumGraspState
+	}
+	
+	CommObject CommVacuumGripperEventState {
+		state : VacuumGraspState
+	}
+	
+	Enumeration VacuumGraspState {
+		VACUUM_REACHED
+		VACUUM_NOT_REACHED
+		VACUUM_OK
+		VACUUM_LOST
+		VACUUM_UNKNOWN
+	}
+	
 }

@@ -1,6 +1,6 @@
 ParameterSetRepository CommManipulatorObjects {
 	
-	ParameterSet GripperParameter {
+	ParameterSet ElectricGripperParameter {
 		
 		Trigger GRIPPER_OPEN {
 		}
@@ -21,6 +21,20 @@ ParameterSetRepository CommManipulatorObjects {
 		Trigger SET_SPEED {
 			///"Speed in mm/s^2"
 			speed : Float
+		}
+	}
+	
+	ParameterSet VacuumGripperParameter {
+		Trigger ACTIVATE_VACUUM {
+		}
+		
+		Trigger DEACTIVATE_VACUUM {
+		}
+		
+		Trigger ACTIVATE_RELEASE {
+		}
+		
+		Trigger DEACTIVATE_RELEASE{
 		}
 	}
 }

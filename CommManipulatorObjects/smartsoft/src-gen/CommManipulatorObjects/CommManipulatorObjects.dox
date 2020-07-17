@@ -88,6 +88,27 @@ Structure of Communication Object:
 - values: Double[*] 
 - time: Float 
 
+\class CommManipulatorObjects::CommVacummGripperStateCore
+
+Structure of Communication Object:
+- state: CommManipulatorObjects::VacuumGraspState 
+- vacuumLevel: Double 
+
+\class CommManipulatorObjects::CommVacuumGripperEventResultCore
+
+Structure of Communication Object:
+- state: CommManipulatorObjects::VacuumGraspState 
+
+\class CommManipulatorObjects::CommVacuumGripperEventParameterCore
+
+Structure of Communication Object:
+- state: CommManipulatorObjects::VacuumGraspState 
+
+\class CommManipulatorObjects::CommVacuumGripperEventStateCore
+
+Structure of Communication Object:
+- state: CommManipulatorObjects::VacuumGraspState 
+
 \class CommManipulatorObjects::ManipulatorTrajectoryFlag
 
 Structure of Enumeration:
@@ -117,6 +138,15 @@ Structure of Enumeration:
 Structure of Enumeration:
 - GRIPPER_EMTPY 
 - GRIPPER_FULL 
+
+\class CommManipulatorObjects::VacuumGraspState
+
+Structure of Enumeration:
+- VACUUM_REACHED 
+- VACUUM_NOT_REACHED 
+- VACUUM_OK 
+- VACUUM_LOST 
+- VACUUM_UNKNOWN 
 
 
 
@@ -217,6 +247,27 @@ Class Reference: CommManipulatorObjects::CommGripperTrajectoryCore
 
 Class Reference: CommManipulatorObjects::CommJointValuesCore
 <hr>
+@section CommVacummGripperState CommVacummGripperState
+- state: @ref VacuumGraspState (Enum) 
+- vacuumLevel: Double  
+
+Class Reference: CommManipulatorObjects::CommVacummGripperStateCore
+<hr>
+@section CommVacuumGripperEventResult CommVacuumGripperEventResult
+- state: @ref VacuumGraspState (Enum) 
+
+Class Reference: CommManipulatorObjects::CommVacuumGripperEventResultCore
+<hr>
+@section CommVacuumGripperEventParameter CommVacuumGripperEventParameter
+- state: @ref VacuumGraspState (Enum) 
+
+Class Reference: CommManipulatorObjects::CommVacuumGripperEventParameterCore
+<hr>
+@section CommVacuumGripperEventState CommVacuumGripperEventState
+- state: @ref VacuumGraspState (Enum) 
+
+Class Reference: CommManipulatorObjects::CommVacuumGripperEventStateCore
+<hr>
 @section ManipulatorTrajectoryFlag ManipulatorTrajectoryFlag
 - JOINT_ANGLES 
 - POSE_TCP 
@@ -246,6 +297,15 @@ Class Reference: CommManipulatorObjects::GripperEvent
 - GRIPPER_FULL 
 
 Class Reference: CommManipulatorObjects::GripperGraspState
+<hr>
+@section VacuumGraspState VacuumGraspState
+- VACUUM_REACHED 
+- VACUUM_NOT_REACHED 
+- VACUUM_OK 
+- VACUUM_LOST 
+- VACUUM_UNKNOWN 
+
+Class Reference: CommManipulatorObjects::VacuumGraspState
 <hr>
 
 

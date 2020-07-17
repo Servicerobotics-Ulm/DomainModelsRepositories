@@ -12,4 +12,19 @@ SkillDefinitionRepository CommManipulatorObjects {
 		
 	}
 	
+	CoordinationModuleDefinition vacuumGriperModule {
+		SkillDefinition gripperGrasp {
+			results {
+				SUCCESS value = ""
+				ERROR value = "GRASP FAILED"
+			}
+		}
+		
+		SkillDefinition gripperRelease {
+			results {
+				SUCCESS value = ""
+			}
+		}
+	}
+	
 }

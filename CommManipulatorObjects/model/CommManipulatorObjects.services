@@ -60,4 +60,23 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 		CommunicationServiceUsage manipulatorevent uses ManipulatorEventService
 		CommunicationServiceUsage manipulatorstate uses MobileManipulatorStateQueryService
 	}
+	
+	// vacuum gripper services
+	
+	ForkingServiceDefinition VacuumGripperEventService {
+		EventPattern < ActivationType=CommManipulatorObjects.CommVacuumGripperEventParameter
+					   EventStateType=CommManipulatorObjects.CommVacuumGripperEventState
+					   EventType=CommManipulatorObjects.CommVacuumGripperEventResult>
+	}
+	
+	RequestAnswerServiceDefinition VacuumGripperStateService {
+		QueryPattern < RequestType = CommBasicObjects.CommVoid
+		AnswerType =  CommManipulatorObjects.CommVacummGripperState >
+	}
+	
+	CoordinationServiceDefinition VacuumGripperCoordinationService {
+		ParameterPattern < CommManipulatorObjects.VacuumGripperParameter >
+		StatePattern < lifecycle ComponentLifecycle with CommBasicObjects.BasicModes >
+		CommunicationServiceUsage gripperevent uses VacuumGripperEventService
+	}
 }
