@@ -41,4 +41,9 @@ ComponentModeRepository CommNavigationObjects {
 	ComponentModeCollection MappingStates{
 		ComponentModeDefinition active;
 	}
+	
+	ComponentModeCollection RobotDockingStates{
+		ComponentModeDefinition Docking;
+		ComponentModeDefinition UnDocking;
+	}
 }

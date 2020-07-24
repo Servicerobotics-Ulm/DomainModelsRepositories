@@ -72,7 +72,7 @@ SkillDefinitionRepository CommNavigationObjects {
 		// ///////////////////////////////////////////
 		// MOVE ROBOT 
 		
-		SkillDefinition moveRoboterPosition{
+		SkillDefinition moveRobotPosition{
 			//(tcb-move-robot 'plain ?x ?y ?radius)
 			in {
 				x : Double
@@ -87,7 +87,7 @@ SkillDefinitionRepository CommNavigationObjects {
 			}
 		}
 	
-		SkillDefinition moveRoboterOrientateRobotAbs{
+		SkillDefinition moveRobotOrientateRobotAbs{
 			//(tcb-move-robot 'orientate-angle-absolute ?angle-deg)
 			in {
 				angleDeg : Double	
@@ -100,7 +100,7 @@ SkillDefinitionRepository CommNavigationObjects {
 			}
 		}
 		
-		SkillDefinition moveRoboterOrientateRobotRel{
+		SkillDefinition moveRobotOrientateRobotRel{
 			//(tcb-move-robot 'orientate-angle-relative ?angle-deg)
 			in {
 				angleDeg : Double	
@@ -114,7 +114,7 @@ SkillDefinitionRepository CommNavigationObjects {
 		}
 		
 		
-		SkillDefinition moveRoboterBackwardsRelative {
+		SkillDefinition moveRobotBackwardsRelative {
 			in {
 				dist : Double	
 			} 
@@ -126,7 +126,7 @@ SkillDefinitionRepository CommNavigationObjects {
 			}
 		}
 		
-		SkillDefinition moveRoboterBackwardsLocation {
+		SkillDefinition moveRobotBackwardsLocation {
 			//(tcb-move-robot 'backward-abs ?dist)
 			in {
 				locationID : Int32	

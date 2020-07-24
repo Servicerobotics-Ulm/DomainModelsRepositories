@@ -76,6 +76,24 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
 .
 
+:CommDockingEventParameter a robmosys:CommunicationObject;
+	rdfs:label "CommDockingEventParameter";
+	t1:shortDescription "CommunicationObject CommDockingEventParameter";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommDockingEventResult a robmosys:CommunicationObject;
+	rdfs:label "CommDockingEventResult";
+	t1:shortDescription "CommunicationObject CommDockingEventResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommDockingEventState a robmosys:CommunicationObject;
+	rdfs:label "CommDockingEventState";
+	t1:shortDescription "CommunicationObject CommDockingEventState";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
 :CommGridMap a robmosys:CommunicationObject;
 	rdfs:label "CommGridMap";
 	t1:shortDescription "CommunicationObject CommGridMap";
@@ -296,6 +314,22 @@
 		t1:eventType :CommCdlRobotBlockedEventResult;
 		t1:activationType :CommCdlRobotBlockedEventParameter;
 		t1:eventStateType :CommCdlRobotBlockedState;
+	];
+.
+
+:RobotDockingEventService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "RobotDockingEventService";
+	t1:shortDescription "ServiceDefinition RobotDockingEventService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommDockingEventResult;
+		t1:activationType :CommDockingEventParameter;
+		t1:eventStateType :CommDockingEventState;
 	];
 .
 

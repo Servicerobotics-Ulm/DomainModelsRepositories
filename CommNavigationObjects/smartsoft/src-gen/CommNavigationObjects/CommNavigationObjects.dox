@@ -108,6 +108,21 @@ Structure of Communication Object:
 - vertices: CommNavigationObjects::CommNavigationTopologyPart[*] 
 - edges: CommNavigationObjects::CommNavigationTopologyConnection[*] 
 
+\class CommNavigationObjects::CommDockingEventParameterCore
+
+Structure of Communication Object:
+- oldState: CommNavigationObjects::DockingEventType 
+
+\class CommNavigationObjects::CommDockingEventResultCore
+
+Structure of Communication Object:
+- state: CommNavigationObjects::DockingEventType 
+
+\class CommNavigationObjects::CommDockingEventStateCore
+
+Structure of Communication Object:
+- newState: CommNavigationObjects::DockingEventType 
+
 \class CommNavigationObjects::OctomapTagType
 
 Structure of Enumeration:
@@ -225,6 +240,17 @@ Structure of Enumeration:
 
 Structure of Enumeration:
 - VIA_LOCATION 
+
+\class CommNavigationObjects::DockingEventType
+
+Structure of Enumeration:
+- DOCKING_UNKNOWN 
+- DOCKING_DONE 
+- DOCKING_NOT_DONE 
+- DOCKING_ERROR 
+- UN_DOCKING_NOT_DONE 
+- UN_DOCKING_DONE 
+- UN_DOCKING_ERROR 
 
 
 
@@ -345,6 +371,21 @@ Class Reference: CommNavigationObjects::CommNavigationTopologyConnectionCore
 
 Class Reference: CommNavigationObjects::CommNavigationTopologyMapCore
 <hr>
+@section CommDockingEventParameter CommDockingEventParameter
+- oldState: @ref DockingEventType (Enum) 
+
+Class Reference: CommNavigationObjects::CommDockingEventParameterCore
+<hr>
+@section CommDockingEventResult CommDockingEventResult
+- state: @ref DockingEventType (Enum) 
+
+Class Reference: CommNavigationObjects::CommDockingEventResultCore
+<hr>
+@section CommDockingEventState CommDockingEventState
+- newState: @ref DockingEventType (Enum) 
+
+Class Reference: CommNavigationObjects::CommDockingEventStateCore
+<hr>
 @section OctomapTagType OctomapTagType
 - RESET 
 
@@ -462,6 +503,17 @@ Class Reference: CommNavigationObjects::NavigationPartType
 - VIA_LOCATION 
 
 Class Reference: CommNavigationObjects::NavigationConnectonType
+<hr>
+@section DockingEventType DockingEventType
+- DOCKING_UNKNOWN 
+- DOCKING_DONE 
+- DOCKING_NOT_DONE 
+- DOCKING_ERROR 
+- UN_DOCKING_NOT_DONE 
+- UN_DOCKING_DONE 
+- UN_DOCKING_ERROR 
+
+Class Reference: CommNavigationObjects::DockingEventType
 <hr>
 
 

@@ -319,4 +319,19 @@ ParameterSetRepository CommNavigationObjects {
 		Trigger DELETEGOAL { }
 		
 	}
+	
+	
+	ParameterSet RobotDockingParameter {
+		
+		Parameter DOCKING_GOAL {
+			x : Double 
+			y : Double
+			z : Double
+			yaw : Double
+			pitch : Double
+			roll : Double
+		}
+		
+		Trigger SAVE_POSE_BEFORE_DOCKING {}
+	}
 }

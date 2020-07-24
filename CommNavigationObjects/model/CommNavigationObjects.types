@@ -214,5 +214,31 @@ CommObjectsRepository CommNavigationObjects version 1.0.0 {
 		vertices : CommNavigationTopologyPart[*]
 		edges : CommNavigationTopologyConnection[*] 
 	}
+	
+	////////DOCKING
+	
+	Enumeration DockingEventType 
+	{
+		DOCKING_UNKNOWN
+		DOCKING_DONE
+		DOCKING_NOT_DONE
+		DOCKING_ERROR
+		UN_DOCKING_NOT_DONE
+		UN_DOCKING_DONE
+		UN_DOCKING_ERROR
+	}
+	
+	CommObject CommDockingEventParameter {
+		oldState : DockingEventType
+	}
+	
+	CommObject CommDockingEventResult {
+		state : DockingEventType
+	}
+	
+	
+	CommObject CommDockingEventState {
+		newState : DockingEventType
+	}
 
 }

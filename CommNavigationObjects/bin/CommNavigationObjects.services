@@ -97,6 +97,13 @@ ServiceDefRepository CommNavigationObjects version 1.0
 		PushPattern<DataType=CommBasicObjects.CommMobileIRScan>
 	}
 
+	ForkingServiceDefinition RobotDockingEventService {
+		EventPattern<ActivationType=CommNavigationObjects.CommDockingEventParameter
+		EventStateType = CommNavigationObjects.CommDockingEventState
+		EventType = CommNavigationObjects.CommDockingEventResult>
+	}
+
+
 	/**
 	 * Coordination service-definitions
 	 */
@@ -126,6 +133,12 @@ ServiceDefRepository CommNavigationObjects version 1.0
 		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.PathPlannerStates>
 		ParameterPattern < CommNavigationObjects.PlannerParams>
 		CommunicationServiceUsage plannerEvent uses PlannerEventService
+	}
+	
+	CoordinationServiceDefinition RobotDockingCoordinationService{
+		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.RobotDockingStates>
+		ParameterPattern <CommNavigationObjects.RobotDockingParameter>
+		CommunicationServiceUsage dockingEvent uses RobotDockingEventService
 	}
 
 }
