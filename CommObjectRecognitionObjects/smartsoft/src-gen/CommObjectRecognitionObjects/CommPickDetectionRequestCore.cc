@@ -13,10 +13,10 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
-#include "CommObjectRecognitionObjects/PickDetectionRequestCore.hh"
+#include "CommObjectRecognitionObjects/CommPickDetectionRequestCore.hh"
 
 // serialization/deserialization operators
-//#include "CommObjectRecognitionObjects/PickDetectionRequestACE.hh"
+//#include "CommObjectRecognitionObjects/CommPickDetectionRequestACE.hh"
 
 // include the hash.idl containing the hash constant
 #include "hash.hh"
@@ -33,25 +33,25 @@
 
 namespace CommObjectRecognitionObjects 
 {
-	const char* PickDetectionRequestCore::getCompiledHash()
+	const char* CommPickDetectionRequestCore::getCompiledHash()
 	{
 		return CommObjectRecognitionObjectsIDL::REPO_HASH;
 	}
 	
-	void PickDetectionRequestCore::getAllHashValues(std::list<std::string> &hashes)
+	void CommPickDetectionRequestCore::getAllHashValues(std::list<std::string> &hashes)
 	{
 		// get own hash value
 		hashes.push_back(getCompiledHash());
 	}
 	
-	void PickDetectionRequestCore::checkAllHashValues(std::list<std::string> &hashes)
+	void CommPickDetectionRequestCore::checkAllHashValues(std::list<std::string> &hashes)
 	{
 		// check own hash value
 		if (strcmp(getCompiledHash(), hashes.front().c_str()) != 0)
 		{
 			std::cerr << "###################################################" << std::endl;
 			std::cerr << "WARNING: HASHES OF COMMUNICATION OBJECTS MISSMATCH!" << std::endl;
-			std::cerr << "PickDetectionRequestCore hash" << std::endl;
+			std::cerr << "CommPickDetectionRequestCore hash" << std::endl;
 			std::cerr << "Expected: " << getCompiledHash() << std::endl;
 			std::cerr << "Received: " << hashes.front() << std::endl;
 			std::cerr << "###################################################" << std::endl;
@@ -62,7 +62,7 @@ namespace CommObjectRecognitionObjects
 	}
 	
 	#ifdef ENABLE_HASH
-	size_t PickDetectionRequestCore::generateDataHash(const DATATYPE &data)
+	size_t CommPickDetectionRequestCore::generateDataHash(const DATATYPE &data)
 	{
 		size_t seed = 0;
 		
@@ -74,36 +74,36 @@ namespace CommObjectRecognitionObjects
 	#endif
 	
 	// default constructor
-	PickDetectionRequestCore::PickDetectionRequestCore()
-	:	idl_PickDetectionRequest()
+	CommPickDetectionRequestCore::CommPickDetectionRequestCore()
+	:	idl_CommPickDetectionRequest()
 	{  
 		setWorkspaceID("");
 		setPickmodelID("");
 	}
 	
-	PickDetectionRequestCore::PickDetectionRequestCore(const DATATYPE &data)
-	:	idl_PickDetectionRequest(data)
+	CommPickDetectionRequestCore::CommPickDetectionRequestCore(const DATATYPE &data)
+	:	idl_CommPickDetectionRequest(data)
 	{  }
 
-	PickDetectionRequestCore::~PickDetectionRequestCore()
+	CommPickDetectionRequestCore::~CommPickDetectionRequestCore()
 	{  }
 	
-	void PickDetectionRequestCore::to_ostream(std::ostream &os) const
+	void CommPickDetectionRequestCore::to_ostream(std::ostream &os) const
 	{
-	  os << "PickDetectionRequest(";
+	  os << "CommPickDetectionRequest(";
 	  os << getWorkspaceID() << " ";
 	  os << getPickmodelID() << " ";
 	  os << ") ";
 	}
 	
 	// convert to xml stream
-	void PickDetectionRequestCore::to_xml(std::ostream &os, const std::string &indent) const {
+	void CommPickDetectionRequestCore::to_xml(std::ostream &os, const std::string &indent) const {
 		os << indent << "<workspaceID>" << getWorkspaceID() << "</workspaceID>";
 		os << indent << "<pickmodelID>" << getPickmodelID() << "</pickmodelID>";
 	}
 	
 	// restore from xml stream
-	void PickDetectionRequestCore::from_xml(std::istream &is) {
+	void CommPickDetectionRequestCore::from_xml(std::istream &is) {
 		static const Smart::KnuthMorrisPratt kmp_workspaceID("<workspaceID>");
 		static const Smart::KnuthMorrisPratt kmp_pickmodelID("<pickmodelID>");
 		
@@ -120,7 +120,7 @@ namespace CommObjectRecognitionObjects
 	}
 	
 	/*
-	void PickDetectionRequestCore::get(ACE_Message_Block *&msg) const
+	void CommPickDetectionRequestCore::get(ACE_Message_Block *&msg) const
 	{
 		// start with a default internal buffer size(will automatically grow if needed)
 		ACE_OutputCDR cdr(ACE_DEFAULT_CDR_BUFSIZE);
@@ -134,13 +134,13 @@ namespace CommObjectRecognitionObjects
 		}
 		
 		// Here the actual serialization takes place using the OutputCDR serialization operator<<
-		// (see PickDetectionRequestACE.hh)
-		cdr << idl_PickDetectionRequest;
+		// (see CommPickDetectionRequestACE.hh)
+		cdr << idl_CommPickDetectionRequest;
 		
 	#ifdef ENABLE_HASH
-		ACE_CDR::ULong data_hash = generateDataHash(idl_PickDetectionRequest);
+		ACE_CDR::ULong data_hash = generateDataHash(idl_CommPickDetectionRequest);
 		cdr << data_hash;
-		// std::cout << "PickDetectionRequestCore: current data hash: " << data_hash << std::endl;
+		// std::cout << "CommPickDetectionRequestCore: current data hash: " << data_hash << std::endl;
 	#endif
 		
 		// return a shallow copy of the serialized message 
@@ -150,7 +150,7 @@ namespace CommObjectRecognitionObjects
 		msg = cdr.begin()->duplicate();
 	}
 	
-	void PickDetectionRequestCore::set(const ACE_Message_Block *msg)
+	void CommPickDetectionRequestCore::set(const ACE_Message_Block *msg)
 	{
 		ACE_InputCDR cdr(msg);
 	
@@ -166,15 +166,15 @@ namespace CommObjectRecognitionObjects
 		checkAllHashValues(hashes);
 		
 		// Here the actual de-serialization takes place using the InputCDR serialization operator>>
-		// (see PickDetectionRequestACE.hh)
-		cdr >> idl_PickDetectionRequest;
+		// (see CommPickDetectionRequestACE.hh)
+		cdr >> idl_CommPickDetectionRequest;
 		
 	#ifdef ENABLE_HASH
 		ACE_CDR::Long data_hash;
 		cdr >> data_hash;
-		ACE_CDR::Long own_hash = generateDataHash(idl_PickDetectionRequest);
+		ACE_CDR::Long own_hash = generateDataHash(idl_CommPickDetectionRequest);
 		assert(data_hash == own_hash);
-		// std::cout << "PickDetectionRequestCore: own data hash: " << own_hash << "; received data hash: " << data_hash << std::endl;
+		// std::cout << "CommPickDetectionRequestCore: own data hash: " << own_hash << "; received data hash: " << data_hash << std::endl;
 	#endif
 	}
 	*/

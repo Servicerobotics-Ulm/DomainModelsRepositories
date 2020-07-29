@@ -22,7 +22,7 @@
 
 	//component name: PickDetectionCoordinationService
 	//QUERY CLIENT
-	iter->second.pickDetectionCoordinationServicepickqueryClient = new SmartACE::QueryClient<CommObjectRecognitionObjects::PickDetectionRequest,CommManipulatorObjects::CommGrasp>(component);
+	iter->second.pickDetectionCoordinationServicepickqueryClient = new SmartACE::QueryClient<CommObjectRecognitionObjects::CommPickDetectionRequest,CommManipulatorObjects::CommGrasp>(component);
 	iter->second.pickDetectionCoordinationServicepickqueryQueryHandler = new PickDetectionCoordinationServicePickqueryQueryHandler();
 	
 	// connect ports
@@ -99,7 +99,7 @@ std::string PickDetectionCoordinationServiceCore::switchCi(const std::string& ci
 			}
 			if(strcasecmp(service.c_str(), "pickquery") == 0 )
 			{
-				CommObjectRecognitionObjects::PickDetectionRequest request;
+				CommObjectRecognitionObjects::CommPickDetectionRequest request;
 				CommManipulatorObjects::CommGrasp answer;
 				
 				Smart::StatusCode status;

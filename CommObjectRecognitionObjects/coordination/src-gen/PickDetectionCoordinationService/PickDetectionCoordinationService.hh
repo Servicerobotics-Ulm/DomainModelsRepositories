@@ -5,8 +5,8 @@
 // include communication objects
 #include <CommManipulatorObjects/CommGrasp.hh>
 #include <CommManipulatorObjects/CommGraspACE.hh>
-#include <CommObjectRecognitionObjects/PickDetectionRequest.hh>
-#include <CommObjectRecognitionObjects/PickDetectionRequestACE.hh>
+#include <CommObjectRecognitionObjects/CommPickDetectionRequest.hh>
+#include <CommObjectRecognitionObjects/CommPickDetectionRequestACE.hh>
 
 
 #include "PickDetectionCoordinationServicePickqueryQueryHandler.hh"
@@ -21,7 +21,7 @@ public:
 
 	//variables, ports, handlers
 	//param, state, wiring is dealt with the single master
-	Smart::IQueryClientPattern<CommObjectRecognitionObjects::PickDetectionRequest, CommManipulatorObjects::CommGrasp> *pickDetectionCoordinationServicepickqueryClient;
+	Smart::IQueryClientPattern<CommObjectRecognitionObjects::CommPickDetectionRequest, CommManipulatorObjects::CommGrasp> *pickDetectionCoordinationServicepickqueryClient;
 	PickDetectionCoordinationServicePickqueryQueryHandler *pickDetectionCoordinationServicepickqueryQueryHandler;
  };
 #endif /* PICKDETECTIONCOORDINATIONSERVICE_H_ */

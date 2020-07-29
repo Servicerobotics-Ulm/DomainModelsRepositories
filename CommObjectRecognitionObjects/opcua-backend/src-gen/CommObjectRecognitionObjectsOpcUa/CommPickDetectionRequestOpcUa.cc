@@ -1,4 +1,4 @@
-#include "PickDetectionRequestOpcUa.hh"
+#include "CommPickDetectionRequestOpcUa.hh"
 
 #define SERONET_NO_DEPRECATED
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ComplexType.hpp>
@@ -11,9 +11,9 @@ namespace SeRoNet {
 namespace CommunicationObjects {
 namespace Description {
 	
-// serialization for CommObjectRecognitionObjectsIDL::PickDetectionRequest
+// serialization for CommObjectRecognitionObjectsIDL::CommPickDetectionRequest
 template <>
-IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::PickDetectionRequest *obj, std::string name)
+IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::CommPickDetectionRequest *obj, std::string name)
 {
 	auto ret = std::make_shared<SeRoNet::CommunicationObjects::Description::ComplexType>(name);
 	// add workspaceID

@@ -13,11 +13,11 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
-#include "CommObjectRecognitionObjects/PickDetectionRequestACE.hh"
+#include "CommObjectRecognitionObjects/CommPickDetectionRequestACE.hh"
 #include <ace/SString.h>
 
-// serialization operator for element PickDetectionRequest
-ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjectsIDL::PickDetectionRequest &data)
+// serialization operator for element CommPickDetectionRequest
+ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjectsIDL::CommPickDetectionRequest &data)
 {
 	ACE_CDR::Boolean good_bit = true;
 	// serialize list-element workspaceID
@@ -28,8 +28,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjec
 	return good_bit;
 }
 
-// de-serialization operator for element PickDetectionRequest
-ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjectsIDL::PickDetectionRequest &data)
+// de-serialization operator for element CommPickDetectionRequest
+ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjectsIDL::CommPickDetectionRequest &data)
 {
 	ACE_CDR::Boolean good_bit = true;
 	// deserialize string-type element workspaceID
@@ -44,14 +44,14 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjectsIDL::
 	return good_bit;
 }
 
-// serialization operator for CommunicationObject PickDetectionRequest
-ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjects::PickDetectionRequest &obj)
+// serialization operator for CommunicationObject CommPickDetectionRequest
+ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjects::CommPickDetectionRequest &obj)
 {
 	return cdr << obj.get();
 }
 
-// de-serialization operator for CommunicationObject PickDetectionRequest
-ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjects::PickDetectionRequest &obj)
+// de-serialization operator for CommunicationObject CommPickDetectionRequest
+ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjects::CommPickDetectionRequest &obj)
 {
 	return cdr >> obj.set();
 }

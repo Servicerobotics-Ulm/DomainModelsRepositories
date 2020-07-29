@@ -32,7 +32,7 @@ ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 	
 	RequestAnswerServiceDefinition PickObjectDetectionQueryService {
 		QueryPattern <
-			RequestType = CommObjectRecognitionObjects.PickDetectionRequest
+			RequestType = CommObjectRecognitionObjects.CommPickDetectionRequest
 			AnswerType = CommManipulatorObjects.CommGrasp
 		>
 	}

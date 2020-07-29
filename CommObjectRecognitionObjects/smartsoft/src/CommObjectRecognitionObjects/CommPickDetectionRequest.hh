@@ -14,17 +14,17 @@
 // If you want the toolchain to re-generate this file, please 
 // delete it before running the code generator.
 //--------------------------------------------------------------------------
-#ifndef COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_H_
-#define COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_H_
+#ifndef COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_H_
+#define COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_H_
 
-#include "CommObjectRecognitionObjects/PickDetectionRequestCore.hh"
+#include "CommObjectRecognitionObjects/CommPickDetectionRequestCore.hh"
 
 namespace CommObjectRecognitionObjects {
 		
-class PickDetectionRequest : public PickDetectionRequestCore {
+class CommPickDetectionRequest : public CommPickDetectionRequestCore {
 	public:
 		// default constructors
-		PickDetectionRequest();
+		CommPickDetectionRequest();
 		
 		/**
 		 * Constructor to set all values.
@@ -35,26 +35,26 @@ class PickDetectionRequest : public PickDetectionRequestCore {
 		 *      CommRepository::MyCommObject obj;
 		 *      obj.setX(1).setY(2).setZ(3)...;
 		 */
-		// PickDetectionRequest(const std::string &workspaceID, const std::string &pickmodelID);
+		// CommPickDetectionRequest(const std::string &workspaceID, const std::string &pickmodelID);
 		
-		PickDetectionRequest(const PickDetectionRequestCore &pickDetectionRequest);
-		PickDetectionRequest(const DATATYPE &pickDetectionRequest);
-		virtual ~PickDetectionRequest();
+		CommPickDetectionRequest(const CommPickDetectionRequestCore &commPickDetectionRequest);
+		CommPickDetectionRequest(const DATATYPE &commPickDetectionRequest);
+		virtual ~CommPickDetectionRequest();
 		
 		// use framework specific getter and setter methods from core (base) class
-		using PickDetectionRequestCore::get;
-		using PickDetectionRequestCore::set;
+		using CommPickDetectionRequestCore::get;
+		using CommPickDetectionRequestCore::set;
 		
 		//
 		// feel free to add customized methods here
 		//
 };
 
-inline std::ostream &operator<<(std::ostream &os, const PickDetectionRequest &co)
+inline std::ostream &operator<<(std::ostream &os, const CommPickDetectionRequest &co)
 {
 	co.to_ostream(os);
 	return os;
 }
 	
 } /* namespace CommObjectRecognitionObjects */
-#endif /* COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_H_ */
+#endif /* COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_H_ */

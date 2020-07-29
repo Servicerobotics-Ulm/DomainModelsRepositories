@@ -13,19 +13,19 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
-#ifndef COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_DATA_H_
-#define COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_DATA_H_
+#ifndef COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_DATA_H_
+#define COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_DATA_H_
 
 
 #include <string>
 
 namespace CommObjectRecognitionObjectsIDL 
 {
-	struct PickDetectionRequest
+	struct CommPickDetectionRequest
 	{
 		std::string workspaceID;
 		std::string pickmodelID;
   	};
 };
 
-#endif /* COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_DATA_H_ */
+#endif /* COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_DATA_H_ */

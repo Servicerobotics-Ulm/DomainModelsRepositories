@@ -14,7 +14,7 @@
 // running the code generator.
 //--------------------------------------------------------------------------
 
-#include "CommObjectRecognitionObjects/PickDetectionRequest.hh"
+#include "CommObjectRecognitionObjects/CommPickDetectionRequest.hh"
 
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/SelfDescription.hpp>
 #pragma once
@@ -23,13 +23,13 @@ namespace SeRoNet {
 namespace CommunicationObjects {
 namespace Description {
 	
-// serialization for CommObjectRecognitionObjectsIDL::PickDetectionRequest
+// serialization for CommObjectRecognitionObjectsIDL::CommPickDetectionRequest
 template <>
-IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::PickDetectionRequest *obj, std::string name);
+IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::CommPickDetectionRequest *obj, std::string name);
 
-// serialization for PickDetectionRequest
+// serialization for CommPickDetectionRequest
 template <>
-inline IDescription::shp_t SelfDescription(CommObjectRecognitionObjects::PickDetectionRequest *obj, std::string name)
+inline IDescription::shp_t SelfDescription(CommObjectRecognitionObjects::CommPickDetectionRequest *obj, std::string name)
 {
 	return SelfDescription(&(obj->set()),name); 
 } // end SelfDescription

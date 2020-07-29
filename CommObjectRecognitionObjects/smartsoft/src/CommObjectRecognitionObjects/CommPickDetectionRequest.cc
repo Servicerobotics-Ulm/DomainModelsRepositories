@@ -15,12 +15,12 @@
 // delete it before running the code generator.
 //--------------------------------------------------------------------------
 
-#include "CommObjectRecognitionObjects/PickDetectionRequest.hh"
+#include "CommObjectRecognitionObjects/CommPickDetectionRequest.hh"
 
 using namespace CommObjectRecognitionObjects;
 
-PickDetectionRequest::PickDetectionRequest()
-:	PickDetectionRequestCore()
+CommPickDetectionRequest::CommPickDetectionRequest()
+:	CommPickDetectionRequestCore()
 {  }
 
 
@@ -32,21 +32,21 @@ PickDetectionRequest::PickDetectionRequest()
  * The preferred way to set values for initialization is:
  *      CommRepository::MyCommObject obj;
  *      obj.setX(1).setY(2).setZ(3)...;
-PickDetectionRequest::PickDetectionRequest(const std::string &workspaceID, const std::string &pickmodelID)
-:	PickDetectionRequestCore() // base constructor sets default values as defined in the model
+CommPickDetectionRequest::CommPickDetectionRequest(const std::string &workspaceID, const std::string &pickmodelID)
+:	CommPickDetectionRequestCore() // base constructor sets default values as defined in the model
 {
 	setWorkspaceID(workspaceID);
 	setPickmodelID(pickmodelID);
 }
  */
 
-PickDetectionRequest::PickDetectionRequest(const PickDetectionRequestCore &pickDetectionRequest)
-:	PickDetectionRequestCore(pickDetectionRequest)
+CommPickDetectionRequest::CommPickDetectionRequest(const CommPickDetectionRequestCore &commPickDetectionRequest)
+:	CommPickDetectionRequestCore(commPickDetectionRequest)
 {  }
 
-PickDetectionRequest::PickDetectionRequest(const DATATYPE &pickDetectionRequest)
-:	PickDetectionRequestCore(pickDetectionRequest)
+CommPickDetectionRequest::CommPickDetectionRequest(const DATATYPE &commPickDetectionRequest)
+:	CommPickDetectionRequestCore(commPickDetectionRequest)
 {  }
 
-PickDetectionRequest::~PickDetectionRequest()
+CommPickDetectionRequest::~CommPickDetectionRequest()
 {  }

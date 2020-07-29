@@ -98,7 +98,7 @@ Structure of Communication Object:
 - type: CommObjectRecognitionObjects::RelationType 
 - relatedObjectId: UInt32 
 
-\class CommObjectRecognitionObjects::PickDetectionRequestCore
+\class CommObjectRecognitionObjects::CommPickDetectionRequestCore
 
 Structure of Communication Object:
 - workspaceID: String 
@@ -233,11 +233,11 @@ Class Reference: CommObjectRecognitionObjects::CommTriMeshCore
 
 Class Reference: CommObjectRecognitionObjects::CommObjectRelationCore
 <hr>
-@section PickDetectionRequest PickDetectionRequest
+@section CommPickDetectionRequest CommPickDetectionRequest
 - workspaceID: String  
 - pickmodelID: String  
 
-Class Reference: CommObjectRecognitionObjects::PickDetectionRequestCore
+Class Reference: CommObjectRecognitionObjects::CommPickDetectionRequestCore
 <hr>
 @section ObjectRecognitionState ObjectRecognitionState
 - VISIBLE 

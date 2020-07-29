@@ -13,10 +13,10 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
-#ifndef COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_CORE_H_
-#define COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_CORE_H_
+#ifndef COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_CORE_H_
+#define COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_CORE_H_
 
-#include "CommObjectRecognitionObjects/PickDetectionRequestData.hh"
+#include "CommObjectRecognitionObjects/CommPickDetectionRequestData.hh"
 
 #include <iostream>
 #include <string>
@@ -24,14 +24,14 @@
 
 namespace CommObjectRecognitionObjects {
 	
-class PickDetectionRequestCore {
+class CommPickDetectionRequestCore {
 protected:
 	// data structure
-	CommObjectRecognitionObjectsIDL::PickDetectionRequest idl_PickDetectionRequest;
+	CommObjectRecognitionObjectsIDL::CommPickDetectionRequest idl_CommPickDetectionRequest;
 	
 public:
 	// give a publicly accessible type-name for the template parameter IDL
-	typedef CommObjectRecognitionObjectsIDL::PickDetectionRequest DATATYPE;
+	typedef CommObjectRecognitionObjectsIDL::CommPickDetectionRequest DATATYPE;
 	
 	#ifdef ENABLE_HASH
 		static size_t generateDataHash(const DATATYPE &);
@@ -42,16 +42,16 @@ public:
 	static void checkAllHashValues(std::list<std::string> &hashes);
 	
 	// default constructors
-	PickDetectionRequestCore();
-	PickDetectionRequestCore(const DATATYPE &data);
+	CommPickDetectionRequestCore();
+	CommPickDetectionRequestCore(const DATATYPE &data);
 	// default destructor
-	virtual ~PickDetectionRequestCore();
+	virtual ~CommPickDetectionRequestCore();
 	
-	const DATATYPE& get() const { return idl_PickDetectionRequest; }
-	operator const DATATYPE&() const { return idl_PickDetectionRequest; }
-	DATATYPE& set() { return idl_PickDetectionRequest; }
+	const DATATYPE& get() const { return idl_CommPickDetectionRequest; }
+	operator const DATATYPE&() const { return idl_CommPickDetectionRequest; }
+	DATATYPE& set() { return idl_CommPickDetectionRequest; }
 
-	static inline std::string identifier(void) { return "CommObjectRecognitionObjects::PickDetectionRequest"; }
+	static inline std::string identifier(void) { return "CommObjectRecognitionObjects::CommPickDetectionRequest"; }
 	
 	// helper method to easily implement output stream in derived classes
 	void to_ostream(std::ostream &os = std::cout) const;
@@ -65,13 +65,13 @@ public:
 	// User Interface
 	
 	// getter and setter for element WorkspaceID
-	inline std::string getWorkspaceID() const { return idl_PickDetectionRequest.workspaceID; }
-	inline PickDetectionRequestCore& setWorkspaceID(const std::string &workspaceID) { idl_PickDetectionRequest.workspaceID = workspaceID; return *this; }
+	inline std::string getWorkspaceID() const { return idl_CommPickDetectionRequest.workspaceID; }
+	inline CommPickDetectionRequestCore& setWorkspaceID(const std::string &workspaceID) { idl_CommPickDetectionRequest.workspaceID = workspaceID; return *this; }
 	
 	// getter and setter for element PickmodelID
-	inline std::string getPickmodelID() const { return idl_PickDetectionRequest.pickmodelID; }
-	inline PickDetectionRequestCore& setPickmodelID(const std::string &pickmodelID) { idl_PickDetectionRequest.pickmodelID = pickmodelID; return *this; }
+	inline std::string getPickmodelID() const { return idl_CommPickDetectionRequest.pickmodelID; }
+	inline CommPickDetectionRequestCore& setPickmodelID(const std::string &pickmodelID) { idl_CommPickDetectionRequest.pickmodelID = pickmodelID; return *this; }
 };
 
 } /* namespace CommObjectRecognitionObjects */
-#endif /* COMMOBJECTRECOGNITIONOBJECTS_PICKDETECTIONREQUEST_CORE_H_ */
+#endif /* COMMOBJECTRECOGNITIONOBJECTS_COMMPICKDETECTIONREQUEST_CORE_H_ */
