@@ -28,4 +28,18 @@ ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 		CommunicationServiceUsage objectquery uses ObjectQueryService
 		CommunicationServiceUsage objectrecognitionevent uses ObjectEventService 
 	}
+	
+	
+	RequestAnswerServiceDefinition PickObjectDetectionQueryService {
+		QueryPattern <
+			RequestType = CommObjectRecognitionObjects.PickDetectionRequest
+			AnswerType = CommManipulatorObjects.CommGrasp
+		>
+	}
+	
+	CoordinationServiceDefinition PickDetectionCoordinationService {
+		ParameterPattern < CommObjectRecognitionObjects.ObjectDetectionParameter >
+		StatePattern < lifecycle ComponentLifecycle with CommObjectRecognitionObjects.DefaultModes>
+		CommunicationServiceUsage pickquery uses PickObjectDetectionQueryService
+	}
 }

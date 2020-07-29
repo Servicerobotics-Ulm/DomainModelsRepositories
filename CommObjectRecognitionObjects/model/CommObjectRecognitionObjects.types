@@ -107,4 +107,10 @@ CommObjectsRepository CommObjectRecognitionObjects version 1.0 {
 		relatedObjectId: UInt32
 	}
 	
+	CommObject PickDetectionRequest {
+		workspaceID : String
+		pickmodelID : String
+	}
+	
+	
 }

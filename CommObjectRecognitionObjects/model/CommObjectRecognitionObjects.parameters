@@ -63,5 +63,17 @@ ParameterSetRepository CommObjectRecognitionObjects {
 		Parameter SETOBJECTID {
 			id : UInt32
 		}
+		
+	}
+	
+	ParameterSet ObjectDetectionParameter {
+		
+		Parameter DETECTION_MODEL {
+			id : String
+		}
+		
+		Parameter WORKSPACE_ID {
+			id : String
+		}
 	}
 }

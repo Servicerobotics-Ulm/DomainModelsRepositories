@@ -3,6 +3,8 @@
 	<name>CommObjectRecognitionObjects</name>
 	<comment></comment>
 	<projects>
+		<project>CommBasicObjects</project>
+		<project>CommManipulatorObjects</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
