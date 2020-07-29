@@ -109,6 +109,14 @@ Structure of Communication Object:
 Structure of Communication Object:
 - state: CommManipulatorObjects::VacuumGraspState 
 
+\class CommManipulatorObjects::CommGraspCore
+
+Structure of Communication Object:
+- id: String 
+- pose: CommBasicObjects::CommPose3d 
+- quality: Double 
+- width: Double 
+
 \class CommManipulatorObjects::ManipulatorTrajectoryFlag
 
 Structure of Enumeration:
@@ -267,6 +275,14 @@ Class Reference: CommManipulatorObjects::CommVacuumGripperEventParameterCore
 - state: @ref VacuumGraspState (Enum) 
 
 Class Reference: CommManipulatorObjects::CommVacuumGripperEventStateCore
+<hr>
+@section CommGrasp CommGrasp
+- id: String  
+- pose: @ref CommPose3d (CommObj) 
+- quality: Double  
+- width: Double  
+
+Class Reference: CommManipulatorObjects::CommGraspCore
 <hr>
 @section ManipulatorTrajectoryFlag ManipulatorTrajectoryFlag
 - JOINT_ANGLES 
