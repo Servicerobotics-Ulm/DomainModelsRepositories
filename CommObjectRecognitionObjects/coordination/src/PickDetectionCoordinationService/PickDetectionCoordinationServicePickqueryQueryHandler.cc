@@ -1,8 +1,8 @@
 #include "PickDetectionCoordinationServicePickqueryQueryHandler.hh"
   
-CommObjectRecognitionObjects::PickDetectionRequest PickDetectionCoordinationServicePickqueryQueryHandler::handleRequest(const std::string& inString){
+CommObjectRecognitionObjects::CommPickDetectionRequest PickDetectionCoordinationServicePickqueryQueryHandler::handleRequest(const std::string& inString){
 
-	CommObjectRecognitionObjects::PickDetectionRequest request;
+	CommObjectRecognitionObjects::CommPickDetectionRequest request;
 	//fill the request commObject with the data provided via the inString (from TCL)
 	//e.g. request.setLisp(inString);
 
