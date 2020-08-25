@@ -69,6 +69,10 @@ public:
 	inline std::string getType() const { return idl_CommObjectBelief.type; }
 	inline CommObjectBeliefCore& setType(const std::string &type) { idl_CommObjectBelief.type = type; return *this; }
 	
+	// getter and setter for element ObjClass
+	inline std::string getObjClass() const { return idl_CommObjectBelief.objClass; }
+	inline CommObjectBeliefCore& setObjClass(const std::string &objClass) { idl_CommObjectBelief.objClass = objClass; return *this; }
+	
 	// getter and setter for element Probability
 	inline double getProbability() const { return idl_CommObjectBelief.probability; }
 	inline CommObjectBeliefCore& setProbability(const double &probability) { idl_CommObjectBelief.probability = probability; return *this; }

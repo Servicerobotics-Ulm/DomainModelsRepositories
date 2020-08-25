@@ -1,4 +1,4 @@
-#include "CommObjectBeliefOpcUa.hh"
+#include "CommImageObjectRecognitionResultOpcUa.hh"
 
 #define SERONET_NO_DEPRECATED
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ComplexType.hpp>
@@ -6,40 +6,40 @@
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/SelfDescriptionArray.hpp>
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ElementArray.hpp>
 
-#include "CommBasicObjectsOpcUa/CommPose3dOpcUa.hh"
+#include "CommObjectRecognitionObjectsOpcUa/CommObjectBeliefOpcUa.hh"
 
 namespace SeRoNet {
 namespace CommunicationObjects {
 namespace Description {
 	
-// serialization for CommObjectRecognitionObjectsIDL::CommObjectBelief
+// serialization for CommObjectRecognitionObjectsIDL::CommImageObjectRecognitionResult
 template <>
-IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::CommObjectBelief *obj, std::string name)
+IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::CommImageObjectRecognitionResult *obj, std::string name)
 {
 	auto ret = std::make_shared<SeRoNet::CommunicationObjects::Description::ComplexType>(name);
-	// add type
+	// add xmin
 	ret->add(
-		SelfDescription(&(obj->type), "Type")
+		SelfDescription(&(obj->xmin), "Xmin")
 	);
-	// add objClass
+	// add ymin
 	ret->add(
-		SelfDescription(&(obj->objClass), "ObjClass")
+		SelfDescription(&(obj->ymin), "Ymin")
 	);
-	// add probability
+	// add xmax
 	ret->add(
-		SelfDescription(&(obj->probability), "Probability")
+		SelfDescription(&(obj->xmax), "Xmax")
 	);
-	// add pose
+	// add ymax
 	ret->add(
-		SelfDescription(&(obj->pose), "Pose")
+		SelfDescription(&(obj->ymax), "Ymax")
 	);
-	// add cov
+	// add belief
 	ret->add(
-		SelfDescription(&(obj->cov), "Cov")
+		SelfDescription(&(obj->belief), "Belief")
 	);
-	// add validPosePdf
+	// add objectId
 	ret->add(
-		SelfDescription(&(obj->validPosePdf), "ValidPosePdf")
+		SelfDescription(&(obj->objectId), "ObjectId")
 	);
 	return ret;
 } // end SelfDescription

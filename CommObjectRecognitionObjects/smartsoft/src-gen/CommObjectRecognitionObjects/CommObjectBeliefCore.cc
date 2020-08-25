@@ -71,6 +71,7 @@ namespace CommObjectRecognitionObjects
 		size_t seed = 0;
 		
 		boost::hash_combine(seed, std::string(data.type.c_str()));
+		boost::hash_combine(seed, std::string(data.objClass.c_str()));
 		boost::hash_combine(seed, data.probability);
 		seed += CommBasicObjects::CommPose3d::generateDataHash(data.pose);
 		std::vector<ACE_CDR::Double>::const_iterator data_covIt;
@@ -88,6 +89,7 @@ namespace CommObjectRecognitionObjects
 	:	idl_CommObjectBelief()
 	{  
 		setType("");
+		setObjClass("");
 		setProbability(0.0);
 		setPose(CommBasicObjects::CommPose3d());
 		setCov(std::vector<double>());
@@ -105,6 +107,7 @@ namespace CommObjectRecognitionObjects
 	{
 	  os << "CommObjectBelief(";
 	  os << getType() << " ";
+	  os << getObjClass() << " ";
 	  os << getProbability() << " ";
 	  getPose().to_ostream(os);
 	  std::vector<double>::const_iterator covIt;
@@ -121,6 +124,7 @@ namespace CommObjectRecognitionObjects
 		size_t counter = 0;
 		
 		os << indent << "<type>" << getType() << "</type>";
+		os << indent << "<objClass>" << getObjClass() << "</objClass>";
 		os << indent << "<probability>" << getProbability() << "</probability>";
 		os << indent << "<pose>";
 		getPose().to_xml(os, indent);
@@ -141,6 +145,7 @@ namespace CommObjectRecognitionObjects
 		size_t counter = 0;
 		
 		static const Smart::KnuthMorrisPratt kmp_type("<type>");
+		static const Smart::KnuthMorrisPratt kmp_objClass("<objClass>");
 		static const Smart::KnuthMorrisPratt kmp_probability("<probability>");
 		static const Smart::KnuthMorrisPratt kmp_pose("<pose>");
 		static const Smart::KnuthMorrisPratt kmp_covList("<covList n=\"");
@@ -151,6 +156,11 @@ namespace CommObjectRecognitionObjects
 			std::string typeItem;
 			is >> typeItem;
 			setType(typeItem);
+		}
+		if(kmp_objClass.search(is)) {
+			std::string objClassItem;
+			is >> objClassItem;
+			setObjClass(objClassItem);
 		}
 		if(kmp_probability.search(is)) {
 			double probabilityItem;

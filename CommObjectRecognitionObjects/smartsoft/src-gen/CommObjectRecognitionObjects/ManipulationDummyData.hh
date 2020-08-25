@@ -13,26 +13,18 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
-#ifndef COMMOBJECTRECOGNITIONOBJECTS_COMMOBJECTBELIEF_DATA_H_
-#define COMMOBJECTRECOGNITIONOBJECTS_COMMOBJECTBELIEF_DATA_H_
+#ifndef COMMOBJECTRECOGNITIONOBJECTS_MANIPULATIONDUMMY_DATA_H_
+#define COMMOBJECTRECOGNITIONOBJECTS_MANIPULATIONDUMMY_DATA_H_
 
-#include "CommBasicObjects/CommPose3dData.hh"
+#include "CommManipulatorObjects/CommMobileManipulatorStateData.hh"
 
-#include <vector>
-#include <string>
 
 namespace CommObjectRecognitionObjectsIDL 
 {
-	typedef std::vector<double> CommObjectBelief_cov_type;
-	struct CommObjectBelief
+	struct ManipulationDummy
 	{
-		std::string type;
-		std::string objClass;
-		double probability;
-		CommBasicObjectsIDL::CommPose3d pose;
-		CommObjectBelief_cov_type cov;
-		bool validPosePdf;
+		CommManipulatorObjectsIDL::CommMobileManipulatorState value;
   	};
 };
 
-#endif /* COMMOBJECTRECOGNITIONOBJECTS_COMMOBJECTBELIEF_DATA_H_ */
+#endif /* COMMOBJECTRECOGNITIONOBJECTS_MANIPULATIONDUMMY_DATA_H_ */

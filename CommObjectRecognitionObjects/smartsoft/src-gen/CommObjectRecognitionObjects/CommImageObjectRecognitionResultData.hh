@@ -13,26 +13,23 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
-#ifndef COMMOBJECTRECOGNITIONOBJECTS_COMMOBJECTBELIEF_DATA_H_
-#define COMMOBJECTRECOGNITIONOBJECTS_COMMOBJECTBELIEF_DATA_H_
+#ifndef COMMOBJECTRECOGNITIONOBJECTS_COMMIMAGEOBJECTRECOGNITIONRESULT_DATA_H_
+#define COMMOBJECTRECOGNITIONOBJECTS_COMMIMAGEOBJECTRECOGNITIONRESULT_DATA_H_
 
-#include "CommBasicObjects/CommPose3dData.hh"
+#include "CommObjectRecognitionObjects/CommObjectBeliefData.hh"
 
-#include <vector>
-#include <string>
 
 namespace CommObjectRecognitionObjectsIDL 
 {
-	typedef std::vector<double> CommObjectBelief_cov_type;
-	struct CommObjectBelief
+	struct CommImageObjectRecognitionResult
 	{
-		std::string type;
-		std::string objClass;
-		double probability;
-		CommBasicObjectsIDL::CommPose3d pose;
-		CommObjectBelief_cov_type cov;
-		bool validPosePdf;
+		unsigned int xmin;
+		unsigned int ymin;
+		unsigned int xmax;
+		unsigned int ymax;
+		CommObjectRecognitionObjectsIDL::CommObjectBelief belief;
+		unsigned int objectId;
   	};
 };
 
-#endif /* COMMOBJECTRECOGNITIONOBJECTS_COMMOBJECTBELIEF_DATA_H_ */
+#endif /* COMMOBJECTRECOGNITIONOBJECTS_COMMIMAGEOBJECTRECOGNITIONRESULT_DATA_H_ */

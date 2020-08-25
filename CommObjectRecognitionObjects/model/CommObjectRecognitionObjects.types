@@ -87,6 +87,7 @@ CommObjectsRepository CommObjectRecognitionObjects version 1.0 {
 	
 	CommObject CommObjectBelief {
 		type: String
+		objClass : String
 		probability: Double
 		pose: CommPose3d
 		cov: Double[*]
@@ -112,5 +113,29 @@ CommObjectsRepository CommObjectRecognitionObjects version 1.0 {
 		pickmodelID : String
 	}
 	
+	CommObject CommImageObjectRecognitionResult {
+		 // boundingBox
+		 xmin: UInt32
+		 ymin: UInt32
+		 xmax: UInt32
+		 ymax: UInt32
+		 belief : CommObjectBelief
+		 // instance id not type!		 
+		 objectId: UInt32
+ 	}
+	
+	CommObject CommImageObjectRecognitionResults {
+		objects : CommImageObjectRecognitionResult [*]
+		timestamp : CommTimeStamp
+		//id which defines the environment the recognition is performed on
+		//to keep track of the same objects recognized multiple times
+		environmentId : UInt32
+		valid : Boolean
+	}
+	
+	//TODO remove this obj, only required to add dependency (used in coordination module) to commobject
+	CommObject ManipulationDummy {
+		value : CommManipulatorObjects.CommMobileManipulatorState
+	}
 	
 }

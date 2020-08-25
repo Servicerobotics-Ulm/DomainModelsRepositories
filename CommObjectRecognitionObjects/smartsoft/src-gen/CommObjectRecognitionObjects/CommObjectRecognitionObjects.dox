@@ -77,6 +77,7 @@ Structure of Communication Object:
 
 Structure of Communication Object:
 - type: String 
+- objClass: String 
 - probability: Double 
 - pose: CommBasicObjects::CommPose3d 
 - cov: Double[*] 
@@ -103,6 +104,29 @@ Structure of Communication Object:
 Structure of Communication Object:
 - workspaceID: String 
 - pickmodelID: String 
+
+\class CommObjectRecognitionObjects::CommImageObjectRecognitionResultCore
+
+Structure of Communication Object:
+- xmin: UInt32 
+- ymin: UInt32 
+- xmax: UInt32 
+- ymax: UInt32 
+- belief: CommObjectRecognitionObjects::CommObjectBelief 
+- objectId: UInt32 
+
+\class CommObjectRecognitionObjects::CommImageObjectRecognitionResultsCore
+
+Structure of Communication Object:
+- objects: CommObjectRecognitionObjects::CommImageObjectRecognitionResult[*] 
+- timestamp: CommBasicObjects::CommTimeStamp 
+- environmentId: UInt32 
+- valid: Boolean 
+
+\class CommObjectRecognitionObjects::ManipulationDummyCore
+
+Structure of Communication Object:
+- value: CommManipulatorObjects::CommMobileManipulatorState 
 
 \class CommObjectRecognitionObjects::ObjectRecognitionState
 
@@ -210,6 +234,7 @@ Class Reference: CommObjectRecognitionObjects::CommOcrIdCore
 <hr>
 @section CommObjectBelief CommObjectBelief
 - type: String  
+- objClass: String  
 - probability: Double  
 - pose: @ref CommPose3d (CommObj) 
 - cov: Double[*]  
@@ -238,6 +263,29 @@ Class Reference: CommObjectRecognitionObjects::CommObjectRelationCore
 - pickmodelID: String  
 
 Class Reference: CommObjectRecognitionObjects::CommPickDetectionRequestCore
+<hr>
+@section CommImageObjectRecognitionResult CommImageObjectRecognitionResult
+- xmin: UInt32  
+- ymin: UInt32  
+- xmax: UInt32  
+- ymax: UInt32  
+- belief: @ref CommObjectBelief (CommObj) 
+- objectId: UInt32  
+
+Class Reference: CommObjectRecognitionObjects::CommImageObjectRecognitionResultCore
+<hr>
+@section CommImageObjectRecognitionResults CommImageObjectRecognitionResults
+- objects: @ref CommImageObjectRecognitionResult[*] (CommObj) 
+- timestamp: @ref CommTimeStamp (CommObj) 
+- environmentId: UInt32  
+- valid: Boolean  
+
+Class Reference: CommObjectRecognitionObjects::CommImageObjectRecognitionResultsCore
+<hr>
+@section ManipulationDummy ManipulationDummy
+- value: @ref CommMobileManipulatorState (CommObj) 
+
+Class Reference: CommObjectRecognitionObjects::ManipulationDummyCore
 <hr>
 @section ObjectRecognitionState ObjectRecognitionState
 - VISIBLE 

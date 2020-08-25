@@ -23,6 +23,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjec
 	ACE_CDR::Boolean good_bit = true;
 	// serialize list-element type
 	good_bit = good_bit && cdr << ACE_CString(data.type.c_str());
+	// serialize list-element objClass
+	good_bit = good_bit && cdr << ACE_CString(data.objClass.c_str());
 	// serialize list-element probability
 	good_bit = good_bit && cdr.write_double(data.probability);
 	// serialize list-element pose
@@ -44,6 +46,10 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjectsIDL::
 	ACE_CString data_type_str;
 	good_bit = good_bit && cdr >> data_type_str;
 	data.type = data_type_str.c_str();
+	// deserialize string-type element objClass
+	ACE_CString data_objClass_str;
+	good_bit = good_bit && cdr >> data_objClass_str;
+	data.objClass = data_objClass_str.c_str();
 	// deserialize type element probability
 	good_bit = good_bit && cdr.read_double(data.probability);
 	// deserialize type element pose
