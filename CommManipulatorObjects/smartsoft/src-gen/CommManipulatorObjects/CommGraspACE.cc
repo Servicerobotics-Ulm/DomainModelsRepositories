@@ -29,6 +29,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommManipulatorObjectsIDL:
 	good_bit = good_bit && cdr.write_double(data.quality);
 	// serialize list-element width
 	good_bit = good_bit && cdr.write_double(data.width);
+	// serialize list-element valid
+	good_bit = good_bit && cdr.write_boolean(data.valid);
 	
 	return good_bit;
 }
@@ -47,6 +49,8 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommManipulatorObjectsIDL::CommGr
 	good_bit = good_bit && cdr.read_double(data.quality);
 	// deserialize type element width
 	good_bit = good_bit && cdr.read_double(data.width);
+	// deserialize type element valid
+	good_bit = good_bit && cdr.read_boolean(data.valid);
 	
 	return good_bit;
 }

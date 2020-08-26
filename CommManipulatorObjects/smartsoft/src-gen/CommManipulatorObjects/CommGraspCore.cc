@@ -74,6 +74,7 @@ namespace CommManipulatorObjects
 		seed += CommBasicObjects::CommPose3d::generateDataHash(data.pose);
 		boost::hash_combine(seed, data.quality);
 		boost::hash_combine(seed, data.width);
+		boost::hash_combine(seed, data.valid);
 		
 		return seed;
 	}
@@ -87,6 +88,7 @@ namespace CommManipulatorObjects
 		setPose(CommBasicObjects::CommPose3d());
 		setQuality(0.0);
 		setWidth(0.0);
+		setValid(false);
 	}
 	
 	CommGraspCore::CommGraspCore(const DATATYPE &data)
@@ -103,6 +105,7 @@ namespace CommManipulatorObjects
 	  getPose().to_ostream(os);
 	  os << getQuality() << " ";
 	  os << getWidth() << " ";
+	  os << getValid() << " ";
 	  os << ") ";
 	}
 	
@@ -114,6 +117,7 @@ namespace CommManipulatorObjects
 		os << indent << "</pose>";
 		os << indent << "<quality>" << getQuality() << "</quality>";
 		os << indent << "<width>" << getWidth() << "</width>";
+		os << indent << "<valid>" << getValid() << "</valid>";
 	}
 	
 	// restore from xml stream
@@ -122,6 +126,7 @@ namespace CommManipulatorObjects
 		static const Smart::KnuthMorrisPratt kmp_pose("<pose>");
 		static const Smart::KnuthMorrisPratt kmp_quality("<quality>");
 		static const Smart::KnuthMorrisPratt kmp_width("<width>");
+		static const Smart::KnuthMorrisPratt kmp_valid("<valid>");
 		
 		if(kmp_id.search(is)) {
 			std::string idItem;
@@ -142,6 +147,11 @@ namespace CommManipulatorObjects
 			double widthItem;
 			is >> widthItem;
 			setWidth(widthItem);
+		}
+		if(kmp_valid.search(is)) {
+			bool validItem;
+			is >> validItem;
+			setValid(validItem);
 		}
 	}
 	

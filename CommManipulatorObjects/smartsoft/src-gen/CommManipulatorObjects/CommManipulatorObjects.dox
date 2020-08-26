@@ -116,6 +116,7 @@ Structure of Communication Object:
 - pose: CommBasicObjects::CommPose3d 
 - quality: Double 
 - width: Double 
+- valid: Boolean  = false 
 
 \class CommManipulatorObjects::ManipulatorTrajectoryFlag
 
@@ -281,6 +282,7 @@ Class Reference: CommManipulatorObjects::CommVacuumGripperEventStateCore
 - pose: @ref CommPose3d (CommObj) 
 - quality: Double  
 - width: Double  
+- valid: Boolean   = false 
 
 Class Reference: CommManipulatorObjects::CommGraspCore
 <hr>

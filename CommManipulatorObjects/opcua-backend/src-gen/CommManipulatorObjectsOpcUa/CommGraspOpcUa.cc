@@ -33,6 +33,10 @@ IDescription::shp_t SelfDescription(CommManipulatorObjectsIDL::CommGrasp *obj, s
 	ret->add(
 		SelfDescription(&(obj->width), "Width")
 	);
+	// add valid
+	ret->add(
+		SelfDescription(&(obj->valid), "Valid")
+	);
 	return ret;
 } // end SelfDescription
 

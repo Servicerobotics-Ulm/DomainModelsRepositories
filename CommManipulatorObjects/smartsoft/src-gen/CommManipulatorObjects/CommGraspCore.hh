@@ -80,6 +80,10 @@ public:
 	// getter and setter for element Width
 	inline double getWidth() const { return idl_CommGrasp.width; }
 	inline CommGraspCore& setWidth(const double &width) { idl_CommGrasp.width = width; return *this; }
+	
+	// getter and setter for element Valid
+	inline bool getValid() const { return idl_CommGrasp.valid; }
+	inline CommGraspCore& setValid(const bool &valid) { idl_CommGrasp.valid = valid; return *this; }
 };
 
 } /* namespace CommManipulatorObjects */

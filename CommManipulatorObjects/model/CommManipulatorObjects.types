@@ -136,6 +136,7 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		pose : CommBasicObjects.CommPose3d
 		quality : Double
 		width : Double
+		valid : Boolean=false
 	}
 	
 }

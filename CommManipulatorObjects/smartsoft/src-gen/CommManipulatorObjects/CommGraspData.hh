@@ -28,6 +28,7 @@ namespace CommManipulatorObjectsIDL
 		CommBasicObjectsIDL::CommPose3d pose;
 		double quality;
 		double width;
+		bool valid;
   	};
 };
 
