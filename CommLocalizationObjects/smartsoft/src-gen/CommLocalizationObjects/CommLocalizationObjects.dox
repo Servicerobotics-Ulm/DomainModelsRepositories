@@ -65,6 +65,36 @@ Structure of Communication Object:
 - speed_uncertainty: Double 
 - climb_uncertainty: Double 
 
+\class CommLocalizationObjects::CommBeaconMeasurementCore
+
+Structure of Communication Object:
+- timeStamp: CommBasicObjects::CommTimeStamp 
+- uuid: String 
+- major: Int32 
+- minor: Int32 
+- rssi: Float 
+- txPower: Float 
+- distance: Float 
+- distanceIsValid: Boolean 
+
+\class CommLocalizationObjects::CommBeaconLocalizationRawDataCore
+
+Structure of Communication Object:
+- measurements: CommLocalizationObjects::CommBeaconMeasurement[*] 
+
+\class CommLocalizationObjects::CommLocalizationZoneResultCore
+
+Structure of Communication Object:
+- currentZone: Int32 
+- timestamp: CommBasicObjects::CommTimeStamp 
+
+\class CommLocalizationObjects::CommLocalizationZoneChangeCore
+
+Structure of Communication Object:
+- newZone: Int32 
+- oldZone: Int32 
+- timestamp: CommBasicObjects::CommTimeStamp 
+
 \class CommLocalizationObjects::CommAmclParticleCore
 
 Structure of Communication Object:
@@ -171,6 +201,36 @@ Class Reference: CommLocalizationObjects::LocalizationEventStateCore
 - climb_uncertainty: Double  
 
 Class Reference: CommLocalizationObjects::CommGpsFixCore
+<hr>
+@section CommBeaconMeasurement CommBeaconMeasurement
+- timeStamp: @ref CommTimeStamp (CommObj) 
+- uuid: String  
+- major: Int32  
+- minor: Int32  
+- rssi: Float  
+- txPower: Float  
+- distance: Float  
+- distanceIsValid: Boolean  
+
+Class Reference: CommLocalizationObjects::CommBeaconMeasurementCore
+<hr>
+@section CommBeaconLocalizationRawData CommBeaconLocalizationRawData
+- measurements: @ref CommBeaconMeasurement[*] (CommObj) 
+
+Class Reference: CommLocalizationObjects::CommBeaconLocalizationRawDataCore
+<hr>
+@section CommLocalizationZoneResult CommLocalizationZoneResult
+- currentZone: Int32  
+- timestamp: @ref CommTimeStamp (CommObj) 
+
+Class Reference: CommLocalizationObjects::CommLocalizationZoneResultCore
+<hr>
+@section CommLocalizationZoneChange CommLocalizationZoneChange
+- newZone: Int32  
+- oldZone: Int32  
+- timestamp: @ref CommTimeStamp (CommObj) 
+
+Class Reference: CommLocalizationObjects::CommLocalizationZoneChangeCore
 <hr>
 @section CommAmclParticle CommAmclParticle
 - pose: @ref CommPose3d (CommObj) 

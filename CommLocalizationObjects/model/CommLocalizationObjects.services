@@ -36,19 +36,39 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 		>
 	}
 	
-		ForkingServiceDefinition GPSDService {
+	ForkingServiceDefinition GPSDService {
 		PushPattern < DataType = CommLocalizationObjects.CommGpsFix >
 	}
 	
-	ForkingServiceDefinition AmclVisualizationInfo{
-		PushPattern<DataType=CommLocalizationObjects.CommAmclVisualizationInfo>
-	}
 	
 	RequestAnswerServiceDefinition CommGpsFixService {
 		QueryPattern <
 			RequestType = CommBasicObjects.CommVoid
 			AnswerType = CommLocalizationObjects.CommGpsFix
 		>
+	}
+	
+	ForkingServiceDefinition LocalizationResult3D {
+		PushPattern < DataType = CommBasicObjects.CommPosition3dWithCovariance >	
+	}
+	
+	ForkingServiceDefinition BeaconLocalizationResultRaw {
+		PushPattern < DataType = CommLocalizationObjects.CommBeaconLocalizationRawData >
+	}
+	
+	ForkingServiceDefinition LocalizationResultZone {
+		PushPattern < DataType = CommLocalizationObjects.CommLocalizationZoneResult >		
+	}
+	
+
+	ForkingServiceDefinition LocalizationResultZoneChange {
+		EventPattern < EventType = CommLocalizationObjects.CommLocalizationZoneChange
+					   ActivationType = CommLocalizationObjects.CommLocalizationZoneResult
+					   EventStateType = CommLocalizationObjects.CommLocalizationZoneChange >
+	}
+	
+	ForkingServiceDefinition AmclVisualizationInfo{
+		PushPattern<DataType=CommLocalizationObjects.CommAmclVisualizationInfo>
 	}
 	
 	CoordinationServiceDefinition LocalizationCoordinationService {

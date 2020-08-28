@@ -328,9 +328,21 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
 .
 
+:CommPose3dWithCovariance a robmosys:CommunicationObject;
+	rdfs:label "CommPose3dWithCovariance";
+	t1:shortDescription "CommunicationObject CommPose3dWithCovariance";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
 :CommPosition3d a robmosys:CommunicationObject;
 	rdfs:label "CommPosition3d";
 	t1:shortDescription "CommunicationObject CommPosition3d";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
+:CommPosition3dWithCovariance a robmosys:CommunicationObject;
+	rdfs:label "CommPosition3dWithCovariance";
+	t1:shortDescription "CommunicationObject CommPosition3dWithCovariance";
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
 .
 

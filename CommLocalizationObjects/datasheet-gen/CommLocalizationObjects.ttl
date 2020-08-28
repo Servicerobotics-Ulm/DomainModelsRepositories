@@ -70,6 +70,18 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
 .
 
+:CommBeaconLocalizationRawData a robmosys:CommunicationObject;
+	rdfs:label "CommBeaconLocalizationRawData";
+	t1:shortDescription "CommunicationObject CommBeaconLocalizationRawData";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+.
+
+:CommBeaconMeasurement a robmosys:CommunicationObject;
+	rdfs:label "CommBeaconMeasurement";
+	t1:shortDescription "CommunicationObject CommBeaconMeasurement";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+.
+
 :CommGpsFix a robmosys:CommunicationObject;
 	rdfs:label "CommGpsFix";
 	t1:shortDescription "CommunicationObject CommGpsFix";
@@ -85,6 +97,18 @@
 :CommLocalizationEventResult a robmosys:CommunicationObject;
 	rdfs:label "CommLocalizationEventResult";
 	t1:shortDescription "CommunicationObject CommLocalizationEventResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+.
+
+:CommLocalizationZoneChange a robmosys:CommunicationObject;
+	rdfs:label "CommLocalizationZoneChange";
+	t1:shortDescription "CommunicationObject CommLocalizationZoneChange";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+.
+
+:CommLocalizationZoneResult a robmosys:CommunicationObject;
+	rdfs:label "CommLocalizationZoneResult";
+	t1:shortDescription "CommunicationObject CommLocalizationZoneResult";
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
 .
 
@@ -122,6 +146,20 @@
 		a robmosys:PushPattern;
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:dataType :CommAmclVisualizationInfo;
+	];
+.
+
+:BeaconLocalizationResultRaw a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "BeaconLocalizationResultRaw";
+	t1:shortDescription "ServiceDefinition BeaconLocalizationResultRaw";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommBeaconLocalizationRawData;
 	];
 .
 
@@ -167,6 +205,50 @@
 		t1:eventType :CommLocalizationEventResult;
 		t1:activationType :CommLocalizationEventParameter;
 		t1:eventStateType :LocalizationEventState;
+	];
+.
+
+:LocalizationResult3D a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "LocalizationResult3D";
+	t1:shortDescription "ServiceDefinition LocalizationResult3D";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommPosition3dWithCovariance;
+	];
+.
+
+:LocalizationResultZone a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "LocalizationResultZone";
+	t1:shortDescription "ServiceDefinition LocalizationResultZone";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommLocalizationZoneResult;
+	];
+.
+
+:LocalizationResultZoneChange a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "LocalizationResultZoneChange";
+	t1:shortDescription "ServiceDefinition LocalizationResultZoneChange";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommLocalizationZoneChange;
+		t1:activationType :CommLocalizationZoneResult;
+		t1:eventStateType :CommLocalizationZoneChange;
 	];
 .
 

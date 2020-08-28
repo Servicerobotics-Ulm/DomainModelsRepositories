@@ -39,6 +39,12 @@ CommObjectsRepository CommBasicObjects version 1.0.0 {
 		y: Double = 0.0
 		z: Double = 0.0
 	}
+	
+	CommObject CommPosition3dWithCovariance {
+		position :  CommPosition3d
+		covMatrix : Double [9]
+	}
+	
 	CommObject CommOrientation3d {
 		azimuth: Double = .0
 		elevation: Double = .0
@@ -48,6 +54,12 @@ CommObjectsRepository CommBasicObjects version 1.0.0 {
 		position: CommPosition3d
 		orientation: CommOrientation3d
 	}
+	
+	CommObject CommPose3dWithCovariance {
+		pose : CommPose3d
+		covMatrix : Double [36]
+	}
+	
 	CommObject CommDirection3d {
 		azimuth: Double = 0.0
 		elevation: Double = 0.0

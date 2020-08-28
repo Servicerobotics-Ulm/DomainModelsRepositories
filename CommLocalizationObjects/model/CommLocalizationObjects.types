@@ -122,6 +122,44 @@ CommObjectsRepository CommLocalizationObjects version 1.0.0 {
 		climb_uncertainty : Double
 	}
 
+
+	CommObject CommBeaconMeasurement {
+		// "Time the signal of the beacon was received."
+		timeStamp: CommTimeStamp
+
+		uuid : String
+		major : Int32
+		minor : Int32
+
+		//"received signal strength"
+		rssi : Float
+
+		//"Measured power of the signal at a distance of 1 meter."
+		txPower : Float
+
+		//"Distance between the device and the receiver in meters."
+		distance : Float		
+		
+		// indicating whether a valid distance measure is present 
+		distanceIsValid : Boolean
+	}
+	
+	CommObject CommBeaconLocalizationRawData{
+		measurements : CommBeaconMeasurement [*]	
+	}
+	
+	CommObject CommLocalizationZoneResult {
+		currentZone : Int32
+		timestamp :  CommTimeStamp
+	}
+	
+	CommObject CommLocalizationZoneChange {
+		newZone : Int32
+		oldZone : Int32
+		timestamp :  CommTimeStamp
+	}
+	
+	
 	CommObject CommAmclParticle{
 	pose: CommPose3d
 	weight: Double = 0.0

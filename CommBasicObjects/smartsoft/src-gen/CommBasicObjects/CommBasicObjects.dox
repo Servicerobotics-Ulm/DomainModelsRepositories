@@ -22,6 +22,12 @@ Structure of Communication Object:
 - y: Double  = 0.0 
 - z: Double  = 0.0 
 
+\class CommBasicObjects::CommPosition3dWithCovarianceCore
+
+Structure of Communication Object:
+- position: CommBasicObjects::CommPosition3d 
+- covMatrix: Double[9] 
+
 \class CommBasicObjects::CommOrientation3dCore
 
 Structure of Communication Object:
@@ -34,6 +40,12 @@ Structure of Communication Object:
 Structure of Communication Object:
 - position: CommBasicObjects::CommPosition3d 
 - orientation: CommBasicObjects::CommOrientation3d 
+
+\class CommBasicObjects::CommPose3dWithCovarianceCore
+
+Structure of Communication Object:
+- pose: CommBasicObjects::CommPose3d 
+- covMatrix: Double[36] 
 
 \class CommBasicObjects::CommDirection3dCore
 
@@ -503,6 +515,12 @@ Class Reference: CommBasicObjects::CommTimeStampCore
 
 Class Reference: CommBasicObjects::CommPosition3dCore
 <hr>
+@section CommPosition3dWithCovariance CommPosition3dWithCovariance
+- position: @ref CommPosition3d (CommObj) 
+- covMatrix: Double[9]  
+
+Class Reference: CommBasicObjects::CommPosition3dWithCovarianceCore
+<hr>
 @section CommOrientation3d CommOrientation3d
 - azimuth: Double   = 0.0 
 - elevation: Double   = 0.0 
@@ -515,6 +533,12 @@ Class Reference: CommBasicObjects::CommOrientation3dCore
 - orientation: @ref CommOrientation3d (CommObj) 
 
 Class Reference: CommBasicObjects::CommPose3dCore
+<hr>
+@section CommPose3dWithCovariance CommPose3dWithCovariance
+- pose: @ref CommPose3d (CommObj) 
+- covMatrix: Double[36]  
+
+Class Reference: CommBasicObjects::CommPose3dWithCovarianceCore
 <hr>
 @section CommDirection3d CommDirection3d
 - azimuth: Double   = 0.0 
