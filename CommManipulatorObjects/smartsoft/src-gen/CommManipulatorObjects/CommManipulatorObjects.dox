@@ -37,6 +37,12 @@ Structure of Communication Object:
 Structure of Communication Object:
 - event: CommManipulatorObjects::ManipulatorEvent 
 
+\class CommManipulatorObjects::CommMobileManipulatorProgramsCore
+
+Structure of Communication Object:
+- names: String[*] 
+- isValid: Boolean  = false 
+
 \class CommManipulatorObjects::CommManipulatorRequestScan3dCore
 
 Structure of Communication Object:
@@ -204,6 +210,12 @@ Class Reference: CommManipulatorObjects::CommManipulatorEventResultCore
 - event: @ref ManipulatorEvent (Enum) 
 
 Class Reference: CommManipulatorObjects::CommManipulatorEventStateCore
+<hr>
+@section CommMobileManipulatorPrograms CommMobileManipulatorPrograms
+- names: String[*]  
+- isValid: Boolean   = false 
+
+Class Reference: CommManipulatorObjects::CommMobileManipulatorProgramsCore
 <hr>
 @section CommManipulatorRequestScan3d CommManipulatorRequestScan3d
 - begin_joint_angles: Double[*]  

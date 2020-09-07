@@ -25,6 +25,9 @@
 	iter->second.manipulatorCoordinationServicemanipulatoreventClient = new SmartACE::EventClient<CommManipulatorObjects::CommManipulatorEventParameter,CommManipulatorObjects::CommManipulatorEventResult>(component);
 	iter->second.manipulatorCoordinationServicemanipulatoreventEventHandlerCore = new ManipulatorCoordinationServiceManipulatoreventEventHandlerCore(iter->second.manipulatorCoordinationServicemanipulatoreventClient, ciInstanceName);
 	//QUERY CLIENT
+	iter->second.manipulatorCoordinationServicemanipulatorprogramsClient = new SmartACE::QueryClient<CommBasicObjects::CommVoid,CommManipulatorObjects::CommMobileManipulatorPrograms>(component);
+	iter->second.manipulatorCoordinationServicemanipulatorprogramsQueryHandler = new ManipulatorCoordinationServiceManipulatorprogramsQueryHandler();
+	//QUERY CLIENT
 	iter->second.manipulatorCoordinationServicemanipulatorstateClient = new SmartACE::QueryClient<CommBasicObjects::CommVoid,CommManipulatorObjects::CommMobileManipulatorState>(component);
 	iter->second.manipulatorCoordinationServicemanipulatorstateQueryHandler = new ManipulatorCoordinationServiceManipulatorstateQueryHandler();
 	
@@ -45,6 +48,26 @@
 				{
 					ACE_OS::sleep(ACE_Time_Value(0,500000));
 					status = iter->second.manipulatorCoordinationServicemanipulatoreventClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				}
+				std::cout << "connected.\n";
+			} else {
+				std::cout<<"ERROR SERVICE NOT FOUND IN MAP!"<<std::endl;
+				return 1;
+			}
+		}
+		{
+			std::map<std::string, std::string>::const_iterator service_iter = ci_inst_iter->second.serviceNameMap.find("manipulatorprograms");
+			if(service_iter != ci_inst_iter->second.serviceNameMap.end()){
+				std::string serviceName(service_iter->second);
+		
+				Smart::StatusCode status;
+		
+				std::cout << "connecting to: " << ci_inst_iter->second.componentInstanceName << "; " << serviceName << std::endl;
+				status = iter->second.manipulatorCoordinationServicemanipulatorprogramsClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				while(status != Smart::SMART_OK)
+				{
+					ACE_OS::sleep(ACE_Time_Value(0,500000));
+					status = iter->second.manipulatorCoordinationServicemanipulatorprogramsClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
 				}
 				std::cout << "connected.\n";
 			} else {
@@ -88,6 +111,8 @@
 	if(iter != ciInstanceMap.end()){
 			delete iter->second.manipulatorCoordinationServicemanipulatoreventEventHandlerCore;
 			delete iter->second.manipulatorCoordinationServicemanipulatoreventClient;
+			delete iter->second.manipulatorCoordinationServicemanipulatorprogramsQueryHandler;
+			delete iter->second.manipulatorCoordinationServicemanipulatorprogramsClient;
 			delete iter->second.manipulatorCoordinationServicemanipulatorstateQueryHandler;
 			delete iter->second.manipulatorCoordinationServicemanipulatorstateClient;
 		return 0;
@@ -231,6 +256,40 @@ std::string ManipulatorCoordinationServiceCore::switchCi(const std::string& ciIn
 					break;
 				} // switch
 					
+			}
+			if(strcasecmp(service.c_str(), "manipulatorprograms") == 0 )
+			{
+				CommBasicObjects::CommVoid request;
+				CommManipulatorObjects::CommMobileManipulatorPrograms answer;
+				
+				Smart::StatusCode status;
+				request = iter->second.manipulatorCoordinationServicemanipulatorprogramsQueryHandler->handleRequest(inString);
+				
+				std::cout << "vor status = manipulatorprogramsClient->query(request,answer);\n";
+				status = iter->second.manipulatorCoordinationServicemanipulatorprogramsClient->query(request,answer);
+				std::cout << "nach status = manipulatorprogramsClient->query(request,answer);\n";
+				outString.str("");
+				switch (status)
+				{
+					case Smart::SMART_OK:
+					{
+						std::string resString = iter->second.manipulatorCoordinationServicemanipulatorprogramsQueryHandler->handleAnswer(answer);
+						outString << "(ok "<<resString<<")";
+						break;
+				 	}
+					case Smart::SMART_DISCONNECTED:
+						outString << "(error (smart disconnected))";
+						break;
+					case Smart::SMART_ERROR_COMMUNICATION:
+						outString << "(error (smart communication error))";
+						break;
+					case Smart::SMART_ERROR:
+						outString << "(error (smart error))";
+						break;
+					default:
+						outString << "(error (unknown error))";
+						break;
+				} // switch(status)
 			}
 			if(strcasecmp(service.c_str(), "manipulatorstate") == 0 )
 			{

@@ -35,6 +35,13 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 		>
 	}
 	
+	RequestAnswerServiceDefinition MobileManipulatorProgramQueryService {
+		QueryPattern <
+			RequestType = CommBasicObjects.CommVoid
+			AnswerType = CommManipulatorObjects.CommMobileManipulatorPrograms
+		>
+	}
+	
 	ForkingServiceDefinition GripperStateService {
 		PushPattern<DataType=CommManipulatorObjects.CommGripperState>
 	}
@@ -55,10 +62,11 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 	}
 	
 	CoordinationServiceDefinition ManipulatorCoordinationService {
-		ParameterPattern < EmptyDefaultParameterSet >
+		ParameterPattern < CommManipulatorObjects.ManipulatorParameter >
 		StatePattern < lifecycle ComponentLifecycle with CommManipulatorObjects.ManipulatorStates >
 		CommunicationServiceUsage manipulatorevent uses ManipulatorEventService
 		CommunicationServiceUsage manipulatorstate uses MobileManipulatorStateQueryService
+		CommunicationServiceUsage manipulatorprograms uses MobileManipulatorProgramQueryService
 	}
 	
 	// vacuum gripper services

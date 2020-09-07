@@ -34,6 +34,11 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		event: ManipulatorEvent
 	}
 	
+	CommObject CommMobileManipulatorPrograms {
+		names : String [*]
+		isValid : Boolean = false
+	}
+	
 	CommObject CommManipulatorRequestScan3d {
 		begin_joint_angles: Double[*]
 		end_joint_angles: Double[*]

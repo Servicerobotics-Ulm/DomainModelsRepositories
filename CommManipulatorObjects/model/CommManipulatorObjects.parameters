@@ -1,5 +1,77 @@
 ParameterSetRepository CommManipulatorObjects {
 	
+	ParameterSet ManipulatorParameter {
+		Trigger MOVE_LINEAR {
+			goalX :  Double 
+			goalY :  Double
+			goalZ :  Double
+			goalRX :  Double
+			goalRY :  Double
+			goalRZ :  Double
+			acc : Double
+			speed : Double
+		}		
+		
+		Trigger MOVE_CIRCULAR {
+			viaX : Double
+			viaY : Double
+			viaZ : Double
+			viaRX :  Double
+			viaRY :  Double
+			viaRZ :  Double
+			goalX :  Double
+			goalY :  Double
+			goalZ :  Double
+			goalRX :  Double
+			goalRY :  Double
+			goalRZ :  Double
+			acc : Double
+			speed : Double
+		}
+		
+		Trigger MOVE_PATH {
+			pathID : String
+			overwriteSpeed : Boolean
+			acc : Double
+			speed : Double
+		}
+		
+		Trigger SET_PCS {
+			x : Double
+			y : Double
+			z : Double
+			rX :  Double
+			rY :  Double
+			rZ :  Double
+		}
+		
+		Trigger CLEAR_PCS {
+			
+		}
+		
+		Trigger SET_TCP {
+			x : Double
+			y : Double
+			z : Double
+			rX :  Double
+			rY :  Double
+			rZ :  Double
+		}
+		
+		Trigger LOAD_PROGRAM {
+			name : String
+		}
+		
+		Trigger START_PROGRAM {
+			
+		}
+	}
+	
+	ParameterSet WelderParameter {
+		Trigger START_WELD {}
+		Trigger STOP_WELD {}
+	}
+	
 	ParameterSet ElectricGripperParameter {
 		
 		Trigger GRIPPER_OPEN {

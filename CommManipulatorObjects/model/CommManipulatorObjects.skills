@@ -1,4 +1,5 @@
 SkillDefinitionRepository CommManipulatorObjects {
+
 	CoordinationModuleDefinition manipulatorModule {
 		SkillDefinition graspobjects{
 			in {
@@ -9,9 +10,36 @@ SkillDefinitionRepository CommManipulatorObjects {
 				ERROR value = "COLLISION"
 			}
 		}
-		
-	}
 	
+		SkillDefinition moveLinear{
+			in {
+				goalX :  Double
+				goalY :  Double
+				goalZ :  Double
+				goalRX :  Double
+				goalRY :  Double
+				goalRZ :  Double
+				acc : Double
+				speed : Double
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = "COLLISION"
+			}
+		}
+
+		SkillDefinition executeProgram {
+			in {
+				program : String
+			}
+			
+			results {
+				SUCCESS value = ""
+				ERROR value = ""
+			}
+		}
+}
+
 	CoordinationModuleDefinition vacuumGriperModule {
 		SkillDefinition gripperGrasp {
 			results {

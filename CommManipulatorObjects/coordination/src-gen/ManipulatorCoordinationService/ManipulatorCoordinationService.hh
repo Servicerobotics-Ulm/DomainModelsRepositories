@@ -9,6 +9,8 @@
 #include <CommManipulatorObjects/CommManipulatorEventResultACE.hh>
 #include <CommManipulatorObjects/CommManipulatorEventState.hh>
 #include <CommManipulatorObjects/CommManipulatorEventStateACE.hh>
+#include <CommManipulatorObjects/CommMobileManipulatorPrograms.hh>
+#include <CommManipulatorObjects/CommMobileManipulatorProgramsACE.hh>
 #include <CommManipulatorObjects/CommMobileManipulatorState.hh>
 #include <CommManipulatorObjects/CommMobileManipulatorStateACE.hh>
 #include <CommBasicObjects/CommVoid.hh>
@@ -16,6 +18,7 @@
 
 
 #include "ManipulatorCoordinationServiceManipulatoreventEventHandlerCore.hh"
+#include "ManipulatorCoordinationServiceManipulatorprogramsQueryHandler.hh"
 #include "ManipulatorCoordinationServiceManipulatorstateQueryHandler.hh"
 
 
@@ -30,6 +33,8 @@ public:
 	//param, state, wiring is dealt with the single master
 	Smart::IEventClientPattern<CommManipulatorObjects::CommManipulatorEventParameter, CommManipulatorObjects::CommManipulatorEventResult> *manipulatorCoordinationServicemanipulatoreventClient;
 	ManipulatorCoordinationServiceManipulatoreventEventHandlerCore *manipulatorCoordinationServicemanipulatoreventEventHandlerCore;
+	Smart::IQueryClientPattern<CommBasicObjects::CommVoid, CommManipulatorObjects::CommMobileManipulatorPrograms> *manipulatorCoordinationServicemanipulatorprogramsClient;
+	ManipulatorCoordinationServiceManipulatorprogramsQueryHandler *manipulatorCoordinationServicemanipulatorprogramsQueryHandler;
 	Smart::IQueryClientPattern<CommBasicObjects::CommVoid, CommManipulatorObjects::CommMobileManipulatorState> *manipulatorCoordinationServicemanipulatorstateClient;
 	ManipulatorCoordinationServiceManipulatorstateQueryHandler *manipulatorCoordinationServicemanipulatorstateQueryHandler;
  };
