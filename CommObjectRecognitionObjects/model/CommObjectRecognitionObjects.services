@@ -26,7 +26,7 @@ ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 	}
 	
 	CoordinationServiceDefinition ObjectRecognitionCoordinationService {
-		ParameterPattern < CommObjectRecognitionObjects.ImageObjectRecognitionParameter >
+		ParameterPattern < CommObjectRecognitionObjects.ObjectRecognitionParameter >
 		StatePattern < lifecycle ComponentLifecycle with CommObjectRecognitionObjects.DefaultModes >
 		CommunicationServiceUsage objectquery uses ObjectQueryService
 		CommunicationServiceUsage objectrecognitionevent uses ObjectEventService 
