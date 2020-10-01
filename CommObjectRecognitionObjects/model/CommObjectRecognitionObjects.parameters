@@ -1,5 +1,13 @@
 ParameterSetRepository CommObjectRecognitionObjects {
 	
+	ParameterSet ImageObjectRecognitionParameter {
+			
+		Parameter SETENVID {
+			id : UInt32
+		}
+		
+	}
+	
 	ParameterSet ObjectRecognitionParameter {
 		
 		Parameter CLOUD {

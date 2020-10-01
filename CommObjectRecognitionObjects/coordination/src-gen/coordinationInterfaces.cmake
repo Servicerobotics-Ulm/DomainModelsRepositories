@@ -18,5 +18,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 MESSAGE("-- Include ObjectRecognitionCoordinationService")
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/ObjectRecognitionCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/ObjectRecognitionCoordinationService)
+MESSAGE("-- Include ImageObjectRecognitionCoordinationService")
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/ImageObjectRecognitionCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/ImageObjectRecognitionCoordinationService)
 MESSAGE("-- Include PickDetectionCoordinationService")
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/PickDetectionCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/PickDetectionCoordinationService)

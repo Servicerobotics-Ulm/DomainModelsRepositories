@@ -1,5 +1,8 @@
 ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 	
+	///////////////////////////////////////
+	// RGBD OBJECT REC
+	
 	RequestAnswerServiceDefinition ObjectQueryService {
 		QueryPattern <
 			RequestType = CommObjectRecognitionObjects.CommObjectRecognitionId
@@ -23,12 +26,37 @@ ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 	}
 	
 	CoordinationServiceDefinition ObjectRecognitionCoordinationService {
-		ParameterPattern < CommObjectRecognitionObjects.ObjectRecognitionParameter >
+		ParameterPattern < CommObjectRecognitionObjects.ImageObjectRecognitionParameter >
 		StatePattern < lifecycle ComponentLifecycle with CommObjectRecognitionObjects.DefaultModes >
 		CommunicationServiceUsage objectquery uses ObjectQueryService
 		CommunicationServiceUsage objectrecognitionevent uses ObjectEventService 
 	}
 	
+	
+	///////////////////////////////////////
+	// IMAGE OBJECT REC
+	
+	ForkingServiceDefinition ImageObjectRecognitionPushService {
+		PushPattern < DataType = CommObjectRecognitionObjects.CommImageObjectRecognitionResults>
+	}
+	
+	RequestAnswerServiceDefinition ImageObjectRecognitionEnvironmentQueryService {
+		QueryPattern <
+			RequestType = CommObjectRecognitionObjects.CommObjectRecognitionId
+			AnswerType = CommObjectRecognitionObjects.CommImageObjectRecognitionResults
+		>
+	}
+	
+	CoordinationServiceDefinition ImageObjectRecognitionCoordinationService {
+		ParameterPattern < CommObjectRecognitionObjects.ImageObjectRecognitionParameter >
+		StatePattern < lifecycle ComponentLifecycle with CommObjectRecognitionObjects.DefaultModes >
+		CommunicationServiceUsage objectquery uses ImageObjectRecognitionEnvironmentQueryService
+		CommunicationServiceUsage objectrecognitionevent uses ObjectEventService
+	}
+	
+	
+	///////////////////////////////////////
+	// PICK OBJECT DETECTION
 	
 	RequestAnswerServiceDefinition PickObjectDetectionQueryService {
 		QueryPattern <
