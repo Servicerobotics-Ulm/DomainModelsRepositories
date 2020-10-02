@@ -75,3 +75,12 @@ CommPTUMoveResponse::CommPTUMoveResponse(const DATATYPE &commPTUMoveResponse)
 
 CommPTUMoveResponse::~CommPTUMoveResponse()
 {  }
+void CommPTUMoveResponse::print(std::ostream &os) const {
+	CommBasicObjects::CommBaseState base(idl_CommPTUMoveResponse.stateBase);
+	CommBasicObjects::CommPose3d pose(idl_CommPTUMoveResponse.devicePose);
+
+	os << "CommPTUMoveResponse (\n";
+	os << base << ",\n" << pose;
+	os << ",\n" << "status=" << get_status();
+	os << "\n)";
+}

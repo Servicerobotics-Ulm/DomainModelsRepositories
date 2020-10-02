@@ -44,6 +44,8 @@
 
 #include "armadillo.hh"  // from utility
 #include "EulerTransformationMatrices.hh"
+#include <string>
+#include <iostream>
 
 #include "DomainPTU/CommPTUMoveResponseCore.hh"
 

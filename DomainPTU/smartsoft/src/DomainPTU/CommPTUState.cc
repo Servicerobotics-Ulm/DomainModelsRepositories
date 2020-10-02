@@ -77,3 +77,22 @@ CommPTUState::CommPTUState(const DATATYPE &commPTUState)
 
 CommPTUState::~CommPTUState()
 {  }
+
+void CommPTUState::print(std::ostream &os) const {
+	os << "CommPTUState(";
+	if (is_valid()) {
+		double x, y, z, azimuth, elevation, roll;
+
+		get_pose_ptu(x, y, z, azimuth, elevation, roll);
+		os << "pose ptu=" << x << ", " << y << ", " << z << ", " << azimuth << ", " << elevation << ", "
+						<< roll << "\n";
+
+		os << "ptu joint angle (pan/tilt)=";
+		os << idl_CommPTUState.pan <<" / "<<idl_CommPTUState.tilt;
+		os << "\n";
+
+	} else {
+		os << "invalid";
+	}
+	os << ")\n";
+}

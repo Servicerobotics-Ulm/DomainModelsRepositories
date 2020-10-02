@@ -75,6 +75,141 @@ class CommPTUState : public CommPTUStateCore {
 		//
 		// feel free to add customized methods here
 		//
+
+		inline bool getIs_valid() const
+		{
+			return idl_CommPTUState.is_valid;
+		}
+		inline void setIs_valid(const bool &is_valid)
+		{
+			idl_CommPTUState.is_valid = is_valid;
+		}
+
+		inline double getPan() const
+		{
+			return idl_CommPTUState.pan;
+		}
+		inline void setPan(const double &pan)
+		{
+			idl_CommPTUState.pan = pan;
+		}
+
+		inline CommBasicObjects::CommPose3d getPose_PTU() const
+		{
+			return CommBasicObjects::CommPose3d(idl_CommPTUState.pose_PTU);
+		}
+		inline void setPose_PTU(const CommBasicObjects::CommPose3d &pose_PTU)
+		{
+			idl_CommPTUState.pose_PTU = pose_PTU;
+		}
+
+		inline double getTilt() const
+		{
+			return idl_CommPTUState.tilt;
+		}
+		inline void setTilt(const double &tilt)
+		{
+			idl_CommPTUState.tilt = tilt;
+		}
+
+		//
+		// add your customized interface here
+		//
+
+
+		/**
+		 * Set angle of a joint.
+		 * @param joint Index of the joint
+		 * @param angle Anlge for the joint [rad]
+		 */
+		inline void set_pan_angle(const double angle) {
+			idl_CommPTUState.pan = angle;
+		}
+
+		/**
+		 * Return the angle for a joint.
+		 * @param joint Index of the joint
+		 * @return Angle for the joint [rad]
+		 */
+		inline double get_pan_angle() const {
+			return idl_CommPTUState.pan;
+		}
+
+		/**
+		 * Set angle of a joint.
+		 * @param joint Index of the joint
+		 * @param angle Anlge for the joint [rad]
+		 */
+		inline void set_tilt_angle(const double angle) {
+			idl_CommPTUState.tilt = angle;
+		}
+
+		/**
+		 * Return the angle for a joint.
+		 * @param joint Index of the joint
+		 * @return Angle for the joint [rad]
+		 */
+		inline double get_tilt_angle() const {
+			return idl_CommPTUState.tilt;
+		}
+
+
+		/**
+		 * Set the pose of the ptu coordinate system relative
+		 * to the robot coordinate system.
+		 */
+		inline void set_pose_ptu(const double x, const double y, const double z, const double azimuth,
+				const double elevation, const double roll, const double unit = 0.001) {
+			idl_CommPTUState.pose_PTU.position.x = x * unit * 1000;
+			idl_CommPTUState.pose_PTU.position.y = y * unit * 1000;
+			idl_CommPTUState.pose_PTU.position.z = z * unit * 1000;
+
+			idl_CommPTUState.pose_PTU.orientation.azimuth = azimuth;
+			idl_CommPTUState.pose_PTU.orientation.elevation = elevation;
+			idl_CommPTUState.pose_PTU.orientation.roll = roll;
+		}
+
+		/**
+		 * Returns the pose of the ptu coordinate system
+		 * relative to the robot coordinate system. The position is
+		 * specified in the given unit value (0.001 = mm)
+		 */
+		inline void get_pose_ptu(double& x, double& y, double& z, double& azimuth, double& elevation, double& roll,
+				const double unit = 0.001) const {
+			x = idl_CommPTUState.pose_PTU.position.x * 0.001 / unit;
+			y = idl_CommPTUState.pose_PTU.position.y * 0.001 / unit;
+			z = idl_CommPTUState.pose_PTU.position.z * 0.001 / unit;
+
+			azimuth = idl_CommPTUState.pose_PTU.orientation.azimuth;
+			elevation = idl_CommPTUState.pose_PTU.orientation.elevation;
+			roll = idl_CommPTUState.pose_PTU.orientation.roll;
+		}
+
+		/**
+		 * Set the state to valid or invalid.
+		 * @param valid
+		 * 			true	: state is valid
+		 * 			false	: state is invalid
+		 */
+		inline void set_valid(const bool valid) {
+			idl_CommPTUState.is_valid = valid;
+		}
+
+		/**
+		 * Check if the state is valid.
+		 * @return
+		 * 			true	: state is valid
+		 * 			false	: state is invalid
+		 */
+		inline bool is_valid() const {
+			return idl_CommPTUState.is_valid;
+		}
+
+		/**
+		 * Print the object to an output stream.
+		 * @param os Output stream to which should be printed
+		 */
+		void print(std::ostream &os = std::cout) const;
 };
 
 inline std::ostream &operator<<(std::ostream &os, const CommPTUState &co)

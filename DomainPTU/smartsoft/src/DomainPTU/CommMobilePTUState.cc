@@ -76,3 +76,7 @@ CommMobilePTUState::CommMobilePTUState(const DATATYPE &commMobilePTUState)
 
 CommMobilePTUState::~CommMobilePTUState()
 {  }
+void CommMobilePTUState::print(std::ostream &os) const {
+	os << "CommMobilePTUState(" << ",baseState=" << get_base_state()
+			<< ",ptuState=" << get_ptu_state() << ")";
+}

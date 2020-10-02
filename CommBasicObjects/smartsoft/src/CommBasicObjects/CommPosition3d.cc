@@ -76,7 +76,13 @@ CommPosition3d::CommPosition3d(const double &x, const double &y, const double &z
 	setZ(z);
 }
  */
-
+CommPosition3d::CommPosition3d(const double &x, const double &y, const double &z, const double unit)
+		:	CommPosition3dCore() // base constructor sets default values as defined in the model
+		{
+			setX(x * unit * 1000);
+			setY(y * unit * 1000);
+			setZ(z * unit * 1000);
+		}
 CommPosition3d::CommPosition3d(const CommPosition3dCore &commPosition3d)
 :	CommPosition3dCore(commPosition3d)
 {  }

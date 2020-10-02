@@ -32,6 +32,13 @@ ServiceDefRepository DomainPTU version 1.0 {
 		>
 	}
 	
+	RequestAnswerServiceDefinition PTUStateQueryService {
+		QueryPattern <
+			RequestType = CommBasicObjects.CommVoid
+			AnswerType = DomainPTU.CommMobilePTUState
+		>
+	}
+	
 	JoiningServiceDefinition MovePTUSendService {
 		SendPattern <DataType=DomainPTU.CommPTUMoveRequest>
 	}

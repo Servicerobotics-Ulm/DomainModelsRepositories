@@ -75,6 +75,77 @@ class CommMobilePTUState : public CommMobilePTUStateCore {
 		//
 		// feel free to add customized methods here
 		//
+
+		inline CommBasicObjects::CommBaseState getBase_state() const
+		{
+			return CommBasicObjects::CommBaseState(
+					idl_CommMobilePTUState.base_state);
+		}
+		inline void setBase_state(const CommBasicObjects::CommBaseState &base_state)
+		{
+			idl_CommMobilePTUState.base_state = base_state;
+		}
+
+		inline DomainPTU::CommPTUState getPtu_state() const
+		{
+			return DomainPTU::CommPTUState(idl_CommMobilePTUState.ptu_state);
+		}
+		inline void setPtu_state(const DomainPTU::CommPTUState &ptu_state)
+		{
+			idl_CommMobilePTUState.ptu_state = ptu_state;
+		}
+
+		//
+		// add your customized interface here
+		//
+
+			/**
+		 * Set the state of the base.
+		 */
+		inline void set_base_state(const CommBasicObjects::CommBaseState &baseState) {
+			idl_CommMobilePTUState.base_state = baseState;
+		}
+
+		/**
+		 * Get the state of the base.
+		 */
+		inline CommBasicObjects::CommBaseState get_base_state() const {
+			return idl_CommMobilePTUState.base_state;
+		}
+
+		/**
+		 * Set the state of the PTU.
+		 */
+		inline void set_ptu_state(const CommPTUState &manipState) {
+			idl_CommMobilePTUState.ptu_state = manipState;
+		}
+
+		/**
+		 * Get the state of the PTU.
+		 */
+		inline CommPTUState get_ptu_state() const {
+			return 	idl_CommMobilePTUState.ptu_state;
+		}
+
+		/**
+		 * Set if the state is valid.
+		 */
+		inline void set_valid(bool valid) {
+			idl_CommMobilePTUState.ptu_state.is_valid = valid;
+		}
+
+		/**
+		 * Get if the state is valid.
+		 */
+		inline bool is_valid() const {
+			return idl_CommMobilePTUState.ptu_state.is_valid;
+		}
+
+		/**
+		 * Print the object to an output stream.
+		 * @param os Output stream to which should be printed
+		 */
+		void print(std::ostream &os = std::cout) const;
 };
 
 inline std::ostream &operator<<(std::ostream &os, const CommMobilePTUState &co)

@@ -73,7 +73,7 @@ class CommPosition3d : public CommPosition3dCore {
 		 *      CommRepository::MyCommObject obj;
 		 *      obj.setX(1).setY(2).setZ(3)...;
 		 */
-		// CommPosition3d(const double &x = 0.0, const double &y = 0.0, const double &z = 0.0);
+		CommPosition3d(const double &x, const double &y, const double &z, const double unit = 0.001);
 		
 		CommPosition3d(const CommPosition3dCore &commPosition3d);
 		CommPosition3d(const DATATYPE &commPosition3d);
