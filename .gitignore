@@ -1,4 +1,4 @@
 build/
 bin/
 Debug/
-.settings/
+language.settings.xml
