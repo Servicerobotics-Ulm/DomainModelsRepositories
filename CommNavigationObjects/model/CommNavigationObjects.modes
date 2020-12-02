@@ -46,4 +46,8 @@ ComponentModeRepository CommNavigationObjects {
 		ComponentModeDefinition Docking;
 		ComponentModeDefinition UnDocking;
 	}
+	
+	ComponentModeCollection CorridorNavigationStates{
+		ComponentModeDefinition MoveRobot;
+	}
 }

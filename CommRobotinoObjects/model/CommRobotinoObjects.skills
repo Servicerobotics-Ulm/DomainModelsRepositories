@@ -1,5 +1,50 @@
 SkillDefinitionRepository CommRobotinoObjects {
-	CoordinationModuleDefinition MPSSkills {
+	
+	CoordinationModuleDefinition ChargerDockingModule {
+		SkillDefinition setDockingNeutral {
+			results {
+				SUCCESS value = ""
+			}
+		}
+	}
+	
+	CoordinationModuleDefinition MPSModule {
+		
+		SkillDefinition setBeltNeutral {
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+		SkillDefinition setDockingNeutral {
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+		SkillDefinition mps_station_fetch_from {
+			in {
+				stationid : Int32
+				beltid : Int32
+			}
+			results {
+				ERROR value = "FETCH FAILED"
+				SUCCESS value = "OK";
+				SUCCESS value = "";
+			}
+		}
+		
+		SkillDefinition mps_station_push_to {
+			in {
+				stationid : Int32
+				beltid : Int32
+			}
+			results {
+				ERROR value = "PUSH FAILED"
+				SUCCESS value = "OK";
+				SUCCESS value = "";
+			}
+		}
 
 		SkillDefinition mps_station_undock {
 			results {

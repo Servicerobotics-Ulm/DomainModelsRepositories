@@ -70,4 +70,14 @@ ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 		StatePattern < lifecycle ComponentLifecycle with CommObjectRecognitionObjects.DefaultModes>
 		CommunicationServiceUsage pickquery uses PickObjectDetectionQueryService
 	}
+	
+	///////////////////////////////////////
+	// RFID TAG
+	
+	ForkingServiceDefinition RFIDReadService 
+	{
+		PushPattern<DataType =CommObjectRecognitionObjects.CommObjectRFIDRead>
+	}
+	
+	
 }

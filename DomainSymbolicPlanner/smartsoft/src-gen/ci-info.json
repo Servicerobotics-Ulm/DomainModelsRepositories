@@ -1,0 +1,5 @@
+{
+	"id" : "DomainSymbolicPlanner",
+	"type" : "DomainModel",
+	"dependprojects" : [  ]
+}

@@ -7,6 +7,8 @@
 
 extern 	std::string queryParam(const std::string& server, const std::string& param);
 extern 	std::string setState(const std::string& server, const std::string& state);
+extern	std::string getState(const std::string& server);
+extern 	std::string waitForLifeCycleState(const std::string& server, const std::string& state);
 extern  int appedEvent(const std::string& event);
 
 typedef struct

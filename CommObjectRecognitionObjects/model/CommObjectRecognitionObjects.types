@@ -138,4 +138,9 @@ CommObjectsRepository CommObjectRecognitionObjects version 1.0 {
 		value : CommManipulatorObjects.CommMobileManipulatorState
 	}
 	
+	CommObject CommObjectRFIDRead {
+		tagId : String
+		rssi : Int32
+	}
+	
 }

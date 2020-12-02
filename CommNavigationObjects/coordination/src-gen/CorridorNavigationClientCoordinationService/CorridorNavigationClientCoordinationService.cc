@@ -1,0 +1,16 @@
+#include "CorridorNavigationClientCoordinationService.hh"
+
+CorridorNavigationClientCoordinationService::CorridorNavigationClientCoordinationService (){
+		corridorNavigationClientCoordinationServiceclosestnodequeryQueryHandler = NULL;
+		corridorNavigationClientCoordinationServiceclosestnodequeryClient = NULL;
+		corridorNavigationClientCoordinationServicegoaleventClient = NULL;
+		corridorNavigationClientCoordinationServicegoaleventEventHandlerCore = NULL;
+		corridorNavigationClientCoordinationServicenavtimequeryQueryHandler = NULL;
+		corridorNavigationClientCoordinationServicenavtimequeryClient = NULL;
+		corridorNavigationClientCoordinationServiceposerequesteventClient = NULL;
+		corridorNavigationClientCoordinationServiceposerequesteventEventHandlerCore = NULL;
+}
+CorridorNavigationClientCoordinationService::~CorridorNavigationClientCoordinationService (){
+	
+}
+

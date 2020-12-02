@@ -1,0 +1,17 @@
+DomainModelsDatasheet DomainSymbolicPlanner
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models for the Symbolic-Planner domain"
+	DatasheetProperty MarketName {
+		value "Symbolic-Planner Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "Symbolic-Planner"
+	}
+}

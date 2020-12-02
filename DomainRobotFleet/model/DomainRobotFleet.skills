@@ -1,0 +1,11 @@
+SkillDefinitionRepository DomainRobotFleet {
+	
+	CoordinationModuleDefinition FleetManager {
+		SkillDefinition dummy{
+			results {
+				ERROR value = ""
+			}
+		}
+		
+	}
+}

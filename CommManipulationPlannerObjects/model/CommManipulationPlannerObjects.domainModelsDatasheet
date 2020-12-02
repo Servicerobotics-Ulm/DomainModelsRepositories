@@ -1,0 +1,17 @@
+DomainModelsDatasheet CommManipulationPlannerObjects
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models for the Manipulation-Planner domain"
+	DatasheetProperty MarketName {
+		value "Manipulation-Planner Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "Manipulation-Planner"
+	}
+}

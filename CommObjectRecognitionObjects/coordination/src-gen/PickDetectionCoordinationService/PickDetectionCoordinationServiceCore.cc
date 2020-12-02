@@ -82,7 +82,7 @@ std::string PickDetectionCoordinationServiceCore::switchCi(const std::string& ci
 	
 	if(iter != ciInstanceMap.end()){
 		
-		std::cout<<"switchPickDetectionCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchPickDetectionCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
@@ -97,6 +97,14 @@ std::string PickDetectionCoordinationServiceCore::switchCi(const std::string& ci
 			{
 				outString.str(setState(componentInstanceName, inString));
 			}
+			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			{
+				outString.str(getState(componentInstanceName));
+			}
+			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			{
+				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+			}
 			if(strcasecmp(service.c_str(), "pickquery") == 0 )
 			{
 				CommObjectRecognitionObjects::CommPickDetectionRequest request;
@@ -105,9 +113,7 @@ std::string PickDetectionCoordinationServiceCore::switchCi(const std::string& ci
 				Smart::StatusCode status;
 				request = iter->second.pickDetectionCoordinationServicepickqueryQueryHandler->handleRequest(inString);
 				
-				std::cout << "vor status = pickqueryClient->query(request,answer);\n";
 				status = iter->second.pickDetectionCoordinationServicepickqueryClient->query(request,answer);
-				std::cout << "nach status = pickqueryClient->query(request,answer);\n";
 				outString.str("");
 				switch (status)
 				{

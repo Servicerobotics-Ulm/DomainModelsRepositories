@@ -1,0 +1,10 @@
+{
+	"name": "CommManipulationPlannerObjects",
+	"shortDescription": "Domain Models for the Manipulation-Planner domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Manipulation-Planner"],
+	"marketName": "Manipulation-Planner Domain Models",
+	"supplier": "Servicerobotics Ulm",
+	"homepage": "http://servicerobotik-ulm.de/components"
+}

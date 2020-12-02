@@ -1,0 +1,17 @@
+DomainModelsDatasheet DomainSpeech
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models around Speech-based Human-Machine Interaction (HMI)"
+	DatasheetProperty MarketName {
+		value "Speech Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "HMI"
+	}
+}

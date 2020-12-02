@@ -1,0 +1,15 @@
+CommNavigationObjects/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+CommNavigationObjects/Homepage/value/3=http\://servicerobotik-ulm.de/components
+CommNavigationObjects/Homepage/value/4=http\://servicerobotik-ulm.de/components
+CommNavigationObjects/MarketName/value/2=Navigation Domain Models
+CommNavigationObjects/MarketName/value/6=Navigation Domain Models
+CommNavigationObjects/Purpose/value/4=Navigation
+CommNavigationObjects/Purpose/value/5=Navigation
+CommNavigationObjects/ShortDescription/value/1=Domain Models for the Navigation domain
+CommNavigationObjects/SpdxLicense/semanticURI/2=https\://spdx.org/licenses/LGPL-3.0-or-later.html
+CommNavigationObjects/SpdxLicense/semanticURI/3=https\://spdx.org/licenses/LGPL-3.0-or-later.html
+CommNavigationObjects/SpdxLicense/value/2=LGPL-3.0-or-later
+CommNavigationObjects/SpdxLicense/value/3=LGPL-3.0-or-later
+CommNavigationObjects/Supplier/value/5=Servicerobotics Ulm
+CommNavigationObjects/Supplier/value/6=Servicerobotics Ulm
+eclipse.preferences.version=1

@@ -1,0 +1,11 @@
+{
+	"name": "CommNavigationObjects",
+	"shortDescription": "Domain Models for the Navigation domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Navigation"],
+	"marketName": "Navigation Domain Models",
+	"spdxLicense": "LGPL-3.0-or-later",
+	"homepage": "http://servicerobotik-ulm.de/components",
+	"supplier": "Servicerobotics Ulm"
+}

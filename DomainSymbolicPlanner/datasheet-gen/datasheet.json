@@ -1,0 +1,10 @@
+{
+	"name": "DomainSymbolicPlanner",
+	"shortDescription": "Domain Models for the Symbolic-Planner domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Symbolic-Planner"],
+	"marketName": "Symbolic-Planner Domain Models",
+	"supplier": "Servicerobotics Ulm",
+	"homepage": "http://servicerobotik-ulm.de/components"
+}

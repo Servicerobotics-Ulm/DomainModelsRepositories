@@ -107,7 +107,7 @@ std::string PTUCoordinationServiceCore::switchCi(const std::string& ciInstanceNa
 	
 	if(iter != ciInstanceMap.end()){
 		
-		std::cout<<"switchPTUCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchPTUCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
@@ -122,6 +122,14 @@ std::string PTUCoordinationServiceCore::switchCi(const std::string& ciInstanceNa
 			{
 				outString.str(setState(componentInstanceName, inString));
 			}
+			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			{
+				outString.str(getState(componentInstanceName));
+			}
+			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			{
+				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+			}
 			if(strcasecmp(service.c_str(), "ptuevent-activate") == 0 )
 			{
 				Smart::StatusCode status;
@@ -129,15 +137,21 @@ std::string PTUCoordinationServiceCore::switchCi(const std::string& ciInstanceNa
 				char *input  = (char *)NULL;
 				char *pointer = (char *)NULL;
 				char *param1  = (char *)NULL;
+				char *eventParam  = (char *)NULL;
 				
 				pointer = input = strdup(inString.c_str());
 				do
 				{
 					param1 = strsep(&input," ()\"\n");
 				} while ((param1 != NULL) && (strlen(param1)==0));
-					
+				
+				do
+				{
+					eventParam = strsep(&input," ()\"\n");
+				} while ((eventParam != NULL) && (strlen(eventParam)==0));
+				
 				DomainPTU::CommPTUGoalEventParameter param;
-				param = iter->second.pTUCoordinationServiceptueventEventHandlerCore->activateEventParam(input);
+				param = iter->second.pTUCoordinationServiceptueventEventHandlerCore->activateEventParam(eventParam);
 					
 				// CONTINOUS
 				if( strcasecmp(param1, "CONTINUOUS") == 0 )

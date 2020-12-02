@@ -334,4 +334,80 @@ ParameterSetRepository CommNavigationObjects {
 		
 		Trigger SAVE_POSE_BEFORE_DOCKING {}
 	}
+	
+	ParameterSet CorridorNavigationServerParams {
+		Trigger LOADPATHLIST {
+			filename : String
+		}
+		
+		Trigger REL_ALL_NODES {
+			robotID : Int32
+		}
+	}
+	
+	ParameterSet CorridorNavigationClientParams {
+		Trigger SET_GOAL{
+			startPose : UInt32
+			goalPose : UInt32
+		}
+		
+		Trigger SET_GOAL_FROM_NODE {
+			startNode : UInt32
+			goalPose : UInt32
+		}
+		
+		Trigger ACQ_INIT_POSE {
+			pose : UInt32
+		}
+		
+		Trigger ACQ_INIT_NODE {
+			node : UInt32
+		}
+		
+		Trigger REL_POSE {
+			pose : UInt32
+		}
+		
+		Trigger REL_ALL_NODES {
+		}
+		
+		Trigger REL_ALL_NODES_BUT {
+			pose : UInt32
+		}
+		
+		Parameter ID { 
+			id : Int32
+		}
+		
+		Parameter SetRobotID {
+			robotID : String
+		}
+		Parameter ControlValues {
+			maxVel: Double
+			lookAhead: Double
+			steeringPGain: Double
+			velPGain: Double
+			goalPointRadius: Double		
+			wayPointRadius: Double
+		}
+	}
+	
+	ParameterSet PurePursuitNavigationParameter {
+		Parameter APPROACHDIST{
+			dist:Int32 = 80
+		}
+	
+		Parameter ID {
+			id:Int32 = -1
+		}
+	
+		Parameter PLANNERMODE {
+				mode : InlineEnumeration { FREE PATHNAV} = FREE
+		}
+		
+		Parameter VELOCITYPROFILE {
+				mode : InlineEnumeration { FAST NORMAL SAFE} = NORMAL
+		}
+	}
+	
 }

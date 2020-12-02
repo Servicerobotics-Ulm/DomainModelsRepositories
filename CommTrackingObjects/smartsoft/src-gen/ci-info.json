@@ -1,0 +1,5 @@
+{
+	"id" : "CommTrackingObjects",
+	"type" : "DomainModel",
+	"dependprojects" : [ "CommBasicObjects" ]
+}

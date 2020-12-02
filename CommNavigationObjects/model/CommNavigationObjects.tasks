@@ -1,11 +1,12 @@
 TaskDefinitionRepository CommNavigationObjects {
-	TaskDefinition testTask {
+	
+	TaskDefinition transportationTask {
 		in {
-			from : String
-			to : String
+			startStationID : String
+			goalStationID : String
 		}
 		results {
-			ERROR value = "unknown location"
+			ERROR value = "TASK FAILED"
 			SUCCESS value = "OK"
 		}
 	}

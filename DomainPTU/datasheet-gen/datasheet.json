@@ -1,0 +1,10 @@
+{
+	"name": "DomainPTU",
+	"shortDescription": "Domain Models for the Pan-Tilt-Unit (PTU) domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["PTU"],
+	"marketName": "PTU Domain Models",
+	"supplier": "Servicerobotics Ulm",
+	"homepage": "http://servicerobotik-ulm.de/components"
+}

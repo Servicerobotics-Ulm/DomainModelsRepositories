@@ -1,0 +1,17 @@
+DomainModelsDatasheet DomainForklift
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models for the Fork-Lift domain"
+	DatasheetProperty MarketName {
+		value "Fork-Lift Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "Fork-Lift"
+	}
+}

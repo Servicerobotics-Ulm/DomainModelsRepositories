@@ -103,6 +103,83 @@ ServiceDefRepository CommNavigationObjects version 1.0
 		EventType = CommNavigationObjects.CommDockingEventResult>
 	}
 
+	RequestAnswerServiceDefinition NavigationTopologyMapQuery {
+		QueryPattern < AnswerType = CommNavigationObjects.CommNavigationTopologyMap
+		RequestType = CommBasicObjects.CommVoid>
+	}
+	
+	/**
+	 * Corridor Fleet Navigation
+	 */
+	ForkingServiceDefinition NavigationNetworkStatusEvent {
+		EventPattern < ActivationType = CommBasicObjects.CommVoid 
+		EventStateType = CommNavigationObjects.CommCorridorNetworkStatus 
+		EventType = CommNavigationObjects.CommCorridorNetworkStatus >
+	}
+	
+	ForkingServiceDefinition NavigationNetworkLayoutEvent {
+		EventPattern < ActivationType = CommBasicObjects.CommVoid 
+		EventStateType = CommNavigationObjects.CommCorridorNetworkLayout
+		EventType = CommNavigationObjects.CommCorridorNetworkLayout >
+	}
+	
+	ForkingServiceDefinition NavigationGraphEvent {
+		EventPattern < ActivationType = CommBasicObjects.CommVoid 
+		EventStateType = CommNavigationObjects.CommNavigationGraph
+		EventType = CommNavigationObjects.CommNavigationGraph >
+	}
+	
+	JoiningServiceDefinition NavigationFileSend {
+		SendPattern < DataType = CommBasicObjects.CommDataFile>
+	}
+	
+	RequestAnswerServiceDefinition NavigationNetworkNodeRequest {
+		QueryPattern < RequestType = CommNavigationObjects.CommCorridorNavigationNodeRequest
+		AnswerType=CommNavigationObjects.CommCorridorNavigationNodeAnswer>
+	}
+	
+	RequestAnswerServiceDefinition NavigationNetworkPoseRequest {
+		QueryPattern < RequestType = CommNavigationObjects.CommCorridorNavigationPoseRequest
+		AnswerType=CommNavigationObjects.CommCorridorNavigationPoseAnswer>
+	}
+	
+	RequestAnswerServiceDefinition NavigationNetworkPathRequest {
+		QueryPattern < RequestType = CommNavigationObjects.CommCorridorNavigationPathRequest
+		AnswerType=CommNavigationObjects.CommCorridorNavigationPathAnswer>
+	}
+	
+	RequestAnswerServiceDefinition NavigationTimeRequest {
+		QueryPattern <RequestType = CommNavigationObjects.CommNavigationTimeRequest
+		AnswerType = CommNavigationObjects.CommNavigationTimeResponse>
+	}
+	
+	ForkingServiceDefinition CorridorNavigationNextGoal {
+		PushPattern < DataType = CommNavigationObjects.CommCorridorNavigationGoal >
+	} 
+	
+	ForkingServiceDefinition CorridorNavigationPathChangeEvent {
+		EventPattern < ActivationType = CommBasicObjects.CommVoid
+		EventStateType = CommNavigationObjects.CommNavigationPaths
+		EventType = CommNavigationObjects.CommNavigationPaths>
+	}
+	
+	RequestAnswerServiceDefinition CorridorNavigationClosestNodeQuery {
+		QueryPattern < RequestType = CommNavigationObjects.CommClosestNodeRequest
+		AnswerType = CommNavigationObjects.CommClosestNodeAnswer>
+	}
+	
+	ForkingServiceDefinition CorridorNavigationPoseRequestEvent {
+		EventPattern <ActivationType = CommNavigationObjects.CommCorridorNavigationPoseRequestEventParameter
+		EventStateType = CommNavigationObjects.CommCorridorNavigationPoseRequestEventState
+		EventType = CommNavigationObjects.CommCorridorNavigationPoseRequestEventResult>
+	}
+	
+	ForkingServiceDefinition CorridorNavigationGoalEvent {
+		EventPattern <ActivationType = CommNavigationObjects.CommCorridorNavigationGoalEventParameter
+		EventStateType = CommNavigationObjects.CommCorridorNavigationGoalEventState
+		EventType = CommNavigationObjects.CommCorridorNavigationGoalEventResult>
+	}
+	
 
 	/**
 	 * Coordination service-definitions
@@ -115,7 +192,6 @@ ServiceDefRepository CommNavigationObjects version 1.0
 		CommunicationServiceUsage bumperEvent uses CommBasicObjects.BumperEventService
 		CommunicationServiceUsage batteryEvent uses BatteryEventService
 	}
-	 
 	 
 	CoordinationServiceDefinition CdlCoordinationService {
 		ParameterPattern < CommNavigationObjects.CdlParameter >
@@ -139,6 +215,30 @@ ServiceDefRepository CommNavigationObjects version 1.0
 		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.RobotDockingStates>
 		ParameterPattern <CommNavigationObjects.RobotDockingParameter>
 		CommunicationServiceUsage dockingEvent uses RobotDockingEventService
+	}
+	
+	CoordinationServiceDefinition CorridorNavigationServerCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle >
+		ParameterPattern < CommNavigationObjects.CorridorNavigationServerParams >
+	}
+	
+	CoordinationServiceDefinition CorridorNavigationClientCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.CorridorNavigationStates>
+		ParameterPattern < CommNavigationObjects.CorridorNavigationClientParams >
+		CommunicationServiceUsage goalevent uses CommNavigationObjects.CorridorNavigationGoalEvent
+		CommunicationServiceUsage poserequestevent uses CommNavigationObjects.CorridorNavigationPoseRequestEvent
+		CommunicationServiceUsage closestnodequery uses CommNavigationObjects.CorridorNavigationClosestNodeQuery
+		CommunicationServiceUsage navtimequery uses CommNavigationObjects.NavigationTimeRequest
+	}
+	
+	ForkingServiceDefinition PlannerGoalListService {
+		PushPattern<DataType=CommNavigationObjects.CommPlannerGoalList>
+	}
+	
+	CoordinationServiceDefinition PurePursuitNavigationCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.CdlStates>
+		ParameterPattern < CommNavigationObjects.PurePursuitNavigationParameter >
+		CommunicationServiceUsage goalEvent uses GoalEventService
 	}
 
 }

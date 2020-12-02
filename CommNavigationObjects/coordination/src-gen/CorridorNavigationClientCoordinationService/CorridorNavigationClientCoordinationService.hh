@@ -1,0 +1,52 @@
+#ifndef CORRIDORNAVIGATIONCLIENTCOORDINATIONSERVICE_H_
+#define CORRIDORNAVIGATIONCLIENTCOORDINATIONSERVICE_H_
+#include "aceSmartSoft.hh"
+
+// include communication objects
+#include <CommNavigationObjects/CommClosestNodeAnswer.hh>
+#include <CommNavigationObjects/CommClosestNodeAnswerACE.hh>
+#include <CommNavigationObjects/CommClosestNodeRequest.hh>
+#include <CommNavigationObjects/CommClosestNodeRequestACE.hh>
+#include <CommNavigationObjects/CommCorridorNavigationGoalEventParameter.hh>
+#include <CommNavigationObjects/CommCorridorNavigationGoalEventParameterACE.hh>
+#include <CommNavigationObjects/CommCorridorNavigationGoalEventResult.hh>
+#include <CommNavigationObjects/CommCorridorNavigationGoalEventResultACE.hh>
+#include <CommNavigationObjects/CommCorridorNavigationGoalEventState.hh>
+#include <CommNavigationObjects/CommCorridorNavigationGoalEventStateACE.hh>
+#include <CommNavigationObjects/CommCorridorNavigationPoseRequestEventParameter.hh>
+#include <CommNavigationObjects/CommCorridorNavigationPoseRequestEventParameterACE.hh>
+#include <CommNavigationObjects/CommCorridorNavigationPoseRequestEventResult.hh>
+#include <CommNavigationObjects/CommCorridorNavigationPoseRequestEventResultACE.hh>
+#include <CommNavigationObjects/CommCorridorNavigationPoseRequestEventState.hh>
+#include <CommNavigationObjects/CommCorridorNavigationPoseRequestEventStateACE.hh>
+#include <CommNavigationObjects/CommNavigationTimeRequest.hh>
+#include <CommNavigationObjects/CommNavigationTimeRequestACE.hh>
+#include <CommNavigationObjects/CommNavigationTimeResponse.hh>
+#include <CommNavigationObjects/CommNavigationTimeResponseACE.hh>
+
+
+#include "CorridorNavigationClientCoordinationServiceClosestnodequeryQueryHandler.hh"
+#include "CorridorNavigationClientCoordinationServiceGoaleventEventHandlerCore.hh"
+#include "CorridorNavigationClientCoordinationServiceNavtimequeryQueryHandler.hh"
+#include "CorridorNavigationClientCoordinationServicePoserequesteventEventHandlerCore.hh"
+
+
+class CorridorNavigationClientCoordinationService {
+ 	
+public:
+	CorridorNavigationClientCoordinationService ();
+	~CorridorNavigationClientCoordinationService ();
+
+
+	//variables, ports, handlers
+	//param, state, wiring is dealt with the single master
+	Smart::IQueryClientPattern<CommNavigationObjects::CommClosestNodeRequest, CommNavigationObjects::CommClosestNodeAnswer> *corridorNavigationClientCoordinationServiceclosestnodequeryClient;
+	CorridorNavigationClientCoordinationServiceClosestnodequeryQueryHandler *corridorNavigationClientCoordinationServiceclosestnodequeryQueryHandler;
+	Smart::IEventClientPattern<CommNavigationObjects::CommCorridorNavigationGoalEventParameter, CommNavigationObjects::CommCorridorNavigationGoalEventResult> *corridorNavigationClientCoordinationServicegoaleventClient;
+	CorridorNavigationClientCoordinationServiceGoaleventEventHandlerCore *corridorNavigationClientCoordinationServicegoaleventEventHandlerCore;
+	Smart::IQueryClientPattern<CommNavigationObjects::CommNavigationTimeRequest, CommNavigationObjects::CommNavigationTimeResponse> *corridorNavigationClientCoordinationServicenavtimequeryClient;
+	CorridorNavigationClientCoordinationServiceNavtimequeryQueryHandler *corridorNavigationClientCoordinationServicenavtimequeryQueryHandler;
+	Smart::IEventClientPattern<CommNavigationObjects::CommCorridorNavigationPoseRequestEventParameter, CommNavigationObjects::CommCorridorNavigationPoseRequestEventResult> *corridorNavigationClientCoordinationServiceposerequesteventClient;
+	CorridorNavigationClientCoordinationServicePoserequesteventEventHandlerCore *corridorNavigationClientCoordinationServiceposerequesteventEventHandlerCore;
+ };
+#endif /* CORRIDORNAVIGATIONCLIENTCOORDINATIONSERVICE_H_ */

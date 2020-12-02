@@ -1,0 +1,16 @@
+ServiceDefRepository DomainRobotFleet version 1 . 0
+{
+	
+	
+	CoordinationServiceDefinition FleetManagerCoordinationService {
+		ParameterPattern < EmptyDefaultParameterSet>
+		StatePattern < lifecycle ComponentLifecycle >
+		CommunicationServiceUsage fleetEvent uses CommBasicObjects.TaskEvent
+		CommunicationServiceUsage fleetSend uses CommBasicObjects.TaskSend
+	}
+	
+	CoordinationServiceDefinition FleetCommunicationCoordinationService {
+		ParameterPattern <DomainRobotFleet.FleetManagerParameter>
+		StatePattern < lifecycle ComponentLifecycle>
+	}
+}

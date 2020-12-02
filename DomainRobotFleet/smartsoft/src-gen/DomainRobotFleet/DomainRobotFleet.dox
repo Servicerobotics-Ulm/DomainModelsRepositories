@@ -1,0 +1,26 @@
+/** 
+\class DomainRobotFleet::DummyCore
+
+Structure of Communication Object:
+- dummy: CommBasicObjects::CommBaseState 
+
+
+
+
+@defgroup DomainRobotFleet
+@ingroup commObjGroup
+@{
+\page DomainRobotFleetPage DomainRobotFleet
+Class Reference: DomainRobotFleet
+<hr>
+
+@section Dummy Dummy
+- dummy: @ref CommBaseState (CommObj) 
+
+Class Reference: DomainRobotFleet::DummyCore
+<hr>
+
+
+@}
+*/
+

@@ -1,0 +1,11 @@
+{
+	"name": "CommTrackingObjects",
+	"shortDescription": "Domain Models for the Tracking domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Tracking"],
+	"spdxLicense": "LGPL-3.0-or-later",
+	"homepage": "http://servicerobotik-ulm.de/components",
+	"supplier": "Servicerobotics Ulm",
+	"marketName": "Tracking Domain Models"
+}

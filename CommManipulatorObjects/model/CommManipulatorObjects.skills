@@ -1,16 +1,78 @@
 SkillDefinitionRepository CommManipulatorObjects {
 
 	CoordinationModuleDefinition manipulatorModule {
-		SkillDefinition graspobjects{
+
+		 SkillDefinition setPartCoordinateSystem{
 			in {
-				objID : UInt32
+				x : Double
+				y : Double
+				z : Double
+				rX :  Double
+				rY :  Double
+				rZ :  Double
 			}
 			results {
 				SUCCESS value = ""
 				ERROR value = "COLLISION"
 			}
 		}
-	
+		
+		SkillDefinition setToolCenterPoint{
+			in {
+				x : Double
+				y : Double
+				z : Double
+				rX :  Double
+				rY :  Double
+				rZ :  Double
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = "COLLISION"
+			}
+		}
+		
+		SkillDefinition moveCirular{
+			in {
+				viaX : Double
+				viaY : Double
+				viaZ : Double
+				viaRX :  Double
+				viaRY :  Double
+				viaRZ :  Double
+				goalX :  Double
+				goalY :  Double
+				goalZ :  Double
+				goalRX :  Double
+				goalRY :  Double
+				goalRZ :  Double
+				acc : Double
+				speed : Double
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = "COLLISION"
+			}
+		}
+		
+		SkillDefinition moveFree{
+			in {
+				goalX :  Double
+				goalY :  Double
+				goalZ :  Double
+				goalRX :  Double
+				goalRY :  Double
+				goalRZ :  Double
+				acc : Double
+				speed : Double
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = "COLLISION"
+			}
+		}
+			
+		
 		SkillDefinition moveLinear{
 			in {
 				goalX :  Double
@@ -27,7 +89,22 @@ SkillDefinitionRepository CommManipulatorObjects {
 				ERROR value = "COLLISION"
 			}
 		}
-
+		
+		
+		SkillDefinition movePath {
+			in {
+				pathID : String
+				overwriteSpeed : Boolean
+				acc : Double
+				speed : Double
+			}
+			
+			results {
+				SUCCESS value = ""
+				ERROR value = "COLLISION"
+			}
+		}
+		
 		SkillDefinition executeProgram {
 			in {
 				program : String
@@ -38,7 +115,43 @@ SkillDefinitionRepository CommManipulatorObjects {
 				ERROR value = ""
 			}
 		}
-}
+		
+		SkillDefinition graspobjects{
+			in {
+				objID : UInt32
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = "COLLISION"
+			}
+		}
+		
+	}
+	
+	CoordinationModuleDefinition welderModule {
+		
+		SkillDefinition weldHSN {
+			in {
+				tool : String
+				rivetOptions : String
+			}
+			results {
+				SUCCESS value =""
+			}
+		}
+				
+		SkillDefinition startWeld {
+			results {
+				SUCCESS value =""
+			}
+		}
+		
+		SkillDefinition stopWeld {
+			results {
+				SUCCESS value =""
+			}
+		}
+	}
 
 	CoordinationModuleDefinition vacuumGriperModule {
 		SkillDefinition gripperGrasp {
