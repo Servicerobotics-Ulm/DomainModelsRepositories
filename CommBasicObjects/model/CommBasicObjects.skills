@@ -1,11 +1,44 @@
 SkillDefinitionRepository CommBasicObjects {
 
 	CoordinationModuleDefinition KBModule { 
-	// no skills for KB, so far done via language feature
+	// no skills for KB, so far done via language feature		
+	}
+	
+	CoordinationModuleDefinition HLInterface {
+		
+		SkillDefinition test {
+			in {
+				param1 : String
+				param2 : String
+			}
+			out {
+				out1 : String
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = ""
+			}
+		}
+		
+		SkillDefinition test2 {
+			in {
+				param1 : String
+			}
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+		SkillDefinition test3 {
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
 	}
 	
 	
-	CoordinationModuleDefinition LaserGenarationModule {
+	CoordinationModuleDefinition LaserGenerationModule {
 		SkillDefinition activateLaserGenaration{
 			results {
 				SUCCESS value =""
@@ -18,6 +51,22 @@ SkillDefinitionRepository CommBasicObjects {
 			}
 		}	
 		
+	}
+	
+	CoordinationModuleDefinition LaserModule {
+		SkillDefinition setNeutral{
+			results {
+				SUCCESS value = ""
+			}
+		}
+	}
+	
+	CoordinationModuleDefinition LaserSafetyModule {
+		SkillDefinition setNeutral{
+			results {
+				SUCCESS value = ""
+			}
+		}
 	}
 	
 	CoordinationModuleDefinition VisualizationModule {
@@ -40,6 +89,45 @@ SkillDefinitionRepository CommBasicObjects {
 			}
 			results {
 				SUCCESS value = "OK"
+			}
+		}
+	}
+	
+	CoordinationModuleDefinition FileOperationsCoordinationModule {
+		SkillDefinition copyFile {
+			in {
+				fileSource : String
+				fileTarget : String
+			}
+			results {
+				SUCCESS value = ""
+				ERROR value = "COPY FILE"
+			}
+		}
+	}
+	
+	CoordinationModuleDefinition IRGenerationModule {
+		SkillDefinition activateIRServer{
+			results {
+				SUCCESS value = ""
+			}
+		}
+		SkillDefinition deactivateIRServer{
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+	}
+	
+	CoordinationModuleDefinition IOQueryModule{
+		SkillDefinition getDigitalInput{
+			out {
+				values : Boolean [*]
+			}
+			results
+			{
+				SUCCESS  value = ""
 			}
 		}
 	}

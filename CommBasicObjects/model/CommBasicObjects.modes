@@ -35,4 +35,10 @@ ComponentModeRepository CommBasicObjects {
 	ComponentModeCollection LaserGenModes {
 		ComponentModeDefinition GenerateLaser;		
 	}
+	
+	ComponentModeCollection IRGenModes {
+		ComponentModeDefinition FetchIR
+		ComponentModeDefinition FetchAdditionalIR
+		ComponentModeDefinition FetchBoth
+	}
 }

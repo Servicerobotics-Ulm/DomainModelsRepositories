@@ -107,7 +107,7 @@ std::string KBCoordinationServiceCore::switchCi(const std::string& ciInstanceNam
 	
 	if(iter != ciInstanceMap.end()){
 		
-		std::cout<<"switchKBCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchKBCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
@@ -122,6 +122,14 @@ std::string KBCoordinationServiceCore::switchCi(const std::string& ciInstanceNam
 			{
 				outString.str(setState(componentInstanceName, inString));
 			}
+			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			{
+				outString.str(getState(componentInstanceName));
+			}
+			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			{
+				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+			}
 			if(strcasecmp(service.c_str(), "kbEvent-activate") == 0 )
 			{
 				Smart::StatusCode status;
@@ -129,15 +137,21 @@ std::string KBCoordinationServiceCore::switchCi(const std::string& ciInstanceNam
 				char *input  = (char *)NULL;
 				char *pointer = (char *)NULL;
 				char *param1  = (char *)NULL;
+				char *eventParam  = (char *)NULL;
 				
 				pointer = input = strdup(inString.c_str());
 				do
 				{
 					param1 = strsep(&input," ()\"\n");
 				} while ((param1 != NULL) && (strlen(param1)==0));
-					
+				
+				do
+				{
+					eventParam = strsep(&input," ()\"\n");
+				} while ((eventParam != NULL) && (strlen(eventParam)==0));
+				
 				CommBasicObjects::CommKBEventParam param;
-				param = iter->second.kBCoordinationServicekbEventEventHandlerCore->activateEventParam(input);
+				param = iter->second.kBCoordinationServicekbEventEventHandlerCore->activateEventParam(eventParam);
 					
 				// CONTINOUS
 				if( strcasecmp(param1, "CONTINUOUS") == 0 )
@@ -240,9 +254,7 @@ std::string KBCoordinationServiceCore::switchCi(const std::string& ciInstanceNam
 				Smart::StatusCode status;
 				request = iter->second.kBCoordinationServicekbQueryQueryHandler->handleRequest(inString);
 				
-				std::cout << "vor status = kbQueryClient->query(request,answer);\n";
 				status = iter->second.kBCoordinationServicekbQueryClient->query(request,answer);
-				std::cout << "nach status = kbQueryClient->query(request,answer);\n";
 				outString.str("");
 				switch (status)
 				{

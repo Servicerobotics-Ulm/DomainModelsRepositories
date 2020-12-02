@@ -1,7 +1,6 @@
 # baseURI: http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects
 # imports: http://robmosys.eu/rdf/composition-structures
 # imports: http://seronet-projekt.de/models/t2#Navigation
-# imports: http://spdx.org/licenses/LGPL-2.0-or-later
 
 #######################################
 # Technical Data Sheet
@@ -364,6 +363,18 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
 .
 
+:CommTaskEventState a robmosys:CommunicationObject;
+	rdfs:label "CommTaskEventState";
+	t1:shortDescription "CommunicationObject CommTaskEventState";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
+:CommTaskMessage a robmosys:CommunicationObject;
+	rdfs:label "CommTaskMessage";
+	t1:shortDescription "CommunicationObject CommTaskMessage";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+.
+
 :CommTimeStamp a robmosys:CommunicationObject;
 	rdfs:label "CommTimeStamp";
 	t1:shortDescription "CommunicationObject CommTimeStamp";
@@ -497,52 +508,6 @@
 	];
 .
 
-:CommFileMoveEvent a robmosys:ServiceDefinition;
-	rdf:type rdfs:Class;
-	rdf:type sh:NodeShape;
-	rdfs:subClassOf robmosys:AbstractService;
-	rdfs:label "CommFileMoveEvent";
-	t1:shortDescription "ServiceDefinition CommFileMoveEvent";
-	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
-	t1:commPatternUsage [
-		a robmosys:EventPattern;
-		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
-		t1:eventType :CommFileMoverEventResult;
-		t1:activationType :CommFileMoverEventParameter;
-		t1:eventStateType :CommFileMoverEventState;
-	];
-.
-
-:CommFileReadQuery a robmosys:ServiceDefinition;
-	rdf:type rdfs:Class;
-	rdf:type sh:NodeShape;
-	rdfs:subClassOf robmosys:AbstractService;
-	rdfs:label "CommFileReadQuery";
-	t1:shortDescription "ServiceDefinition CommFileReadQuery";
-	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
-	t1:commPatternUsage [
-		a robmosys:QueryPattern;
-		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
-		t1:requestType :CommFileReadRequest;
-		t1:answerType :CommFileReadAnswer;
-	];
-.
-
-:CommFileWriteQuery a robmosys:ServiceDefinition;
-	rdf:type rdfs:Class;
-	rdf:type sh:NodeShape;
-	rdfs:subClassOf robmosys:AbstractService;
-	rdfs:label "CommFileWriteQuery";
-	t1:shortDescription "ServiceDefinition CommFileWriteQuery";
-	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
-	t1:commPatternUsage [
-		a robmosys:QueryPattern;
-		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
-		t1:requestType :CommFileWriteRequest;
-		t1:answerType :CommFileWriteAnswer;
-	];
-.
-
 :CommIOForkingService a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;
@@ -603,20 +568,6 @@
 	];
 .
 
-:CommMobIR a robmosys:ServiceDefinition;
-	rdf:type rdfs:Class;
-	rdf:type sh:NodeShape;
-	rdfs:subClassOf robmosys:AbstractService;
-	rdfs:label "CommMobIR";
-	t1:shortDescription "ServiceDefinition CommMobIR";
-	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
-	t1:commPatternUsage [
-		a robmosys:PushPattern;
-		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
-		t1:dataType :CommMobileIRScan;
-	];
-.
-
 :DevicePoseStateQueryService a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;
@@ -643,6 +594,52 @@
 		a robmosys:PushPattern;
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:dataType :CommDevicePoseState;
+	];
+.
+
+:FileMoveEventService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "FileMoveEventService";
+	t1:shortDescription "ServiceDefinition FileMoveEventService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommFileMoverEventResult;
+		t1:activationType :CommFileMoverEventParameter;
+		t1:eventStateType :CommFileMoverEventState;
+	];
+.
+
+:FileReadQueryService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "FileReadQueryService";
+	t1:shortDescription "ServiceDefinition FileReadQueryService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommFileReadRequest;
+		t1:answerType :CommFileReadAnswer;
+	];
+.
+
+:FileWriteQueryService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "FileWriteQueryService";
+	t1:shortDescription "ServiceDefinition FileWriteQueryService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommFileWriteRequest;
+		t1:answerType :CommFileWriteAnswer;
 	];
 .
 
@@ -719,6 +716,20 @@
 	];
 .
 
+:MobileIRPush a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "MobileIRPush";
+	t1:shortDescription "ServiceDefinition MobileIRPush";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommMobileIRScan;
+	];
+.
+
 :SequnecerHLInterfaceEvent a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;
@@ -746,6 +757,50 @@
 		a robmosys:SendPattern;
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:dataType :CommSkillMsg;
+	];
+.
+
+:TaskEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "TaskEvent";
+	t1:shortDescription "ServiceDefinition TaskEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommTaskMessage;
+		t1:activationType :CommTaskMessage;
+		t1:eventStateType :CommTaskEventState;
+	];
+.
+
+:TaskResult a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "TaskResult";
+	t1:shortDescription "ServiceDefinition TaskResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommTaskMessage;
+	];
+.
+
+:TaskSend a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "TaskSend";
+	t1:shortDescription "ServiceDefinition TaskSend";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommBasicObjects>;
+	t1:commPatternUsage [
+		a robmosys:SendPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommTaskMessage;
 	];
 .
 
