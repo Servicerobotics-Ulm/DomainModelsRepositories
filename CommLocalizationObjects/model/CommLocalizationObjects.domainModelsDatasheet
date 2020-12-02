@@ -1,8 +1,21 @@
-DomainModelsDatasheet CommLocalizationObjects {
+DomainModelsDatasheet CommLocalizationObjects
+{
 	BaseURI "http://www.servicerobotik-ulm.de"
 	ShortDescription "Domain Models for the Localization domain"
 	DatasheetProperty SpdxLicense {
 		value "LGPL-3.0-or-later"
 		semanticID "https://spdx.org/licenses/LGPL-3.0-or-later.html"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "Localization"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty MarketName {
+		value "Localization Domain Models"
 	}
 }

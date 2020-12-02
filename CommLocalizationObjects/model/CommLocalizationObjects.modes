@@ -26,5 +26,10 @@ ComponentModeRepository CommLocalizationObjects {
 	ComponentModeCollection localizationMode {
 		ComponentModeDefinition Active;
 	}
+	
+	ComponentModeCollection slamModes {
+		ComponentModeDefinition Mapping
+		ComponentModeDefinition Localization
+	}
 
 }
