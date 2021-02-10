@@ -1,0 +1,22 @@
+SkillDefinitionRepository DomainSpeech {
+	
+	CoordinationModuleDefinition TTSModule {
+		SkillDefinition say {
+			in {
+				text : String
+			}
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+		SkillDefinition sayWait {
+			in {
+				text : String
+			}
+			results {
+				SUCCESS value = ""
+			}
+		}
+	}
+}

@@ -67,8 +67,16 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 		CommunicationServiceUsage manipulatorevent uses ManipulatorEventService
 		CommunicationServiceUsage manipulatorstate uses MobileManipulatorStateQueryService
 		CommunicationServiceUsage manipulatorprograms uses MobileManipulatorProgramQueryService
+		CommunicationServiceUsage ioquery uses CommBasicObjects.CommIOValuesQueryService
+		CommunicationServiceUsage ioevent uses CommBasicObjects.CommDigitalInputEvent
 	}
 	
+	CoordinationServiceDefinition WelderCoordinationService {
+		ParameterPattern < CommManipulatorObjects.WelderParameter >
+		StatePattern < lifecycle ComponentLifecycle with CommBasicObjects.BasicModes >
+	}
+
+
 	// vacuum gripper services
 	
 	ForkingServiceDefinition VacuumGripperEventService {

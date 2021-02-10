@@ -18,7 +18,7 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.exe.release.1956311143." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.release.154589878" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.release">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.release.1477910333" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.release"/>
-							<builder buildPath="${workspace_loc:/DomainPTU}/smartsoft/build" id="cdt.managedbuild.config.gnu.exe.release.1956311143.1318543799" name="SmartMDSD Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="org.smartmdsd.utils.smartmdsd.builder"/>
+							<builder buildPath="${workspace_loc:/DomainPTU}/smartsoft/build" id="cdt.managedbuild.config.gnu.exe.release.1956311143.1318543799" name="SmartMDSD Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="org.eclipse.smartmdsd.ui.smartmdsd.builder"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.136044124" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.571372896" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1185547275" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
@@ -69,7 +69,7 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.587469137." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.413762906" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug.385003606" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
-							<builder buildPath="${workspace_loc:/DomainPTU}/smartsoft/build" id="cdt.managedbuild.config.gnu.exe.debug.587469137.1440062652" name="SmartMDSD Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="org.smartmdsd.utils.smartmdsd.builder"/>
+							<builder buildPath="${workspace_loc:/DomainPTU}/smartsoft/build" id="cdt.managedbuild.config.gnu.exe.debug.587469137.1440062652" name="SmartMDSD Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="org.eclipse.smartmdsd.ui.smartmdsd.builder"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1334245693" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1045398689" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug">
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.405629271" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>

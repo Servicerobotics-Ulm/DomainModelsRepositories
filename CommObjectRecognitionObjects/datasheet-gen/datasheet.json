@@ -1,0 +1,10 @@
+{
+	"name": "CommObjectRecognitionObjects",
+	"shortDescription": "Domain Models for the Object-Recognition domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Object-Recognition"],
+	"marketName": "Object-Recognition Domain Models",
+	"supplier": "Servicerobotics Ulm",
+	"homepage": "http://servicerobotik-ulm.de/components"
+}

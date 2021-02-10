@@ -38,7 +38,7 @@ ParameterSetRepository CommTrackingObjects
 	ParameterSet Markers
 	{
 		Trigger SAVE_TAGS_AS_JSON{
-		dirname : String
-	}
+			dirname : String
+		}
 	}
 }

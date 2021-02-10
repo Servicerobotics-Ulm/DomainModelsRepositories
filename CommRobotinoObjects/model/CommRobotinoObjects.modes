@@ -31,15 +31,25 @@ ComponentModeRepository CommRobotinoObjects {
 		ComponentModeDefinition manualunload;
 		ComponentModeDefinition signalerror;
 	}
-        ComponentModeCollection FestoMpsDockingStates {
+    ComponentModeCollection FestoMpsDockingStates {
 		ComponentModeDefinition LaserDocking;
 		ComponentModeDefinition IrDocking;
+		ComponentModeDefinition UnDocking;
+	}
+    ComponentModeCollection FestoMpsVisualDockingStates {
+		ComponentModeDefinition Docking;
+		ComponentModeDefinition Detection;
 		ComponentModeDefinition UnDocking;
 	}
 	
 	ComponentModeCollection RobotToRobotDockingStates {
 		ComponentModeDefinition LaserDocking;		
 		ComponentModeDefinition UnDocking;
+	}
+	
+	ComponentModeCollection MasterRPCBridgeStates {
+		ComponentModeDefinition staticMap;
+		ComponentModeDefinition slamMap;
 	}
 
 }

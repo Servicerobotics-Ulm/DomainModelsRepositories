@@ -1,0 +1,11 @@
+{
+	"name": "CommBasicObjects",
+	"shortDescription": "The generic domain models shared by many other domains",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Universal"],
+	"spdxLicense": "LGPL-3.0-or-later",
+	"homepage": "http://servicerobotik-ulm.de/components",
+	"supplier": "Servicerobotics Ulm",
+	"marketName": "Generic Domain Models"
+}

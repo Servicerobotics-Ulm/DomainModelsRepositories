@@ -210,6 +210,15 @@ CommObjectsRepository CommBasicObjects version 1.0.0 {
 		lisp: String
 	}
 	
+	CommObject CommTaskMessage {
+		msg : String
+	}
+
+	CommObject CommTaskEventState {
+		robotTarget: String
+		job: CommTaskMessage
+	}
+	
 	CommObject CommJoystick {
 		xpos: Int16 = 0
 		ypos: Int16 = 0

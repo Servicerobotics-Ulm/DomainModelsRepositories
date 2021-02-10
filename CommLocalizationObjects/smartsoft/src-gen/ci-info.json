@@ -1,0 +1,5 @@
+{
+	"id" : "CommLocalizationObjects",
+	"type" : "DomainModel",
+	"dependprojects" : [ "CommBasicObjects" ]
+}

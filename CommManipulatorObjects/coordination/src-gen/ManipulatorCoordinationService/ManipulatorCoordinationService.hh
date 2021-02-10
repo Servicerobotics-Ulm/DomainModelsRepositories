@@ -3,6 +3,14 @@
 #include "aceSmartSoft.hh"
 
 // include communication objects
+#include <CommBasicObjects/CommDigitalInputEventParameter.hh>
+#include <CommBasicObjects/CommDigitalInputEventParameterACE.hh>
+#include <CommBasicObjects/CommDigitalInputEventResult.hh>
+#include <CommBasicObjects/CommDigitalInputEventResultACE.hh>
+#include <CommBasicObjects/CommDigitalInputEventState.hh>
+#include <CommBasicObjects/CommDigitalInputEventStateACE.hh>
+#include <CommBasicObjects/CommIOValues.hh>
+#include <CommBasicObjects/CommIOValuesACE.hh>
 #include <CommManipulatorObjects/CommManipulatorEventParameter.hh>
 #include <CommManipulatorObjects/CommManipulatorEventParameterACE.hh>
 #include <CommManipulatorObjects/CommManipulatorEventResult.hh>
@@ -17,6 +25,8 @@
 #include <CommBasicObjects/CommVoidACE.hh>
 
 
+#include "ManipulatorCoordinationServiceIoeventEventHandlerCore.hh"
+#include "ManipulatorCoordinationServiceIoqueryQueryHandler.hh"
 #include "ManipulatorCoordinationServiceManipulatoreventEventHandlerCore.hh"
 #include "ManipulatorCoordinationServiceManipulatorprogramsQueryHandler.hh"
 #include "ManipulatorCoordinationServiceManipulatorstateQueryHandler.hh"
@@ -31,6 +41,10 @@ public:
 
 	//variables, ports, handlers
 	//param, state, wiring is dealt with the single master
+	Smart::IEventClientPattern<CommBasicObjects::CommDigitalInputEventParameter, CommBasicObjects::CommDigitalInputEventResult> *manipulatorCoordinationServiceioeventClient;
+	ManipulatorCoordinationServiceIoeventEventHandlerCore *manipulatorCoordinationServiceioeventEventHandlerCore;
+	Smart::IQueryClientPattern<CommBasicObjects::CommIOValues, CommBasicObjects::CommIOValues> *manipulatorCoordinationServiceioqueryClient;
+	ManipulatorCoordinationServiceIoqueryQueryHandler *manipulatorCoordinationServiceioqueryQueryHandler;
 	Smart::IEventClientPattern<CommManipulatorObjects::CommManipulatorEventParameter, CommManipulatorObjects::CommManipulatorEventResult> *manipulatorCoordinationServicemanipulatoreventClient;
 	ManipulatorCoordinationServiceManipulatoreventEventHandlerCore *manipulatorCoordinationServicemanipulatoreventEventHandlerCore;
 	Smart::IQueryClientPattern<CommBasicObjects::CommVoid, CommManipulatorObjects::CommMobileManipulatorPrograms> *manipulatorCoordinationServicemanipulatorprogramsClient;

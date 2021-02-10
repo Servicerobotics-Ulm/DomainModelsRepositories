@@ -1,6 +1,10 @@
 #include "ManipulatorCoordinationService.hh"
 
 ManipulatorCoordinationService::ManipulatorCoordinationService (){
+		manipulatorCoordinationServiceioeventClient = NULL;
+		manipulatorCoordinationServiceioeventEventHandlerCore = NULL;
+		manipulatorCoordinationServiceioqueryQueryHandler = NULL;
+		manipulatorCoordinationServiceioqueryClient = NULL;
 		manipulatorCoordinationServicemanipulatoreventClient = NULL;
 		manipulatorCoordinationServicemanipulatoreventEventHandlerCore = NULL;
 		manipulatorCoordinationServicemanipulatorprogramsQueryHandler = NULL;

@@ -77,6 +77,11 @@ ServiceDefRepository CommBasicObjects version 1.0
 		ParameterPattern < EmptyDefaultParameterSet >
 	}
 	
+	CoordinationServiceDefinition WebInterfaceCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle with CommBasicObjects.BasicModes >
+		ParameterPattern < EmptyDefaultParameterSet >
+	}
+	
 	ForkingServiceDefinition IMUData {
 		PushPattern<DataType=CommBasicObjects.CommIMUData>
 	}
@@ -106,21 +111,21 @@ ServiceDefRepository CommBasicObjects version 1.0
 		>
 	}
 
-	RequestAnswerServiceDefinition CommFileReadQuery {
+	RequestAnswerServiceDefinition FileReadQueryService {
 		QueryPattern <
 			RequestType = CommBasicObjects.CommFileReadRequest
 			AnswerType = CommBasicObjects.CommFileReadAnswer
 		>
 	}
 	
-	RequestAnswerServiceDefinition CommFileWriteQuery {
+	RequestAnswerServiceDefinition FileWriteQueryService {
 		QueryPattern <
 			RequestType = CommBasicObjects.CommFileWriteRequest
 			AnswerType = CommBasicObjects.CommFileWriteAnswer
 		>
 	}
 	
-	ForkingServiceDefinition CommFileMoveEvent {
+	ForkingServiceDefinition FileMoveEventService {
 		EventPattern < 
 			ActivationType = 	CommBasicObjects.CommFileMoverEventParameter
 			EventType = 		CommBasicObjects.CommFileMoverEventResult
@@ -150,7 +155,25 @@ ServiceDefRepository CommBasicObjects version 1.0
 		>
 	}
 	
-	ForkingServiceDefinition CommMobIR {
+	
+	ForkingServiceDefinition TaskEvent {
+		EventPattern < 
+		ActivationType =  CommBasicObjects.CommTaskMessage 
+		EventType =  CommBasicObjects.CommTaskMessage
+		EventStateType =  CommBasicObjects.CommTaskEventState >
+	}
+	
+	JoiningServiceDefinition TaskSend{
+		SendPattern <DataType = CommBasicObjects.CommTaskMessage> 
+	}
+	
+	ForkingServiceDefinition TaskResult{
+		PushPattern < DataType = CommBasicObjects.CommTaskMessage >
+	}
+	
+
+
+	ForkingServiceDefinition MobileIRPush {
 		PushPattern<DataType=CommBasicObjects.CommMobileIRScan>
 	}
 	
@@ -208,5 +231,36 @@ ServiceDefRepository CommBasicObjects version 1.0
 			EventStateType 	= CommBasicObjects.CommDigitalInputEventState
 		>
 	}
+	
+	
+	CoordinationServiceDefinition IRComponentCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle with CommBasicObjects.IRGenModes>
+		ParameterPattern < EmptyDefaultParameterSet >		
+	}
+	
+	CoordinationServiceDefinition Seq2SeqComCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle >
+		ParameterPattern < CommBasicObjects.Seq2SeqComParam >
+		CommunicationServiceUsage taskEvent uses TaskEvent
+	}
+	
+	CoordinationServiceDefinition FileOperationsCoordinationService {
+		ParameterPattern < CommBasicObjects.FileOperationsParam >
+		StatePattern < lifecycle ComponentLifecycle >
+		CommunicationServiceUsage fileEvent uses FileMoveEventService
+	}
+	
+	CoordinationServiceDefinition IOQueryCoordinationService {
+		ParameterPattern < EmptyDefaultParameterSet >
+		StatePattern < lifecycle ComponentLifecycle >
+		CommunicationServiceUsage ioQuery uses CommIOValuesQueryService
+	}
+	
+	CoordinationServiceDefinition LaserSafetyCoordinationService {
+		ParameterPattern < EmptyDefaultParameterSet >
+		StatePattern < lifecycle ComponentLifecycle >		
+		CommunicationServiceUsage safetyFieldEvent uses LaserSafetyEventService
+	}
+	
 	
 }

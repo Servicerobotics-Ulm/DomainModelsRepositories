@@ -1,0 +1,17 @@
+DomainModelsDatasheet CommManipulatorObjects
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models for the Manipulator domain"
+	DatasheetProperty MarketName {
+		value "Manipulator Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "Manipulator"
+	}
+}

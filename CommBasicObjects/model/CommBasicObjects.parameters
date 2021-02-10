@@ -34,22 +34,6 @@ ParameterSetRepository CommBasicObjects {
 		Trigger SIGNAL_STATE_SAFETY_FIELD {}		
 	}
 	
-	ParameterSet WebInterfaceParams {
-		Trigger ADDROBOT {
-			robotName : String
-			baseComponentName : String
-			baseServiceName : String
-			baseriOQueryServerName: String
-			laserComponentName:String
-			laserServiceName:String
-			pathNavClientComponentName:String
-			pathNavClientServiceName:String
-		}
-		Trigger RMROBOT {
-			robotName : String
-		}
-	}
-	
 	ParameterSet FileOperationsParam {
 		Trigger COPYFILE {
 			sourceFile : String
@@ -85,5 +69,12 @@ ParameterSetRepository CommBasicObjects {
 		Trigger SHOW_DEPTHIMAGE1 {}
 		Trigger STOP_DEPTHIMAGE1 {}
 	}
+	
+	ParameterSet Seq2SeqComParam {
+		Trigger Send {
+			message: String
+		}
+	}
+	
 	
 }

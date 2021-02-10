@@ -34,6 +34,46 @@ ParameterSetRepository CommRobotinoObjects {
 			stationID : Int32
 		}
 		Trigger SAVE_BEFORE_DOCKING_POSE {}
+		
+		Parameter  min_station_width {
+			min_station_width : Double
+		}      
+		
+		Parameter  max_station_width {
+			max_station_width : Double	           
+       	} 
+       	
+  		Parameter  offs_bet_center_o_belts  {
+  			offs_bet_center_o_belts : Double
+  		}
+  		
+  		Parameter  offs_left_ref_to_1Belt_cent {
+  			offs_left_ref_to_1Belt_cent :  Double
+  		}
+  		
+  		Parameter  ir_dock_stop_dist_l2_min {
+  			ir_dock_stop_dist_l2_min :  Double
+  		}
+  		 
+		Parameter  ir_dock_stop_dist_l2_max {
+			ir_dock_stop_dist_l2_max :  Double
+		}
+		 
+		Parameter  ir_dock_stop_dist_l1  {
+			ir_dock_stop_dist_l1 :  Double
+		}
+		 
+		Parameter  ir_dock_center_sensor_zero {
+			ir_dock_center_sensor_zero :  Double
+		}
+		
+		Parameter max_reflector_dist {
+			max_reflector_dist : Double
+		}
+		
+		Parameter laser_dockstop_dist {
+			laser_dock_stop_dist : Double
+		}
 	}
 	
 	ParameterSet RobotToRobotDockingParameter {
@@ -49,6 +89,19 @@ ParameterSetRepository CommRobotinoObjects {
 			robotID : Int32
 		}
 		
+		Trigger ADDROBOT {
+			robotName : String
+			baseComponentName : String
+			baseServiceName : String
+			baseriOQueryServerName: String
+			laserComponentName:String
+			laserServiceName:String
+			pathNavClientComponentName:String
+			pathNavClientServiceName:String
+		}
+		Trigger RMROBOT {
+			robotName : String
+		}
 //		Trigger SET_LOCALIZATION_TYP {
 //			@doc "NOT USED ANY MORE"
 //			localizationType:Enum {
@@ -58,6 +111,7 @@ ParameterSetRepository CommRobotinoObjects {
 //			robotID : Int32
 //		}	
 	}
+
 	
 	ParameterSet MultiRobotResourceCoordinationParams {
 		Trigger LOADRESOURCELIST {
@@ -65,62 +119,16 @@ ParameterSetRepository CommRobotinoObjects {
 		}
 	}
 	
-	
-	ParameterSet MultiRobotPathNavigationParams {
-		Trigger LOADPATHLIST {
-			filename : String
-		}
-	}
-	
-	ParameterSet PathNavigationParams {	
-		Trigger SET_GOAL{
-			startPose : UInt32
-			goalPose : UInt32
-		}
-		
-		Trigger SET_GOAL_FROM_NODE {
-			startNode : UInt32
-			goalPose : UInt32
-		}
-		
-		Trigger ACQ_INIT_POSE {
-			pose : UInt32
-		}
-		
-		Trigger ACQ_INIT_NODE {
-			node : UInt32
-		}
-		
-		Trigger REL_POSE {
-			pose : UInt32
-		}
-		
-		Trigger REL_ALL_NODES {
-		}
-		
-		Trigger REL_ALL_NODES_BUT {
-			pose : UInt32
-		}
-		
-		Parameter ID { 
-			id : Int32
-		}
-		
-		Parameter SetRobotID {
-			robotID : String
-		}
-		Parameter ControlValues {
-			maxVel: Double
-			lookAhead: Double
-			steeringPGain: Double
-			velPGain: Double
-			goalPointRadius: Double		
-			wayPointRadius: Double
-		}
-	}
 	ParameterSet RemoteOperatorParams {
 		Trigger ACTIVATE_REMOTE_OP{
 			
+		}
+		
+	}
+	
+	ParameterSet RobotinoConveyerParameter {
+		Parameter SetStationID {
+			id : Int16 = 0
 		}
 	}
 }

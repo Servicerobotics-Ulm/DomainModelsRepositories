@@ -32,6 +32,12 @@ SkillDefinitionRepository CommNavigationObjects {
 
 
 	CoordinationModuleDefinition NavigationModule {
+		
+		SkillDefinition setNavigationNeutral {
+			results {
+				SUCCESS value = ""
+			}
+		}
 
 		/*
 		 * approach location (id, resolved using knowledge-base)
@@ -67,8 +73,7 @@ SkillDefinitionRepository CommNavigationObjects {
 				SUCCESS value = "OK"
 			}
 		}
-		
-		
+			
 		// ///////////////////////////////////////////
 		// MOVE ROBOT 
 		
@@ -180,5 +185,36 @@ SkillDefinitionRepository CommNavigationObjects {
 			}
 		}
 
+	}
+	
+	
+	CoordinationModuleDefinition CorridorFleetNavigationModule {
+		
+		SkillDefinition setNavigationNeutral {
+			results {
+				SUCCESS value = ""
+			}
+		}
+
+		/*
+		 * approach location (id, resolved using knowledge-base)
+		 */
+		SkillDefinition approachLocation {
+			in {
+				locationId : Int32
+			}
+			
+			results	 {
+				ERROR value = "UNKNOWN LOCATION";
+				ERROR value = "ROBOT BLOCKED";
+				SUCCESS value = "OK";
+				SUCCESS value = "";
+			}
+		}
+	}
+	
+	
+	CoordinationModuleDefinition RobotDockingModule {
+		
 	}
 }

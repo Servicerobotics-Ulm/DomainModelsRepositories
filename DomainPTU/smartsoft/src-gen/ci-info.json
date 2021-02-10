@@ -1,0 +1,5 @@
+{
+	"id" : "DomainPTU",
+	"type" : "DomainModel",
+	"dependprojects" : [ "CommBasicObjects" ]
+}

@@ -1,0 +1,19 @@
+ParameterSetRepository DomainRobotFleet
+{
+	
+	ParameterSet FleetManagerParameter {
+		Trigger ADDROBOT {
+			robotName : String
+			baseComponentName : String
+			baseServiceName : String
+			baseriOQueryServerName: String
+			laserComponentName:String
+			laserServiceName:String
+			pathNavClientComponentName:String
+			pathNavClientServiceName:String
+		}
+		Trigger RMROBOT {
+			robotName : String
+		}
+	}
+}

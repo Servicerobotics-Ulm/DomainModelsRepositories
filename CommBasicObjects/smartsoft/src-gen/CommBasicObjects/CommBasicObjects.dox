@@ -213,6 +213,17 @@ Structure of Communication Object:
 Structure of Communication Object:
 - lisp: String 
 
+\class CommBasicObjects::CommTaskMessageCore
+
+Structure of Communication Object:
+- msg: String 
+
+\class CommBasicObjects::CommTaskEventStateCore
+
+Structure of Communication Object:
+- robotTarget: String 
+- job: CommBasicObjects::CommTaskMessage 
+
 \class CommBasicObjects::CommJoystickCore
 
 Structure of Communication Object:
@@ -705,6 +716,17 @@ Class Reference: CommBasicObjects::PropertyItemEntryCore
 - lisp: String  
 
 Class Reference: CommBasicObjects::CommTCLMessageCore
+<hr>
+@section CommTaskMessage CommTaskMessage
+- msg: String  
+
+Class Reference: CommBasicObjects::CommTaskMessageCore
+<hr>
+@section CommTaskEventState CommTaskEventState
+- robotTarget: String  
+- job: @ref CommTaskMessage (CommObj) 
+
+Class Reference: CommBasicObjects::CommTaskEventStateCore
 <hr>
 @section CommJoystick CommJoystick
 - xpos: Int16   = 0 

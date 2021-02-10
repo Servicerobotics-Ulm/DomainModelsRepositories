@@ -40,6 +40,9 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 		PushPattern < DataType = CommLocalizationObjects.CommGpsFix >
 	}
 	
+	ForkingServiceDefinition AmclVisualizationInfo{
+		PushPattern<DataType=CommLocalizationObjects.CommAmclVisualizationInfo>
+	}
 	
 	RequestAnswerServiceDefinition CommGpsFixService {
 		QueryPattern <
@@ -60,15 +63,10 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 		PushPattern < DataType = CommLocalizationObjects.CommLocalizationZoneResult >		
 	}
 	
-
 	ForkingServiceDefinition LocalizationResultZoneChange {
 		EventPattern < EventType = CommLocalizationObjects.CommLocalizationZoneChange
 					   ActivationType = CommLocalizationObjects.CommLocalizationZoneResult
 					   EventStateType = CommLocalizationObjects.CommLocalizationZoneChange >
-	}
-	
-	ForkingServiceDefinition AmclVisualizationInfo{
-		PushPattern<DataType=CommLocalizationObjects.CommAmclVisualizationInfo>
 	}
 	
 	CoordinationServiceDefinition LocalizationCoordinationService {
@@ -79,6 +77,6 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 	
 	CoordinationServiceDefinition SLAMCoordinationService {
 		ParameterPattern < CommLocalizationObjects.SlamParameter >
-		StatePattern < lifecycle ComponentLifecycle with CommLocalizationObjects.localizationMode>
+		StatePattern < lifecycle ComponentLifecycle with CommLocalizationObjects.slamModes>
 	}
 }

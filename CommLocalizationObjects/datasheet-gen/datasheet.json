@@ -1,0 +1,11 @@
+{
+	"name": "CommLocalizationObjects",
+	"shortDescription": "Domain Models for the Localization domain",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Localization"],
+	"spdxLicense": "LGPL-3.0-or-later",
+	"homepage": "http://servicerobotik-ulm.de/components",
+	"supplier": "Servicerobotics Ulm",
+	"marketName": "Localization Domain Models"
+}

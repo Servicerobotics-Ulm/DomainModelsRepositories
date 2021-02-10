@@ -1,7 +1,6 @@
 # baseURI: http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects
 # imports: http://robmosys.eu/rdf/composition-structures
 # imports: http://seronet-projekt.de/models/t2#Navigation
-# imports: http://spdx.org/licenses/LGPL-2.0-or-later
 
 #######################################
 # Technical Data Sheet
@@ -76,6 +75,114 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
 .
 
+:CommClosestNodeAnswer a robmosys:CommunicationObject;
+	rdfs:label "CommClosestNodeAnswer";
+	t1:shortDescription "CommunicationObject CommClosestNodeAnswer";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommClosestNodeRequest a robmosys:CommunicationObject;
+	rdfs:label "CommClosestNodeRequest";
+	t1:shortDescription "CommunicationObject CommClosestNodeRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationGoal a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationGoal";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationGoal";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationGoalEventParameter a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationGoalEventParameter";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationGoalEventParameter";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationGoalEventResult a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationGoalEventResult";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationGoalEventResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationGoalEventState a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationGoalEventState";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationGoalEventState";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationNodeAnswer a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationNodeAnswer";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationNodeAnswer";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationNodeRequest a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationNodeRequest";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationNodeRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPathAnswer a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPathAnswer";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPathAnswer";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPathRequest a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPathRequest";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPathRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPoseAnswer a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPoseAnswer";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPoseAnswer";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPoseRequest a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPoseRequest";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPoseRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPoseRequestEventParameter a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPoseRequestEventParameter";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPoseRequestEventParameter";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPoseRequestEventResult a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPoseRequestEventResult";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPoseRequestEventResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNavigationPoseRequestEventState a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNavigationPoseRequestEventState";
+	t1:shortDescription "CommunicationObject CommCorridorNavigationPoseRequestEventState";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNetworkLayout a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNetworkLayout";
+	t1:shortDescription "CommunicationObject CommCorridorNetworkLayout";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNetworkStatus a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNetworkStatus";
+	t1:shortDescription "CommunicationObject CommCorridorNetworkStatus";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommCorridorNode a robmosys:CommunicationObject;
+	rdfs:label "CommCorridorNode";
+	t1:shortDescription "CommunicationObject CommCorridorNode";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
 :CommDockingEventParameter a robmosys:CommunicationObject;
 	rdfs:label "CommDockingEventParameter";
 	t1:shortDescription "CommunicationObject CommDockingEventParameter";
@@ -103,6 +210,42 @@
 :CommGridMapRequest a robmosys:CommunicationObject;
 	rdfs:label "CommGridMapRequest";
 	t1:shortDescription "CommunicationObject CommGridMapRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommNavigationGraph a robmosys:CommunicationObject;
+	rdfs:label "CommNavigationGraph";
+	t1:shortDescription "CommunicationObject CommNavigationGraph";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommNavigationGraphEdge a robmosys:CommunicationObject;
+	rdfs:label "CommNavigationGraphEdge";
+	t1:shortDescription "CommunicationObject CommNavigationGraphEdge";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommNavigationGraphVertex a robmosys:CommunicationObject;
+	rdfs:label "CommNavigationGraphVertex";
+	t1:shortDescription "CommunicationObject CommNavigationGraphVertex";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommNavigationPaths a robmosys:CommunicationObject;
+	rdfs:label "CommNavigationPaths";
+	t1:shortDescription "CommunicationObject CommNavigationPaths";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommNavigationTimeRequest a robmosys:CommunicationObject;
+	rdfs:label "CommNavigationTimeRequest";
+	t1:shortDescription "CommunicationObject CommNavigationTimeRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommNavigationTimeResponse a robmosys:CommunicationObject;
+	rdfs:label "CommNavigationTimeResponse";
+	t1:shortDescription "CommunicationObject CommNavigationTimeResponse";
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
 .
 
@@ -142,6 +285,12 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
 .
 
+:CommPlannerGoalList a robmosys:CommunicationObject;
+	rdfs:label "CommPlannerGoalList";
+	t1:shortDescription "CommunicationObject CommPlannerGoalList";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
 :PlannerEventState a robmosys:CommunicationObject;
 	rdfs:label "PlannerEventState";
 	t1:shortDescription "CommunicationObject PlannerEventState";
@@ -166,6 +315,83 @@
 		t1:eventType :CommBatteryEvent;
 		t1:activationType :CommBatteryParameter;
 		t1:eventStateType :CommBatteryState;
+	];
+.
+
+:CorridorNavigationClosestNodeQuery a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CorridorNavigationClosestNodeQuery";
+	t1:shortDescription "ServiceDefinition CorridorNavigationClosestNodeQuery";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommClosestNodeRequest;
+		t1:answerType :CommClosestNodeAnswer;
+	];
+.
+
+:CorridorNavigationGoalEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CorridorNavigationGoalEvent";
+	t1:shortDescription "ServiceDefinition CorridorNavigationGoalEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommCorridorNavigationGoalEventResult;
+		t1:activationType :CommCorridorNavigationGoalEventParameter;
+		t1:eventStateType :CommCorridorNavigationGoalEventState;
+	];
+.
+
+:CorridorNavigationNextGoal a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CorridorNavigationNextGoal";
+	t1:shortDescription "ServiceDefinition CorridorNavigationNextGoal";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommCorridorNavigationGoal;
+	];
+.
+
+:CorridorNavigationPathChangeEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CorridorNavigationPathChangeEvent";
+	t1:shortDescription "ServiceDefinition CorridorNavigationPathChangeEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommNavigationPaths;
+		t1:activationType :CommVoid;
+		t1:eventStateType :CommNavigationPaths;
+	];
+.
+
+:CorridorNavigationPoseRequestEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "CorridorNavigationPoseRequestEvent";
+	t1:shortDescription "ServiceDefinition CorridorNavigationPoseRequestEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommCorridorNavigationPoseRequestEventResult;
+		t1:activationType :CommCorridorNavigationPoseRequestEventParameter;
+		t1:eventStateType :CommCorridorNavigationPoseRequestEventState;
 	];
 .
 
@@ -257,6 +483,143 @@
 	];
 .
 
+:NavigationFileSend a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationFileSend";
+	t1:shortDescription "ServiceDefinition NavigationFileSend";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:SendPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommDataFile;
+	];
+.
+
+:NavigationGraphEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationGraphEvent";
+	t1:shortDescription "ServiceDefinition NavigationGraphEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommNavigationGraph;
+		t1:activationType :CommVoid;
+		t1:eventStateType :CommNavigationGraph;
+	];
+.
+
+:NavigationNetworkLayoutEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationNetworkLayoutEvent";
+	t1:shortDescription "ServiceDefinition NavigationNetworkLayoutEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommCorridorNetworkLayout;
+		t1:activationType :CommVoid;
+		t1:eventStateType :CommCorridorNetworkLayout;
+	];
+.
+
+:NavigationNetworkNodeRequest a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationNetworkNodeRequest";
+	t1:shortDescription "ServiceDefinition NavigationNetworkNodeRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommCorridorNavigationNodeRequest;
+		t1:answerType :CommCorridorNavigationNodeAnswer;
+	];
+.
+
+:NavigationNetworkPathRequest a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationNetworkPathRequest";
+	t1:shortDescription "ServiceDefinition NavigationNetworkPathRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommCorridorNavigationPathRequest;
+		t1:answerType :CommCorridorNavigationPathAnswer;
+	];
+.
+
+:NavigationNetworkPoseRequest a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationNetworkPoseRequest";
+	t1:shortDescription "ServiceDefinition NavigationNetworkPoseRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommCorridorNavigationPoseRequest;
+		t1:answerType :CommCorridorNavigationPoseAnswer;
+	];
+.
+
+:NavigationNetworkStatusEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationNetworkStatusEvent";
+	t1:shortDescription "ServiceDefinition NavigationNetworkStatusEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommCorridorNetworkStatus;
+		t1:activationType :CommVoid;
+		t1:eventStateType :CommCorridorNetworkStatus;
+	];
+.
+
+:NavigationTimeRequest a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationTimeRequest";
+	t1:shortDescription "ServiceDefinition NavigationTimeRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommNavigationTimeRequest;
+		t1:answerType :CommNavigationTimeResponse;
+	];
+.
+
+:NavigationTopologyMapQuery a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "NavigationTopologyMapQuery";
+	t1:shortDescription "ServiceDefinition NavigationTopologyMapQuery";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommVoid;
+		t1:answerType :CommNavigationTopologyMap;
+	];
+.
+
 :NavigationVelocityService a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;
@@ -284,6 +647,20 @@
 		t1:eventType :CommPlannerEventResult;
 		t1:activationType :CommPlannerEventParameter;
 		t1:eventStateType :PlannerEventState;
+	];
+.
+
+:PlannerGoalListService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "PlannerGoalListService";
+	t1:shortDescription "ServiceDefinition PlannerGoalListService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommPlannerGoalList;
 	];
 .
 

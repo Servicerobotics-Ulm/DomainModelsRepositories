@@ -57,7 +57,7 @@ std::string DefaultServiceCore::switchCi(const std::string& ciInstanceName, cons
 	
 	if(iter != ciInstanceMap.end()){
 		
-		std::cout<<"switchDefaultService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchDefaultService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
@@ -71,6 +71,14 @@ std::string DefaultServiceCore::switchCi(const std::string& ciInstanceName, cons
 			if(strcasecmp(service.c_str(), "state") == 0 )
 			{
 				outString.str(setState(componentInstanceName, inString));
+			}
+			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			{
+				outString.str(getState(componentInstanceName));
+			}
+			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			{
+				outString.str(waitForLifeCycleState(componentInstanceName, inString));
 			}
 	
 		return outString.str();

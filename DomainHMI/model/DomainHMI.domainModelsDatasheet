@@ -1,0 +1,17 @@
+DomainModelsDatasheet DomainHMI
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models for the Human-Machine-Interaction (HMI) domain"
+	DatasheetProperty MarketName {
+		value "HMI Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "HMI"
+	}
+}

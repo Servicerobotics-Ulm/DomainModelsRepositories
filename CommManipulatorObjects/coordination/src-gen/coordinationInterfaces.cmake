@@ -18,5 +18,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 MESSAGE("-- Include ManipulatorCoordinationService")
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/ManipulatorCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/ManipulatorCoordinationService)
+MESSAGE("-- Include WelderCoordinationService")
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/WelderCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/WelderCoordinationService)
 MESSAGE("-- Include VacuumGripperCoordinationService")
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/VacuumGripperCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/VacuumGripperCoordinationService)

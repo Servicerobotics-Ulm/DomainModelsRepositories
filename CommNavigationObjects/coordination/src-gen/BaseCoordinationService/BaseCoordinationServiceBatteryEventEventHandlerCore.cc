@@ -10,9 +10,24 @@ BaseCoordinationServiceBatteryEventEventHandlerCore::BaseCoordinationServiceBatt
 }
 		
 void BaseCoordinationServiceBatteryEventEventHandlerCore::handleEvent(const Smart::EventIdPtr &id, const CommBasicObjects::CommBatteryEvent &r) {
-	std::cout<<"Event CORE Called!"<<std::endl;
 	std::string resultString;
 	resultString = userHandler.handleEvent(r);
+	
+	///////////////////////////////////////////
+	/////////// ESCAPE " in user data
+	std::string toSearch = "\"";
+	std::string replaceStr = "\\\"";
+	// Get the first occurrence
+    size_t pos = resultString.find(toSearch);
+    // Repeat till end is reached
+    while( pos != std::string::npos)
+    {
+        // Replace this occurrence of Sub String
+    	resultString.replace(pos, toSearch.size(), replaceStr);
+        // Get the next occurrence from the current position
+        pos =resultString.find(toSearch, pos + replaceStr.size());
+    }
+    ///////////////////////////////////////////
 	
 	std::ostringstream eventResult;
 	eventResult<< "(";

@@ -82,7 +82,7 @@ std::string VacuumGripperCoordinationServiceCore::switchCi(const std::string& ci
 	
 	if(iter != ciInstanceMap.end()){
 		
-		std::cout<<"switchVacuumGripperCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchVacuumGripperCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
@@ -97,6 +97,14 @@ std::string VacuumGripperCoordinationServiceCore::switchCi(const std::string& ci
 			{
 				outString.str(setState(componentInstanceName, inString));
 			}
+			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			{
+				outString.str(getState(componentInstanceName));
+			}
+			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			{
+				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+			}
 			if(strcasecmp(service.c_str(), "gripperevent-activate") == 0 )
 			{
 				Smart::StatusCode status;
@@ -104,15 +112,21 @@ std::string VacuumGripperCoordinationServiceCore::switchCi(const std::string& ci
 				char *input  = (char *)NULL;
 				char *pointer = (char *)NULL;
 				char *param1  = (char *)NULL;
+				char *eventParam  = (char *)NULL;
 				
 				pointer = input = strdup(inString.c_str());
 				do
 				{
 					param1 = strsep(&input," ()\"\n");
 				} while ((param1 != NULL) && (strlen(param1)==0));
-					
+				
+				do
+				{
+					eventParam = strsep(&input," ()\"\n");
+				} while ((eventParam != NULL) && (strlen(eventParam)==0));
+				
 				CommManipulatorObjects::CommVacuumGripperEventParameter param;
-				param = iter->second.vacuumGripperCoordinationServicegrippereventEventHandlerCore->activateEventParam(input);
+				param = iter->second.vacuumGripperCoordinationServicegrippereventEventHandlerCore->activateEventParam(eventParam);
 					
 				// CONTINOUS
 				if( strcasecmp(param1, "CONTINUOUS") == 0 )

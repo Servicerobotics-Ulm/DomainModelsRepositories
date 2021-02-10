@@ -1,0 +1,21 @@
+#ifndef _CORRIDORNAVIGATIONCLIENTCOORDINATIONSERVICEPOSEREQUESTEVENTEVENTHANDLERCORE_HH_
+#define _CORRIDORNAVIGATIONCLIENTCOORDINATIONSERVICEPOSEREQUESTEVENTEVENTHANDLERCORE_HH_
+#include "aceSmartSoft.hh"
+#include <string>
+
+#include "CommNavigationObjects/CommCorridorNavigationPoseRequestEventResult.hh"
+#include "CommNavigationObjects/CommCorridorNavigationPoseRequestEventParameter.hh"
+#include "CorridorNavigationClientCoordinationServicePoserequesteventEventHandler.hh"
+
+class CorridorNavigationClientCoordinationServicePoserequesteventEventHandlerCore : public Smart::IEventHandler<CommNavigationObjects::CommCorridorNavigationPoseRequestEventResult>
+{
+public:
+	CorridorNavigationClientCoordinationServicePoserequesteventEventHandlerCore(Smart::IEventClientPattern<CommNavigationObjects::CommCorridorNavigationPoseRequestEventParameter, CommNavigationObjects::CommCorridorNavigationPoseRequestEventResult> *client, std::string moduleInstanceName);
+	virtual void handleEvent(const Smart::EventIdPtr &id, const CommNavigationObjects::CommCorridorNavigationPoseRequestEventResult &r) override;
+	CommNavigationObjects::CommCorridorNavigationPoseRequestEventParameter activateEventParam(const std::string& parameterString);
+private:
+	CorridorNavigationClientCoordinationServicePoserequesteventEventHandler userHandler;
+	std::string ciInstanceName;
+};
+
+#endif

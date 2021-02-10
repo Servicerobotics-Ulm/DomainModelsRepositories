@@ -9,4 +9,12 @@ ServiceDefRepository DomainSpeech version 1.0
 	{
 		QueryPattern <RequestType=DomainSpeech.CommSpeechOutputMessage AnswerType=CommBasicObjects.CommPropertySet>
 	}
+	
+	
+	CoordinationServiceDefinition TTSCorrdinationService {
+		ParameterPattern < EmptyDefaultParameterSet >
+		StatePattern < lifecycle ComponentLifecycle >
+		CommunicationServiceUsage sayWait uses SpeechQueryService 
+		CommunicationServiceUsage say uses SpeechSendService
+	}
 }

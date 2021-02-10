@@ -89,38 +89,8 @@ CommObjectsRepository CommRobotinoObjects version 1.0.0 {
 		newState : RobotinoConveyerBeltEventType
 	}
 	
-	CommObject CommAnalogOutputRequest {
-		outputNumber : UInt32
-		outputValue : Double
-	}
-	
-	CommObject CommDigitalOutputRequest {
-		outputNumber : UInt32
-		outputValue : Boolean
-	}
-	
 	CommObject CommRobotinoPowerOutputValue {
 		value : Float
-	}
-	
-	CommObject CommRobotinoIOValues {
-		analogInputValues : Float [*]
-		digitalInputValues : Boolean [*]
-		analogOutputValues : CommAnalogOutputRequest [*]
-		digitalOutputValues : CommDigitalOutputRequest [*]
-	}
-	
-	CommObject CommDigitalInputEventResult {
-		digitalInputValues : Boolean [*]
-	}
-	
-	CommObject CommDigitalInputEventState {
-		digitalInputValues : Boolean [*]
-	}
-	
-	CommObject CommDigitalInputEventParameter {
-		digitalInputValuesNumber : UInt32
-		digitalInputValue : Boolean
 	}
 	
 	CommObject JobEventState {
@@ -128,169 +98,14 @@ CommObjectsRepository CommRobotinoObjects version 1.0.0 {
 		job: CommTCLMessage
 	}
 	
-	Enumeration NavigationNodeRequestType{
-		FREENODE
-		ACQUIRENODE
-		FREEALLNODES
-		FREEALLNODESBUT
-	}
-	
-	CommObject CommPathNavigationNodeRequest {
-		requestType : NavigationNodeRequestType
-		nodesList :  CommPathNode [*]
-		robotID : String
-	}
-	
-	CommObject CommPathNavigationNodeAnswer {
-		nodesList : CommPathNode [*] 
-		success : Boolean
-	}
-	
-	CommObject CommPathNavigationNodePathRequest {
-		startPose : UInt32
-		goalPose : UInt32
-	}
 
-    CommObject CommPathNavigationNodePathAnswer {
-    	valid : Boolean
-		paths : CommNavigationPaths
-	}
-	
-	
-	CommObject CommPathNavigationPoseRequest {
-		requesttype : NavigationNodeRequestType
-		pose : UInt32
-		robotID : String
-	}
-	
-	Enumeration NodeRequestAnserType {
-		STATE_UNKNOWN
-		SUCCESS
-		FAIL
-		ERROR_NONODE
-	}
-	 
-	CommObject CommPathNavigationPoseAnswer {
-		result : NodeRequestAnserType
-	}
-	
-	CommObject CommPathNavigationPoseRequestEventParameter {
-		oldState: NodeRequestAnserType
-	}
-	CommObject CommPathNavigationPoseRequestEventResult {
-		state: NodeRequestAnserType
-	}
-	CommObject CommPathNavigationPoseRequestEventState {
-		newState: NodeRequestAnserType
-	}	
-	
-	/////////////////////////////////////
-	// Network Status
-	
-	CommObject CommPathNode {
-		id : UInt32
-		x : Double
-		y : Double
-		pose : UInt32
-        path : UInt32
-        width : Double	
-    	type : NODE_TYPE
-     	sts : NODE_STATUS
-     	robotID : String
-	}
-
-	CommObject CommPathNetworkStatus{
-		nodes : CommPathNode [*]
-	}
-	
-	CommObject CommNavigationPaths{
-		nodes : CommPathNode [*]
-		pathWidth : Double [*]
-		robotID : String
-	}
-	
-	Enumeration NODE_TYPE {
-		NORMAL
-		CROSS
-		WAIT
-		NEWCROSS
-	}
-	
-	Enumeration NODE_STATUS {
-		OCCUPIED
-		AVAILABLE
-		OK
-	}
 	// ///////////////////////////////////
 	
-	// ///////////////////////////////////
-	// Network Graph
+
 	
-	CommObject CommNavigationGraphVertex {
-		x : Double
-		y : Double
-		pose : Int32
-		path : Int32
-		width : Double
-		type : NODE_TYPE
-		intersec_path: Int32 [*]
-	}
+
 	
-	Enumeration EDGE_TYPE {
-		NORMAL_EDGE
-		DELETE_EDGE 
-	}
-	
-	CommObject CommNavigationGraphEdge{
-		u : Int32
-		v : Int32
-		
-		path : Int32
-		way : Int32
-		gap : Double
-		type : EDGE_TYPE
-	}
-	
-	CommObject CommNavigationGraph {
-		vertices : CommNavigationGraphVertex [*]
-		edges : CommNavigationGraphEdge [*]
-		pathWidth: Double [*]
-		valid : Boolean = false
-	}
-	
-	/////////////////////////////////////
-	
-	Enumeration PathNavigationEventType {
-		GOAL_UNKNOWN
-		START_TOO_FAR
-		GOAL_REACHED
-		GOAL_NOT_REACHED
-		NO_PATH_FOUND
-		FATAL_ERROR
-	}
-	
-	CommObject CommPathNavigationEventParameter {
-		oldState: PathNavigationEventType
-	}
-	CommObject CommPathNavigationEventResult {
-		state: PathNavigationEventType
-		nextGoal: CommPosition3d
-	}
-	CommObject PathNavigationEventState {
-		newState: PathNavigationEventType
-		nextGoal: CommPosition3d
-	}
-	
-	CommObject CommPathNavigationGoal {
-		goalID : Int32
-		paths : CommNavigationPaths
-		goalX: Double
-		goalY: Double
-		goal_id :Int32
-		startX:Double
-		startY:Double
-		start_id:Int32
-	}
+
 	
 	CommObject CommPathFreeArea{
 		areaID : Int32
@@ -347,10 +162,7 @@ CommObjectsRepository CommRobotinoObjects version 1.0.0 {
 		area : CommPathFreeArea
 	}
 
-	CommObject CommPathNetworkLayout {
-		networkStatus : CommPathNetworkStatus
-		layoutFile: CommDataFile
-	}
+
 	
 	Enumeration RemoteOperatorEventType{
 		SUCCESS
@@ -366,51 +178,6 @@ CommObjectsRepository CommRobotinoObjects version 1.0.0 {
 		key : String
 		valid : Boolean
 		timestamp : CommTimeStamp
-	}
-	
-	CommObject CommPlannerGoalList {
-		id: Int32
-		flag: Int32
-		goalXvector : Double [*]
-		goalYvector : Double [*]
-		nodeObstacleVector : Double [*]
-		finalGoalX : Double
-		finalGoalY : Double
-	}
-	
-	CommObject CommNavigationTimeRequest {
-		startPose : UInt32
-		goalPose : UInt32
-	}
-	
-	CommObject CommNavigationTimeResponse {
-		estimatedDuration : CommTimeStamp
-	}
-	
-	CommObject CommClosestNodeRequest {
-		position : CommPosition3d
-	}
-	
-	CommObject CommClosestNodeAnswer {
-		node_id : Int32
-		position : CommPosition3d
-		distance : Double
-		valid : Boolean = false
-	}
-	
-	///////// MarkerDetectionObjects
-	CommObject CommVisualTag {
-		tagID : Int32
-		/** in sensor coordinates */
-		tagPose : CommPose3d		
-		
-		base_state : CommBaseState
-		sensor_pose: CommPose3d	
-	}
-	
-	CommObject CommDetectedTags {
-		tags : CommVisualTag [*]
-		valid : Boolean = false
 	}
 	
 }

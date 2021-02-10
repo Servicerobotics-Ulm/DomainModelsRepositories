@@ -1,0 +1,17 @@
+DomainModelsDatasheet DomainPTU
+{
+	BaseURI "http://www.servicerobotik-ulm.de"
+	ShortDescription "Domain Models for the Pan-Tilt-Unit (PTU) domain"
+	DatasheetProperty MarketName {
+		value "PTU Domain Models"
+	}
+	DatasheetProperty Supplier {
+		value "Servicerobotics Ulm"
+	}
+	DatasheetProperty Homepage {
+		value "http://servicerobotik-ulm.de/components"
+	}
+	DatasheetProperty Purpose {
+		value "PTU"
+	}
+}

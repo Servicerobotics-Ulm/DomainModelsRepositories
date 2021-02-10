@@ -21,11 +21,34 @@
 
 
 	//component name: ConveyerBeltCoordinationService
+	//EVENT CLIENT
+	iter->second.conveyerBeltCoordinationServiceloadeventClient = new SmartACE::EventClient<CommRobotinoObjects::CommRobotinoConveyerBeltEventParameter,CommRobotinoObjects::CommRobotinoConveyerBeltEventResult>(component);
+	iter->second.conveyerBeltCoordinationServiceloadeventEventHandlerCore = new ConveyerBeltCoordinationServiceLoadeventEventHandlerCore(iter->second.conveyerBeltCoordinationServiceloadeventClient, ciInstanceName);
 	
 	// connect ports
 	std::cout<<__FUNCTION__<<" connect ports..."<<std::endl; 
 	std::map< std::string, CiConnection, ciLessLibC>::const_iterator ci_inst_iter = ciConnectionsMap.find(ciInstanceName);
 	if(ci_inst_iter != ciConnectionsMap.end()){
+		{
+			std::map<std::string, std::string>::const_iterator service_iter = ci_inst_iter->second.serviceNameMap.find("loadevent");
+			if(service_iter != ci_inst_iter->second.serviceNameMap.end()){
+				std::string serviceName(service_iter->second);
+		
+				Smart::StatusCode status;
+		
+				std::cout << "connecting to: " << ci_inst_iter->second.componentInstanceName << "; " << serviceName << std::endl;
+				status = iter->second.conveyerBeltCoordinationServiceloadeventClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				while(status != Smart::SMART_OK)
+				{
+					ACE_OS::sleep(ACE_Time_Value(0,500000));
+					status = iter->second.conveyerBeltCoordinationServiceloadeventClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				}
+				std::cout << "connected.\n";
+			} else {
+				std::cout<<"ERROR SERVICE NOT FOUND IN MAP!"<<std::endl;
+				return 1;
+			}
+		}
 	} else {
 		std::cout<<"Was not able to find ci inst in ciComponent connection map!"<<std::endl;
 	}
@@ -40,6 +63,8 @@
  int ConveyerBeltCoordinationServiceCore::finiCiInstance(const std::string& ciInstanceName){
  	std::map<std::string, ConveyerBeltCoordinationService>::iterator iter = ciInstanceMap.find(ciInstanceName);
 	if(iter != ciInstanceMap.end()){
+			delete iter->second.conveyerBeltCoordinationServiceloadeventEventHandlerCore;
+			delete iter->second.conveyerBeltCoordinationServiceloadeventClient;
 		return 0;
 	} else {
 		std::cout<<"ERROR WAS NOT ABLE TO FIND CI INSTANCE IN MAP --> this should not have happend!"<<std::endl;
@@ -57,7 +82,7 @@ std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciI
 	
 	if(iter != ciInstanceMap.end()){
 		
-		std::cout<<"switchConveyerBeltCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchConveyerBeltCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
@@ -71,6 +96,130 @@ std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciI
 			if(strcasecmp(service.c_str(), "state") == 0 )
 			{
 				outString.str(setState(componentInstanceName, inString));
+			}
+			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			{
+				outString.str(getState(componentInstanceName));
+			}
+			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			{
+				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+			}
+			if(strcasecmp(service.c_str(), "loadevent-activate") == 0 )
+			{
+				Smart::StatusCode status;
+				Smart::EventIdPtr id = nullptr;
+				char *input  = (char *)NULL;
+				char *pointer = (char *)NULL;
+				char *param1  = (char *)NULL;
+				char *eventParam  = (char *)NULL;
+				
+				pointer = input = strdup(inString.c_str());
+				do
+				{
+					param1 = strsep(&input," ()\"\n");
+				} while ((param1 != NULL) && (strlen(param1)==0));
+				
+				do
+				{
+					eventParam = strsep(&input," ()\"\n");
+				} while ((eventParam != NULL) && (strlen(eventParam)==0));
+				
+				CommRobotinoObjects::CommRobotinoConveyerBeltEventParameter param;
+				param = iter->second.conveyerBeltCoordinationServiceloadeventEventHandlerCore->activateEventParam(eventParam);
+					
+				// CONTINOUS
+				if( strcasecmp(param1, "CONTINUOUS") == 0 )
+				{
+					status = iter->second.conveyerBeltCoordinationServiceloadeventClient->activate(Smart::continuous, param, id);
+					outString.str("");
+					switch(status)
+					{
+						case Smart::SMART_OK:
+							outString << "(ok ("<<id<<"))";
+							break;
+						case Smart::SMART_DISCONNECTED:
+							outString << "(error (smart disconnected))";
+							break;
+						case Smart::SMART_ERROR_COMMUNICATION:
+							outString << "(error (smart communication error))";
+							break;
+						case Smart::SMART_ERROR:
+							outString << "(error (unknown error))";
+			       			break;
+						default:
+				            outString << "(error (unknown error))";
+				            break;
+					} // switch
+				} // CONTINOUS
+					
+				// SINGLE
+				else if( strcasecmp(param1, "SINGLE") == 0 )
+				{
+					status = iter->second.conveyerBeltCoordinationServiceloadeventClient->activate(Smart::single, param, id);
+					outString.str("");
+					switch(status)
+					{
+						case Smart::SMART_OK:
+							outString << "(ok ("<<id<<"))";
+							break;
+						case Smart::SMART_DISCONNECTED:
+							outString << "(error (smart disconnected))";
+							break;
+						case Smart::SMART_ERROR_COMMUNICATION:
+							outString << "(error (smart communication error))";
+							break;
+						case Smart::SMART_ERROR:
+				            outString << "(error (unknown error))";
+				            break;
+						default:
+				            outString << "(error (unknown error))";
+				            break;
+					} // switch
+				}
+			}
+					
+			// goal event deactivate
+			if(strcasecmp(service.c_str(), "loadevent-deactivate") == 0)
+			{
+				Smart::StatusCode status;
+				char *input  = (char *)NULL;
+				char *pointer = (char *)NULL;
+				char *param1  = (char *)NULL;
+					
+				pointer = input = strdup(inString.c_str());
+				do
+				{
+					param1 = strsep(&input," ()\"\n");
+				} while ((param1 != NULL) && (strlen(param1)==0));
+					
+				std::string str(param1);
+				// remove " "
+				str = str.substr(1, str.length()-2);
+				// TODO: <alex> this seems to be quite a hack, as ID is not always an int and will not work with other middlewares as ACE
+				Smart::EventIdPtr id = std::make_shared<Smart::NumericCorrelationId>(atoi( param1 ));
+					
+				status = iter->second.conveyerBeltCoordinationServiceloadeventClient->deactivate(id);
+				outString.str("");
+				switch(status)
+				{
+				case Smart::SMART_OK:
+					outString << "(ok ("<<id<<"))";
+					break;
+				case Smart::SMART_WRONGID:
+					outString << "(error (smart wrongid))";
+					break;
+				case Smart::SMART_ERROR_COMMUNICATION:
+					outString << "(error (smart communication error))";
+					break;
+				case Smart::SMART_ERROR:
+					outString << "(error (unknown error))";
+					break;
+				default:
+					outString << "(error (unknown error))";
+					break;
+				} // switch
+					
 			}
 	
 		return outString.str();
