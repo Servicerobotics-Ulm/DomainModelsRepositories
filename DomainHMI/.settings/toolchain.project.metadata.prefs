@@ -1,7 +1,12 @@
 DomainHMI/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+DomainHMI/Homepage/value/3=http\://servicerobotik-ulm.de/components
 DomainHMI/Homepage/value/4=http\://servicerobotik-ulm.de/components
+DomainHMI/MarketName/value/1=HMI Domain Models
 DomainHMI/MarketName/value/2=HMI Domain Models
+DomainHMI/Purpose/value/4=HMI
 DomainHMI/Purpose/value/5=HMI
 DomainHMI/ShortDescription/value/1=Domain Models for the Human-Machine-Interaction (HMI) domain
+DomainHMI/Supplier/value/2=Servicerobotics Ulm
 DomainHMI/Supplier/value/3=Servicerobotics Ulm
+DomainHMI/shortDescription=Domain Models for the Human-Machine-Interaction (HMI) domain
 eclipse.preferences.version=1

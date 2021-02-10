@@ -1,7 +1,12 @@
 CommManipulatorObjects/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+CommManipulatorObjects/Homepage/value/3=http\://servicerobotik-ulm.de/components
 CommManipulatorObjects/Homepage/value/4=http\://servicerobotik-ulm.de/components
+CommManipulatorObjects/MarketName/value/1=Manipulator Domain Models
 CommManipulatorObjects/MarketName/value/2=Manipulator Domain Models
+CommManipulatorObjects/Purpose/value/4=Manipulator
 CommManipulatorObjects/Purpose/value/5=Manipulator
 CommManipulatorObjects/ShortDescription/value/1=Domain Models for the Manipulator domain
+CommManipulatorObjects/Supplier/value/2=Servicerobotics Ulm
 CommManipulatorObjects/Supplier/value/3=Servicerobotics Ulm
+CommManipulatorObjects/shortDescription=Domain Models for the Manipulator domain
 eclipse.preferences.version=1

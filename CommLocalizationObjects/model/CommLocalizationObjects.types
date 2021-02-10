@@ -175,4 +175,15 @@ CommObjectsRepository CommLocalizationObjects version 1.0.0 {
 		particles: CommAmclParticle[*]
 		hypotheses: CommAmclHypothesis[*]
 	}
+	
+	CommObject CommVisualLocalizationFeature {
+		pose : CommPose3d
+		id : UInt32
+		clusterId : UInt16
+	}
+	
+	CommObject CommVisualLocalizationFeatureMap {
+		features : CommVisualLocalizationFeature[*]
+		isValid : Boolean = false
+	}
 }

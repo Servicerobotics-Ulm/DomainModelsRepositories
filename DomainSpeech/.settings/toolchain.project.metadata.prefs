@@ -1,7 +1,12 @@
 DomainSpeech/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+DomainSpeech/Homepage/value/3=http\://servicerobotik-ulm.de/components
 DomainSpeech/Homepage/value/4=http\://servicerobotik-ulm.de/components
+DomainSpeech/MarketName/value/1=Speech Domain Models
 DomainSpeech/MarketName/value/2=Speech Domain Models
+DomainSpeech/Purpose/value/4=HMI
 DomainSpeech/Purpose/value/5=HMI
 DomainSpeech/ShortDescription/value/1=Domain Models around Speech-based Human-Machine Interaction (HMI)
+DomainSpeech/Supplier/value/2=Servicerobotics Ulm
 DomainSpeech/Supplier/value/3=Servicerobotics Ulm
+DomainSpeech/shortDescription=Domain Models around Speech-based Human-Machine Interaction (HMI)
 eclipse.preferences.version=1

@@ -56,4 +56,31 @@ ParameterSetRepository CommLocalizationObjects {
 		}
 		
 	}
+	
+	ParameterSet SlamAndLocalizationParameter {
+		
+		Trigger INITNEWMAP { 
+			x: Int32
+			y: Int32
+			a: Int32 
+		}
+		
+		Trigger SAVEMAP { 
+			dirname : String
+			filename : String
+		}
+		
+				Trigger INITIALPOSE {
+			x: Int32
+			y: Int32
+			a: Double
+		}
+		
+		Trigger GLOBALLOCALIZATION { }
+		
+		Trigger LOADMAP {
+			filename : String
+		}
+		
+	}
 }

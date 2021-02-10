@@ -1,0 +1,7 @@
+DomainRobotFleet/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+DomainRobotFleet/Homepage/value/3=http\://servicerobotik-ulm.de/components
+DomainRobotFleet/MarketName/value/1=DomainRobotFleet
+DomainRobotFleet/Purpose/value/4=Example
+DomainRobotFleet/Supplier/value/2=Servicerobotics Ulm
+DomainRobotFleet/shortDescription=Domain Models for coordinating a fleet of robots
+eclipse.preferences.version=1

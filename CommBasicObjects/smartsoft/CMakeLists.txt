@@ -14,10 +14,12 @@
 # If you want the toolchain to re-generate this file, please 
 # delete it before running the code generator.
 #--------------------------------------------------------------------------
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+
+PROJECT(CommBasicObjects)
 
 # find the SmartSoft CMake Macros (version 2 that uses CMake v3)
-FIND_FILE(SMART_MACROS SmartMacros2.cmake PATHS $ENV{SMART_ROOT_ACE}/CMakeMacros /opt/smartSoftAce/CMakeMacros)
+FIND_FILE(SMART_MACROS SmartMacros2.cmake PATHS $ENV{SMART_ROOT_ACE} /opt/smartSoftAce /opt/smartsoft PATH_SUFFIXES CMakeMacros)
 INCLUDE(${SMART_MACROS})
 
 # Create and configure a CMake project for a CommunicationObject

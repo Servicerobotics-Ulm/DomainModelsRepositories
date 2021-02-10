@@ -1,7 +1,12 @@
 DomainForklift/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+DomainForklift/Homepage/value/3=http\://servicerobotik-ulm.de/components
 DomainForklift/Homepage/value/4=http\://servicerobotik-ulm.de/components
+DomainForklift/MarketName/value/1=Fork-Lift Domain Models
 DomainForklift/MarketName/value/2=Fork-Lift Domain Models
+DomainForklift/Purpose/value/4=Fork-Lift
 DomainForklift/Purpose/value/5=Fork-Lift
 DomainForklift/ShortDescription/value/1=Domain Models for the Fork-Lift domain
+DomainForklift/Supplier/value/2=Servicerobotics Ulm
 DomainForklift/Supplier/value/3=Servicerobotics Ulm
+DomainForklift/shortDescription=Domain Models for the Fork-Lift domain
 eclipse.preferences.version=1

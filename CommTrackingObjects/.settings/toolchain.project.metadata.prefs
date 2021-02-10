@@ -1,9 +1,16 @@
 CommTrackingObjects/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+CommTrackingObjects/Homepage/value/2=http\://servicerobotik-ulm.de/components
 CommTrackingObjects/Homepage/value/3=http\://servicerobotik-ulm.de/components
+CommTrackingObjects/MarketName/value/5=Tracking Domain Models
 CommTrackingObjects/MarketName/value/6=Tracking Domain Models
+CommTrackingObjects/Purpose/value/3=Tracking
 CommTrackingObjects/Purpose/value/4=Tracking
 CommTrackingObjects/ShortDescription/value/1=Domain Models for the Tracking domain
+CommTrackingObjects/SpdxLicense/semanticURI/1=https\://spdx.org/licenses/LGPL-3.0-or-later.html
 CommTrackingObjects/SpdxLicense/semanticURI/2=https\://spdx.org/licenses/LGPL-3.0-or-later.html
+CommTrackingObjects/SpdxLicense/value/1=LGPL-3.0-or-later
 CommTrackingObjects/SpdxLicense/value/2=LGPL-3.0-or-later
+CommTrackingObjects/Supplier/value/4=Servicerobotics Ulm
 CommTrackingObjects/Supplier/value/5=Servicerobotics Ulm
+CommTrackingObjects/shortDescription=Domain Models for the Tracking domain
 eclipse.preferences.version=1

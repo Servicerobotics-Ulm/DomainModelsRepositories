@@ -117,6 +117,18 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
 .
 
+:CommVisualLocalizationFeature a robmosys:CommunicationObject;
+	rdfs:label "CommVisualLocalizationFeature";
+	t1:shortDescription "CommunicationObject CommVisualLocalizationFeature";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+.
+
+:CommVisualLocalizationFeatureMap a robmosys:CommunicationObject;
+	rdfs:label "CommVisualLocalizationFeatureMap";
+	t1:shortDescription "CommunicationObject CommVisualLocalizationFeatureMap";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+.
+
 :LocalizationEventState a robmosys:CommunicationObject;
 	rdfs:label "LocalizationEventState";
 	t1:shortDescription "CommunicationObject LocalizationEventState";
@@ -248,6 +260,21 @@
 		t1:eventType :CommLocalizationZoneChange;
 		t1:activationType :CommLocalizationZoneResult;
 		t1:eventStateType :CommLocalizationZoneChange;
+	];
+.
+
+:VisualMarkerMapRequestService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "VisualMarkerMapRequestService";
+	t1:shortDescription "ServiceDefinition VisualMarkerMapRequestService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommVoid;
+		t1:answerType :CommVisualLocalizationFeatureMap;
 	];
 .
 

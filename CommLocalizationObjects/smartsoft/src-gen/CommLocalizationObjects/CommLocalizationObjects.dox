@@ -114,6 +114,19 @@ Structure of Communication Object:
 - particles: CommLocalizationObjects::CommAmclParticle[*] 
 - hypotheses: CommLocalizationObjects::CommAmclHypothesis[*] 
 
+\class CommLocalizationObjects::CommVisualLocalizationFeatureCore
+
+Structure of Communication Object:
+- pose: CommBasicObjects::CommPose3d 
+- id: UInt32 
+- clusterId: UInt16 
+
+\class CommLocalizationObjects::CommVisualLocalizationFeatureMapCore
+
+Structure of Communication Object:
+- features: CommLocalizationObjects::CommVisualLocalizationFeature[*] 
+- isValid: Boolean  = false 
+
 \class CommLocalizationObjects::BearingOnlySLAMTag
 
 Structure of Enumeration:
@@ -250,6 +263,19 @@ Class Reference: CommLocalizationObjects::CommAmclHypothesisCore
 - hypotheses: @ref CommAmclHypothesis[*] (CommObj) 
 
 Class Reference: CommLocalizationObjects::CommAmclVisualizationInfoCore
+<hr>
+@section CommVisualLocalizationFeature CommVisualLocalizationFeature
+- pose: @ref CommPose3d (CommObj) 
+- id: UInt32  
+- clusterId: UInt16  
+
+Class Reference: CommLocalizationObjects::CommVisualLocalizationFeatureCore
+<hr>
+@section CommVisualLocalizationFeatureMap CommVisualLocalizationFeatureMap
+- features: @ref CommVisualLocalizationFeature[*] (CommObj) 
+- isValid: Boolean   = false 
+
+Class Reference: CommLocalizationObjects::CommVisualLocalizationFeatureMapCore
 <hr>
 @section BearingOnlySLAMTag BearingOnlySLAMTag
 - LANDMARKCOUNT 

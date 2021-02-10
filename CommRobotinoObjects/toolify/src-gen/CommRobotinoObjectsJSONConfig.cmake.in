@@ -1,11 +1,11 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 
-FIND_FILE(SMART_MACROS SmartMacros2.cmake PATHS $ENV{SMART_ROOT_ACE}/CMakeMacros /opt/smartSoftAce/CMakeMacros)
+FIND_FILE(SMART_MACROS SmartMacros2.cmake PATHS $ENV{SMART_ROOT_ACE} /opt/smartSoftAce /opt/smartsoft PATH_SUFFIXES CMakeMacros)
 INCLUDE(${SMART_MACROS})
 INTERNAL_IMPORT_PACKAGE(CommRobotinoObjects)
 
 IF(NOT TARGET nlohmann_json::nlohmann_json)
-	FIND_PACKAGE(nlohmann_json PATHS $ENV{SMART_ROOT_ACE}/modules)
+	FIND_PACKAGE(nlohmann_json PATHS $ENV{SMART_ROOT_ACE} PATH_SUFFIXES modules)
 ENDIF(NOT TARGET nlohmann_json::nlohmann_json)
 
 # find depndency CommBasicObjectsJSON

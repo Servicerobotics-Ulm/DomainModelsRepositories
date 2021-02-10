@@ -1,7 +1,12 @@
 DomainSymbolicPlanner/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+DomainSymbolicPlanner/Homepage/value/3=http\://servicerobotik-ulm.de/components
 DomainSymbolicPlanner/Homepage/value/4=http\://servicerobotik-ulm.de/components
+DomainSymbolicPlanner/MarketName/value/1=Symbolic-Planner Domain Models
 DomainSymbolicPlanner/MarketName/value/2=Symbolic-Planner Domain Models
+DomainSymbolicPlanner/Purpose/value/4=Symbolic-Planner
 DomainSymbolicPlanner/Purpose/value/5=Symbolic-Planner
 DomainSymbolicPlanner/ShortDescription/value/1=Domain Models for the Symbolic-Planner domain
+DomainSymbolicPlanner/Supplier/value/2=Servicerobotics Ulm
 DomainSymbolicPlanner/Supplier/value/3=Servicerobotics Ulm
+DomainSymbolicPlanner/shortDescription=Domain Models for the Symbolic-Planner domain
 eclipse.preferences.version=1

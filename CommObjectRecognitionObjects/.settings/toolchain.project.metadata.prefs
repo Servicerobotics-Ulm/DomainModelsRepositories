@@ -1,7 +1,12 @@
 CommObjectRecognitionObjects/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+CommObjectRecognitionObjects/Homepage/value/3=http\://servicerobotik-ulm.de/components
 CommObjectRecognitionObjects/Homepage/value/4=http\://servicerobotik-ulm.de/components
+CommObjectRecognitionObjects/MarketName/value/1=Object-Recognition Domain Models
 CommObjectRecognitionObjects/MarketName/value/2=Object-Recognition Domain Models
+CommObjectRecognitionObjects/Purpose/value/4=Object-Recognition
 CommObjectRecognitionObjects/Purpose/value/5=Object-Recognition
 CommObjectRecognitionObjects/ShortDescription/value/1=Domain Models for the Object-Recognition domain
+CommObjectRecognitionObjects/Supplier/value/2=Servicerobotics Ulm
 CommObjectRecognitionObjects/Supplier/value/3=Servicerobotics Ulm
+CommObjectRecognitionObjects/shortDescription=Domain Models for the Object-Recognition domain
 eclipse.preferences.version=1

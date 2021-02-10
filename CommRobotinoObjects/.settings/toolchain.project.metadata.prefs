@@ -1,9 +1,16 @@
 CommRobotinoObjects/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+CommRobotinoObjects/Homepage/value/2=http\://servicerobotik-ulm.de/components
 CommRobotinoObjects/Homepage/value/3=http\://servicerobotik-ulm.de/components
+CommRobotinoObjects/MarketName/value/5=Robotino Domain Models
 CommRobotinoObjects/MarketName/value/6=Robotino Domain Models
+CommRobotinoObjects/Purpose/value/3=Robotino
 CommRobotinoObjects/Purpose/value/4=Robotino
 CommRobotinoObjects/ShortDescription/value/1=Domain Models for the Robotino domain
+CommRobotinoObjects/SpdxLicense/semanticURI/1=https\://spdx.org/licenses/LGPL-3.0-or-later.html
 CommRobotinoObjects/SpdxLicense/semanticURI/2=https\://spdx.org/licenses/LGPL-3.0-or-later.html
+CommRobotinoObjects/SpdxLicense/value/1=LGPL-3.0-or-later
 CommRobotinoObjects/SpdxLicense/value/2=LGPL-3.0-or-later
+CommRobotinoObjects/Supplier/value/4=Servicerobotics Ulm
 CommRobotinoObjects/Supplier/value/5=Servicerobotics Ulm
+CommRobotinoObjects/shortDescription=Domain Models for the Robotino domain
 eclipse.preferences.version=1

@@ -1,9 +1,16 @@
 CommLocalizationObjects/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+CommLocalizationObjects/Homepage/value/2=http\://servicerobotik-ulm.de/components
 CommLocalizationObjects/Homepage/value/3=http\://servicerobotik-ulm.de/components
+CommLocalizationObjects/MarketName/value/5=Localization Domain Models
 CommLocalizationObjects/MarketName/value/6=Localization Domain Models
+CommLocalizationObjects/Purpose/value/3=Localization
 CommLocalizationObjects/Purpose/value/4=Localization
 CommLocalizationObjects/ShortDescription/value/1=Domain Models for the Localization domain
+CommLocalizationObjects/SpdxLicense/semanticURI/1=https\://spdx.org/licenses/LGPL-3.0-or-later.html
 CommLocalizationObjects/SpdxLicense/semanticURI/2=https\://spdx.org/licenses/LGPL-3.0-or-later.html
+CommLocalizationObjects/SpdxLicense/value/1=LGPL-3.0-or-later
 CommLocalizationObjects/SpdxLicense/value/2=LGPL-3.0-or-later
+CommLocalizationObjects/Supplier/value/4=Servicerobotics Ulm
 CommLocalizationObjects/Supplier/value/5=Servicerobotics Ulm
+CommLocalizationObjects/shortDescription=Domain Models for the Localization domain
 eclipse.preferences.version=1

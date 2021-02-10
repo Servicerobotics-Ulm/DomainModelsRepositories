@@ -1,7 +1,12 @@
 DomainPTU/BaseURI/value/0=http\://www.servicerobotik-ulm.de
+DomainPTU/Homepage/value/3=http\://servicerobotik-ulm.de/components
 DomainPTU/Homepage/value/4=http\://servicerobotik-ulm.de/components
+DomainPTU/MarketName/value/1=PTU Domain Models
 DomainPTU/MarketName/value/2=PTU Domain Models
+DomainPTU/Purpose/value/4=PTU
 DomainPTU/Purpose/value/5=PTU
 DomainPTU/ShortDescription/value/1=Domain Models for the Pan-Tilt-Unit (PTU) domain
+DomainPTU/Supplier/value/2=Servicerobotics Ulm
 DomainPTU/Supplier/value/3=Servicerobotics Ulm
+DomainPTU/shortDescription=Domain Models for the Pan-Tilt-Unit (PTU) domain
 eclipse.preferences.version=1

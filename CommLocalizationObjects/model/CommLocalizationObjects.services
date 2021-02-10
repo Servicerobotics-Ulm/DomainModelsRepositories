@@ -79,4 +79,15 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 		ParameterPattern < CommLocalizationObjects.SlamParameter >
 		StatePattern < lifecycle ComponentLifecycle with CommLocalizationObjects.slamModes>
 	}
+
+	CoordinationServiceDefinition SLAMAndLocalizationCoordinationService {
+		ParameterPattern < CommLocalizationObjects.SlamAndLocalizationParameter >
+		StatePattern < lifecycle ComponentLifecycle with CommLocalizationObjects.slamModes>
+	}
+
+	RequestAnswerServiceDefinition VisualMarkerMapRequestService {
+		QueryPattern < AnswerType = CommLocalizationObjects.CommVisualLocalizationFeatureMap 
+		RequestType = CommBasicObjects.CommVoid>
+	}
+
 }
