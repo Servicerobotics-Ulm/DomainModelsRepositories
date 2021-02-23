@@ -28,6 +28,8 @@ void to_json(const CommObjectRecognitionObjectsIDL::CommImageObjectRecognitionRe
 	j["xmax"] = obj.xmax;
 	// ymax: UInt32
 	j["ymax"] = obj.ymax;
+	// validBoundingBox: Boolean
+	j["validBoundingBox"] = obj.validBoundingBox;
 	// belief: CommObjectBelief
 	to_json(obj.belief, j["belief"]);
 	// objectId: UInt32
@@ -57,6 +59,10 @@ void from_json(const nlohmann::json& j, CommObjectRecognitionObjectsIDL::CommIma
 	// ymax: UInt32
 	if(j.contains("ymax") && j["ymax"].is_number_unsigned()) {
 		obj.ymax = j["ymax"].get<unsigned int>();
+	}
+	// validBoundingBox: Boolean
+	if(j.contains("validBoundingBox") && j["validBoundingBox"].is_boolean()) {
+		obj.validBoundingBox = j["validBoundingBox"].get<bool>();
 	}
 	// belief: CommObjectBelief
 	if(j.contains("belief") && j["belief"].is_object()) {

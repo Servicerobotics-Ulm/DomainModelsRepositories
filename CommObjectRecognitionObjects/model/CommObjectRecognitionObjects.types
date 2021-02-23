@@ -92,6 +92,7 @@ CommObjectsRepository CommObjectRecognitionObjects version 1.0 {
 		pose: CommPose3d
 		cov: Double[*]
 		validPosePdf: Boolean= false
+		validPose: Boolean = true
 	}
 	
 	CommObject CommTriMesh {
@@ -119,6 +120,7 @@ CommObjectsRepository CommObjectRecognitionObjects version 1.0 {
 		 ymin: UInt32
 		 xmax: UInt32
 		 ymax: UInt32
+		 validBoundingBox: Boolean = true
 		 belief : CommObjectBelief
 		 // instance id not type!		 
 		 objectId: UInt32

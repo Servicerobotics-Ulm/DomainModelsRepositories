@@ -262,3 +262,18 @@
 	];
 .
 
+:RGBImageObjectRecognitionQueryService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "RGBImageObjectRecognitionQueryService";
+	t1:shortDescription "ServiceDefinition RGBImageObjectRecognitionQueryService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommObjectRecognitionObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommVideoImage;
+		t1:answerType :CommImageObjectRecognitionResults;
+	];
+.
+

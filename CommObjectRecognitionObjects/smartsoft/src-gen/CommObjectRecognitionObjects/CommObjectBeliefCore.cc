@@ -79,6 +79,7 @@ namespace CommObjectRecognitionObjects
 			boost::hash_combine(seed, *data_covIt);
 		}
 		boost::hash_combine(seed, data.validPosePdf);
+		boost::hash_combine(seed, data.validPose);
 		
 		return seed;
 	}
@@ -94,6 +95,7 @@ namespace CommObjectRecognitionObjects
 		setPose(CommBasicObjects::CommPose3d());
 		setCov(std::vector<double>());
 		setValidPosePdf(false);
+		setValidPose(true);
 	}
 	
 	CommObjectBeliefCore::CommObjectBeliefCore(const DATATYPE &data)
@@ -116,6 +118,7 @@ namespace CommObjectRecognitionObjects
 	  	os << *covIt << " ";
 	  }
 	  os << getValidPosePdf() << " ";
+	  os << getValidPose() << " ";
 	  os << ") ";
 	}
 	
@@ -138,6 +141,7 @@ namespace CommObjectRecognitionObjects
 		}
 		os << indent << "</covList>";
 		os << indent << "<validPosePdf>" << getValidPosePdf() << "</validPosePdf>";
+		os << indent << "<validPose>" << getValidPose() << "</validPose>";
 	}
 	
 	// restore from xml stream
@@ -151,6 +155,7 @@ namespace CommObjectRecognitionObjects
 		static const Smart::KnuthMorrisPratt kmp_covList("<covList n=\"");
 		static const Smart::KnuthMorrisPratt kmp_cov("\">");
 		static const Smart::KnuthMorrisPratt kmp_validPosePdf("<validPosePdf>");
+		static const Smart::KnuthMorrisPratt kmp_validPose("<validPose>");
 		
 		if(kmp_type.search(is)) {
 			std::string typeItem;
@@ -190,6 +195,11 @@ namespace CommObjectRecognitionObjects
 			bool validPosePdfItem;
 			is >> validPosePdfItem;
 			setValidPosePdf(validPosePdfItem);
+		}
+		if(kmp_validPose.search(is)) {
+			bool validPoseItem;
+			is >> validPoseItem;
+			setValidPose(validPoseItem);
 		}
 	}
 	

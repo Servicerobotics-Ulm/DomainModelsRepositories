@@ -32,6 +32,8 @@ void to_json(const CommObjectRecognitionObjectsIDL::CommObjectBelief& obj, nlohm
 	j["cov"] = obj.cov;
 	// validPosePdf: Boolean
 	j["validPosePdf"] = obj.validPosePdf;
+	// validPose: Boolean
+	j["validPose"] = obj.validPose;
 }
 
 /**
@@ -66,6 +68,10 @@ void from_json(const nlohmann::json& j, CommObjectRecognitionObjectsIDL::CommObj
 	// validPosePdf: Boolean
 	if(j.contains("validPosePdf") && j["validPosePdf"].is_boolean()) {
 		obj.validPosePdf = j["validPosePdf"].get<bool>();
+	}
+	// validPose: Boolean
+	if(j.contains("validPose") && j["validPose"].is_boolean()) {
+		obj.validPose = j["validPose"].get<bool>();
 	}
 }
 

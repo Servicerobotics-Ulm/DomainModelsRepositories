@@ -34,6 +34,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjec
 	good_bit = good_bit && cdr.write_double_array(data.cov.data(), data.cov.size());
 	// serialize list-element validPosePdf
 	good_bit = good_bit && cdr.write_boolean(data.validPosePdf);
+	// serialize list-element validPose
+	good_bit = good_bit && cdr.write_boolean(data.validPose);
 	
 	return good_bit;
 }
@@ -61,6 +63,8 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjectsIDL::
 	good_bit = good_bit && cdr.read_double_array(data.cov.data(), data_covNbr);
 	// deserialize type element validPosePdf
 	good_bit = good_bit && cdr.read_boolean(data.validPosePdf);
+	// deserialize type element validPose
+	good_bit = good_bit && cdr.read_boolean(data.validPose);
 	
 	return good_bit;
 }

@@ -123,6 +123,10 @@ public:
 	// getter and setter for element ValidPosePdf
 	inline bool getValidPosePdf() const { return idl_CommObjectBelief.validPosePdf; }
 	inline CommObjectBeliefCore& setValidPosePdf(const bool &validPosePdf) { idl_CommObjectBelief.validPosePdf = validPosePdf; return *this; }
+	
+	// getter and setter for element ValidPose
+	inline bool getValidPose() const { return idl_CommObjectBelief.validPose; }
+	inline CommObjectBeliefCore& setValidPose(const bool &validPose) { idl_CommObjectBelief.validPose = validPose; return *this; }
 };
 
 } /* namespace CommObjectRecognitionObjects */

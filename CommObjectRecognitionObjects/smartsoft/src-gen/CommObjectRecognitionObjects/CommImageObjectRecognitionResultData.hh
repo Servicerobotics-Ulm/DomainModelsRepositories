@@ -27,6 +27,7 @@ namespace CommObjectRecognitionObjectsIDL
 		unsigned int ymin;
 		unsigned int xmax;
 		unsigned int ymax;
+		bool validBoundingBox;
 		CommObjectRecognitionObjectsIDL::CommObjectBelief belief;
 		unsigned int objectId;
   	};

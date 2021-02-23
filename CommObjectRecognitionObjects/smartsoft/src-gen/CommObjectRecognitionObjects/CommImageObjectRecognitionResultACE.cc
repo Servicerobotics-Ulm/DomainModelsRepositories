@@ -29,6 +29,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommObjectRecognitionObjec
 	good_bit = good_bit && cdr.write_ulong(data.xmax);
 	// serialize list-element ymax
 	good_bit = good_bit && cdr.write_ulong(data.ymax);
+	// serialize list-element validBoundingBox
+	good_bit = good_bit && cdr.write_boolean(data.validBoundingBox);
 	// serialize list-element belief
 	good_bit = good_bit && cdr << data.belief;
 	// serialize list-element objectId
@@ -49,6 +51,8 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommObjectRecognitionObjectsIDL::
 	good_bit = good_bit && cdr.read_ulong(data.xmax);
 	// deserialize type element ymax
 	good_bit = good_bit && cdr.read_ulong(data.ymax);
+	// deserialize type element validBoundingBox
+	good_bit = good_bit && cdr.read_boolean(data.validBoundingBox);
 	// deserialize type element belief
 	good_bit = good_bit && cdr >> data.belief;
 	// deserialize type element objectId

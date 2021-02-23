@@ -74,6 +74,7 @@ namespace CommObjectRecognitionObjects
 		boost::hash_combine(seed, data.ymin);
 		boost::hash_combine(seed, data.xmax);
 		boost::hash_combine(seed, data.ymax);
+		boost::hash_combine(seed, data.validBoundingBox);
 		seed += CommObjectRecognitionObjects::CommObjectBelief::generateDataHash(data.belief);
 		boost::hash_combine(seed, data.objectId);
 		
@@ -89,6 +90,7 @@ namespace CommObjectRecognitionObjects
 		setYmin(0);
 		setXmax(0);
 		setYmax(0);
+		setValidBoundingBox(true);
 		setBelief(CommObjectRecognitionObjects::CommObjectBelief());
 		setObjectId(0);
 	}
@@ -107,6 +109,7 @@ namespace CommObjectRecognitionObjects
 	  os << getYmin() << " ";
 	  os << getXmax() << " ";
 	  os << getYmax() << " ";
+	  os << getValidBoundingBox() << " ";
 	  getBelief().to_ostream(os);
 	  os << getObjectId() << " ";
 	  os << ") ";
@@ -118,6 +121,7 @@ namespace CommObjectRecognitionObjects
 		os << indent << "<ymin>" << getYmin() << "</ymin>";
 		os << indent << "<xmax>" << getXmax() << "</xmax>";
 		os << indent << "<ymax>" << getYmax() << "</ymax>";
+		os << indent << "<validBoundingBox>" << getValidBoundingBox() << "</validBoundingBox>";
 		os << indent << "<belief>";
 		getBelief().to_xml(os, indent);
 		os << indent << "</belief>";
@@ -130,6 +134,7 @@ namespace CommObjectRecognitionObjects
 		static const Smart::KnuthMorrisPratt kmp_ymin("<ymin>");
 		static const Smart::KnuthMorrisPratt kmp_xmax("<xmax>");
 		static const Smart::KnuthMorrisPratt kmp_ymax("<ymax>");
+		static const Smart::KnuthMorrisPratt kmp_validBoundingBox("<validBoundingBox>");
 		static const Smart::KnuthMorrisPratt kmp_belief("<belief>");
 		static const Smart::KnuthMorrisPratt kmp_objectId("<objectId>");
 		
@@ -152,6 +157,11 @@ namespace CommObjectRecognitionObjects
 			unsigned int ymaxItem;
 			is >> ymaxItem;
 			setYmax(ymaxItem);
+		}
+		if(kmp_validBoundingBox.search(is)) {
+			bool validBoundingBoxItem;
+			is >> validBoundingBoxItem;
+			setValidBoundingBox(validBoundingBoxItem);
 		}
 		if(kmp_belief.search(is)) {
 			CommObjectRecognitionObjects::CommObjectBelief beliefItem;

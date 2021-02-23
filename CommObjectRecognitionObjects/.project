@@ -5,6 +5,7 @@
 	<projects>
 		<project>CommBasicObjects</project>
 		<project>CommManipulatorObjects</project>
+		<project>DomainVision</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

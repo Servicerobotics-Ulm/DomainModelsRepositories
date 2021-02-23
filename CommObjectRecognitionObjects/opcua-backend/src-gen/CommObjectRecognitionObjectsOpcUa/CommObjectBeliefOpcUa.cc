@@ -41,6 +41,10 @@ IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::CommObjectB
 	ret->add(
 		SelfDescription(&(obj->validPosePdf), "ValidPosePdf")
 	);
+	// add validPose
+	ret->add(
+		SelfDescription(&(obj->validPose), "ValidPose")
+	);
 	return ret;
 } // end SelfDescription
 

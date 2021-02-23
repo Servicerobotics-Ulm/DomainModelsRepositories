@@ -33,6 +33,10 @@ IDescription::shp_t SelfDescription(CommObjectRecognitionObjectsIDL::CommImageOb
 	ret->add(
 		SelfDescription(&(obj->ymax), "Ymax")
 	);
+	// add validBoundingBox
+	ret->add(
+		SelfDescription(&(obj->validBoundingBox), "ValidBoundingBox")
+	);
 	// add belief
 	ret->add(
 		SelfDescription(&(obj->belief), "Belief")

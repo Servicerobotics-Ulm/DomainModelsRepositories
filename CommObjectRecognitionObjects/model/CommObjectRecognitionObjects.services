@@ -54,6 +54,11 @@ ServiceDefRepository CommObjectRecognitionObjects version 1.0 {
 		CommunicationServiceUsage objectrecognitionevent uses ObjectEventService
 	}
 	
+	RequestAnswerServiceDefinition RGBImageObjectRecognitionQueryService {
+		QueryPattern <
+			RequestType = DomainVision.CommVideoImage 
+			AnswerType = CommObjectRecognitionObjects.CommImageObjectRecognitionResults >
+	}
 	
 	///////////////////////////////////////
 	// PICK OBJECT DETECTION

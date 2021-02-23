@@ -32,6 +32,7 @@ namespace CommObjectRecognitionObjectsIDL
 		CommBasicObjectsIDL::CommPose3d pose;
 		CommObjectBelief_cov_type cov;
 		bool validPosePdf;
+		bool validPose;
   	};
 };
 

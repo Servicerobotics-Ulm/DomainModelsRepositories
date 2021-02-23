@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="model"/>
 	<classpathentry kind="src" path="/CommBasicObjects"/>
 	<classpathentry kind="src" path="/CommManipulatorObjects"/>
+	<classpathentry kind="src" path="/DomainVision"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

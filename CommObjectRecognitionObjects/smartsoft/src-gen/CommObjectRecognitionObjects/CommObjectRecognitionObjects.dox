@@ -82,6 +82,7 @@ Structure of Communication Object:
 - pose: CommBasicObjects::CommPose3d 
 - cov: Double[*] 
 - validPosePdf: Boolean  = false 
+- validPose: Boolean  = true 
 
 \class CommObjectRecognitionObjects::CommTriMeshCore
 
@@ -112,6 +113,7 @@ Structure of Communication Object:
 - ymin: UInt32 
 - xmax: UInt32 
 - ymax: UInt32 
+- validBoundingBox: Boolean  = true 
 - belief: CommObjectRecognitionObjects::CommObjectBelief 
 - objectId: UInt32 
 
@@ -245,6 +247,7 @@ Class Reference: CommObjectRecognitionObjects::CommOcrIdCore
 - pose: @ref CommPose3d (CommObj) 
 - cov: Double[*]  
 - validPosePdf: Boolean   = false 
+- validPose: Boolean   = true 
 
 Class Reference: CommObjectRecognitionObjects::CommObjectBeliefCore
 <hr>
@@ -275,6 +278,7 @@ Class Reference: CommObjectRecognitionObjects::CommPickDetectionRequestCore
 - ymin: UInt32  
 - xmax: UInt32  
 - ymax: UInt32  
+- validBoundingBox: Boolean   = true 
 - belief: @ref CommObjectBelief (CommObj) 
 - objectId: UInt32  
 

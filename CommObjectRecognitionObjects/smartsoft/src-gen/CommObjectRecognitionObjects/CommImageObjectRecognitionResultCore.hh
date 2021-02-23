@@ -81,6 +81,10 @@ public:
 	inline unsigned int getYmax() const { return idl_CommImageObjectRecognitionResult.ymax; }
 	inline CommImageObjectRecognitionResultCore& setYmax(const unsigned int &ymax) { idl_CommImageObjectRecognitionResult.ymax = ymax; return *this; }
 	
+	// getter and setter for element ValidBoundingBox
+	inline bool getValidBoundingBox() const { return idl_CommImageObjectRecognitionResult.validBoundingBox; }
+	inline CommImageObjectRecognitionResultCore& setValidBoundingBox(const bool &validBoundingBox) { idl_CommImageObjectRecognitionResult.validBoundingBox = validBoundingBox; return *this; }
+	
 	// getter and setter for element Belief
 	inline CommObjectRecognitionObjects::CommObjectBelief getBelief() const { return CommObjectRecognitionObjects::CommObjectBelief(idl_CommImageObjectRecognitionResult.belief); }
 	inline CommImageObjectRecognitionResultCore& setBelief(const CommObjectRecognitionObjects::CommObjectBelief &belief) { idl_CommImageObjectRecognitionResult.belief = belief; return *this; }
