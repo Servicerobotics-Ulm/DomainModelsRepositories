@@ -5,8 +5,11 @@ std::string Seq2SeqComCoordinationServiceTaskEventEventHandler::handleEvent(cons
 	
 	//convert the event result commObject to string representation outString (to TCL)
 	//std::ostringstream ss;
-	//ss << "("<< std::setprecision( 2 ) << answer_data<<")";
+	//ss << "("<< std::setprecision( 2 ) << r.getMsg()<<")";
 	//outString = ss.str();
+	//std::cout << "SEQ2SEQ evt:" << r.getMsg() << std::endl;
+	outString = r.getMsg();
+	//std::cout << "SEQ2SEQ event rcvd: :" << outString << std::endl;
 	return outString;
 }
 

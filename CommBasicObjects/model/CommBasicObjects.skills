@@ -131,4 +131,12 @@ SkillDefinitionRepository CommBasicObjects {
 			}
 		}
 	}
+	
+	CoordinationModuleDefinition Seq2SeqModule {
+		SkillDefinition seq2Seq {
+			results {
+				SUCCESS value = ""
+			}
+		}
+	}
 }

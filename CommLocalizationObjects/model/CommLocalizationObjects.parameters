@@ -70,7 +70,7 @@ ParameterSetRepository CommLocalizationObjects {
 			filename : String
 		}
 		
-				Trigger INITIALPOSE {
+		Trigger INITIALPOSE {
 			x: Int32
 			y: Int32
 			a: Double
