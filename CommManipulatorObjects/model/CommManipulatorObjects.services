@@ -69,6 +69,7 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 		CommunicationServiceUsage manipulatorprograms uses MobileManipulatorProgramQueryService
 		CommunicationServiceUsage ioquery uses CommBasicObjects.CommIOValuesQueryService
 		CommunicationServiceUsage ioevent uses CommBasicObjects.CommDigitalInputEvent
+		CommunicationServiceUsage trajectory uses SendTrajectoryService
 	}
 	
 	CoordinationServiceDefinition WelderCoordinationService {

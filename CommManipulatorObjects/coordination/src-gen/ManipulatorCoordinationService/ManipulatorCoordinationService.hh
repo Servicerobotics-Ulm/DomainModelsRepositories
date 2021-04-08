@@ -17,6 +17,8 @@
 #include <CommManipulatorObjects/CommManipulatorEventResultACE.hh>
 #include <CommManipulatorObjects/CommManipulatorEventState.hh>
 #include <CommManipulatorObjects/CommManipulatorEventStateACE.hh>
+#include <CommManipulatorObjects/CommManipulatorTrajectory.hh>
+#include <CommManipulatorObjects/CommManipulatorTrajectoryACE.hh>
 #include <CommManipulatorObjects/CommMobileManipulatorPrograms.hh>
 #include <CommManipulatorObjects/CommMobileManipulatorProgramsACE.hh>
 #include <CommManipulatorObjects/CommMobileManipulatorState.hh>
@@ -30,6 +32,7 @@
 #include "ManipulatorCoordinationServiceManipulatoreventEventHandlerCore.hh"
 #include "ManipulatorCoordinationServiceManipulatorprogramsQueryHandler.hh"
 #include "ManipulatorCoordinationServiceManipulatorstateQueryHandler.hh"
+#include "ManipulatorCoordinationServiceTrajectorySendHandler.hh"
 
 
 class ManipulatorCoordinationService {
@@ -51,5 +54,7 @@ public:
 	ManipulatorCoordinationServiceManipulatorprogramsQueryHandler *manipulatorCoordinationServicemanipulatorprogramsQueryHandler;
 	Smart::IQueryClientPattern<CommBasicObjects::CommVoid, CommManipulatorObjects::CommMobileManipulatorState> *manipulatorCoordinationServicemanipulatorstateClient;
 	ManipulatorCoordinationServiceManipulatorstateQueryHandler *manipulatorCoordinationServicemanipulatorstateQueryHandler;
+	SmartACE::SendClient<CommManipulatorObjects::CommManipulatorTrajectory> *manipulatorCoordinationServicetrajectoryClient;
+	ManipulatorCoordinationServiceTrajectorySendHandler *manipulatorCoordinationServicetrajectorySendHandler;
  };
 #endif /* MANIPULATORCOORDINATIONSERVICE_H_ */

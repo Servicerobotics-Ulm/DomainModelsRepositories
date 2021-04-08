@@ -11,6 +11,8 @@ ManipulatorCoordinationService::ManipulatorCoordinationService (){
 		manipulatorCoordinationServicemanipulatorprogramsClient = NULL;
 		manipulatorCoordinationServicemanipulatorstateQueryHandler = NULL;
 		manipulatorCoordinationServicemanipulatorstateClient = NULL;
+		manipulatorCoordinationServicetrajectorySendHandler = NULL;
+		manipulatorCoordinationServicetrajectoryClient = NULL;
 }
 ManipulatorCoordinationService::~ManipulatorCoordinationService (){
 	

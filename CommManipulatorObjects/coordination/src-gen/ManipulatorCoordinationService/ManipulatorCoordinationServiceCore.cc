@@ -36,6 +36,9 @@
 	//QUERY CLIENT
 	iter->second.manipulatorCoordinationServicemanipulatorstateClient = new SmartACE::QueryClient<CommBasicObjects::CommVoid,CommManipulatorObjects::CommMobileManipulatorState>(component);
 	iter->second.manipulatorCoordinationServicemanipulatorstateQueryHandler = new ManipulatorCoordinationServiceManipulatorstateQueryHandler();
+	//SEND CLIENT
+	iter->second.manipulatorCoordinationServicetrajectoryClient = new SmartACE::SendClient<CommManipulatorObjects::CommManipulatorTrajectory>(component);
+	iter->second.manipulatorCoordinationServicetrajectorySendHandler = new ManipulatorCoordinationServiceTrajectorySendHandler();
 	
 	// connect ports
 	std::cout<<__FUNCTION__<<" connect ports..."<<std::endl; 
@@ -141,6 +144,26 @@
 				return 1;
 			}
 		}
+		{
+			std::map<std::string, std::string>::const_iterator service_iter = ci_inst_iter->second.serviceNameMap.find("trajectory");
+			if(service_iter != ci_inst_iter->second.serviceNameMap.end()){
+				std::string serviceName(service_iter->second);
+		
+				Smart::StatusCode status;
+		
+				std::cout << "connecting to: " << ci_inst_iter->second.componentInstanceName << "; " << serviceName << std::endl;
+				status = iter->second.manipulatorCoordinationServicetrajectoryClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				while(status != Smart::SMART_OK)
+				{
+					ACE_OS::sleep(ACE_Time_Value(0,500000));
+					status = iter->second.manipulatorCoordinationServicetrajectoryClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				}
+				std::cout << "connected.\n";
+			} else {
+				std::cout<<"ERROR SERVICE NOT FOUND IN MAP!"<<std::endl;
+				return 1;
+			}
+		}
 	} else {
 		std::cout<<"Was not able to find ci inst in ciComponent connection map!"<<std::endl;
 	}
@@ -165,6 +188,8 @@
 			delete iter->second.manipulatorCoordinationServicemanipulatorprogramsClient;
 			delete iter->second.manipulatorCoordinationServicemanipulatorstateQueryHandler;
 			delete iter->second.manipulatorCoordinationServicemanipulatorstateClient;
+			delete iter->second.manipulatorCoordinationServicetrajectorySendHandler;
+			delete iter->second.manipulatorCoordinationServicetrajectoryClient;
 		return 0;
 	} else {
 		std::cout<<"ERROR WAS NOT ABLE TO FIND CI INSTANCE IN MAP --> this should not have happend!"<<std::endl;
@@ -532,6 +557,35 @@ std::string ManipulatorCoordinationServiceCore::switchCi(const std::string& ciIn
 						outString << "(error (unknown error))";
 						break;
 				} // switch(status)
+			}
+			if(strcasecmp(service.c_str(), "trajectory") == 0 )
+			{
+				CommManipulatorObjects::CommManipulatorTrajectory com;
+				
+				Smart::StatusCode status;
+				com = iter->second.manipulatorCoordinationServicetrajectorySendHandler->handleSend(inString);
+
+				// everything is ok
+				status = iter->second.manipulatorCoordinationServicetrajectoryClient->send(com);
+				outString.str("");
+				switch (status)
+				{
+						case Smart::SMART_OK:
+								outString << "(ok ())";
+								break;
+						case Smart::SMART_DISCONNECTED:
+								outString << "(error (smart disconnected))";
+								break;
+						case Smart::SMART_ERROR_COMMUNICATION:
+								outString << "(error (smart communication error))";
+								break;
+						case Smart::SMART_ERROR:
+								outString << "(error (smart error))";
+								break;
+						default:
+								outString << "(error (unknown error))";
+								break;
+				}
 			}
 	
 		return outString.str();

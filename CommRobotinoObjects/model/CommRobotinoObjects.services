@@ -71,7 +71,8 @@ ServiceDefRepository CommRobotinoObjects version 1.0
 	
 	CoordinationServiceDefinition RobotToRobotDockingCoordinationService {
 		StatePattern < lifecycle ComponentLifecycle with CommRobotinoObjects.RobotToRobotDockingStates>
-		ParameterPattern < CommRobotinoObjects.RobotToRobotDockingParameter>		
+		ParameterPattern < CommRobotinoObjects.RobotToRobotDockingParameter>
+		CommunicationServiceUsage r2rdockingevent uses CommRobotinoObjects.RobotinoDockingEvent		
 	}
 
 	CoordinationServiceDefinition MasterRPCBridgeCoordinationService {

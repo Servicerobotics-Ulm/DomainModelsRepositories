@@ -2,10 +2,21 @@
 
 std::string ManipulationPlannerCoordinationServicePlannereventEventHandler::handleEvent(const CommManipulationPlannerObjects::CommManipulationPlannerEventResult &r) throw() {
 
-	// TODO: Check if correct
 	std::string outString;
+
 	//convert the event result commObject to string representation outString (to TCL)
-	//outString = r.to_lisp_string();
+	if (r.getEvent() == CommManipulationPlannerObjects::ManipulationPlannerEvent::PATH_FOUND) {
+		outString = "(PATH FOUND)";
+	} else if (r.getEvent() == CommManipulationPlannerObjects::ManipulationPlannerEvent::PLANNING_PATH) {
+		outString = "(PLANNING PATH)";
+	} else if (r.getEvent() == CommManipulationPlannerObjects::ManipulationPlannerEvent::NO_IK_SOLUTION_FOUND) {
+		outString = "(NO IK SOLUTION FOUND)";
+	} else if (r.getEvent() == CommManipulationPlannerObjects::ManipulationPlannerEvent::NO_PATH_FOUND) {
+		outString = "(NO PATH FOUND)";
+	} else {
+		outString = "(ERROR)";
+	}
+
 	return outString;
 }
 
