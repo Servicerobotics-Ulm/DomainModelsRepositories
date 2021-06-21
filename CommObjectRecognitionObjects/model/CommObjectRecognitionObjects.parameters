@@ -1,7 +1,35 @@
 ParameterSetRepository CommObjectRecognitionObjects {
 	
 	ParameterSet ImageObjectRecognitionParameter {
+		
+		Trigger ADDREFERENCEIMAGE_FROM_FILE {
+			imageFileName : String
+			objectLabel : String
+			objectGroup : String
+		}
+		
+		Trigger ADDREFERENCEIMAGE_FROM_CAMERA {
+			objectLabel : String
+			objectGroup : String
+		}
+		
+		Trigger REMOVEGROUP {
+			objectGroup : String
+		}
+		
+		Trigger REMOVEALLREFERENCEIMAGES {
 			
+		}
+		
+		//object group to search for
+		Parameter CUROBJECTGROUP {
+			group : String
+		}
+		
+		Trigger RECOGNIZE {
+			
+		}
+		
 		Parameter SETENVID {
 			id : UInt32
 		}

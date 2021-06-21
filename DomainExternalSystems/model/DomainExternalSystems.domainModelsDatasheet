@@ -1,0 +1,18 @@
+DomainModelsDatasheet DomainExternalSystems
+{
+	BaseURI "http://www.xito.one"
+	ShortDescription "Domain Models to access external systems"
+	DatasheetProperty SpdxLicense {
+		value "BSD-3-Clause"
+		semanticID "https://spdx.org/licenses/BSD-3-Clause.html"
+	}
+	DatasheetProperty Supplier {
+		value "Toolify Robotics GmbH"
+	}
+	DatasheetProperty Homepage {
+		value "http://www.xito.one"
+	}
+	DatasheetProperty Purpose {
+		value "Access to external systems"
+	}
+}

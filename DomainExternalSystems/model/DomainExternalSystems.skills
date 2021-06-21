@@ -1,0 +1,36 @@
+SkillDefinitionRepository DomainExternalSystems { 
+	CoordinationModuleDefinition ExternalPorgramCoordinationModule {
+		
+		SkillDefinition getProgramList{
+			out {
+				programList : String [*]
+			}
+			results {
+				ERROR value = "FAILED"
+				SUCCESS value = "OK"
+			}
+		}
+		
+		SkillDefinition startProgram {
+			in {
+				programName : String
+				callID : UInt32 
+			}
+			out {
+				programResults : String
+			}
+			results {
+				ERROR value = "UNKONWN PROGRAM"
+				ERROR value = "RUNTIME ERROR"
+				SUCCESS value = "SUCCESS"
+			}
+		}
+		
+		SkillDefinition stopCurrentProgram {
+			results {
+				SUCCESS value = "OK"
+			}
+		}
+		
+	}
+}

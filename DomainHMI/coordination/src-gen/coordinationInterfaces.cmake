@@ -16,3 +16,5 @@
 #--------------------------------------------------------------------------
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+MESSAGE("-- Include RemoteControlCoordinationService")
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_LIST_DIR}/RemoteControlCoordinationService ${CMAKE_CURRENT_BINARY_DIR}/RemoteControlCoordinationService)

@@ -42,8 +42,6 @@ namespace DomainRobotFleet
 	{
 		// get own hash value
 		hashes.push_back(getCompiledHash());
-		// get hash value(s) for CommBasicObjects::CommBaseState(idl_Dummy.dummy)
-		CommBasicObjects::CommBaseState::getAllHashValues(hashes);
 	}
 	
 	void DummyCore::checkAllHashValues(std::list<std::string> &hashes)
@@ -61,8 +59,6 @@ namespace DomainRobotFleet
 		assert(strcmp(getCompiledHash(), hashes.front().c_str()) == 0);
 		hashes.pop_front();
 		
-		// check hash value(s) for CommBasicObjects::CommBaseState(idl_Dummy.dummy)
-		CommBasicObjects::CommBaseState::checkAllHashValues(hashes);
 	}
 	
 	#ifdef ENABLE_HASH
@@ -70,7 +66,7 @@ namespace DomainRobotFleet
 	{
 		size_t seed = 0;
 		
-		seed += CommBasicObjects::CommBaseState::generateDataHash(data.dummy);
+		boost::hash_combine(seed, data.dummy);
 		
 		return seed;
 	}
@@ -80,7 +76,7 @@ namespace DomainRobotFleet
 	DummyCore::DummyCore()
 	:	idl_Dummy()
 	{  
-		setDummy(CommBasicObjects::CommBaseState());
+		setDummy(0);
 	}
 	
 	DummyCore::DummyCore(const DATATYPE &data)
@@ -93,15 +89,13 @@ namespace DomainRobotFleet
 	void DummyCore::to_ostream(std::ostream &os) const
 	{
 	  os << "Dummy(";
-	  getDummy().to_ostream(os);
+	  os << getDummy() << " ";
 	  os << ") ";
 	}
 	
 	// convert to xml stream
 	void DummyCore::to_xml(std::ostream &os, const std::string &indent) const {
-		os << indent << "<dummy>";
-		getDummy().to_xml(os, indent);
-		os << indent << "</dummy>";
+		os << indent << "<dummy>" << getDummy() << "</dummy>";
 	}
 	
 	// restore from xml stream
@@ -109,8 +103,8 @@ namespace DomainRobotFleet
 		static const Smart::KnuthMorrisPratt kmp_dummy("<dummy>");
 		
 		if(kmp_dummy.search(is)) {
-			CommBasicObjects::CommBaseState dummyItem;
-			dummyItem.from_xml(is);
+			char dummyItem;
+			is >> dummyItem;
 			setDummy(dummyItem);
 		}
 	}

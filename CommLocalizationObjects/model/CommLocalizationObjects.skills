@@ -81,4 +81,7 @@ SkillDefinitionRepository CommLocalizationObjects {
 			}
 		}
 	}
+	
+	CoordinationModuleDefinition SLAMAndLocalizationModule {
+	}
 }

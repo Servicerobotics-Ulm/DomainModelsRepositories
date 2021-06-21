@@ -33,6 +33,14 @@ ServiceDefRepository DomainVision version 1.0 {
 		PushPattern <DataType=DomainVision.CommDepthImage>
 	}
 	
+	ForkingServiceDefinition StereoImagePushService{
+		PushPattern <DataType=DomainVision.CommStereoImage>
+	}
+	
+	ForkingServiceDefinition DisparityImagePushService {
+		PushPattern < DataType=DomainVision.CommDisparityImage>
+	}
+	
 	ForkingServiceDefinition PointCloudPushService {
 		PushPattern <DataType=DomainVision.Comm3dPointCloud>
 	}

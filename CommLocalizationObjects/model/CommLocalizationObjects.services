@@ -55,6 +55,10 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 		PushPattern < DataType = CommBasicObjects.CommPosition3dWithCovariance >	
 	}
 	
+	ForkingServiceDefinition LocalizationResult {
+		PushPattern < DataType = CommBasicObjects.CommPose3dWithCovariance >	
+	}
+	
 	ForkingServiceDefinition BeaconLocalizationResultRaw {
 		PushPattern < DataType = CommLocalizationObjects.CommBeaconLocalizationRawData >
 	}
@@ -88,6 +92,10 @@ ServiceDefRepository CommLocalizationObjects version 1.0
 	RequestAnswerServiceDefinition VisualMarkerMapRequestService {
 		QueryPattern < AnswerType = CommLocalizationObjects.CommVisualLocalizationFeatureMap 
 		RequestType = CommBasicObjects.CommVoid>
+	}
+	
+	ForkingServiceDefinition VisualMarkerMapPushService {
+		PushPattern < DataType = CommLocalizationObjects.CommVisualLocalizationFeatureMap >
 	}
 
 }

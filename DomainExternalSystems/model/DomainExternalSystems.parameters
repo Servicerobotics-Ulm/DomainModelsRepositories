@@ -1,0 +1,18 @@
+ParameterSetRepository DomainExternalSystems
+{
+	
+	ParameterSet ExternalProgramsParam{
+		
+		Trigger START_PROGRAM{
+			name : String
+			//callID : UInt32 --> not yet used
+			arguments : String [*]
+		}
+		
+		Trigger STOP_CURRENT_PROGRAM {
+		}
+		
+		
+	}
+	
+}

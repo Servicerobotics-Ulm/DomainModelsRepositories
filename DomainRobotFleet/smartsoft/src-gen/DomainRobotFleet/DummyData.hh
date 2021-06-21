@@ -16,14 +16,13 @@
 #ifndef DOMAINROBOTFLEET_DUMMY_DATA_H_
 #define DOMAINROBOTFLEET_DUMMY_DATA_H_
 
-#include "CommBasicObjects/CommBaseStateData.hh"
 
 
 namespace DomainRobotFleetIDL 
 {
 	struct Dummy
 	{
-		CommBasicObjectsIDL::CommBaseState dummy;
+		char dummy;
   	};
 };
 

@@ -1,3 +1,8 @@
 ParameterSetRepository DomainHMI {
 	ParameterSet MyParameterSet extends EmptyDefaultParameterSet { }
+	
+	ParameterSet RemoteControlParams {
+		Trigger ACTIVATE_REMOTE_CONTROL{}
+		Trigger STOP_REMOTE_CONTROL{}
+	}
 }

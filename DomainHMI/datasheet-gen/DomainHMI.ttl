@@ -39,6 +39,12 @@
 ##### Communication Objects
 # see https://robmosys.eu/wiki/modeling:metamodels:commobject 
 # Note: this will later not be provided by the software component
+:CommRemoteControlEvent a robmosys:CommunicationObject;
+	rdfs:label "CommRemoteControlEvent";
+	t1:shortDescription "CommunicationObject CommRemoteControlEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainHMI>;
+.
+
 :CommTrafficLight a robmosys:CommunicationObject;
 	rdfs:label "CommTrafficLight";
 	t1:shortDescription "CommunicationObject CommTrafficLight";
@@ -50,6 +56,22 @@
 # see https://robmosys.eu/wiki/modeling:metamodels:service 
 # see https://robmosys.eu/wiki/modeling:metamodels:commpattern 
 # Note: this will later not be provided by the software component
+:RemoteControlEvent a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "RemoteControlEvent";
+	t1:shortDescription "ServiceDefinition RemoteControlEvent";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainHMI>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommRemoteControlEvent;
+		t1:activationType :CommRemoteControlEvent;
+		t1:eventStateType :CommRemoteControlEvent;
+	];
+.
+
 :TrafficLightService a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;

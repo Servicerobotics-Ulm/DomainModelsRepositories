@@ -1,0 +1,40 @@
+ServiceDefRepository DomainPrint version 1 . 0
+{
+	//query service for fully contained print job e.g. using JScript
+	//all in one send data and print
+	RequestAnswerServiceDefinition PrintRequestQueryService {
+		QueryPattern <RequestType = DomainPrint.CommPrintRequest
+		AnswerType = DomainPrint.CommPrintResponse>
+	}
+	
+	
+	//query service for print using process data
+	RequestAnswerServiceDefinition PrintRequestProcessDataQueryService {
+		QueryPattern <RequestType = DomainPrint.CommPrintProcessData
+		AnswerType = DomainPrint.CommPrintResponse>
+	}
+	
+	//event for changes in the printer status
+	ForkingServiceDefinition PrintStatusEvent {
+		EventPattern < 
+		ActivationType = DomainPrint.CommPrinterStatus
+		EventStateType = DomainPrint.CommPrinterStatus
+		EventType = DomainPrint.CommPrinterStatus
+		>
+	}
+	
+	//start print and application (dependent on ApplicationModeType)
+	JoiningServiceDefinition TriggerStart{
+		SendPattern <DataType =  CommBasicObjects.CommVoid>
+	}
+	
+	CoordinationServiceDefinition LabelPrinterCoordinationService {
+		ParameterPattern < EmptyDefaultParameterSet >
+		StatePattern < lifecycle ComponentLifecycle>
+		CommunicationServiceUsage trigger uses TriggerStart
+		CommunicationServiceUsage data uses PrintRequestProcessDataQueryService
+		CommunicationServiceUsage fullPrintJob uses PrintRequestQueryService
+	}
+	
+	
+}

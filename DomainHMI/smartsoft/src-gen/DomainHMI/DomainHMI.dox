@@ -6,6 +6,18 @@ Structure of Communication Object:
 - green: Boolean  = false 
 - yellow: Boolean  = false 
 
+\class DomainHMI::CommRemoteControlEventCore
+
+Structure of Communication Object:
+- state: DomainHMI::RemoteControlEventType 
+
+\class DomainHMI::RemoteControlEventType
+
+Structure of Enumeration:
+- SUCCESS 
+- FAILED 
+- INVOKE 
+
 
 
 
@@ -22,6 +34,18 @@ Class Reference: DomainHMI
 - yellow: Boolean   = false 
 
 Class Reference: DomainHMI::CommTrafficLightCore
+<hr>
+@section CommRemoteControlEvent CommRemoteControlEvent
+- state: @ref RemoteControlEventType (Enum) 
+
+Class Reference: DomainHMI::CommRemoteControlEventCore
+<hr>
+@section RemoteControlEventType RemoteControlEventType
+- SUCCESS 
+- FAILED 
+- INVOKE 
+
+Class Reference: DomainHMI::RemoteControlEventType
 <hr>
 
 

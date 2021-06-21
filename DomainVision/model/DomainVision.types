@@ -120,6 +120,67 @@ CommObjectsRepository DomainVision version 1.0.0 {
 		
 	}
 	
+	CommObject CommStereoImage {
+		left : CommVideoImage
+		right : CommVideoImage
+		
+		hasDispertyMap : Boolean = false
+		disparityMap : CommDisparityImage
+	}
+	
+	
+	CommObject CommDisparityImage{
+		
+		// Floating point disparity image. The disparities are pre-adjusted for any
+		// x-offset between the principal points of the two cameras (in the case
+		// that they are verged). That is: d = x_l - x_r - (cx_l - cx_r)
+		image : CommVideoImage
+		
+		// Stereo geometry. For disparity d, the depth from the camera is Z = fT/d.
+		f : Float  // Focal length, pixels
+		t : Float // Baseline, world units
+		
+		// Subwindow of (potentially) valid disparity values.
+		valid_window :  CommImageRegionOfInterest
+		
+		// The range of disparities searched.
+		// In the disparity image, any disparity less than min_disparity is invalid.
+		// The disparity search range defines the horopter, or 3D volume that the
+		// stereo algorithm can "see". Points with Z outside of:
+		//     Z_min = fT / max_disparity
+		//     Z_max = fT / min_disparity
+		// could not be found.
+		min_disparity : Float 
+		max_disparity : Float 
+		
+		// Smallest allowed disparity increment. The smallest achievable depth range
+		// resolution is delta_Z = (Z^2/fT)*delta_d.
+		delta_d : Float 
+	}
+	
+
+	CommObject CommImageRegionOfInterest {
+		// This message is used to specify a region of interest within an image.
+	
+		// When used to specify the ROI setting of the camera when the image was
+		// taken, the height and width fields should either match the height and
+		// width fields for the associated image; or height = width = 0
+		// indicates that the full resolution image was captured.
+		
+		x_offset : UInt32   // Leftmost pixel of the ROI
+		                 // (0 if the ROI includes the left edge of the image)
+		y_offset : UInt32   // Topmost pixel of the ROI
+		                 // (0 if the ROI includes the top edge of the image)
+		height : UInt32     // Height of ROI
+		width : UInt32      // Width of ROI
+		
+		// True if a distinct rectified ROI should be calculated from the "raw"
+		// ROI in this message. Typically this should be False if the full image
+		// is captured (ROI not used), and True if a subwindow is captured (ROI
+		// used).
+		do_rectify : Boolean 
+	} 
+	
 	CommObject Comm3dPointCloud {
 		valid: Boolean= false
 		points: CommPosition3d[*]

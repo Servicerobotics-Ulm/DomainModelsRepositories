@@ -1,0 +1,91 @@
+CommObjectsRepository DomainPrint version 1 . 0
+{
+	
+	Enumeration PrintDataEnum {
+		JScript
+	}
+	
+	//Print Data using print description languages
+	CommObject CommPrintData {
+		data : String
+		format : PrintDataEnum = JScript
+	}
+
+	///////////////////////////////////////////////////
+	//Fully defined print queries	
+	CommObject CommPrintRequest {
+		data : CommPrintData
+	}
+	
+	Enumeration PrintResponseResultEnum {
+		SUCCESS
+		ERROR
+	}
+	
+	CommObject CommPrintResponse {
+		
+		//could contain a status code to further detail the error
+		resultValue : String
+		result : PrintResponseResultEnum
+	}
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////////
+	//Print from template using process data
+
+	CommObject CommKeyValue {
+		key : String 
+		value : String
+		type : KeyValueDataTypeEnum
+	}
+	
+	Enumeration KeyValueDataTypeEnum {
+		STRING
+		NUMBER
+		BOOL
+		BYTE
+	}
+	
+	Enumeration ApplicationModeTypeEnum {
+		// external start signal releases the print of a lable and following the application of the lable --> cycle done no lable on pad
+		PrintApply
+		// extra signal starts the print of the first lable + tanfs to pad. external start signal releases the application of the label, --> cycle done lable on pad in waiting position 
+		ApplyPrint
+		 
+	}
+	
+	CommObject CommPrintProcessData {
+		data : CommKeyValue [*]
+		templateID : String
+		applicationMode : ApplicationModeTypeEnum
+	}
+
+
+
+    ////////////////////////////////////////////////
+    // status event for status of printer
+    
+    Enumeration PrinterStatusEnum {
+    	IDLE
+    	BUSY
+    	ERROR    	
+    }
+    
+    
+    //TODO this needs further refinement
+    CommObject CommPrinterStatus {
+	    status : PrinterStatusEnum
+	    		
+    	statusRIBWARN : Boolean = false
+    	statusLBLWARN : Boolean = false
+    }    
+    
+    //TODO remove dummy once dependency bug is resolved
+    CommObject CommDummy {
+    	dummy : CommBasicObjects.CommVoid
+	}
+	
+}

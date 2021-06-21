@@ -1,0 +1,8 @@
+DomainExternalSystems/BaseURI/value/0=http\://www.xito.one
+DomainExternalSystems/Homepage/value/3=http\://www.xito.one
+DomainExternalSystems/Purpose/value/4=Access to external systems
+DomainExternalSystems/SpdxLicense/semanticURI/1=https\://spdx.org/licenses/BSD-3-Clause.html
+DomainExternalSystems/SpdxLicense/value/1=BSD-3-Clause
+DomainExternalSystems/Supplier/value/2=Toolify Robotics GmbH
+DomainExternalSystems/shortDescription=Domain Models to access external systems
+eclipse.preferences.version=1

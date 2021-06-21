@@ -1,0 +1,10 @@
+{
+	"name": "DomainExternalSystems",
+	"shortDescription": "Domain Models to access external systems",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Access to external systems"],
+	"spdxLicense": "BSD-3-Clause",
+	"supplier": "Toolify Robotics GmbH",
+	"homepage": "http://www.xito.one"
+}

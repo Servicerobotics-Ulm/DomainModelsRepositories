@@ -2,6 +2,6 @@ CommObjectsRepository DomainRobotFleet version 1 . 0
 {
 
 	CommObject Dummy {
-		dummy: CommBasicObjects.CommBaseState
+		dummy: Int8
 	}
 }

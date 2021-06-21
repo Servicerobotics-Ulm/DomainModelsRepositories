@@ -51,9 +51,27 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
 .
 
+:CommDisparityImage a robmosys:CommunicationObject;
+	rdfs:label "CommDisparityImage";
+	t1:shortDescription "CommunicationObject CommDisparityImage";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
+.
+
+:CommImageRegionOfInterest a robmosys:CommunicationObject;
+	rdfs:label "CommImageRegionOfInterest";
+	t1:shortDescription "CommunicationObject CommImageRegionOfInterest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
+.
+
 :CommRGBDImage a robmosys:CommunicationObject;
 	rdfs:label "CommRGBDImage";
 	t1:shortDescription "CommunicationObject CommRGBDImage";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
+.
+
+:CommStereoImage a robmosys:CommunicationObject;
+	rdfs:label "CommStereoImage";
+	t1:shortDescription "CommunicationObject CommStereoImage";
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
 .
 
@@ -85,6 +103,20 @@
 		a robmosys:PushPattern;
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:dataType :CommDepthImage;
+	];
+.
+
+:DisparityImagePushService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "DisparityImagePushService";
+	t1:shortDescription "ServiceDefinition DisparityImagePushService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommDisparityImage;
 	];
 .
 
@@ -172,6 +204,20 @@
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:requestType :CommVoid;
 		t1:answerType :CommVideoImage;
+	];
+.
+
+:StereoImagePushService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "StereoImagePushService";
+	t1:shortDescription "ServiceDefinition StereoImagePushService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/DomainVision>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommStereoImage;
 	];
 .
 

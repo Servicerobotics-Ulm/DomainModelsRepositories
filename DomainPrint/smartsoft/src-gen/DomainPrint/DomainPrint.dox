@@ -1,0 +1,166 @@
+/** 
+\class DomainPrint::CommPrintDataCore
+
+Structure of Communication Object:
+- data: String 
+- format: DomainPrint::PrintDataEnum  = JScript 
+
+\class DomainPrint::CommPrintRequestCore
+
+Structure of Communication Object:
+- data: DomainPrint::CommPrintData 
+
+\class DomainPrint::CommPrintResponseCore
+
+Structure of Communication Object:
+- resultValue: String 
+- result: DomainPrint::PrintResponseResultEnum 
+
+\class DomainPrint::CommKeyValueCore
+
+Structure of Communication Object:
+- key: String 
+- value: String 
+- type: DomainPrint::KeyValueDataTypeEnum 
+
+\class DomainPrint::CommPrintProcessDataCore
+
+Structure of Communication Object:
+- data: DomainPrint::CommKeyValue[*] 
+- templateID: String 
+- applicationMode: DomainPrint::ApplicationModeTypeEnum 
+
+\class DomainPrint::CommPrinterStatusCore
+
+Structure of Communication Object:
+- status: DomainPrint::PrinterStatusEnum 
+- statusRIBWARN: Boolean  = false 
+- statusLBLWARN: Boolean  = false 
+
+\class DomainPrint::CommDummyCore
+
+Structure of Communication Object:
+- dummy: CommBasicObjects::CommVoid 
+
+\class DomainPrint::PrintDataEnum
+
+Structure of Enumeration:
+- JScript 
+
+\class DomainPrint::PrintResponseResultEnum
+
+Structure of Enumeration:
+- SUCCESS 
+- ERROR 
+
+\class DomainPrint::KeyValueDataTypeEnum
+
+Structure of Enumeration:
+- STRING 
+- NUMBER 
+- BOOL 
+- BYTE 
+
+\class DomainPrint::ApplicationModeTypeEnum
+
+Structure of Enumeration:
+- PrintApply 
+- ApplyPrint 
+
+\class DomainPrint::PrinterStatusEnum
+
+Structure of Enumeration:
+- IDLE 
+- BUSY 
+- ERROR 
+
+
+
+
+@defgroup DomainPrint
+@ingroup commObjGroup
+@{
+\page DomainPrintPage DomainPrint
+Class Reference: DomainPrint
+<hr>
+
+@section CommPrintData CommPrintData
+- data: String  
+- format: @ref PrintDataEnum (Enum)  = JScript 
+
+Class Reference: DomainPrint::CommPrintDataCore
+<hr>
+@section CommPrintRequest CommPrintRequest
+- data: @ref CommPrintData (CommObj) 
+
+Class Reference: DomainPrint::CommPrintRequestCore
+<hr>
+@section CommPrintResponse CommPrintResponse
+- resultValue: String  
+- result: @ref PrintResponseResultEnum (Enum) 
+
+Class Reference: DomainPrint::CommPrintResponseCore
+<hr>
+@section CommKeyValue CommKeyValue
+- key: String  
+- value: String  
+- type: @ref KeyValueDataTypeEnum (Enum) 
+
+Class Reference: DomainPrint::CommKeyValueCore
+<hr>
+@section CommPrintProcessData CommPrintProcessData
+- data: @ref CommKeyValue[*] (CommObj) 
+- templateID: String  
+- applicationMode: @ref ApplicationModeTypeEnum (Enum) 
+
+Class Reference: DomainPrint::CommPrintProcessDataCore
+<hr>
+@section CommPrinterStatus CommPrinterStatus
+- status: @ref PrinterStatusEnum (Enum) 
+- statusRIBWARN: Boolean   = false 
+- statusLBLWARN: Boolean   = false 
+
+Class Reference: DomainPrint::CommPrinterStatusCore
+<hr>
+@section CommDummy CommDummy
+- dummy: @ref CommVoid (CommObj) 
+
+Class Reference: DomainPrint::CommDummyCore
+<hr>
+@section PrintDataEnum PrintDataEnum
+- JScript 
+
+Class Reference: DomainPrint::PrintDataEnum
+<hr>
+@section PrintResponseResultEnum PrintResponseResultEnum
+- SUCCESS 
+- ERROR 
+
+Class Reference: DomainPrint::PrintResponseResultEnum
+<hr>
+@section KeyValueDataTypeEnum KeyValueDataTypeEnum
+- STRING 
+- NUMBER 
+- BOOL 
+- BYTE 
+
+Class Reference: DomainPrint::KeyValueDataTypeEnum
+<hr>
+@section ApplicationModeTypeEnum ApplicationModeTypeEnum
+- PrintApply 
+- ApplyPrint 
+
+Class Reference: DomainPrint::ApplicationModeTypeEnum
+<hr>
+@section PrinterStatusEnum PrinterStatusEnum
+- IDLE 
+- BUSY 
+- ERROR 
+
+Class Reference: DomainPrint::PrinterStatusEnum
+<hr>
+
+
+@}
+*/
+

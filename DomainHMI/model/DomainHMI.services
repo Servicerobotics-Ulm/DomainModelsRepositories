@@ -5,4 +5,16 @@ ServiceDefRepository DomainHMI version 1.0 {
         SendPattern <DataType=DomainHMI.CommTrafficLight>
     }
 	
+	
+	ForkingServiceDefinition RemoteControlEvent {
+		EventPattern < ActivationType = DomainHMI.CommRemoteControlEvent
+		EventStateType = DomainHMI.CommRemoteControlEvent
+		EventType = DomainHMI.CommRemoteControlEvent >
+	}
+	
+	CoordinationServiceDefinition RemoteControlCoordinationService {
+		ParameterPattern <DomainHMI.RemoteControlParams>
+		StatePattern < lifecycle ComponentLifecycle >
+		CommunicationServiceUsage remoteControlEvent uses RemoteControlEvent
+	}
 }

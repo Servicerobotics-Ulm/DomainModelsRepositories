@@ -1,0 +1,63 @@
+CommObjectsRepository DomainExternalSystems version 1 . 0
+{
+	
+	CommObject CommProgramList {
+		programs : CommExternalProgram [*]
+		isValid : Boolean = false
+	}
+	
+	CommObject CommExternalProgram {
+		//unique name as id
+		name : String = ""
+		
+		//shot human readable description
+		description : String 
+		isExecutable : Boolean = true
+		
+		//arguments and results not typed
+		arguments : CommExternalProgramArgument [*]
+		resultArgs : CommExternalProgramArgument [*]
+	}
+	
+	CommObject CommExternalProgramArgument {
+		name : String
+		type : String
+		value : String
+	}
+	
+	Enumeration ExternalProgramStatus {
+		UNKOWN
+		NOTRUNNING
+		RUNNING
+		ABORTED
+		FINSHED
+		PAUSED
+	}
+	
+	Enumeration ExternalProgramResult {
+		SUCCESS
+		ERROR
+	}
+	
+	CommObject CommExternalProgramResponse {
+		status : ExternalProgramStatus
+		result : ExternalProgramResult
+		resultArgs : CommExternalProgramArgument[*]
+//		callID : UInt32 --> not yet used
+	}
+	
+	CommObject CommExternalProgamEventParam {
+		status : ExternalProgramStatus
+	}
+	
+	
+	//required to get the basicObject dependency in cmake
+	CommObject Dummy {
+		element : CommBasicObjects.CommVoid
+	}
+	
+	CommObject CommExternalProgramStartResponse {
+		result : ExternalProgramResult
+	}
+	
+}

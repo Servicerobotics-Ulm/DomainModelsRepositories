@@ -1,0 +1,5 @@
+{
+	"id" : "DomainExternalSystems",
+	"type" : "DomainModel",
+	"dependprojects" : [ "CommBasicObjects" ]
+}

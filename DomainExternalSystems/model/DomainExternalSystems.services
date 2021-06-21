@@ -1,0 +1,37 @@
+ServiceDefRepository DomainExternalSystems version 1 . 0
+{
+	
+	
+	//Service to get a list of available programs
+	RequestAnswerServiceDefinition ExternalProgramListQueryService {
+		QueryPattern <
+			RequestType = CommBasicObjects.CommVoid
+			AnswerType = DomainExternalSystems.CommProgramList
+		>
+	}
+	
+	RequestAnswerServiceDefinition ExecuteProgramQueryService {
+		QueryPattern <
+			RequestType = DomainExternalSystems.CommExternalProgram
+			AnswerType = DomainExternalSystems.CommExternalProgramStartResponse
+		>
+	}
+	
+    //Event service to receive the status and the results of a program execution
+	ForkingServiceDefinition ExternalProgamCallEventService {
+		EventPattern <
+		ActivationType = DomainExternalSystems.CommExternalProgamEventParam
+		EventStateType = DomainExternalSystems.CommExternalProgramResponse
+		EventType = DomainExternalSystems.CommExternalProgramResponse
+		>
+	}
+
+	//Coordination service to make us of the external system offering programs
+	CoordinationServiceDefinition ExternalProgamCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle >
+		ParameterPattern < DomainExternalSystems.ExternalProgramsParam >
+		CommunicationServiceUsage programListQuery uses ExternalProgramListQueryService
+		CommunicationServiceUsage programCallResult uses ExternalProgamCallEventService
+	}
+	
+}

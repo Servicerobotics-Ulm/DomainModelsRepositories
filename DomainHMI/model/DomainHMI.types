@@ -14,5 +14,15 @@ CommObjectsRepository DomainHMI version 1.0 {
         // variable to hold status of the yellow light. true=on, false=off
         yellow: Boolean = false
    }
+   
+   Enumeration RemoteControlEventType {
+   		SUCCESS
+   		FAILED
+   		INVOKE
+   }
+   
+   CommObject CommRemoteControlEvent {
+   		state : RemoteControlEventType
+   }
 
 }

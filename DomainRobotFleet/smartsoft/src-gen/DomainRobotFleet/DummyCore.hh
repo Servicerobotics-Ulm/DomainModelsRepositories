@@ -17,7 +17,6 @@
 #define DOMAINROBOTFLEET_DUMMY_CORE_H_
 
 #include "DomainRobotFleet/DummyData.hh"
-#include "CommBasicObjects/CommBaseState.hh"
 
 #include <iostream>
 #include <string>
@@ -66,8 +65,8 @@ public:
 	// User Interface
 	
 	// getter and setter for element Dummy
-	inline CommBasicObjects::CommBaseState getDummy() const { return CommBasicObjects::CommBaseState(idl_Dummy.dummy); }
-	inline DummyCore& setDummy(const CommBasicObjects::CommBaseState &dummy) { idl_Dummy.dummy = dummy; return *this; }
+	inline char getDummy() const { return idl_Dummy.dummy; }
+	inline DummyCore& setDummy(const char &dummy) { idl_Dummy.dummy = dummy; return *this; }
 };
 
 } /* namespace DomainRobotFleet */

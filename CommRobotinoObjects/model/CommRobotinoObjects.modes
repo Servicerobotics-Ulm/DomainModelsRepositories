@@ -50,6 +50,7 @@ ComponentModeRepository CommRobotinoObjects {
 	ComponentModeCollection MasterRPCBridgeStates {
 		ComponentModeDefinition staticMap;
 		ComponentModeDefinition slamMap;
+		ComponentModeDefinition visualMap;
 	}
 
 }

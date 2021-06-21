@@ -49,6 +49,34 @@ Structure of Communication Object:
 - seq_count: UInt32 
 - is_valid: Boolean 
 
+\class DomainVision::CommStereoImageCore
+
+Structure of Communication Object:
+- left: DomainVision::CommVideoImage 
+- right: DomainVision::CommVideoImage 
+- hasDispertyMap: Boolean  = false 
+- disparityMap: DomainVision::CommDisparityImage 
+
+\class DomainVision::CommDisparityImageCore
+
+Structure of Communication Object:
+- image: DomainVision::CommVideoImage 
+- f: Float 
+- t: Float 
+- valid_window: DomainVision::CommImageRegionOfInterest 
+- min_disparity: Float 
+- max_disparity: Float 
+- delta_d: Float 
+
+\class DomainVision::CommImageRegionOfInterestCore
+
+Structure of Communication Object:
+- x_offset: UInt32 
+- y_offset: UInt32 
+- height: UInt32 
+- width: UInt32 
+- do_rectify: Boolean 
+
 \class DomainVision::Comm3dPointCloudCore
 
 Structure of Communication Object:
@@ -145,6 +173,34 @@ Class Reference: DomainVision::CommDepthImageCore
 - is_valid: Boolean  
 
 Class Reference: DomainVision::CommRGBDImageCore
+<hr>
+@section CommStereoImage CommStereoImage
+- left: @ref CommVideoImage (CommObj) 
+- right: @ref CommVideoImage (CommObj) 
+- hasDispertyMap: Boolean   = false 
+- disparityMap: @ref CommDisparityImage (CommObj) 
+
+Class Reference: DomainVision::CommStereoImageCore
+<hr>
+@section CommDisparityImage CommDisparityImage
+- image: @ref CommVideoImage (CommObj) 
+- f: Float  
+- t: Float  
+- valid_window: @ref CommImageRegionOfInterest (CommObj) 
+- min_disparity: Float  
+- max_disparity: Float  
+- delta_d: Float  
+
+Class Reference: DomainVision::CommDisparityImageCore
+<hr>
+@section CommImageRegionOfInterest CommImageRegionOfInterest
+- x_offset: UInt32  
+- y_offset: UInt32  
+- height: UInt32  
+- width: UInt32  
+- do_rectify: Boolean  
+
+Class Reference: DomainVision::CommImageRegionOfInterestCore
 <hr>
 @section Comm3dPointCloud Comm3dPointCloud
 - valid: Boolean   = false 

@@ -15,14 +15,13 @@
 //--------------------------------------------------------------------------
 #include "DomainRobotFleet/DummyACE.hh"
 #include <ace/SString.h>
-#include "CommBasicObjects/CommBaseStateACE.hh"
 
 // serialization operator for element Dummy
 ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const DomainRobotFleetIDL::Dummy &data)
 {
 	ACE_CDR::Boolean good_bit = true;
 	// serialize list-element dummy
-	good_bit = good_bit && cdr << data.dummy;
+	good_bit = good_bit && cdr.write_char(data.dummy);
 	
 	return good_bit;
 }
@@ -32,7 +31,7 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, DomainRobotFleetIDL::Dummy &data)
 {
 	ACE_CDR::Boolean good_bit = true;
 	// deserialize type element dummy
-	good_bit = good_bit && cdr >> data.dummy;
+	good_bit = good_bit && cdr.read_char(data.dummy);
 	
 	return good_bit;
 }

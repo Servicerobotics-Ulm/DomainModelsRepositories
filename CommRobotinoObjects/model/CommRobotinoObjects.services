@@ -63,7 +63,7 @@ ServiceDefRepository CommRobotinoObjects version 1.0
 		CommunicationServiceUsage dockingevent uses RobotinoDockingEvent		
 	}
 	
-	CoordinationServiceDefinition FestMPSVisualDockingCoordinationService {
+	CoordinationServiceDefinition FestoMPSVisualDockingCoordinationService {
 		StatePattern < lifecycle ComponentLifecycle with CommRobotinoObjects.FestoMpsVisualDockingStates>
 		ParameterPattern < CommRobotinoObjects.RobotinoDockingParameter>
 		CommunicationServiceUsage dockingevent uses CommRobotinoObjects.RobotinoDockingEvent

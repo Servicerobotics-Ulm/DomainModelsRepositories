@@ -14,14 +14,13 @@
 
 #include "DummyJSON.hh"
 
-#include "CommBasicObjectsJSON/CommBaseStateJSON.hh"
 
 namespace DomainRobotFleetIDL {
 
 void to_json(const DomainRobotFleetIDL::Dummy& obj, nlohmann::json& j)
 {
-	// dummy: CommBaseState
-	to_json(obj.dummy, j["dummy"]);
+	// dummy: Int8
+	j["dummy"] = obj.dummy;
 }
 
 /**
@@ -32,10 +31,9 @@ void to_json(const DomainRobotFleetIDL::Dummy& obj, nlohmann::json& j)
  */
 void from_json(const nlohmann::json& j, DomainRobotFleetIDL::Dummy& obj)
 {
-	// dummy: CommBaseState
-	if(j.contains("dummy") && j["dummy"].is_object()) {
-		//from_json(j["dummy"], obj.dummy);
-		obj.dummy = j["dummy"].get<CommBasicObjectsIDL::CommBaseState>();
+	// dummy: Int8
+	if(j.contains("dummy") && j["dummy"].is_number_integer()) {
+		obj.dummy = j["dummy"].get<char>();
 	}
 }
 

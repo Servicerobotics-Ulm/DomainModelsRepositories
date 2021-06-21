@@ -6,7 +6,6 @@
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/SelfDescriptionArray.hpp>
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ElementArray.hpp>
 
-#include "CommBasicObjectsOpcUa/CommBaseStateOpcUa.hh"
 
 namespace SeRoNet {
 namespace CommunicationObjects {

@@ -1,5 +1,5 @@
 {
 	"id" : "DomainRobotFleet",
 	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects" ]
+	"dependprojects" : [  ]
 }

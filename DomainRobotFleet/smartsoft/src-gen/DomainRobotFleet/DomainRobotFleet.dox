@@ -2,7 +2,7 @@
 \class DomainRobotFleet::DummyCore
 
 Structure of Communication Object:
-- dummy: CommBasicObjects::CommBaseState 
+- dummy: Int8 
 
 
 
@@ -15,7 +15,7 @@ Class Reference: DomainRobotFleet
 <hr>
 
 @section Dummy Dummy
-- dummy: @ref CommBaseState (CommObj) 
+- dummy: Int8  
 
 Class Reference: DomainRobotFleet::DummyCore
 <hr>

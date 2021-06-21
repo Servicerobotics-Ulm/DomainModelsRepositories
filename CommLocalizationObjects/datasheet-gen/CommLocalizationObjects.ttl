@@ -219,6 +219,20 @@
 	];
 .
 
+:LocalizationResult a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "LocalizationResult";
+	t1:shortDescription "ServiceDefinition LocalizationResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommPose3dWithCovariance;
+	];
+.
+
 :LocalizationResult3D a robmosys:ServiceDefinition;
 	rdf:type rdfs:Class;
 	rdf:type sh:NodeShape;
@@ -260,6 +274,20 @@
 		t1:eventType :CommLocalizationZoneChange;
 		t1:activationType :CommLocalizationZoneResult;
 		t1:eventStateType :CommLocalizationZoneChange;
+	];
+.
+
+:VisualMarkerMapPushService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "VisualMarkerMapPushService";
+	t1:shortDescription "ServiceDefinition VisualMarkerMapPushService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommLocalizationObjects>;
+	t1:commPatternUsage [
+		a robmosys:PushPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommVisualLocalizationFeatureMap;
 	];
 .
 

@@ -106,5 +106,10 @@ SkillDefinitionRepository CommRobotinoObjects {
 			}
 		}
 	}
+	
+	
+	CoordinationModuleDefinition FestoEducationMPS {
+		
+	}
 }
 		

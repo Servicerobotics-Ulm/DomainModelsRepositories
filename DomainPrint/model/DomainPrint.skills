@@ -1,0 +1,17 @@
+SkillDefinitionRepository DomainPrint { 
+	CoordinationModuleDefinition LabelPrinterModule {
+		
+		SkillDefinition printLabel 
+		{
+			in {
+				templateid : String
+				data : String
+			}
+			results{
+				SUCCESS value = "OK"
+				ERROR value = ""
+			}
+		}
+		
+	}
+}
