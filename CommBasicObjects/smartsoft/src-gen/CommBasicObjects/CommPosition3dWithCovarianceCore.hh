@@ -92,7 +92,7 @@ public:
 		return false;
 	}
 	inline bool insertCovMatrixVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommPosition3dWithCovariance.covMatrix.size()) {
+		if(pos <= idl_CommPosition3dWithCovariance.covMatrix.size()) {
 			idl_CommPosition3dWithCovariance.covMatrix.insert(idl_CommPosition3dWithCovariance.covMatrix.begin()+pos, data.begin(), data.end());
 			return true;
 		}

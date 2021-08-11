@@ -96,7 +96,7 @@ public:
 		return false;
 	}
 	inline bool insertObject_idVectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommObjectRecognitionEventResult.object_id.size()) {
+		if(pos <= idl_CommObjectRecognitionEventResult.object_id.size()) {
 			idl_CommObjectRecognitionEventResult.object_id.insert(idl_CommObjectRecognitionEventResult.object_id.begin()+pos, data.begin(), data.end());
 			return true;
 		}

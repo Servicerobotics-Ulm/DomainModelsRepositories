@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace CommBasicObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		ComparisonState(CommBasicObjectsIDL::ComparisonState e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace CommBasicObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "ComparisonState::";
+			}
 			switch (value) {
 				case UNKNOWN:
-					result = "ComparisonState::UNKNOWN";
+					result += "UNKNOWN";
 					break;
 				case GREATER:
-					result = "ComparisonState::GREATER";
+					result += "GREATER";
 					break;
 				case LOWER:
-					result = "ComparisonState::LOWER";
+					result += "LOWER";
 					break;
 				case INBETWEEN:
-					result = "ComparisonState::INBETWEEN";
+					result += "INBETWEEN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static ComparisonState from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "comparisonstate::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "unknown"){
+				return ComparisonState(UNKNOWN);
+			}
+			if(input == "greater"){
+				return ComparisonState(GREATER);
+			}
+			if(input == "lower"){
+				return ComparisonState(LOWER);
+			}
+			if(input == "inbetween"){
+				return ComparisonState(INBETWEEN);
+			}
+			// default (if none of the preceding options match)
+			return ComparisonState();
 		}
 		
 		// helper method to easily implement output stream

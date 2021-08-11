@@ -15,6 +15,7 @@
 #include "CommPrintProcessDataJSON.hh"
 
 #include "DomainPrintJSON/CommKeyValueJSON.hh"
+#include <DomainPrint/enumApplicationModeTypeEnum.hh>
 
 namespace DomainPrintIDL {
 
@@ -29,7 +30,7 @@ void to_json(const DomainPrintIDL::CommPrintProcessData& obj, nlohmann::json& j)
 	// templateID: String
 	j["templateID"] = obj.templateID;
 	// applicationMode: ApplicationModeTypeEnum
-	j["applicationMode"] = obj.applicationMode;
+	j["applicationMode"] = DomainPrint::ApplicationModeTypeEnum(obj.applicationMode).to_string(false);
 }
 
 /**
@@ -57,8 +58,8 @@ void from_json(const nlohmann::json& j, DomainPrintIDL::CommPrintProcessData& ob
 		obj.templateID = j["templateID"].get<std::string>();
 	}
 	// applicationMode: ApplicationModeTypeEnum
-	if(j.contains("applicationMode") && j["applicationMode"].is_number_integer()) {
-		obj.applicationMode = j["applicationMode"].get<int>();
+	if(j.contains("applicationMode") && j["applicationMode"].is_string()) {
+		obj.applicationMode = DomainPrint::ApplicationModeTypeEnum::from_string(j["applicationMode"].get<std::string>());
 	}
 }
 

@@ -19,6 +19,7 @@ Structure of Communication Object:
 - id: UInt32 
 - joint_angles: Double[*] 
 - pose_tcp: CommBasicObjects::CommPose3d 
+- motion_constraints: UInt8 
 - pose_manipulator: CommBasicObjects::CommPose3d 
 - is_valid: Boolean  = false 
 
@@ -138,6 +139,7 @@ Structure of Enumeration:
 - VALUE_OUT_OF_RANGE 
 - GOAL_REACHED 
 - GOAL_NOT_REACHED 
+- ERROR 
 - UNKNOWN 
 
 \class CommManipulatorObjects::GripperEvent
@@ -191,6 +193,7 @@ Class Reference: CommManipulatorObjects::CommManipulatorTrajectoryCore
 - id: UInt32  
 - joint_angles: Double[*]  
 - pose_tcp: @ref CommPose3d (CommObj) 
+- motion_constraints: UInt8  
 - pose_manipulator: @ref CommPose3d (CommObj) 
 - is_valid: Boolean   = false 
 
@@ -310,6 +313,7 @@ Class Reference: CommManipulatorObjects::ManipulatorTrajectoryFlag
 - VALUE_OUT_OF_RANGE 
 - GOAL_REACHED 
 - GOAL_NOT_REACHED 
+- ERROR 
 - UNKNOWN 
 
 Class Reference: CommManipulatorObjects::ManipulatorEvent

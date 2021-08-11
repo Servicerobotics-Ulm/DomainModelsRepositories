@@ -14,13 +14,14 @@
 
 #include "CommCorridorNavigationPoseRequestJSON.hh"
 
+#include <CommNavigationObjects/enumNavigationNodeRequestType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationPoseRequest& obj, nlohmann::json& j)
 {
 	// requesttype: NavigationNodeRequestType
-	j["requesttype"] = obj.requesttype;
+	j["requesttype"] = CommNavigationObjects::NavigationNodeRequestType(obj.requesttype).to_string(false);
 	// pose: UInt32
 	j["pose"] = obj.pose;
 	// robotID: String
@@ -36,8 +37,8 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationPoseRequest& 
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNavigationPoseRequest& obj)
 {
 	// requesttype: NavigationNodeRequestType
-	if(j.contains("requesttype") && j["requesttype"].is_number_integer()) {
-		obj.requesttype = j["requesttype"].get<int>();
+	if(j.contains("requesttype") && j["requesttype"].is_string()) {
+		obj.requesttype = CommNavigationObjects::NavigationNodeRequestType::from_string(j["requesttype"].get<std::string>());
 	}
 	// pose: UInt32
 	if(j.contains("pose") && j["pose"].is_number_unsigned()) {

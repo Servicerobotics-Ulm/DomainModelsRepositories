@@ -17,6 +17,7 @@
 #include "DomainVisionJSON/ImageParametersJSON.hh"
 #include "CommBasicObjectsJSON/CommPose3dJSON.hh"
 #include "CommBasicObjectsJSON/CommBaseStateJSON.hh"
+#include <DomainVision/enumImageDistortionModel.hh>
 
 namespace DomainVisionIDL {
 
@@ -39,7 +40,7 @@ void to_json(const DomainVisionIDL::CommVideoImage& obj, nlohmann::json& j)
 	// distortion_m: Double[]
 	j["distortion_m"] = obj.distortion_m;
 	// distortion_model: ImageDistortionModel
-	j["distortion_model"] = obj.distortion_model;
+	j["distortion_model"] = DomainVision::ImageDistortionModel(obj.distortion_model).to_string(false);
 }
 
 /**
@@ -86,8 +87,8 @@ void from_json(const nlohmann::json& j, DomainVisionIDL::CommVideoImage& obj)
 		obj.distortion_m = j["distortion_m"].get<std::vector<double>>();
 	}
 	// distortion_model: ImageDistortionModel
-	if(j.contains("distortion_model") && j["distortion_model"].is_number_integer()) {
-		obj.distortion_model = j["distortion_model"].get<int>();
+	if(j.contains("distortion_model") && j["distortion_model"].is_string()) {
+		obj.distortion_model = DomainVision::ImageDistortionModel::from_string(j["distortion_model"].get<std::string>());
 	}
 }
 

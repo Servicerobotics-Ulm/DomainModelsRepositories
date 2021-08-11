@@ -14,6 +14,7 @@
 
 #include "CommCoordinatedNavigationResourceStateJSON.hh"
 
+#include <CommRobotinoObjects/enumCoordinatedNavigationResourceStateType.hh>
 
 namespace CommRobotinoObjectsIDL {
 
@@ -24,7 +25,7 @@ void to_json(const CommRobotinoObjectsIDL::CommCoordinatedNavigationResourceStat
 	// robotID: Int32
 	j["robotID"] = obj.robotID;
 	// state: CoordinatedNavigationResourceStateType
-	j["state"] = obj.state;
+	j["state"] = CommRobotinoObjects::CoordinatedNavigationResourceStateType(obj.state).to_string(false);
 	// remainingCapacity: Int32
 	j["remainingCapacity"] = obj.remainingCapacity;
 }
@@ -46,8 +47,8 @@ void from_json(const nlohmann::json& j, CommRobotinoObjectsIDL::CommCoordinatedN
 		obj.robotID = j["robotID"].get<int>();
 	}
 	// state: CoordinatedNavigationResourceStateType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommRobotinoObjects::CoordinatedNavigationResourceStateType::from_string(j["state"].get<std::string>());
 	}
 	// remainingCapacity: Int32
 	if(j.contains("remainingCapacity") && j["remainingCapacity"].is_number_integer()) {

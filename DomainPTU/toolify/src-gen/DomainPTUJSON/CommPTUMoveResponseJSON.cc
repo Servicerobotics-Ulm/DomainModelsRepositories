@@ -16,6 +16,7 @@
 
 #include "CommBasicObjectsJSON/CommPose3dJSON.hh"
 #include "CommBasicObjectsJSON/CommBaseStateJSON.hh"
+#include <DomainPTU/enumPTUMoveStatus.hh>
 
 namespace DomainPTUIDL {
 
@@ -26,7 +27,7 @@ void to_json(const DomainPTUIDL::CommPTUMoveResponse& obj, nlohmann::json& j)
 	// stateBase: CommBaseState
 	to_json(obj.stateBase, j["stateBase"]);
 	// status: PTUMoveStatus
-	j["status"] = obj.status;
+	j["status"] = DomainPTU::PTUMoveStatus(obj.status).to_string(false);
 }
 
 /**
@@ -48,8 +49,8 @@ void from_json(const nlohmann::json& j, DomainPTUIDL::CommPTUMoveResponse& obj)
 		obj.stateBase = j["stateBase"].get<CommBasicObjectsIDL::CommBaseState>();
 	}
 	// status: PTUMoveStatus
-	if(j.contains("status") && j["status"].is_number_integer()) {
-		obj.status = j["status"].get<int>();
+	if(j.contains("status") && j["status"].is_string()) {
+		obj.status = DomainPTU::PTUMoveStatus::from_string(j["status"].get<std::string>());
 	}
 }
 

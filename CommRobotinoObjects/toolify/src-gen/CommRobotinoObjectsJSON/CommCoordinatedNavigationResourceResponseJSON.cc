@@ -14,6 +14,7 @@
 
 #include "CommCoordinatedNavigationResourceResponseJSON.hh"
 
+#include <CommRobotinoObjects/enumCoordinatedNavigationResourceResponseActionType.hh>
 
 namespace CommRobotinoObjectsIDL {
 
@@ -22,7 +23,7 @@ void to_json(const CommRobotinoObjectsIDL::CommCoordinatedNavigationResourceResp
 	// resourceID: Int32
 	j["resourceID"] = obj.resourceID;
 	// reservedSuccess: CoordinatedNavigationResourceResponseActionType
-	j["reservedSuccess"] = obj.reservedSuccess;
+	j["reservedSuccess"] = CommRobotinoObjects::CoordinatedNavigationResourceResponseActionType(obj.reservedSuccess).to_string(false);
 	// remainingCapacity: Int32
 	j["remainingCapacity"] = obj.remainingCapacity;
 }
@@ -40,8 +41,8 @@ void from_json(const nlohmann::json& j, CommRobotinoObjectsIDL::CommCoordinatedN
 		obj.resourceID = j["resourceID"].get<int>();
 	}
 	// reservedSuccess: CoordinatedNavigationResourceResponseActionType
-	if(j.contains("reservedSuccess") && j["reservedSuccess"].is_number_integer()) {
-		obj.reservedSuccess = j["reservedSuccess"].get<int>();
+	if(j.contains("reservedSuccess") && j["reservedSuccess"].is_string()) {
+		obj.reservedSuccess = CommRobotinoObjects::CoordinatedNavigationResourceResponseActionType::from_string(j["reservedSuccess"].get<std::string>());
 	}
 	// remainingCapacity: Int32
 	if(j.contains("remainingCapacity") && j["remainingCapacity"].is_number_integer()) {

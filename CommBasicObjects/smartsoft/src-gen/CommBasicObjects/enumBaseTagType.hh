@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -50,7 +51,7 @@ namespace CommBasicObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		BaseTagType(CommBasicObjectsIDL::BaseTagType e) {
 			value = e;
 		}
@@ -67,29 +68,63 @@ namespace CommBasicObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "BaseTagType::";
+			}
 			switch (value) {
 				case SIGNAL_STATE_IDLE:
-					result = "BaseTagType::SIGNAL_STATE_IDLE";
+					result += "SIGNAL_STATE_IDLE";
 					break;
 				case SIGNAL_STATE_ERROR:
-					result = "BaseTagType::SIGNAL_STATE_ERROR";
+					result += "SIGNAL_STATE_ERROR";
 					break;
 				case SIGNAL_STATE_BUSY:
-					result = "BaseTagType::SIGNAL_STATE_BUSY";
+					result += "SIGNAL_STATE_BUSY";
 					break;
 				case SIGNAL_STATE_LOCALIZATION_ERROR:
-					result = "BaseTagType::SIGNAL_STATE_LOCALIZATION_ERROR";
+					result += "SIGNAL_STATE_LOCALIZATION_ERROR";
 					break;
 				case SIGNAL_STATE_SAFETY_FIELD:
-					result = "BaseTagType::SIGNAL_STATE_SAFETY_FIELD";
+					result += "SIGNAL_STATE_SAFETY_FIELD";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static BaseTagType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "basetagtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "signal_state_idle"){
+				return BaseTagType(SIGNAL_STATE_IDLE);
+			}
+			if(input == "signal_state_error"){
+				return BaseTagType(SIGNAL_STATE_ERROR);
+			}
+			if(input == "signal_state_busy"){
+				return BaseTagType(SIGNAL_STATE_BUSY);
+			}
+			if(input == "signal_state_localization_error"){
+				return BaseTagType(SIGNAL_STATE_LOCALIZATION_ERROR);
+			}
+			if(input == "signal_state_safety_field"){
+				return BaseTagType(SIGNAL_STATE_SAFETY_FIELD);
+			}
+			// default (if none of the preceding options match)
+			return BaseTagType();
 		}
 		
 		// helper method to easily implement output stream

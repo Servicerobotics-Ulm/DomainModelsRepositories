@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace DomainHMI {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		RemoteControlEventType(DomainHMIIDL::RemoteControlEventType e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace DomainHMI {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "RemoteControlEventType::";
+			}
 			switch (value) {
 				case SUCCESS:
-					result = "RemoteControlEventType::SUCCESS";
+					result += "SUCCESS";
 					break;
 				case FAILED:
-					result = "RemoteControlEventType::FAILED";
+					result += "FAILED";
 					break;
 				case INVOKE:
-					result = "RemoteControlEventType::INVOKE";
+					result += "INVOKE";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static RemoteControlEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "remotecontroleventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "success"){
+				return RemoteControlEventType(SUCCESS);
+			}
+			if(input == "failed"){
+				return RemoteControlEventType(FAILED);
+			}
+			if(input == "invoke"){
+				return RemoteControlEventType(INVOKE);
+			}
+			// default (if none of the preceding options match)
+			return RemoteControlEventType();
 		}
 		
 		// helper method to easily implement output stream

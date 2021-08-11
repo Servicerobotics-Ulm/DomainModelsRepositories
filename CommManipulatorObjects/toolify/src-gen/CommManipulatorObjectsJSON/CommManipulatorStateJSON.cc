@@ -27,6 +27,8 @@ void to_json(const CommManipulatorObjectsIDL::CommManipulatorState& obj, nlohman
 	j["joint_angles"] = obj.joint_angles;
 	// pose_tcp: CommPose3d
 	to_json(obj.pose_tcp, j["pose_tcp"]);
+	// motion_constraints: UInt8
+	j["motion_constraints"] = obj.motion_constraints;
 	// pose_manipulator: CommPose3d
 	to_json(obj.pose_manipulator, j["pose_manipulator"]);
 	// is_valid: Boolean
@@ -53,6 +55,10 @@ void from_json(const nlohmann::json& j, CommManipulatorObjectsIDL::CommManipulat
 	if(j.contains("pose_tcp") && j["pose_tcp"].is_object()) {
 		//from_json(j["pose_tcp"], obj.pose_tcp);
 		obj.pose_tcp = j["pose_tcp"].get<CommBasicObjectsIDL::CommPose3d>();
+	}
+	// motion_constraints: UInt8
+	if(j.contains("motion_constraints") && j["motion_constraints"].is_number_unsigned()) {
+		obj.motion_constraints = j["motion_constraints"].get<unsigned char>();
 	}
 	// pose_manipulator: CommPose3d
 	if(j.contains("pose_manipulator") && j["pose_manipulator"].is_object()) {

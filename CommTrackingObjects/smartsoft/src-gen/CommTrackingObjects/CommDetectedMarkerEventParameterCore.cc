@@ -42,6 +42,8 @@ namespace CommTrackingObjects
 	{
 		// get own hash value
 		hashes.push_back(getCompiledHash());
+		// get hash value(s) for CommTrackingObjects::CommDetectedMarkerList(idl_CommDetectedMarkerEventParameter.markers)
+		CommTrackingObjects::CommDetectedMarkerList::getAllHashValues(hashes);
 	}
 	
 	void CommDetectedMarkerEventParameterCore::checkAllHashValues(std::list<std::string> &hashes)
@@ -59,6 +61,8 @@ namespace CommTrackingObjects
 		assert(strcmp(getCompiledHash(), hashes.front().c_str()) == 0);
 		hashes.pop_front();
 		
+		// check hash value(s) for CommTrackingObjects::CommDetectedMarkerList(idl_CommDetectedMarkerEventParameter.markers)
+		CommTrackingObjects::CommDetectedMarkerList::checkAllHashValues(hashes);
 	}
 	
 	#ifdef ENABLE_HASH
@@ -66,10 +70,7 @@ namespace CommTrackingObjects
 	{
 		size_t seed = 0;
 		
-		std::vector<ACE_CDR::ULong>::const_iterator data_tag_idsIt;
-		for(data_tag_idsIt=data.tag_ids.begin(); data_tag_idsIt!=data.tag_ids.end(); data_tag_idsIt++) {
-			boost::hash_combine(seed, *data_tag_idsIt);
-		}
+		seed += CommTrackingObjects::CommDetectedMarkerList::generateDataHash(data.markers);
 		
 		return seed;
 	}
@@ -79,7 +80,7 @@ namespace CommTrackingObjects
 	CommDetectedMarkerEventParameterCore::CommDetectedMarkerEventParameterCore()
 	:	idl_CommDetectedMarkerEventParameter()
 	{  
-		setTag_ids(std::vector<unsigned int>());
+		setMarkers(CommTrackingObjects::CommDetectedMarkerList());
 	}
 	
 	CommDetectedMarkerEventParameterCore::CommDetectedMarkerEventParameterCore(const DATATYPE &data)
@@ -92,48 +93,25 @@ namespace CommTrackingObjects
 	void CommDetectedMarkerEventParameterCore::to_ostream(std::ostream &os) const
 	{
 	  os << "CommDetectedMarkerEventParameter(";
-	  std::vector<unsigned int>::const_iterator tag_idsIt;
-	  std::vector<unsigned int> tag_idsList = getTag_idsCopy();
-	  for(tag_idsIt=tag_idsList.begin(); tag_idsIt!=tag_idsList.end(); tag_idsIt++) {
-	  	os << *tag_idsIt << " ";
-	  }
+	  getMarkers().to_ostream(os);
 	  os << ") ";
 	}
 	
 	// convert to xml stream
 	void CommDetectedMarkerEventParameterCore::to_xml(std::ostream &os, const std::string &indent) const {
-		size_t counter = 0;
-		
-		std::vector<unsigned int>::const_iterator tag_idsIt;
-		std::vector<unsigned int> tag_idsList = getTag_idsCopy();
-		counter = 0;
-		os << indent << "<tag_idsList n=\"" << tag_idsList.size() << "\">";
-		for(tag_idsIt=tag_idsList.begin(); tag_idsIt!=tag_idsList.end(); tag_idsIt++) {
-			os << indent << "<tag_ids i=\"" << counter++ << "\">" << *tag_idsIt << "</tag_ids>";
-		}
-		os << indent << "</tag_idsList>";
+		os << indent << "<markers>";
+		getMarkers().to_xml(os, indent);
+		os << indent << "</markers>";
 	}
 	
 	// restore from xml stream
 	void CommDetectedMarkerEventParameterCore::from_xml(std::istream &is) {
-		size_t counter = 0;
+		static const Smart::KnuthMorrisPratt kmp_markers("<markers>");
 		
-		static const Smart::KnuthMorrisPratt kmp_tag_idsList("<tag_idsList n=\"");
-		static const Smart::KnuthMorrisPratt kmp_tag_ids("\">");
-		
-		if(kmp_tag_idsList.search(is)) {
-			size_t numberElements;
-			is >> numberElements;
-			unsigned int tag_idsItem;
-			std::vector<unsigned int> tag_idsList;
-			kmp_tag_ids.search(is);
-			for(counter=0; counter<numberElements; counter++) {
-				if(kmp_tag_ids.search(is)) {
-					is >> tag_idsItem;
-					tag_idsList.push_back(tag_idsItem);
-				}
-			}
-			setTag_ids(tag_idsList);
+		if(kmp_markers.search(is)) {
+			CommTrackingObjects::CommDetectedMarkerList markersItem;
+			markersItem.from_xml(is);
+			setMarkers(markersItem);
 		}
 	}
 	

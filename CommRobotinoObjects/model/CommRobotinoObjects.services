@@ -67,6 +67,7 @@ ServiceDefRepository CommRobotinoObjects version 1.0
 		StatePattern < lifecycle ComponentLifecycle with CommRobotinoObjects.FestoMpsVisualDockingStates>
 		ParameterPattern < CommRobotinoObjects.RobotinoDockingParameter>
 		CommunicationServiceUsage dockingevent uses CommRobotinoObjects.RobotinoDockingEvent
+		CommunicationServiceUsage detectionevent uses CommTrackingObjects.MarkerListEventService
 	}
 	
 	CoordinationServiceDefinition RobotToRobotDockingCoordinationService {

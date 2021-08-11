@@ -6,7 +6,7 @@
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/SelfDescriptionArray.hpp>
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ElementArray.hpp>
 
-#include "CommTrackingObjectsOpcUa/CommDetectedMarkerOpcUa.hh"
+#include "CommTrackingObjectsOpcUa/CommDetectedMarkerListOpcUa.hh"
 
 namespace SeRoNet {
 namespace CommunicationObjects {

@@ -14,13 +14,14 @@
 
 #include "CommGripperEventJSON.hh"
 
+#include <CommManipulatorObjects/enumGripperEvent.hh>
 
 namespace CommManipulatorObjectsIDL {
 
 void to_json(const CommManipulatorObjectsIDL::CommGripperEvent& obj, nlohmann::json& j)
 {
 	// gripper_event: GripperEvent
-	j["gripper_event"] = obj.gripper_event;
+	j["gripper_event"] = CommManipulatorObjects::GripperEvent(obj.gripper_event).to_string(false);
 	// pos: Float
 	j["pos"] = obj.pos;
 }
@@ -34,8 +35,8 @@ void to_json(const CommManipulatorObjectsIDL::CommGripperEvent& obj, nlohmann::j
 void from_json(const nlohmann::json& j, CommManipulatorObjectsIDL::CommGripperEvent& obj)
 {
 	// gripper_event: GripperEvent
-	if(j.contains("gripper_event") && j["gripper_event"].is_number_integer()) {
-		obj.gripper_event = j["gripper_event"].get<int>();
+	if(j.contains("gripper_event") && j["gripper_event"].is_string()) {
+		obj.gripper_event = CommManipulatorObjects::GripperEvent::from_string(j["gripper_event"].get<std::string>());
 	}
 	// pos: Float
 	if(j.contains("pos") && j["pos"].is_number_float()) {

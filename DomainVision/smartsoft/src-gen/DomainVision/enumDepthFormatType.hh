@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace DomainVision {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		DepthFormatType(DomainVisionIDL::DepthFormatType e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace DomainVision {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "DepthFormatType::";
+			}
 			switch (value) {
 				case UINT8:
-					result = "DepthFormatType::UINT8";
+					result += "UINT8";
 					break;
 				case UINT16:
-					result = "DepthFormatType::UINT16";
+					result += "UINT16";
 					break;
 				case FLOAT:
-					result = "DepthFormatType::FLOAT";
+					result += "FLOAT";
 					break;
 				case DOUBLE:
-					result = "DepthFormatType::DOUBLE";
+					result += "DOUBLE";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static DepthFormatType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "depthformattype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "uint8"){
+				return DepthFormatType(UINT8);
+			}
+			if(input == "uint16"){
+				return DepthFormatType(UINT16);
+			}
+			if(input == "float"){
+				return DepthFormatType(FLOAT);
+			}
+			if(input == "double"){
+				return DepthFormatType(DOUBLE);
+			}
+			// default (if none of the preceding options match)
+			return DepthFormatType();
 		}
 		
 		// helper method to easily implement output stream

@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -50,7 +51,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		CdlRobotBlockEventType(CommNavigationObjectsIDL::CdlRobotBlockEventType e) {
 			value = e;
 		}
@@ -67,29 +68,63 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "CdlRobotBlockEventType::";
+			}
 			switch (value) {
 				case CDL_ROBOT_UNKNOWN:
-					result = "CdlRobotBlockEventType::CDL_ROBOT_UNKNOWN";
+					result += "CDL_ROBOT_UNKNOWN";
 					break;
 				case CDL_ROBOT_BLOCKED:
-					result = "CdlRobotBlockEventType::CDL_ROBOT_BLOCKED";
+					result += "CDL_ROBOT_BLOCKED";
 					break;
 				case CDL_ROBOT_NOT_BLOCKED:
-					result = "CdlRobotBlockEventType::CDL_ROBOT_NOT_BLOCKED";
+					result += "CDL_ROBOT_NOT_BLOCKED";
 					break;
 				case CDL_ROBOT_BLOCKED_PATH:
-					result = "CdlRobotBlockEventType::CDL_ROBOT_BLOCKED_PATH";
+					result += "CDL_ROBOT_BLOCKED_PATH";
 					break;
 				case CDL_ROBOT_UNBLOCKED_PATH:
-					result = "CdlRobotBlockEventType::CDL_ROBOT_UNBLOCKED_PATH";
+					result += "CDL_ROBOT_UNBLOCKED_PATH";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static CdlRobotBlockEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "cdlrobotblockeventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "cdl_robot_unknown"){
+				return CdlRobotBlockEventType(CDL_ROBOT_UNKNOWN);
+			}
+			if(input == "cdl_robot_blocked"){
+				return CdlRobotBlockEventType(CDL_ROBOT_BLOCKED);
+			}
+			if(input == "cdl_robot_not_blocked"){
+				return CdlRobotBlockEventType(CDL_ROBOT_NOT_BLOCKED);
+			}
+			if(input == "cdl_robot_blocked_path"){
+				return CdlRobotBlockEventType(CDL_ROBOT_BLOCKED_PATH);
+			}
+			if(input == "cdl_robot_unblocked_path"){
+				return CdlRobotBlockEventType(CDL_ROBOT_UNBLOCKED_PATH);
+			}
+			// default (if none of the preceding options match)
+			return CdlRobotBlockEventType();
 		}
 		
 		// helper method to easily implement output stream

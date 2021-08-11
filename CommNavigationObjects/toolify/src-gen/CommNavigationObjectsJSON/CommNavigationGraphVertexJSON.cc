@@ -14,6 +14,7 @@
 
 #include "CommNavigationGraphVertexJSON.hh"
 
+#include <CommNavigationObjects/enumNODE_TYPE.hh>
 
 namespace CommNavigationObjectsIDL {
 
@@ -30,7 +31,7 @@ void to_json(const CommNavigationObjectsIDL::CommNavigationGraphVertex& obj, nlo
 	// width: Double
 	j["width"] = obj.width;
 	// type: NODE_TYPE
-	j["type"] = obj.type;
+	j["type"] = CommNavigationObjects::NODE_TYPE(obj.type).to_string(false);
 	// intersec_path: Int32[]
 	j["intersec_path"] = obj.intersec_path;
 }
@@ -64,8 +65,8 @@ void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommNavigation
 		obj.width = j["width"].get<double>();
 	}
 	// type: NODE_TYPE
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommNavigationObjects::NODE_TYPE::from_string(j["type"].get<std::string>());
 	}
 	// intersec_path: Int32[]
 	if(j.contains("intersec_path") && j["intersec_path"].is_array()) {

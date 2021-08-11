@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		NODE_TYPE(CommNavigationObjectsIDL::NODE_TYPE e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "NODE_TYPE::";
+			}
 			switch (value) {
 				case NORMAL:
-					result = "NODE_TYPE::NORMAL";
+					result += "NORMAL";
 					break;
 				case CROSS:
-					result = "NODE_TYPE::CROSS";
+					result += "CROSS";
 					break;
 				case WAIT:
-					result = "NODE_TYPE::WAIT";
+					result += "WAIT";
 					break;
 				case NEWCROSS:
-					result = "NODE_TYPE::NEWCROSS";
+					result += "NEWCROSS";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static NODE_TYPE from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "node_type::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "normal"){
+				return NODE_TYPE(NORMAL);
+			}
+			if(input == "cross"){
+				return NODE_TYPE(CROSS);
+			}
+			if(input == "wait"){
+				return NODE_TYPE(WAIT);
+			}
+			if(input == "newcross"){
+				return NODE_TYPE(NEWCROSS);
+			}
+			// default (if none of the preceding options match)
+			return NODE_TYPE();
 		}
 		
 		// helper method to easily implement output stream

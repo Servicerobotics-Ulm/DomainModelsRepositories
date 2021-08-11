@@ -14,6 +14,7 @@
 
 #include "CommKeyValueJSON.hh"
 
+#include <DomainPrint/enumKeyValueDataTypeEnum.hh>
 
 namespace DomainPrintIDL {
 
@@ -24,7 +25,7 @@ void to_json(const DomainPrintIDL::CommKeyValue& obj, nlohmann::json& j)
 	// value: String
 	j["value"] = obj.value;
 	// type: KeyValueDataTypeEnum
-	j["type"] = obj.type;
+	j["type"] = DomainPrint::KeyValueDataTypeEnum(obj.type).to_string(false);
 }
 
 /**
@@ -44,8 +45,8 @@ void from_json(const nlohmann::json& j, DomainPrintIDL::CommKeyValue& obj)
 		obj.value = j["value"].get<std::string>();
 	}
 	// type: KeyValueDataTypeEnum
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = DomainPrint::KeyValueDataTypeEnum::from_string(j["type"].get<std::string>());
 	}
 }
 

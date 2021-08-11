@@ -42,8 +42,8 @@ namespace CommTrackingObjects
 	{
 		// get own hash value
 		hashes.push_back(getCompiledHash());
-		// get hash value(s) for CommTrackingObjects::CommDetectedMarker(idl_CommDetectedMarkerEventResult.markers)
-		CommTrackingObjects::CommDetectedMarker::getAllHashValues(hashes);
+		// get hash value(s) for CommTrackingObjects::CommDetectedMarkerList(idl_CommDetectedMarkerEventResult.markers)
+		CommTrackingObjects::CommDetectedMarkerList::getAllHashValues(hashes);
 	}
 	
 	void CommDetectedMarkerEventResultCore::checkAllHashValues(std::list<std::string> &hashes)
@@ -61,8 +61,8 @@ namespace CommTrackingObjects
 		assert(strcmp(getCompiledHash(), hashes.front().c_str()) == 0);
 		hashes.pop_front();
 		
-		// check hash value(s) for CommTrackingObjects::CommDetectedMarker(idl_CommDetectedMarkerEventResult.markers)
-		CommTrackingObjects::CommDetectedMarker::checkAllHashValues(hashes);
+		// check hash value(s) for CommTrackingObjects::CommDetectedMarkerList(idl_CommDetectedMarkerEventResult.markers)
+		CommTrackingObjects::CommDetectedMarkerList::checkAllHashValues(hashes);
 	}
 	
 	#ifdef ENABLE_HASH
@@ -70,10 +70,7 @@ namespace CommTrackingObjects
 	{
 		size_t seed = 0;
 		
-		std::vector<CommTrackingObjectsIDL::CommDetectedMarker>::const_iterator data_markersIt;
-		for(data_markersIt=data.markers.begin(); data_markersIt!=data.markers.end(); data_markersIt++) {
-			seed += CommTrackingObjects::CommDetectedMarker::generateDataHash(*data_markersIt);
-		}
+		seed += CommTrackingObjects::CommDetectedMarkerList::generateDataHash(data.markers);
 		
 		return seed;
 	}
@@ -83,7 +80,7 @@ namespace CommTrackingObjects
 	CommDetectedMarkerEventResultCore::CommDetectedMarkerEventResultCore()
 	:	idl_CommDetectedMarkerEventResult()
 	{  
-		setMarkers(std::vector<CommTrackingObjects::CommDetectedMarker>());
+		setMarkers(CommTrackingObjects::CommDetectedMarkerList());
 	}
 	
 	CommDetectedMarkerEventResultCore::CommDetectedMarkerEventResultCore(const DATATYPE &data)
@@ -96,50 +93,25 @@ namespace CommTrackingObjects
 	void CommDetectedMarkerEventResultCore::to_ostream(std::ostream &os) const
 	{
 	  os << "CommDetectedMarkerEventResult(";
-	  std::vector<CommTrackingObjects::CommDetectedMarker>::const_iterator markersIt;
-	  std::vector<CommTrackingObjects::CommDetectedMarker> markersList = getMarkersCopy();
-	  for(markersIt=markersList.begin(); markersIt!=markersList.end(); markersIt++) {
-	  	markersIt->to_ostream(os);
-	  }
+	  getMarkers().to_ostream(os);
 	  os << ") ";
 	}
 	
 	// convert to xml stream
 	void CommDetectedMarkerEventResultCore::to_xml(std::ostream &os, const std::string &indent) const {
-		size_t counter = 0;
-		
-		std::vector<CommTrackingObjects::CommDetectedMarker>::const_iterator markersIt;
-		std::vector<CommTrackingObjects::CommDetectedMarker> markersList = getMarkersCopy();
-		counter = 0;
-		os << indent << "<markersList n=\"" << markersList.size() << "\">";
-		for(markersIt=markersList.begin(); markersIt!=markersList.end(); markersIt++) {
-			os << indent << "<markers i=\"" << counter++ << "\">";
-			markersIt->to_xml(os, indent);
-			os << indent << "</markers>";
-		}
-		os << indent << "</markersList>";
+		os << indent << "<markers>";
+		getMarkers().to_xml(os, indent);
+		os << indent << "</markers>";
 	}
 	
 	// restore from xml stream
 	void CommDetectedMarkerEventResultCore::from_xml(std::istream &is) {
-		size_t counter = 0;
+		static const Smart::KnuthMorrisPratt kmp_markers("<markers>");
 		
-		static const Smart::KnuthMorrisPratt kmp_markersList("<markersList n=\"");
-		static const Smart::KnuthMorrisPratt kmp_markers("\">");
-		
-		if(kmp_markersList.search(is)) {
-			size_t numberElements;
-			is >> numberElements;
-			CommTrackingObjects::CommDetectedMarker markersItem;
-			std::vector<CommTrackingObjects::CommDetectedMarker> markersList;
-			kmp_markers.search(is);
-			for(counter=0; counter<numberElements; counter++) {
-				if(kmp_markers.search(is)) {
-					markersItem.from_xml(is);
-					markersList.push_back(markersItem);
-				}
-			}
-			setMarkers(markersList);
+		if(kmp_markers.search(is)) {
+			CommTrackingObjects::CommDetectedMarkerList markersItem;
+			markersItem.from_xml(is);
+			setMarkers(markersItem);
 		}
 	}
 	

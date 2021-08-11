@@ -20,6 +20,9 @@
 
 	//component name: FestoMPSVisualDockingCoordinationService
 	//EVENT CLIENT
+	iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient = new SmartACE::EventClient<CommTrackingObjects::CommDetectedMarkerEventParameter,CommTrackingObjects::CommDetectedMarkerEventResult>(component);
+	iter->second.festoMPSVisualDockingCoordinationServicedetectioneventEventHandlerCore = new FestoMPSVisualDockingCoordinationServiceDetectioneventEventHandlerCore(iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient, ciInstanceName);
+	//EVENT CLIENT
 	iter->second.festoMPSVisualDockingCoordinationServicedockingeventClient = new SmartACE::EventClient<CommRobotinoObjects::CommRobotinoDockingEventParameter,CommRobotinoObjects::CommRobotinoDockingEventResult>(component);
 	iter->second.festoMPSVisualDockingCoordinationServicedockingeventEventHandlerCore = new FestoMPSVisualDockingCoordinationServiceDockingeventEventHandlerCore(iter->second.festoMPSVisualDockingCoordinationServicedockingeventClient, ciInstanceName);
 	
@@ -27,6 +30,26 @@
 	std::cout<<__FUNCTION__<<" connect ports..."<<std::endl; 
 	std::map< std::string, CiConnection, ciLessLibC>::const_iterator ci_inst_iter = ciConnectionsMap.find(ciInstanceName);
 	if(ci_inst_iter != ciConnectionsMap.end()){
+		{
+			std::map<std::string, std::string>::const_iterator service_iter = ci_inst_iter->second.serviceNameMap.find("detectionevent");
+			if(service_iter != ci_inst_iter->second.serviceNameMap.end()){
+				std::string serviceName(service_iter->second);
+		
+				Smart::StatusCode status;
+		
+				std::cout << "connecting to: " << ci_inst_iter->second.componentInstanceName << "; " << serviceName << std::endl;
+				status = iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				while(status != Smart::SMART_OK)
+				{
+					ACE_OS::sleep(ACE_Time_Value(0,500000));
+					status = iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient->connect(ci_inst_iter->second.componentInstanceName, serviceName);
+				}
+				std::cout << "connected.\n";
+			} else {
+				std::cout<<"ERROR SERVICE NOT FOUND IN MAP!"<<std::endl;
+				return 1;
+			}
+		}
 		{
 			std::map<std::string, std::string>::const_iterator service_iter = ci_inst_iter->second.serviceNameMap.find("dockingevent");
 			if(service_iter != ci_inst_iter->second.serviceNameMap.end()){
@@ -61,6 +84,8 @@
  int FestoMPSVisualDockingCoordinationServiceCore::finiCiInstance(const std::string& ciInstanceName){
  	std::map<std::string, FestoMPSVisualDockingCoordinationService>::iterator iter = ciInstanceMap.find(ciInstanceName);
 	if(iter != ciInstanceMap.end()){
+			delete iter->second.festoMPSVisualDockingCoordinationServicedetectioneventEventHandlerCore;
+			delete iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient;
 			delete iter->second.festoMPSVisualDockingCoordinationServicedockingeventEventHandlerCore;
 			delete iter->second.festoMPSVisualDockingCoordinationServicedockingeventClient;
 		return 0;
@@ -102,6 +127,104 @@ std::string FestoMPSVisualDockingCoordinationServiceCore::switchCi(const std::st
 			if(ACE_OS::strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
 			{
 				outString.str(waitForLifeCycleState(componentInstanceName, parameter));
+			}
+			if(ACE_OS::strcasecmp(service.c_str(), "detectionevent-activate") == 0 )
+			{
+				Smart::StatusCode status;
+				Smart::EventIdPtr id = nullptr;
+				
+				CommTrackingObjects::CommDetectedMarkerEventParameter param;
+				param = iter->second.festoMPSVisualDockingCoordinationServicedetectioneventEventHandlerCore->activateEventParam(parameter);
+					
+				// CONTINOUS
+				if( ACE_OS::strcasecmp(eventMode.c_str(), "CONTINUOUS") == 0 )
+				{
+					status = iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient->activate(Smart::continuous, param, id);
+					outString.str("");
+					switch(status)
+					{
+						case Smart::SMART_OK:
+							outString << "(ok ("<<id<<"))";
+							break;
+						case Smart::SMART_DISCONNECTED:
+							outString << "(error (smart disconnected))";
+							break;
+						case Smart::SMART_ERROR_COMMUNICATION:
+							outString << "(error (smart communication error))";
+							break;
+						case Smart::SMART_ERROR:
+							outString << "(error (unknown error))";
+			       			break;
+						default:
+				            outString << "(error (unknown error))";
+				            break;
+					} // switch
+				} // CONTINOUS
+					
+				// SINGLE
+				else if( ACE_OS::strcasecmp(eventMode.c_str(), "SINGLE") == 0 )
+				{
+					status = iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient->activate(Smart::single, param, id);
+					outString.str("");
+					switch(status)
+					{
+						case Smart::SMART_OK:
+							outString << "(ok ("<<id<<"))";
+							break;
+						case Smart::SMART_DISCONNECTED:
+							outString << "(error (smart disconnected))";
+							break;
+						case Smart::SMART_ERROR_COMMUNICATION:
+							outString << "(error (smart communication error))";
+							break;
+						case Smart::SMART_ERROR:
+				            outString << "(error (unknown error))";
+				            break;
+						default:
+				            outString << "(error (unknown error))";
+				            break;
+					} // switch
+				}
+			}
+					
+			// goal event deactivate
+			if(ACE_OS::strcasecmp(service.c_str(), "detectionevent-deactivate") == 0)
+			{
+				Smart::StatusCode status;
+				
+				Smart::EventIdPtr id = NULL;
+				
+				try {
+					// TODO: <alex> this seems to be quite a hack, as ID is not always an int and will not work with other middlewares as ACE
+					id = std::make_shared<Smart::NumericCorrelationId>(std::stoi( parameter ));
+				}
+				catch (...) {
+					std::cout<<"[FleetManagerCoordinationServiceCore] id int conversion error!"<<std::endl;
+					outString << "(error (unknown error))";
+					return outString.str();
+				}
+				
+				status = iter->second.festoMPSVisualDockingCoordinationServicedetectioneventClient->deactivate(id);
+				outString.str("");
+				switch(status)
+				{
+				case Smart::SMART_OK:
+					outString << "(ok ("<<id<<"))";
+					break;
+				case Smart::SMART_WRONGID:
+					outString << "(error (smart wrongid))";
+					break;
+				case Smart::SMART_ERROR_COMMUNICATION:
+					outString << "(error (smart communication error))";
+					break;
+				case Smart::SMART_ERROR:
+					outString << "(error (unknown error))";
+					break;
+				default:
+					outString << "(error (unknown error))";
+					break;
+				} // switch
+					
 			}
 			if(ACE_OS::strcasecmp(service.c_str(), "dockingevent-activate") == 0 )
 			{

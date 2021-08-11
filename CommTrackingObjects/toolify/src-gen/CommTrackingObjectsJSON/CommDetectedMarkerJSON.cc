@@ -15,6 +15,8 @@
 #include "CommDetectedMarkerJSON.hh"
 
 #include "CommBasicObjectsJSON/CommPose3dJSON.hh"
+#include "CommBasicObjectsJSON/CommPose3dJSON.hh"
+#include "CommBasicObjectsJSON/CommBaseStateJSON.hh"
 
 namespace CommTrackingObjectsIDL {
 
@@ -24,6 +26,10 @@ void to_json(const CommTrackingObjectsIDL::CommDetectedMarker& obj, nlohmann::js
 	j["id"] = obj.id;
 	// pose: CommPose3d
 	to_json(obj.pose, j["pose"]);
+	// sensor_pose: CommPose3d
+	to_json(obj.sensor_pose, j["sensor_pose"]);
+	// base_state: CommBaseState
+	to_json(obj.base_state, j["base_state"]);
 }
 
 /**
@@ -42,6 +48,16 @@ void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::CommDetectedMark
 	if(j.contains("pose") && j["pose"].is_object()) {
 		//from_json(j["pose"], obj.pose);
 		obj.pose = j["pose"].get<CommBasicObjectsIDL::CommPose3d>();
+	}
+	// sensor_pose: CommPose3d
+	if(j.contains("sensor_pose") && j["sensor_pose"].is_object()) {
+		//from_json(j["sensor_pose"], obj.sensor_pose);
+		obj.sensor_pose = j["sensor_pose"].get<CommBasicObjectsIDL::CommPose3d>();
+	}
+	// base_state: CommBaseState
+	if(j.contains("base_state") && j["base_state"].is_object()) {
+		//from_json(j["base_state"], obj.base_state);
+		obj.base_state = j["base_state"].get<CommBasicObjectsIDL::CommBaseState>();
 	}
 }
 

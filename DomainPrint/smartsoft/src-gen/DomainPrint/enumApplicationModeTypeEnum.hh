@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -47,7 +48,7 @@ namespace DomainPrint {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		ApplicationModeTypeEnum(DomainPrintIDL::ApplicationModeTypeEnum e) {
 			value = e;
 		}
@@ -64,20 +65,45 @@ namespace DomainPrint {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "ApplicationModeTypeEnum::";
+			}
 			switch (value) {
 				case PrintApply:
-					result = "ApplicationModeTypeEnum::PrintApply";
+					result += "PrintApply";
 					break;
 				case ApplyPrint:
-					result = "ApplicationModeTypeEnum::ApplyPrint";
+					result += "ApplyPrint";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static ApplicationModeTypeEnum from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "applicationmodetypeenum::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "printapply"){
+				return ApplicationModeTypeEnum(PrintApply);
+			}
+			if(input == "applyprint"){
+				return ApplicationModeTypeEnum(ApplyPrint);
+			}
+			// default (if none of the preceding options match)
+			return ApplicationModeTypeEnum();
 		}
 		
 		// helper method to easily implement output stream

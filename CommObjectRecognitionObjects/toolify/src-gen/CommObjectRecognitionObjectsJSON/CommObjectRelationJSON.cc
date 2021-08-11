@@ -14,13 +14,14 @@
 
 #include "CommObjectRelationJSON.hh"
 
+#include <CommObjectRecognitionObjects/enumRelationType.hh>
 
 namespace CommObjectRecognitionObjectsIDL {
 
 void to_json(const CommObjectRecognitionObjectsIDL::CommObjectRelation& obj, nlohmann::json& j)
 {
 	// type: RelationType
-	j["type"] = obj.type;
+	j["type"] = CommObjectRecognitionObjects::RelationType(obj.type).to_string(false);
 	// relatedObjectId: UInt32
 	j["relatedObjectId"] = obj.relatedObjectId;
 }
@@ -34,8 +35,8 @@ void to_json(const CommObjectRecognitionObjectsIDL::CommObjectRelation& obj, nlo
 void from_json(const nlohmann::json& j, CommObjectRecognitionObjectsIDL::CommObjectRelation& obj)
 {
 	// type: RelationType
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommObjectRecognitionObjects::RelationType::from_string(j["type"].get<std::string>());
 	}
 	// relatedObjectId: UInt32
 	if(j.contains("relatedObjectId") && j["relatedObjectId"].is_number_unsigned()) {

@@ -1,8 +1,6 @@
 #include "IOQueryCoordinationServiceCore.hh"
-#include <cstdio>
 #include <string>
-#include <cstring>
-#include <cstdlib>
+#include <ace/OS.h>
 
 #include <smartNumericCorrelationId.h>
 
@@ -72,7 +70,7 @@
 	}
 }
 
-std::string IOQueryCoordinationServiceCore::switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString){
+std::string IOQueryCoordinationServiceCore::switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode){
 	std::map<std::string, IOQueryCoordinationService>::const_iterator iter = ciInstanceMap.find(ciInstanceName);
 	
 	if(ciInstanceName == "NIL" && ciInstanceMap.size() == 1){
@@ -82,36 +80,36 @@ std::string IOQueryCoordinationServiceCore::switchCi(const std::string& ciInstan
 	
 	if(iter != ciInstanceMap.end()){
 		
-		//std::cout<<"switchIOQueryCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchIOQueryCoordinationService - compInstName: "<<componentInstanceName<<" parameter: "<<parameter<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
 	
 			
 			// param
-			if(strcasecmp(service.c_str(), "param") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "param") == 0 )
 			{
-				outString.str(queryParam(componentInstanceName, inString));
+				outString.str(queryParam(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "state") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "state") == 0 )
 			{
-				outString.str(setState(componentInstanceName, inString));
+				outString.str(setState(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "getstate") == 0 )
 			{
 				outString.str(getState(componentInstanceName));
 			}
-			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
 			{
-				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+				outString.str(waitForLifeCycleState(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "ioQuery") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "ioQuery") == 0 )
 			{
 				CommBasicObjects::CommIOValues request;
 				CommBasicObjects::CommIOValues answer;
 				
 				Smart::StatusCode status;
-				request = iter->second.iOQueryCoordinationServiceioQueryQueryHandler->handleRequest(inString);
+				request = iter->second.iOQueryCoordinationServiceioQueryQueryHandler->handleRequest(parameter);
 				
 				status = iter->second.iOQueryCoordinationServiceioQueryClient->query(request,answer);
 				outString.str("");

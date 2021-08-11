@@ -14,13 +14,14 @@
 
 #include "CommTrackingGoalJSON.hh"
 
+#include <CommTrackingObjects/enumTrackingGoalType.hh>
 
 namespace CommTrackingObjectsIDL {
 
 void to_json(const CommTrackingObjectsIDL::CommTrackingGoal& obj, nlohmann::json& j)
 {
 	// trackingType: TrackingGoalType
-	j["trackingType"] = obj.trackingType;
+	j["trackingType"] = CommTrackingObjects::TrackingGoalType(obj.trackingType).to_string(false);
 	// angle: Double
 	j["angle"] = obj.angle;
 	// distance: Double
@@ -46,8 +47,8 @@ void to_json(const CommTrackingObjectsIDL::CommTrackingGoal& obj, nlohmann::json
 void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::CommTrackingGoal& obj)
 {
 	// trackingType: TrackingGoalType
-	if(j.contains("trackingType") && j["trackingType"].is_number_integer()) {
-		obj.trackingType = j["trackingType"].get<int>();
+	if(j.contains("trackingType") && j["trackingType"].is_string()) {
+		obj.trackingType = CommTrackingObjects::TrackingGoalType::from_string(j["trackingType"].get<std::string>());
 	}
 	// angle: Double
 	if(j.contains("angle") && j["angle"].is_number_float()) {

@@ -14,13 +14,14 @@
 
 #include "CommNavigationTopologyPartJSON.hh"
 
+#include <CommNavigationObjects/enumNavigationPartType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommNavigationTopologyPart& obj, nlohmann::json& j)
 {
 	// type: NavigationPartType
-	j["type"] = obj.type;
+	j["type"] = CommNavigationObjects::NavigationPartType(obj.type).to_string(false);
 	// id: UInt32
 	j["id"] = obj.id;
 	// name: String
@@ -38,8 +39,8 @@ void to_json(const CommNavigationObjectsIDL::CommNavigationTopologyPart& obj, nl
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommNavigationTopologyPart& obj)
 {
 	// type: NavigationPartType
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommNavigationObjects::NavigationPartType::from_string(j["type"].get<std::string>());
 	}
 	// id: UInt32
 	if(j.contains("id") && j["id"].is_number_unsigned()) {

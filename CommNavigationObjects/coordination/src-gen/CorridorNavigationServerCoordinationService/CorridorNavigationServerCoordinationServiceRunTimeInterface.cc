@@ -22,7 +22,7 @@ extern "C" int finiCorridorNavigationServerCoordinationService(const std::string
 
 //SWITCH FUNCTION
 
-extern "C" std::string switchCorridorNavigationServerCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString)
+extern "C" std::string switchCorridorNavigationServerCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode)
 {
-	return CORRIDORNAVIGATIONSERVERCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,inString);
+	return CORRIDORNAVIGATIONSERVERCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,parameter,eventMode);
 }

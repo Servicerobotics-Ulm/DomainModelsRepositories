@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommBasicObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		RobotComponentEnum(CommBasicObjectsIDL::RobotComponentEnum e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommBasicObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "RobotComponentEnum::";
+			}
 			switch (value) {
 				case ROBOT_BASE_COMPONENT:
-					result = "RobotComponentEnum::ROBOT_BASE_COMPONENT";
+					result += "ROBOT_BASE_COMPONENT";
 					break;
 				case ROBOT_STEER_COMPONENT:
-					result = "RobotComponentEnum::ROBOT_STEER_COMPONENT";
+					result += "ROBOT_STEER_COMPONENT";
 					break;
 				case ROBOT_TURRET_COMPONENT:
-					result = "RobotComponentEnum::ROBOT_TURRET_COMPONENT";
+					result += "ROBOT_TURRET_COMPONENT";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static RobotComponentEnum from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "robotcomponentenum::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "robot_base_component"){
+				return RobotComponentEnum(ROBOT_BASE_COMPONENT);
+			}
+			if(input == "robot_steer_component"){
+				return RobotComponentEnum(ROBOT_STEER_COMPONENT);
+			}
+			if(input == "robot_turret_component"){
+				return RobotComponentEnum(ROBOT_TURRET_COMPONENT);
+			}
+			// default (if none of the preceding options match)
+			return RobotComponentEnum();
 		}
 		
 		// helper method to easily implement output stream

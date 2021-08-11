@@ -14,6 +14,7 @@
 
 #include "CommCorridorNavigationGoalEventResultJSON.hh"
 
+#include <CommNavigationObjects/enumPathNavigationEventType.hh>
 #include "CommBasicObjectsJSON/CommPosition3dJSON.hh"
 
 namespace CommNavigationObjectsIDL {
@@ -21,7 +22,7 @@ namespace CommNavigationObjectsIDL {
 void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationGoalEventResult& obj, nlohmann::json& j)
 {
 	// state: PathNavigationEventType
-	j["state"] = obj.state;
+	j["state"] = CommNavigationObjects::PathNavigationEventType(obj.state).to_string(false);
 	// nextGoal: CommPosition3d
 	to_json(obj.nextGoal, j["nextGoal"]);
 }
@@ -35,8 +36,8 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationGoalEventResu
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNavigationGoalEventResult& obj)
 {
 	// state: PathNavigationEventType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommNavigationObjects::PathNavigationEventType::from_string(j["state"].get<std::string>());
 	}
 	// nextGoal: CommPosition3d
 	if(j.contains("nextGoal") && j["nextGoal"].is_object()) {

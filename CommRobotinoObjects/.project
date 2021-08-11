@@ -3,6 +3,8 @@
 	<name>CommRobotinoObjects</name>
 	<comment></comment>
 	<projects>
+		<project>CommBasicObjects</project>
+		<project>CommTrackingObjects</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

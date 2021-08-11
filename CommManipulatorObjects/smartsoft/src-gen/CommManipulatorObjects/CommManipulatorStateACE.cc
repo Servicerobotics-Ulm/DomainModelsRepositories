@@ -28,6 +28,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommManipulatorObjectsIDL:
 	good_bit = good_bit && cdr.write_double_array(data.joint_angles.data(), data.joint_angles.size());
 	// serialize list-element pose_tcp
 	good_bit = good_bit && cdr << data.pose_tcp;
+	// serialize list-element motion_constraints
+	good_bit = good_bit && cdr.write_octet(data.motion_constraints);
 	// serialize list-element pose_manipulator
 	good_bit = good_bit && cdr << data.pose_manipulator;
 	// serialize list-element is_valid
@@ -49,6 +51,8 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommManipulatorObjectsIDL::CommMa
 	good_bit = good_bit && cdr.read_double_array(data.joint_angles.data(), data_joint_anglesNbr);
 	// deserialize type element pose_tcp
 	good_bit = good_bit && cdr >> data.pose_tcp;
+	// deserialize type element motion_constraints
+	good_bit = good_bit && cdr.read_octet(data.motion_constraints);
 	// deserialize type element pose_manipulator
 	good_bit = good_bit && cdr >> data.pose_manipulator;
 	// deserialize type element is_valid

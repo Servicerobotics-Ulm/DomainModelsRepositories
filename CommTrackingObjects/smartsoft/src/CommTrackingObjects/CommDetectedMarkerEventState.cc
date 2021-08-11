@@ -50,16 +50,3 @@ CommDetectedMarkerEventState::CommDetectedMarkerEventState(const DATATYPE &commD
 CommDetectedMarkerEventState::~CommDetectedMarkerEventState()
 {  }
 
-void CommDetectedMarkerEventState::add_CommDetectedMarker(CommTrackingObjects::CommDetectedMarker& marker)
-{
-	idl_CommDetectedMarkerEventState.markers.push_back(marker);
-}
-
-void CommDetectedMarkerEventState::set_CommDetectedMarkerList(CommTrackingObjects::CommDetectedMarkerList& markers)
-{
-	//for(CommTrackingObjects::CommDetectedMarker current_marker: markers)
-	for(size_t index =0; index <markers.getMarkersSize(); ++index)
-	{
-	idl_CommDetectedMarkerEventState.markers.push_back(markers.getMarkersElemAtPos(index));
-	}
-}

@@ -21,6 +21,10 @@ PROJECT(LabelPrinterCoordinationService)
 #FIND_SMARTSOFT(3.0)
 FIND_PACKAGE(AceSmartSoft PATHS $ENV{SMART_ROOT_ACE} PATH_SUFFIXES modules)
 
+# find dependency CommBasicObjects
+FIND_PACKAGE(CommBasicObjects PATHS $ENV{SMART_ROOT_ACE}/modules)
+FIND_PACKAGE(CommBasicObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
+
 # these are the regular includes (add your own includes, if needed)
 INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_LIST_DIR}
@@ -40,7 +44,11 @@ ENDIF()
 
 # SmartSoftKernel is one of the default dependencies for each component
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} AceSmartSoftKernel)
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} DomainPrint)
+
+# link libraryDomainPrint
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} DomainPrint DomainPrintJSON)
+# link libraryCommBasicObjects
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjects CommBasicObjectsJSON)
 
 # automatically install the component target
 # automatically run "make install" after regular "make" for the communication object

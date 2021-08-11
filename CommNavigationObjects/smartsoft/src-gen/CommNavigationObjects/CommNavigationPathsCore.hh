@@ -131,7 +131,7 @@ public:
 		return false;
 	}
 	inline bool insertPathWidthVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommNavigationPaths.pathWidth.size()) {
+		if(pos <= idl_CommNavigationPaths.pathWidth.size()) {
 			idl_CommNavigationPaths.pathWidth.insert(idl_CommNavigationPaths.pathWidth.begin()+pos, data.begin(), data.end());
 			return true;
 		}

@@ -202,7 +202,7 @@ ServiceDefRepository CommNavigationObjects version 1.0
 
 	CoordinationServiceDefinition MapperCoordinationService {
 		ParameterPattern < CommNavigationObjects.MapperParams >
-		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.MappingStates >
+		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.MapperStates >
 	}
 
 	CoordinationServiceDefinition PlannerCoordinationService {

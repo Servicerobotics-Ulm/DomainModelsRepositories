@@ -87,7 +87,7 @@ public:
 		return false;
 	}
 	inline bool insertBegin_joint_anglesVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommManipulatorRequestScan3d.begin_joint_angles.size()) {
+		if(pos <= idl_CommManipulatorRequestScan3d.begin_joint_angles.size()) {
 			idl_CommManipulatorRequestScan3d.begin_joint_angles.insert(idl_CommManipulatorRequestScan3d.begin_joint_angles.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -126,7 +126,7 @@ public:
 		return false;
 	}
 	inline bool insertEnd_joint_anglesVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommManipulatorRequestScan3d.end_joint_angles.size()) {
+		if(pos <= idl_CommManipulatorRequestScan3d.end_joint_angles.size()) {
 			idl_CommManipulatorRequestScan3d.end_joint_angles.insert(idl_CommManipulatorRequestScan3d.end_joint_angles.begin()+pos, data.begin(), data.end());
 			return true;
 		}

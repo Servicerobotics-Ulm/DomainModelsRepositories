@@ -14,13 +14,14 @@
 
 #include "CommPTUGoalEventParameterJSON.hh"
 
+#include <DomainPTU/enumPTUMoveStatus.hh>
 
 namespace DomainPTUIDL {
 
 void to_json(const DomainPTUIDL::CommPTUGoalEventParameter& obj, nlohmann::json& j)
 {
 	// oldState: PTUMoveStatus
-	j["oldState"] = obj.oldState;
+	j["oldState"] = DomainPTU::PTUMoveStatus(obj.oldState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const DomainPTUIDL::CommPTUGoalEventParameter& obj, nlohmann::json&
 void from_json(const nlohmann::json& j, DomainPTUIDL::CommPTUGoalEventParameter& obj)
 {
 	// oldState: PTUMoveStatus
-	if(j.contains("oldState") && j["oldState"].is_number_integer()) {
-		obj.oldState = j["oldState"].get<int>();
+	if(j.contains("oldState") && j["oldState"].is_string()) {
+		obj.oldState = DomainPTU::PTUMoveStatus::from_string(j["oldState"].get<std::string>());
 	}
 }
 

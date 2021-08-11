@@ -22,7 +22,7 @@ extern "C" int finiSeq2SeqComCoordinationService(const std::string& ciInstanceNa
 
 //SWITCH FUNCTION
 
-extern "C" std::string switchSeq2SeqComCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString)
+extern "C" std::string switchSeq2SeqComCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode)
 {
-	return SEQ2SEQCOMCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,inString);
+	return SEQ2SEQCOMCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,parameter,eventMode);
 }

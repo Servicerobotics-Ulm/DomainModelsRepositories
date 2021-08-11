@@ -136,7 +136,7 @@ public:
 		return false;
 	}
 	inline bool insertDatastreamVectorAtPos(const size_t &pos, const std::vector<char> &data) {
-		if(pos < idl_CommDataFiles.datastream.size()) {
+		if(pos <= idl_CommDataFiles.datastream.size()) {
 			idl_CommDataFiles.datastream.insert(idl_CommDataFiles.datastream.begin()+pos, data.begin(), data.end());
 			return true;
 		}

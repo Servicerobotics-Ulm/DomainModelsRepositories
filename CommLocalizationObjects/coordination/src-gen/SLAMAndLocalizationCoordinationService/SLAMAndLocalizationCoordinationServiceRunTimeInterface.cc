@@ -22,7 +22,7 @@ extern "C" int finiSLAMAndLocalizationCoordinationService(const std::string& ciI
 
 //SWITCH FUNCTION
 
-extern "C" std::string switchSLAMAndLocalizationCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString)
+extern "C" std::string switchSLAMAndLocalizationCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode)
 {
-	return SLAMANDLOCALIZATIONCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,inString);
+	return SLAMANDLOCALIZATIONCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,parameter,eventMode);
 }

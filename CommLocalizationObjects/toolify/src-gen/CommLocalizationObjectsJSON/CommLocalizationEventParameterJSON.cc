@@ -14,13 +14,14 @@
 
 #include "CommLocalizationEventParameterJSON.hh"
 
+#include <CommLocalizationObjects/enumLocalizationEventType.hh>
 
 namespace CommLocalizationObjectsIDL {
 
 void to_json(const CommLocalizationObjectsIDL::CommLocalizationEventParameter& obj, nlohmann::json& j)
 {
 	// oldState: LocalizationEventType
-	j["oldState"] = obj.oldState;
+	j["oldState"] = CommLocalizationObjects::LocalizationEventType(obj.oldState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommLocalizationObjectsIDL::CommLocalizationEventParameter& o
 void from_json(const nlohmann::json& j, CommLocalizationObjectsIDL::CommLocalizationEventParameter& obj)
 {
 	// oldState: LocalizationEventType
-	if(j.contains("oldState") && j["oldState"].is_number_integer()) {
-		obj.oldState = j["oldState"].get<int>();
+	if(j.contains("oldState") && j["oldState"].is_string()) {
+		obj.oldState = CommLocalizationObjects::LocalizationEventType::from_string(j["oldState"].get<std::string>());
 	}
 }
 

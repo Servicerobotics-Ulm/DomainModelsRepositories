@@ -14,13 +14,14 @@
 
 #include "CommManipulationPlannerEventParameterJSON.hh"
 
+#include <CommManipulationPlannerObjects/enumManipulationPlannerEvent.hh>
 
 namespace CommManipulationPlannerObjectsIDL {
 
 void to_json(const CommManipulationPlannerObjectsIDL::CommManipulationPlannerEventParameter& obj, nlohmann::json& j)
 {
 	// event: ManipulationPlannerEvent
-	j["event"] = obj.event;
+	j["event"] = CommManipulationPlannerObjects::ManipulationPlannerEvent(obj.event).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommManipulationPlannerObjectsIDL::CommManipulationPlannerEve
 void from_json(const nlohmann::json& j, CommManipulationPlannerObjectsIDL::CommManipulationPlannerEventParameter& obj)
 {
 	// event: ManipulationPlannerEvent
-	if(j.contains("event") && j["event"].is_number_integer()) {
-		obj.event = j["event"].get<int>();
+	if(j.contains("event") && j["event"].is_string()) {
+		obj.event = CommManipulationPlannerObjects::ManipulationPlannerEvent::from_string(j["event"].get<std::string>());
 	}
 }
 

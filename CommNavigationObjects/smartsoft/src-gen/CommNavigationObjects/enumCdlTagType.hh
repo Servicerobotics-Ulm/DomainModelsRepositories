@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -77,7 +78,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		CdlTagType(CommNavigationObjectsIDL::CdlTagType e) {
 			value = e;
 		}
@@ -94,110 +95,225 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "CdlTagType::";
+			}
 			switch (value) {
 				case CDL_SET_MODE_STRATEGY:
-					result = "CdlTagType::CDL_SET_MODE_STRATEGY";
+					result += "CDL_SET_MODE_STRATEGY";
 					break;
 				case CDL_SET_FREE_BEHAVIOUR:
-					result = "CdlTagType::CDL_SET_FREE_BEHAVIOUR";
+					result += "CDL_SET_FREE_BEHAVIOUR";
 					break;
 				case CDL_SET_LOOKUP_TABLE:
-					result = "CdlTagType::CDL_SET_LOOKUP_TABLE";
+					result += "CDL_SET_LOOKUP_TABLE";
 					break;
 				case CDL_SET_TRANS_VELOCITY:
-					result = "CdlTagType::CDL_SET_TRANS_VELOCITY";
+					result += "CDL_SET_TRANS_VELOCITY";
 					break;
 				case CDL_SET_ROT_VELOCITY:
-					result = "CdlTagType::CDL_SET_ROT_VELOCITY";
+					result += "CDL_SET_ROT_VELOCITY";
 					break;
 				case CDL_SET_MODE_GOAL:
-					result = "CdlTagType::CDL_SET_MODE_GOAL";
+					result += "CDL_SET_MODE_GOAL";
 					break;
 				case CDL_SET_ID:
-					result = "CdlTagType::CDL_SET_ID";
+					result += "CDL_SET_ID";
 					break;
 				case CDL_SET_GOAL:
-					result = "CdlTagType::CDL_SET_GOAL";
+					result += "CDL_SET_GOAL";
 					break;
 				case CDL_SET_APPROACH_DIST:
-					result = "CdlTagType::CDL_SET_APPROACH_DIST";
+					result += "CDL_SET_APPROACH_DIST";
 					break;
 				case CDL_SAVE_CURRENT_POS:
-					result = "CdlTagType::CDL_SAVE_CURRENT_POS";
+					result += "CDL_SAVE_CURRENT_POS";
 					break;
 				case CDL_SET_SAFETY_CLEARENCE:
-					result = "CdlTagType::CDL_SET_SAFETY_CLEARENCE";
+					result += "CDL_SET_SAFETY_CLEARENCE";
 					break;
 				case CDL_NEUTRAL:
-					result = "CdlTagType::CDL_NEUTRAL";
+					result += "CDL_NEUTRAL";
 					break;
 				case CDL_REACTIVE:
-					result = "CdlTagType::CDL_REACTIVE";
+					result += "CDL_REACTIVE";
 					break;
 				case CDL_JOYSTICK:
-					result = "CdlTagType::CDL_JOYSTICK";
+					result += "CDL_JOYSTICK";
 					break;
 				case CDL_TURN:
-					result = "CdlTagType::CDL_TURN";
+					result += "CDL_TURN";
 					break;
 				case CDL_APPROACH_FLAT_SURF:
-					result = "CdlTagType::CDL_APPROACH_FLAT_SURF";
+					result += "CDL_APPROACH_FLAT_SURF";
 					break;
 				case CDL_APPROACH_HALT:
-					result = "CdlTagType::CDL_APPROACH_HALT";
+					result += "CDL_APPROACH_HALT";
 					break;
 				case CDL_APPROACH:
-					result = "CdlTagType::CDL_APPROACH";
+					result += "CDL_APPROACH";
 					break;
 				case CDL_ROTATE:
-					result = "CdlTagType::CDL_ROTATE";
+					result += "CDL_ROTATE";
 					break;
 				case CDL_FOLLOW:
-					result = "CdlTagType::CDL_FOLLOW";
+					result += "CDL_FOLLOW";
 					break;
 				case CDL_BACKWARD:
-					result = "CdlTagType::CDL_BACKWARD";
+					result += "CDL_BACKWARD";
 					break;
 				case CDL_ABSOLUTE:
-					result = "CdlTagType::CDL_ABSOLUTE";
+					result += "CDL_ABSOLUTE";
 					break;
 				case CDL_PLANNER:
-					result = "CdlTagType::CDL_PLANNER";
+					result += "CDL_PLANNER";
 					break;
 				case CDL_PERSON:
-					result = "CdlTagType::CDL_PERSON";
+					result += "CDL_PERSON";
 					break;
 				case CDL_SAVED:
-					result = "CdlTagType::CDL_SAVED";
+					result += "CDL_SAVED";
 					break;
 				case CDL_ANGLE_ABSOLUTE:
-					result = "CdlTagType::CDL_ANGLE_ABSOLUTE";
+					result += "CDL_ANGLE_ABSOLUTE";
 					break;
 				case CDL_ANGLE_RELATIVE:
-					result = "CdlTagType::CDL_ANGLE_RELATIVE";
+					result += "CDL_ANGLE_RELATIVE";
 					break;
 				case CDL_DEFAULT_LOOKUP:
-					result = "CdlTagType::CDL_DEFAULT_LOOKUP";
+					result += "CDL_DEFAULT_LOOKUP";
 					break;
 				case CDL_SECOND_LOOKUP:
-					result = "CdlTagType::CDL_SECOND_LOOKUP";
+					result += "CDL_SECOND_LOOKUP";
 					break;
 				case CDL_NO_FREE_BEHAVIOUR:
-					result = "CdlTagType::CDL_NO_FREE_BEHAVIOUR";
+					result += "CDL_NO_FREE_BEHAVIOUR";
 					break;
 				case CDL_FREE_BEHAVIOR:
-					result = "CdlTagType::CDL_FREE_BEHAVIOR";
+					result += "CDL_FREE_BEHAVIOR";
 					break;
 				case CDL_APPROACH_COVERAGE:
-					result = "CdlTagType::CDL_APPROACH_COVERAGE";
+					result += "CDL_APPROACH_COVERAGE";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static CdlTagType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "cdltagtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "cdl_set_mode_strategy"){
+				return CdlTagType(CDL_SET_MODE_STRATEGY);
+			}
+			if(input == "cdl_set_free_behaviour"){
+				return CdlTagType(CDL_SET_FREE_BEHAVIOUR);
+			}
+			if(input == "cdl_set_lookup_table"){
+				return CdlTagType(CDL_SET_LOOKUP_TABLE);
+			}
+			if(input == "cdl_set_trans_velocity"){
+				return CdlTagType(CDL_SET_TRANS_VELOCITY);
+			}
+			if(input == "cdl_set_rot_velocity"){
+				return CdlTagType(CDL_SET_ROT_VELOCITY);
+			}
+			if(input == "cdl_set_mode_goal"){
+				return CdlTagType(CDL_SET_MODE_GOAL);
+			}
+			if(input == "cdl_set_id"){
+				return CdlTagType(CDL_SET_ID);
+			}
+			if(input == "cdl_set_goal"){
+				return CdlTagType(CDL_SET_GOAL);
+			}
+			if(input == "cdl_set_approach_dist"){
+				return CdlTagType(CDL_SET_APPROACH_DIST);
+			}
+			if(input == "cdl_save_current_pos"){
+				return CdlTagType(CDL_SAVE_CURRENT_POS);
+			}
+			if(input == "cdl_set_safety_clearence"){
+				return CdlTagType(CDL_SET_SAFETY_CLEARENCE);
+			}
+			if(input == "cdl_neutral"){
+				return CdlTagType(CDL_NEUTRAL);
+			}
+			if(input == "cdl_reactive"){
+				return CdlTagType(CDL_REACTIVE);
+			}
+			if(input == "cdl_joystick"){
+				return CdlTagType(CDL_JOYSTICK);
+			}
+			if(input == "cdl_turn"){
+				return CdlTagType(CDL_TURN);
+			}
+			if(input == "cdl_approach_flat_surf"){
+				return CdlTagType(CDL_APPROACH_FLAT_SURF);
+			}
+			if(input == "cdl_approach_halt"){
+				return CdlTagType(CDL_APPROACH_HALT);
+			}
+			if(input == "cdl_approach"){
+				return CdlTagType(CDL_APPROACH);
+			}
+			if(input == "cdl_rotate"){
+				return CdlTagType(CDL_ROTATE);
+			}
+			if(input == "cdl_follow"){
+				return CdlTagType(CDL_FOLLOW);
+			}
+			if(input == "cdl_backward"){
+				return CdlTagType(CDL_BACKWARD);
+			}
+			if(input == "cdl_absolute"){
+				return CdlTagType(CDL_ABSOLUTE);
+			}
+			if(input == "cdl_planner"){
+				return CdlTagType(CDL_PLANNER);
+			}
+			if(input == "cdl_person"){
+				return CdlTagType(CDL_PERSON);
+			}
+			if(input == "cdl_saved"){
+				return CdlTagType(CDL_SAVED);
+			}
+			if(input == "cdl_angle_absolute"){
+				return CdlTagType(CDL_ANGLE_ABSOLUTE);
+			}
+			if(input == "cdl_angle_relative"){
+				return CdlTagType(CDL_ANGLE_RELATIVE);
+			}
+			if(input == "cdl_default_lookup"){
+				return CdlTagType(CDL_DEFAULT_LOOKUP);
+			}
+			if(input == "cdl_second_lookup"){
+				return CdlTagType(CDL_SECOND_LOOKUP);
+			}
+			if(input == "cdl_no_free_behaviour"){
+				return CdlTagType(CDL_NO_FREE_BEHAVIOUR);
+			}
+			if(input == "cdl_free_behavior"){
+				return CdlTagType(CDL_FREE_BEHAVIOR);
+			}
+			if(input == "cdl_approach_coverage"){
+				return CdlTagType(CDL_APPROACH_COVERAGE);
+			}
+			// default (if none of the preceding options match)
+			return CdlTagType();
 		}
 		
 		// helper method to easily implement output stream

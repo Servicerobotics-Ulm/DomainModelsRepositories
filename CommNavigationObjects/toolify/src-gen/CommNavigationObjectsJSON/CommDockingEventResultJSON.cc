@@ -14,13 +14,14 @@
 
 #include "CommDockingEventResultJSON.hh"
 
+#include <CommNavigationObjects/enumDockingEventType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommDockingEventResult& obj, nlohmann::json& j)
 {
 	// state: DockingEventType
-	j["state"] = obj.state;
+	j["state"] = CommNavigationObjects::DockingEventType(obj.state).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::CommDockingEventResult& obj, nlohma
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommDockingEventResult& obj)
 {
 	// state: DockingEventType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommNavigationObjects::DockingEventType::from_string(j["state"].get<std::string>());
 	}
 }
 

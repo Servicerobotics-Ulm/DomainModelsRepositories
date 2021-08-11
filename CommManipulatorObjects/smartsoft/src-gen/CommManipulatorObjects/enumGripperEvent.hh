@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace CommManipulatorObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		GripperEvent(CommManipulatorObjectsIDL::GripperEvent e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace CommManipulatorObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "GripperEvent::";
+			}
 			switch (value) {
 				case GRIPPER_GOAL_REACHED:
-					result = "GripperEvent::GRIPPER_GOAL_REACHED";
+					result += "GRIPPER_GOAL_REACHED";
 					break;
 				case GRIPPER_GOAL_NOT_REACHED:
-					result = "GripperEvent::GRIPPER_GOAL_NOT_REACHED";
+					result += "GRIPPER_GOAL_NOT_REACHED";
 					break;
 				case GRIPPER_GOAL_REACHED_EMPTY:
-					result = "GripperEvent::GRIPPER_GOAL_REACHED_EMPTY";
+					result += "GRIPPER_GOAL_REACHED_EMPTY";
 					break;
 				case GRIPPER_UNKNOWN:
-					result = "GripperEvent::GRIPPER_UNKNOWN";
+					result += "GRIPPER_UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static GripperEvent from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "gripperevent::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "gripper_goal_reached"){
+				return GripperEvent(GRIPPER_GOAL_REACHED);
+			}
+			if(input == "gripper_goal_not_reached"){
+				return GripperEvent(GRIPPER_GOAL_NOT_REACHED);
+			}
+			if(input == "gripper_goal_reached_empty"){
+				return GripperEvent(GRIPPER_GOAL_REACHED_EMPTY);
+			}
+			if(input == "gripper_unknown"){
+				return GripperEvent(GRIPPER_UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return GripperEvent();
 		}
 		
 		// helper method to easily implement output stream

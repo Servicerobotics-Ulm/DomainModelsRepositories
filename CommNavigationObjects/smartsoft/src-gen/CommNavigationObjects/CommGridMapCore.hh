@@ -140,7 +140,7 @@ public:
 		return false;
 	}
 	inline bool insertCellVectorAtPos(const size_t &pos, const std::vector<unsigned char> &data) {
-		if(pos < idl_CommGridMap.cell.size()) {
+		if(pos <= idl_CommGridMap.cell.size()) {
 			idl_CommGridMap.cell.insert(idl_CommGridMap.cell.begin()+pos, data.begin(), data.end());
 			return true;
 		}

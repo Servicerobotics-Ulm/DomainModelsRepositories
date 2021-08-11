@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace DomainVision {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		ImageDistortionModel(DomainVisionIDL::ImageDistortionModel e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace DomainVision {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "ImageDistortionModel::";
+			}
 			switch (value) {
 				case NONE:
-					result = "ImageDistortionModel::NONE";
+					result += "NONE";
 					break;
 				case MODIFIED_BROWN_CONRADY:
-					result = "ImageDistortionModel::MODIFIED_BROWN_CONRADY";
+					result += "MODIFIED_BROWN_CONRADY";
 					break;
 				case INVERSE_BROWN_CONRADY:
-					result = "ImageDistortionModel::INVERSE_BROWN_CONRADY";
+					result += "INVERSE_BROWN_CONRADY";
 					break;
 				case BROWN_CONRADY:
-					result = "ImageDistortionModel::BROWN_CONRADY";
+					result += "BROWN_CONRADY";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static ImageDistortionModel from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "imagedistortionmodel::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "none"){
+				return ImageDistortionModel(NONE);
+			}
+			if(input == "modified_brown_conrady"){
+				return ImageDistortionModel(MODIFIED_BROWN_CONRADY);
+			}
+			if(input == "inverse_brown_conrady"){
+				return ImageDistortionModel(INVERSE_BROWN_CONRADY);
+			}
+			if(input == "brown_conrady"){
+				return ImageDistortionModel(BROWN_CONRADY);
+			}
+			// default (if none of the preceding options match)
+			return ImageDistortionModel();
 		}
 		
 		// helper method to easily implement output stream

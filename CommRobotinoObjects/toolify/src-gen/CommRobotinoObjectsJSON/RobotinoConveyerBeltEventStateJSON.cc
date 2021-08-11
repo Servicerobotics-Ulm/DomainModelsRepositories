@@ -14,13 +14,14 @@
 
 #include "RobotinoConveyerBeltEventStateJSON.hh"
 
+#include <CommRobotinoObjects/enumRobotinoConveyerBeltEventType.hh>
 
 namespace CommRobotinoObjectsIDL {
 
 void to_json(const CommRobotinoObjectsIDL::RobotinoConveyerBeltEventState& obj, nlohmann::json& j)
 {
 	// newState: RobotinoConveyerBeltEventType
-	j["newState"] = obj.newState;
+	j["newState"] = CommRobotinoObjects::RobotinoConveyerBeltEventType(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommRobotinoObjectsIDL::RobotinoConveyerBeltEventState& obj, 
 void from_json(const nlohmann::json& j, CommRobotinoObjectsIDL::RobotinoConveyerBeltEventState& obj)
 {
 	// newState: RobotinoConveyerBeltEventType
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = CommRobotinoObjects::RobotinoConveyerBeltEventType::from_string(j["newState"].get<std::string>());
 	}
 }
 

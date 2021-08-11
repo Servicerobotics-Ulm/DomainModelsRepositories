@@ -3,7 +3,7 @@
 
 #include <map>
 #include <string>
-#include <string.h>
+#include <ace/OS.h>
 
 extern 	std::string queryParam(const std::string& server, const std::string& param);
 extern 	std::string setState(const std::string& server, const std::string& state);
@@ -21,7 +21,7 @@ typedef struct
 
 struct ciLessLibC : public std::binary_function<std::string, std::string, bool> {
     bool operator()(const std::string &lhs, const std::string &rhs) const {
-        return strcasecmp(lhs.c_str(), rhs.c_str()) < 0 ;
+        return ACE_OS::strcasecmp(lhs.c_str(), rhs.c_str()) < 0 ;
     }
 };
 

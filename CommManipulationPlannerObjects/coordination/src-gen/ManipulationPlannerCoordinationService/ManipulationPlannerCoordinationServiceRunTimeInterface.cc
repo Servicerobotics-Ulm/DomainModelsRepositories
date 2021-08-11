@@ -22,7 +22,7 @@ extern "C" int finiManipulationPlannerCoordinationService(const std::string& ciI
 
 //SWITCH FUNCTION
 
-extern "C" std::string switchManipulationPlannerCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString)
+extern "C" std::string switchManipulationPlannerCoordinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode)
 {
-	return MANIPULATIONPLANNERCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,inString);
+	return MANIPULATIONPLANNERCOORDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,parameter,eventMode);
 }

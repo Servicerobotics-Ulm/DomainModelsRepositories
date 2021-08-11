@@ -136,7 +136,7 @@ public:
 		return false;
 	}
 	inline bool insertIntensitiesVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommUltrasonicScan.intensities.size()) {
+		if(pos <= idl_CommUltrasonicScan.intensities.size()) {
 			idl_CommUltrasonicScan.intensities.insert(idl_CommUltrasonicScan.intensities.begin()+pos, data.begin(), data.end());
 			return true;
 		}

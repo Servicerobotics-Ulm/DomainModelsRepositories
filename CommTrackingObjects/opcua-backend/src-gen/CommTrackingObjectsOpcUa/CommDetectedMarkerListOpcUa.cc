@@ -31,6 +31,10 @@ IDescription::shp_t SelfDescription(CommTrackingObjectsIDL::CommDetectedMarkerLi
 	ret->add(
 		SelfDescription(&(obj->base_state), "Base_state")
 	);
+	// add single_pose
+	ret->add(
+		SelfDescription(&(obj->single_pose), "Single_pose")
+	);
 	// add valid
 	ret->add(
 		SelfDescription(&(obj->valid), "Valid")

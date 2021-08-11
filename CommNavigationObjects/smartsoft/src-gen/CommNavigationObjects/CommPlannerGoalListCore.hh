@@ -95,7 +95,7 @@ public:
 		return false;
 	}
 	inline bool insertGoalXvectorVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommPlannerGoalList.goalXvector.size()) {
+		if(pos <= idl_CommPlannerGoalList.goalXvector.size()) {
 			idl_CommPlannerGoalList.goalXvector.insert(idl_CommPlannerGoalList.goalXvector.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -134,7 +134,7 @@ public:
 		return false;
 	}
 	inline bool insertGoalYvectorVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommPlannerGoalList.goalYvector.size()) {
+		if(pos <= idl_CommPlannerGoalList.goalYvector.size()) {
 			idl_CommPlannerGoalList.goalYvector.insert(idl_CommPlannerGoalList.goalYvector.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -173,7 +173,7 @@ public:
 		return false;
 	}
 	inline bool insertNodeObstacleVectorVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommPlannerGoalList.nodeObstacleVector.size()) {
+		if(pos <= idl_CommPlannerGoalList.nodeObstacleVector.size()) {
 			idl_CommPlannerGoalList.nodeObstacleVector.insert(idl_CommPlannerGoalList.nodeObstacleVector.begin()+pos, data.begin(), data.end());
 			return true;
 		}

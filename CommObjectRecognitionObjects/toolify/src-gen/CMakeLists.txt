@@ -10,16 +10,21 @@ IF(TARGET nlohmann_json::nlohmann_json)
 	FILE(GLOB JSON_SRCS ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.cc)
 	FILE(GLOB JSON_HDRS ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.hh)
 	# find depndency CommObjectRecognitionObjectsJSON
-	FIND_PACKAGE(CommManipulatorObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
-	# find depndency CommObjectRecognitionObjectsJSON
 	FIND_PACKAGE(CommBasicObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
+	# find depndency CommObjectRecognitionObjectsJSON
+	FIND_PACKAGE(CommManipulatorObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
 	
-	ADD_LIBRARY(${PROJECT_NAME} SHARED ${JSON_SRCS})
+	IF(WIN32)
+		ADD_LIBRARY(${PROJECT_NAME} STATIC ${JSON_SRCS})
+	ELSE(WIN32)
+		ADD_LIBRARY(${PROJECT_NAME} SHARED ${JSON_SRCS})
+	ENDIF(WIN32)
+	
 	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommObjectRecognitionObjects nlohmann_json::nlohmann_json)
-	# link depndency CommManipulatorObjects
-	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommManipulatorObjectsJSON)
 	# link depndency CommBasicObjects
 	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjectsJSON)
+	# link depndency CommManipulatorObjects
+	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommManipulatorObjectsJSON)
 	TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 	$<INSTALL_INTERFACE:include>

@@ -14,13 +14,14 @@
 
 #include "SimpleObjectEventStateJSON.hh"
 
+#include <CommObjectRecognitionObjects/enumSimpleObjectState.hh>
 
 namespace CommObjectRecognitionObjectsIDL {
 
 void to_json(const CommObjectRecognitionObjectsIDL::SimpleObjectEventState& obj, nlohmann::json& j)
 {
 	// newState: SimpleObjectState
-	j["newState"] = obj.newState;
+	j["newState"] = CommObjectRecognitionObjects::SimpleObjectState(obj.newState).to_string(false);
 	// x: Int32
 	j["x"] = obj.x;
 	// y: Int32
@@ -36,8 +37,8 @@ void to_json(const CommObjectRecognitionObjectsIDL::SimpleObjectEventState& obj,
 void from_json(const nlohmann::json& j, CommObjectRecognitionObjectsIDL::SimpleObjectEventState& obj)
 {
 	// newState: SimpleObjectState
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = CommObjectRecognitionObjects::SimpleObjectState::from_string(j["newState"].get<std::string>());
 	}
 	// x: Int32
 	if(j.contains("x") && j["x"].is_number_integer()) {

@@ -87,7 +87,7 @@ public:
 		return false;
 	}
 	inline bool insertNamesVectorAtPos(const size_t &pos, const std::vector<std::string> &data) {
-		if(pos < idl_CommMobileManipulatorPrograms.names.size()) {
+		if(pos <= idl_CommMobileManipulatorPrograms.names.size()) {
 			idl_CommMobileManipulatorPrograms.names.insert(idl_CommMobileManipulatorPrograms.names.begin()+pos, data.begin(), data.end());
 			return true;
 		}

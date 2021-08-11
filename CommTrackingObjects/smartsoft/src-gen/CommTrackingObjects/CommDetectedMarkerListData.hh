@@ -30,6 +30,7 @@ namespace CommTrackingObjectsIDL
 		CommDetectedMarkerList_markers_type markers;
 		CommBasicObjectsIDL::CommPose3d sensor_pose;
 		CommBasicObjectsIDL::CommBaseState base_state;
+		bool single_pose;
 		bool valid;
   	};
 };

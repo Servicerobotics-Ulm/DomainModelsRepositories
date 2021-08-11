@@ -18,6 +18,8 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		id: UInt32
 		joint_angles: Double[*]
 		pose_tcp: CommPose3d
+		motion_constraints: UInt8
+		/// manipulator mounting pose
 		pose_manipulator: CommPose3d
 		is_valid: Boolean= false
 	}
@@ -89,6 +91,7 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		VALUE_OUT_OF_RANGE
 		GOAL_REACHED
 		GOAL_NOT_REACHED
+		ERROR
 		UNKNOWN
 	}
 	

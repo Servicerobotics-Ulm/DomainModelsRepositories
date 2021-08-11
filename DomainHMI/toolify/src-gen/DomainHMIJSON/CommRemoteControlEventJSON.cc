@@ -14,13 +14,14 @@
 
 #include "CommRemoteControlEventJSON.hh"
 
+#include <DomainHMI/enumRemoteControlEventType.hh>
 
 namespace DomainHMIIDL {
 
 void to_json(const DomainHMIIDL::CommRemoteControlEvent& obj, nlohmann::json& j)
 {
 	// state: RemoteControlEventType
-	j["state"] = obj.state;
+	j["state"] = DomainHMI::RemoteControlEventType(obj.state).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const DomainHMIIDL::CommRemoteControlEvent& obj, nlohmann::json& j)
 void from_json(const nlohmann::json& j, DomainHMIIDL::CommRemoteControlEvent& obj)
 {
 	// state: RemoteControlEventType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = DomainHMI::RemoteControlEventType::from_string(j["state"].get<std::string>());
 	}
 }
 

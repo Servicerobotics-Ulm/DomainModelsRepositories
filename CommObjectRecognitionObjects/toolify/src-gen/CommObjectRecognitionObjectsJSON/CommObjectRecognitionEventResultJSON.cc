@@ -14,13 +14,14 @@
 
 #include "CommObjectRecognitionEventResultJSON.hh"
 
+#include <CommObjectRecognitionObjects/enumObjectRecognitionState.hh>
 
 namespace CommObjectRecognitionObjectsIDL {
 
 void to_json(const CommObjectRecognitionObjectsIDL::CommObjectRecognitionEventResult& obj, nlohmann::json& j)
 {
 	// state: ObjectRecognitionState
-	j["state"] = obj.state;
+	j["state"] = CommObjectRecognitionObjects::ObjectRecognitionState(obj.state).to_string(false);
 	// environment_id: UInt32
 	j["environment_id"] = obj.environment_id;
 	// object_id: UInt32[]
@@ -36,8 +37,8 @@ void to_json(const CommObjectRecognitionObjectsIDL::CommObjectRecognitionEventRe
 void from_json(const nlohmann::json& j, CommObjectRecognitionObjectsIDL::CommObjectRecognitionEventResult& obj)
 {
 	// state: ObjectRecognitionState
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommObjectRecognitionObjects::ObjectRecognitionState::from_string(j["state"].get<std::string>());
 	}
 	// environment_id: UInt32
 	if(j.contains("environment_id") && j["environment_id"].is_number_unsigned()) {

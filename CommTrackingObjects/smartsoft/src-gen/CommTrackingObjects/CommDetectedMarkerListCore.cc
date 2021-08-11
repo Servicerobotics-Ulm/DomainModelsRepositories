@@ -84,6 +84,7 @@ namespace CommTrackingObjects
 		}
 		seed += CommBasicObjects::CommPose3d::generateDataHash(data.sensor_pose);
 		seed += CommBasicObjects::CommBaseState::generateDataHash(data.base_state);
+		boost::hash_combine(seed, data.single_pose);
 		boost::hash_combine(seed, data.valid);
 		
 		return seed;
@@ -97,6 +98,7 @@ namespace CommTrackingObjects
 		setMarkers(std::vector<CommTrackingObjects::CommDetectedMarker>());
 		setSensor_pose(CommBasicObjects::CommPose3d());
 		setBase_state(CommBasicObjects::CommBaseState());
+		setSingle_pose(true);
 		setValid(false);
 	}
 	
@@ -117,6 +119,7 @@ namespace CommTrackingObjects
 	  }
 	  getSensor_pose().to_ostream(os);
 	  getBase_state().to_ostream(os);
+	  os << getSingle_pose() << " ";
 	  os << getValid() << " ";
 	  os << ") ";
 	}
@@ -141,6 +144,7 @@ namespace CommTrackingObjects
 		os << indent << "<base_state>";
 		getBase_state().to_xml(os, indent);
 		os << indent << "</base_state>";
+		os << indent << "<single_pose>" << getSingle_pose() << "</single_pose>";
 		os << indent << "<valid>" << getValid() << "</valid>";
 	}
 	
@@ -152,6 +156,7 @@ namespace CommTrackingObjects
 		static const Smart::KnuthMorrisPratt kmp_markers("\">");
 		static const Smart::KnuthMorrisPratt kmp_sensor_pose("<sensor_pose>");
 		static const Smart::KnuthMorrisPratt kmp_base_state("<base_state>");
+		static const Smart::KnuthMorrisPratt kmp_single_pose("<single_pose>");
 		static const Smart::KnuthMorrisPratt kmp_valid("<valid>");
 		
 		if(kmp_markersList.search(is)) {
@@ -177,6 +182,11 @@ namespace CommTrackingObjects
 			CommBasicObjects::CommBaseState base_stateItem;
 			base_stateItem.from_xml(is);
 			setBase_state(base_stateItem);
+		}
+		if(kmp_single_pose.search(is)) {
+			bool single_poseItem;
+			is >> single_poseItem;
+			setSingle_pose(single_poseItem);
 		}
 		if(kmp_valid.search(is)) {
 			bool validItem;

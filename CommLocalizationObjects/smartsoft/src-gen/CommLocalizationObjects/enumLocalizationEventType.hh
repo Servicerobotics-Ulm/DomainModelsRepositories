@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommLocalizationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		LocalizationEventType(CommLocalizationObjectsIDL::LocalizationEventType e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommLocalizationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "LocalizationEventType::";
+			}
 			switch (value) {
 				case LOCALIZATION_UNKNOWN:
-					result = "LocalizationEventType::LOCALIZATION_UNKNOWN";
+					result += "LOCALIZATION_UNKNOWN";
 					break;
 				case LOCALIZATION_LOST:
-					result = "LocalizationEventType::LOCALIZATION_LOST";
+					result += "LOCALIZATION_LOST";
 					break;
 				case LOCALIZATION_OK:
-					result = "LocalizationEventType::LOCALIZATION_OK";
+					result += "LOCALIZATION_OK";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static LocalizationEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "localizationeventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "localization_unknown"){
+				return LocalizationEventType(LOCALIZATION_UNKNOWN);
+			}
+			if(input == "localization_lost"){
+				return LocalizationEventType(LOCALIZATION_LOST);
+			}
+			if(input == "localization_ok"){
+				return LocalizationEventType(LOCALIZATION_OK);
+			}
+			// default (if none of the preceding options match)
+			return LocalizationEventType();
 		}
 		
 		// helper method to easily implement output stream

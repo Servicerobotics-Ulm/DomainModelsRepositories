@@ -100,7 +100,7 @@ public:
 		return false;
 	}
 	inline bool insertContained_location_idsVectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommNavigationTopologyPart.contained_location_ids.size()) {
+		if(pos <= idl_CommNavigationTopologyPart.contained_location_ids.size()) {
 			idl_CommNavigationTopologyPart.contained_location_ids.insert(idl_CommNavigationTopologyPart.contained_location_ids.begin()+pos, data.begin(), data.end());
 			return true;
 		}

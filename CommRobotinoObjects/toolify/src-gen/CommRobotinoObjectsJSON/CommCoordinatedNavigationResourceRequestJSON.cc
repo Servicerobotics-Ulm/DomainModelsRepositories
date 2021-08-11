@@ -14,6 +14,7 @@
 
 #include "CommCoordinatedNavigationResourceRequestJSON.hh"
 
+#include <CommRobotinoObjects/enumCoordinatedNavigationResourceRequestActionType.hh>
 
 namespace CommRobotinoObjectsIDL {
 
@@ -24,7 +25,7 @@ void to_json(const CommRobotinoObjectsIDL::CommCoordinatedNavigationResourceRequ
 	// robotID: Int32
 	j["robotID"] = obj.robotID;
 	// actionType: CoordinatedNavigationResourceRequestActionType
-	j["actionType"] = obj.actionType;
+	j["actionType"] = CommRobotinoObjects::CoordinatedNavigationResourceRequestActionType(obj.actionType).to_string(false);
 }
 
 /**
@@ -44,8 +45,8 @@ void from_json(const nlohmann::json& j, CommRobotinoObjectsIDL::CommCoordinatedN
 		obj.robotID = j["robotID"].get<int>();
 	}
 	// actionType: CoordinatedNavigationResourceRequestActionType
-	if(j.contains("actionType") && j["actionType"].is_number_integer()) {
-		obj.actionType = j["actionType"].get<int>();
+	if(j.contains("actionType") && j["actionType"].is_string()) {
+		obj.actionType = CommRobotinoObjects::CoordinatedNavigationResourceRequestActionType::from_string(j["actionType"].get<std::string>());
 	}
 }
 

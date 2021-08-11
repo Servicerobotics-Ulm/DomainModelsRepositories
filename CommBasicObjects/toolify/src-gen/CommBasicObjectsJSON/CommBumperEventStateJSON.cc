@@ -14,13 +14,14 @@
 
 #include "CommBumperEventStateJSON.hh"
 
+#include <CommBasicObjects/enumBumperEventType.hh>
 
 namespace CommBasicObjectsIDL {
 
 void to_json(const CommBasicObjectsIDL::CommBumperEventState& obj, nlohmann::json& j)
 {
 	// newState: BumperEventType
-	j["newState"] = obj.newState;
+	j["newState"] = CommBasicObjects::BumperEventType(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommBasicObjectsIDL::CommBumperEventState& obj, nlohmann::jso
 void from_json(const nlohmann::json& j, CommBasicObjectsIDL::CommBumperEventState& obj)
 {
 	// newState: BumperEventType
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = CommBasicObjects::BumperEventType::from_string(j["newState"].get<std::string>());
 	}
 }
 

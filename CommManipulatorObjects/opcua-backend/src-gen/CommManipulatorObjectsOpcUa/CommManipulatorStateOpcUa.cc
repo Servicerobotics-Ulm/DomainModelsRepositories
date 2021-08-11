@@ -30,6 +30,10 @@ IDescription::shp_t SelfDescription(CommManipulatorObjectsIDL::CommManipulatorSt
 	ret->add(
 		SelfDescription(&(obj->pose_tcp), "Pose_tcp")
 	);
+	// add motion_constraints
+	ret->add(
+		SelfDescription(&(obj->motion_constraints), "Motion_constraints")
+	);
 	// add pose_manipulator
 	ret->add(
 		SelfDescription(&(obj->pose_manipulator), "Pose_manipulator")

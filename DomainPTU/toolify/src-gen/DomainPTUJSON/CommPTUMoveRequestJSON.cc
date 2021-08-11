@@ -15,6 +15,7 @@
 #include "CommPTUMoveRequestJSON.hh"
 
 #include "CommBasicObjectsJSON/CommPosition3dJSON.hh"
+#include <DomainPTU/enumPTUMoveFlag.hh>
 
 namespace DomainPTUIDL {
 
@@ -27,7 +28,7 @@ void to_json(const DomainPTUIDL::CommPTUMoveRequest& obj, nlohmann::json& j)
 	// point: CommPosition3d
 	to_json(obj.point, j["point"]);
 	// flag: PTUMoveFlag
-	j["flag"] = obj.flag;
+	j["flag"] = DomainPTU::PTUMoveFlag(obj.flag).to_string(false);
 }
 
 /**
@@ -52,8 +53,8 @@ void from_json(const nlohmann::json& j, DomainPTUIDL::CommPTUMoveRequest& obj)
 		obj.point = j["point"].get<CommBasicObjectsIDL::CommPosition3d>();
 	}
 	// flag: PTUMoveFlag
-	if(j.contains("flag") && j["flag"].is_number_integer()) {
-		obj.flag = j["flag"].get<int>();
+	if(j.contains("flag") && j["flag"].is_string()) {
+		obj.flag = DomainPTU::PTUMoveFlag::from_string(j["flag"].get<std::string>());
 	}
 }
 

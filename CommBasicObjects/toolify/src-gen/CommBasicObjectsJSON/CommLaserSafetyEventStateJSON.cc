@@ -14,15 +14,17 @@
 
 #include "CommLaserSafetyEventStateJSON.hh"
 
+#include <CommBasicObjects/enumSafetyFieldState.hh>
+#include <CommBasicObjects/enumSafetyFieldState.hh>
 
 namespace CommBasicObjectsIDL {
 
 void to_json(const CommBasicObjectsIDL::CommLaserSafetyEventState& obj, nlohmann::json& j)
 {
 	// protectiveState: SafetyFieldState
-	j["protectiveState"] = obj.protectiveState;
+	j["protectiveState"] = CommBasicObjects::SafetyFieldState(obj.protectiveState).to_string(false);
 	// warningState: SafetyFieldState
-	j["warningState"] = obj.warningState;
+	j["warningState"] = CommBasicObjects::SafetyFieldState(obj.warningState).to_string(false);
 }
 
 /**
@@ -34,12 +36,12 @@ void to_json(const CommBasicObjectsIDL::CommLaserSafetyEventState& obj, nlohmann
 void from_json(const nlohmann::json& j, CommBasicObjectsIDL::CommLaserSafetyEventState& obj)
 {
 	// protectiveState: SafetyFieldState
-	if(j.contains("protectiveState") && j["protectiveState"].is_number_integer()) {
-		obj.protectiveState = j["protectiveState"].get<int>();
+	if(j.contains("protectiveState") && j["protectiveState"].is_string()) {
+		obj.protectiveState = CommBasicObjects::SafetyFieldState::from_string(j["protectiveState"].get<std::string>());
 	}
 	// warningState: SafetyFieldState
-	if(j.contains("warningState") && j["warningState"].is_number_integer()) {
-		obj.warningState = j["warningState"].get<int>();
+	if(j.contains("warningState") && j["warningState"].is_string()) {
+		obj.warningState = CommBasicObjects::SafetyFieldState::from_string(j["warningState"].get<std::string>());
 	}
 }
 

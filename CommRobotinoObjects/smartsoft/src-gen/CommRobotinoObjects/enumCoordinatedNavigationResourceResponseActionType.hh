@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommRobotinoObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		CoordinatedNavigationResourceResponseActionType(CommRobotinoObjectsIDL::CoordinatedNavigationResourceResponseActionType e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommRobotinoObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "CoordinatedNavigationResourceResponseActionType::";
+			}
 			switch (value) {
 				case UNKOWN:
-					result = "CoordinatedNavigationResourceResponseActionType::UNKOWN";
+					result += "UNKOWN";
 					break;
 				case SUCCESS:
-					result = "CoordinatedNavigationResourceResponseActionType::SUCCESS";
+					result += "SUCCESS";
 					break;
 				case FAILED:
-					result = "CoordinatedNavigationResourceResponseActionType::FAILED";
+					result += "FAILED";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static CoordinatedNavigationResourceResponseActionType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "coordinatednavigationresourceresponseactiontype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "unkown"){
+				return CoordinatedNavigationResourceResponseActionType(UNKOWN);
+			}
+			if(input == "success"){
+				return CoordinatedNavigationResourceResponseActionType(SUCCESS);
+			}
+			if(input == "failed"){
+				return CoordinatedNavigationResourceResponseActionType(FAILED);
+			}
+			// default (if none of the preceding options match)
+			return CoordinatedNavigationResourceResponseActionType();
 		}
 		
 		// helper method to easily implement output stream

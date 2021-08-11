@@ -14,13 +14,14 @@
 
 #include "CommManipulatorEventStateJSON.hh"
 
+#include <CommManipulatorObjects/enumManipulatorEvent.hh>
 
 namespace CommManipulatorObjectsIDL {
 
 void to_json(const CommManipulatorObjectsIDL::CommManipulatorEventState& obj, nlohmann::json& j)
 {
 	// event: ManipulatorEvent
-	j["event"] = obj.event;
+	j["event"] = CommManipulatorObjects::ManipulatorEvent(obj.event).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommManipulatorObjectsIDL::CommManipulatorEventState& obj, nl
 void from_json(const nlohmann::json& j, CommManipulatorObjectsIDL::CommManipulatorEventState& obj)
 {
 	// event: ManipulatorEvent
-	if(j.contains("event") && j["event"].is_number_integer()) {
-		obj.event = j["event"].get<int>();
+	if(j.contains("event") && j["event"].is_string()) {
+		obj.event = CommManipulatorObjects::ManipulatorEvent::from_string(j["event"].get<std::string>());
 	}
 }
 

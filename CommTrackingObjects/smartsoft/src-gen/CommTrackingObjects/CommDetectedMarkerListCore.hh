@@ -118,6 +118,10 @@ public:
 	inline CommBasicObjects::CommBaseState getBase_state() const { return CommBasicObjects::CommBaseState(idl_CommDetectedMarkerList.base_state); }
 	inline CommDetectedMarkerListCore& setBase_state(const CommBasicObjects::CommBaseState &base_state) { idl_CommDetectedMarkerList.base_state = base_state; return *this; }
 	
+	// getter and setter for element Single_pose
+	inline bool getSingle_pose() const { return idl_CommDetectedMarkerList.single_pose; }
+	inline CommDetectedMarkerListCore& setSingle_pose(const bool &single_pose) { idl_CommDetectedMarkerList.single_pose = single_pose; return *this; }
+	
 	// getter and setter for element Valid
 	inline bool getValid() const { return idl_CommDetectedMarkerList.valid; }
 	inline CommDetectedMarkerListCore& setValid(const bool &valid) { idl_CommDetectedMarkerList.valid = valid; return *this; }

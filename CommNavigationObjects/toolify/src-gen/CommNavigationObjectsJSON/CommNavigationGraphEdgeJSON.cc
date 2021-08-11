@@ -14,6 +14,7 @@
 
 #include "CommNavigationGraphEdgeJSON.hh"
 
+#include <CommNavigationObjects/enumEDGE_TYPE.hh>
 
 namespace CommNavigationObjectsIDL {
 
@@ -30,7 +31,7 @@ void to_json(const CommNavigationObjectsIDL::CommNavigationGraphEdge& obj, nlohm
 	// gap: Double
 	j["gap"] = obj.gap;
 	// type: EDGE_TYPE
-	j["type"] = obj.type;
+	j["type"] = CommNavigationObjects::EDGE_TYPE(obj.type).to_string(false);
 }
 
 /**
@@ -62,8 +63,8 @@ void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommNavigation
 		obj.gap = j["gap"].get<double>();
 	}
 	// type: EDGE_TYPE
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommNavigationObjects::EDGE_TYPE::from_string(j["type"].get<std::string>());
 	}
 }
 

@@ -22,7 +22,7 @@ extern "C" int finiTTSCorrdinationService(const std::string& ciInstanceName){
 
 //SWITCH FUNCTION
 
-extern "C" std::string switchTTSCorrdinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString)
+extern "C" std::string switchTTSCorrdinationService(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode)
 {
-	return TTSCORRDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,inString);
+	return TTSCORRDINATIONSERVICE_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,parameter,eventMode);
 }

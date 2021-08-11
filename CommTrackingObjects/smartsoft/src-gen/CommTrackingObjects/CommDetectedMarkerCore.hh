@@ -18,6 +18,7 @@
 
 #include "CommTrackingObjects/CommDetectedMarkerData.hh"
 #include "CommBasicObjects/CommPose3d.hh"
+#include "CommBasicObjects/CommBaseState.hh"
 
 #include <iostream>
 #include <string>
@@ -72,6 +73,14 @@ public:
 	// getter and setter for element Pose
 	inline CommBasicObjects::CommPose3d getPose() const { return CommBasicObjects::CommPose3d(idl_CommDetectedMarker.pose); }
 	inline CommDetectedMarkerCore& setPose(const CommBasicObjects::CommPose3d &pose) { idl_CommDetectedMarker.pose = pose; return *this; }
+	
+	// getter and setter for element Sensor_pose
+	inline CommBasicObjects::CommPose3d getSensor_pose() const { return CommBasicObjects::CommPose3d(idl_CommDetectedMarker.sensor_pose); }
+	inline CommDetectedMarkerCore& setSensor_pose(const CommBasicObjects::CommPose3d &sensor_pose) { idl_CommDetectedMarker.sensor_pose = sensor_pose; return *this; }
+	
+	// getter and setter for element Base_state
+	inline CommBasicObjects::CommBaseState getBase_state() const { return CommBasicObjects::CommBaseState(idl_CommDetectedMarker.base_state); }
+	inline CommDetectedMarkerCore& setBase_state(const CommBasicObjects::CommBaseState &base_state) { idl_CommDetectedMarker.base_state = base_state; return *this; }
 };
 
 } /* namespace CommTrackingObjects */

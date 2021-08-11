@@ -14,6 +14,7 @@
 
 #include "CommFileMetaDataJSON.hh"
 
+#include <CommBasicObjects/enumFileType.hh>
 
 namespace CommBasicObjectsIDL {
 
@@ -24,7 +25,7 @@ void to_json(const CommBasicObjectsIDL::CommFileMetaData& obj, nlohmann::json& j
 	// filesize: UInt32
 	j["filesize"] = obj.filesize;
 	// filetype: FileType
-	j["filetype"] = obj.filetype;
+	j["filetype"] = CommBasicObjects::FileType(obj.filetype).to_string(false);
 }
 
 /**
@@ -44,8 +45,8 @@ void from_json(const nlohmann::json& j, CommBasicObjectsIDL::CommFileMetaData& o
 		obj.filesize = j["filesize"].get<unsigned int>();
 	}
 	// filetype: FileType
-	if(j.contains("filetype") && j["filetype"].is_number_integer()) {
-		obj.filetype = j["filetype"].get<int>();
+	if(j.contains("filetype") && j["filetype"].is_string()) {
+		obj.filetype = CommBasicObjects::FileType::from_string(j["filetype"].get<std::string>());
 	}
 }
 

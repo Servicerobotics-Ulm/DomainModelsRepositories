@@ -109,6 +109,8 @@ CommObject for representing id and pose from visual tags ex: Alvar, AprilTag...
 Structure of Communication Object:
 - id: UInt32  = 0 
 - pose: CommBasicObjects::CommPose3d 
+- sensor_pose: CommBasicObjects::CommPose3d 
+- base_state: CommBasicObjects::CommBaseState 
 
 \class CommTrackingObjects::CommDetectedMarkerListCore
 CommObject for representing collection of CommDetectedMarker
@@ -117,25 +119,26 @@ Structure of Communication Object:
 - markers: CommTrackingObjects::CommDetectedMarker[*] 
 - sensor_pose: CommBasicObjects::CommPose3d 
 - base_state: CommBasicObjects::CommBaseState 
+- single_pose: Boolean  = true 
 - valid: Boolean  = false 
 
 \class CommTrackingObjects::CommDetectedMarkerEventResultCore
 contains markers which will be fired in event i.e Result = State && Parameter
 
 Structure of Communication Object:
-- markers: CommTrackingObjects::CommDetectedMarker[*] 
+- markers: CommTrackingObjects::CommDetectedMarkerList 
 
 \class CommTrackingObjects::CommDetectedMarkerEventStateCore
 contains markers found
 
 Structure of Communication Object:
-- markers: CommTrackingObjects::CommDetectedMarker[*] 
+- markers: CommTrackingObjects::CommDetectedMarkerList 
 
 \class CommTrackingObjects::CommDetectedMarkerEventParameterCore
 contains tag ids requested
 
 Structure of Communication Object:
-- tag_ids: UInt32[*] 
+- markers: CommTrackingObjects::CommDetectedMarkerList 
 
 \class CommTrackingObjects::TrackingGoalType
 
@@ -314,6 +317,8 @@ Class Reference: CommTrackingObjects::CommLeaderEventResultCore
 @section CommDetectedMarker CommDetectedMarker
 - id: UInt32   = 0 
 - pose: @ref CommPose3d (CommObj) 
+- sensor_pose: @ref CommPose3d (CommObj) 
+- base_state: @ref CommBaseState (CommObj) 
 
 Class Reference: CommTrackingObjects::CommDetectedMarkerCore
 <hr>
@@ -321,22 +326,23 @@ Class Reference: CommTrackingObjects::CommDetectedMarkerCore
 - markers: @ref CommDetectedMarker[*] (CommObj) 
 - sensor_pose: @ref CommPose3d (CommObj) 
 - base_state: @ref CommBaseState (CommObj) 
+- single_pose: Boolean   = true 
 - valid: Boolean   = false 
 
 Class Reference: CommTrackingObjects::CommDetectedMarkerListCore
 <hr>
 @section CommDetectedMarkerEventResult CommDetectedMarkerEventResult
-- markers: @ref CommDetectedMarker[*] (CommObj) 
+- markers: @ref CommDetectedMarkerList (CommObj) 
 
 Class Reference: CommTrackingObjects::CommDetectedMarkerEventResultCore
 <hr>
 @section CommDetectedMarkerEventState CommDetectedMarkerEventState
-- markers: @ref CommDetectedMarker[*] (CommObj) 
+- markers: @ref CommDetectedMarkerList (CommObj) 
 
 Class Reference: CommTrackingObjects::CommDetectedMarkerEventStateCore
 <hr>
 @section CommDetectedMarkerEventParameter CommDetectedMarkerEventParameter
-- tag_ids: UInt32[*]  
+- markers: @ref CommDetectedMarkerList (CommObj) 
 
 Class Reference: CommTrackingObjects::CommDetectedMarkerEventParameterCore
 <hr>

@@ -28,6 +28,7 @@ namespace CommManipulatorObjectsIDL
 		unsigned int id;
 		CommManipulatorState_joint_angles_type joint_angles;
 		CommBasicObjectsIDL::CommPose3d pose_tcp;
+		unsigned char motion_constraints;
 		CommBasicObjectsIDL::CommPose3d pose_manipulator;
 		bool is_valid;
   	};

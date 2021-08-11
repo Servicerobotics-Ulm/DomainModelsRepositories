@@ -21,6 +21,9 @@ PROJECT(FestoMPSVisualDockingCoordinationService)
 #FIND_SMARTSOFT(3.0)
 FIND_PACKAGE(AceSmartSoft PATHS $ENV{SMART_ROOT_ACE} PATH_SUFFIXES modules)
 
+# find dependency CommTrackingObjects
+FIND_PACKAGE(CommTrackingObjects PATHS $ENV{SMART_ROOT_ACE}/modules)
+FIND_PACKAGE(CommTrackingObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
 
 # these are the regular includes (add your own includes, if needed)
 INCLUDE_DIRECTORIES(
@@ -43,7 +46,9 @@ ENDIF()
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} AceSmartSoftKernel)
 
 # link libraryCommRobotinoObjects
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommRobotinoObjects)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommRobotinoObjects CommRobotinoObjectsJSON)
+# link libraryCommTrackingObjects
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommTrackingObjects CommTrackingObjectsJSON)
 
 # automatically install the component target
 # automatically run "make install" after regular "make" for the communication object

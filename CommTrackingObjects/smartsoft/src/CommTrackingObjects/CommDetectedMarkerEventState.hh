@@ -48,8 +48,6 @@ class CommDetectedMarkerEventState : public CommDetectedMarkerEventStateCore {
 		//
 		// feel free to add customized methods here
 		//
-		void add_CommDetectedMarker(CommTrackingObjects::CommDetectedMarker& marker);
-		void set_CommDetectedMarkerList(CommTrackingObjects::CommDetectedMarkerList& markers);
 };
 
 inline std::ostream &operator<<(std::ostream &os, const CommDetectedMarkerEventState &co)

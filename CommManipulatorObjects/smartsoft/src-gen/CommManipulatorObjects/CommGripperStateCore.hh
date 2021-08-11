@@ -88,7 +88,7 @@ public:
 		return false;
 	}
 	inline bool insertPosVectorAtPos(const size_t &pos, const std::vector<float> &data) {
-		if(pos < idl_CommGripperState.pos.size()) {
+		if(pos <= idl_CommGripperState.pos.size()) {
 			idl_CommGripperState.pos.insert(idl_CommGripperState.pos.begin()+pos, data.begin(), data.end());
 			return true;
 		}

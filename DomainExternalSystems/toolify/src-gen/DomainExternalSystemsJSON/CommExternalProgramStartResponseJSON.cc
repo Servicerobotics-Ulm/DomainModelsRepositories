@@ -14,13 +14,14 @@
 
 #include "CommExternalProgramStartResponseJSON.hh"
 
+#include <DomainExternalSystems/enumExternalProgramResult.hh>
 
 namespace DomainExternalSystemsIDL {
 
 void to_json(const DomainExternalSystemsIDL::CommExternalProgramStartResponse& obj, nlohmann::json& j)
 {
 	// result: ExternalProgramResult
-	j["result"] = obj.result;
+	j["result"] = DomainExternalSystems::ExternalProgramResult(obj.result).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const DomainExternalSystemsIDL::CommExternalProgramStartResponse& o
 void from_json(const nlohmann::json& j, DomainExternalSystemsIDL::CommExternalProgramStartResponse& obj)
 {
 	// result: ExternalProgramResult
-	if(j.contains("result") && j["result"].is_number_integer()) {
-		obj.result = j["result"].get<int>();
+	if(j.contains("result") && j["result"].is_string()) {
+		obj.result = DomainExternalSystems::ExternalProgramResult::from_string(j["result"].get<std::string>());
 	}
 }
 

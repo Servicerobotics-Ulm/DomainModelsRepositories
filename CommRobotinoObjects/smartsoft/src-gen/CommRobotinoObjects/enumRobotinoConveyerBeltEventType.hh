@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -56,7 +57,7 @@ namespace CommRobotinoObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		RobotinoConveyerBeltEventType(CommRobotinoObjectsIDL::RobotinoConveyerBeltEventType e) {
 			value = e;
 		}
@@ -73,47 +74,99 @@ namespace CommRobotinoObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "RobotinoConveyerBeltEventType::";
+			}
 			switch (value) {
 				case CONVEYER_BELT_UNKNOWN:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_UNKNOWN";
+					result += "CONVEYER_BELT_UNKNOWN";
 					break;
 				case CONVEYER_BELT_LOAD_DONE:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_LOAD_DONE";
+					result += "CONVEYER_BELT_LOAD_DONE";
 					break;
 				case CONVEYER_BELT_UNLOAD_DONE:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_UNLOAD_DONE";
+					result += "CONVEYER_BELT_UNLOAD_DONE";
 					break;
 				case CONVEYER_BELT_LOAD_NOT_DONE:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_LOAD_NOT_DONE";
+					result += "CONVEYER_BELT_LOAD_NOT_DONE";
 					break;
 				case CONVEYER_BELT_UNLOAD_NOT_DONE:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_UNLOAD_NOT_DONE";
+					result += "CONVEYER_BELT_UNLOAD_NOT_DONE";
 					break;
 				case CONVEYER_BELT_UNLOAD_ERROR_NO_BOX:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_UNLOAD_ERROR_NO_BOX";
+					result += "CONVEYER_BELT_UNLOAD_ERROR_NO_BOX";
 					break;
 				case CONVEYER_BELT_UNLOAD_ERROR_BOX_STILL_PRESENT:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_UNLOAD_ERROR_BOX_STILL_PRESENT";
+					result += "CONVEYER_BELT_UNLOAD_ERROR_BOX_STILL_PRESENT";
 					break;
 				case CONVEYER_BELT_UNLOAD_ERROR_NO_RESPONSE_FROM_STATION:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_UNLOAD_ERROR_NO_RESPONSE_FROM_STATION";
+					result += "CONVEYER_BELT_UNLOAD_ERROR_NO_RESPONSE_FROM_STATION";
 					break;
 				case CONVEYER_BELT_LOAD_ERROR_NO_BOX_LOADED:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_LOAD_ERROR_NO_BOX_LOADED";
+					result += "CONVEYER_BELT_LOAD_ERROR_NO_BOX_LOADED";
 					break;
 				case CONVEYER_BELT_LOAD_ERROR_BOX_ADREADY_PRSESENT:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_LOAD_ERROR_BOX_ADREADY_PRSESENT";
+					result += "CONVEYER_BELT_LOAD_ERROR_BOX_ADREADY_PRSESENT";
 					break;
 				case CONVEYER_BELT_LOAD_ERROR_NO_RESPONSE_FROM_STATION:
-					result = "RobotinoConveyerBeltEventType::CONVEYER_BELT_LOAD_ERROR_NO_RESPONSE_FROM_STATION";
+					result += "CONVEYER_BELT_LOAD_ERROR_NO_RESPONSE_FROM_STATION";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static RobotinoConveyerBeltEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "robotinoconveyerbelteventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "conveyer_belt_unknown"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_UNKNOWN);
+			}
+			if(input == "conveyer_belt_load_done"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_LOAD_DONE);
+			}
+			if(input == "conveyer_belt_unload_done"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_UNLOAD_DONE);
+			}
+			if(input == "conveyer_belt_load_not_done"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_LOAD_NOT_DONE);
+			}
+			if(input == "conveyer_belt_unload_not_done"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_UNLOAD_NOT_DONE);
+			}
+			if(input == "conveyer_belt_unload_error_no_box"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_UNLOAD_ERROR_NO_BOX);
+			}
+			if(input == "conveyer_belt_unload_error_box_still_present"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_UNLOAD_ERROR_BOX_STILL_PRESENT);
+			}
+			if(input == "conveyer_belt_unload_error_no_response_from_station"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_UNLOAD_ERROR_NO_RESPONSE_FROM_STATION);
+			}
+			if(input == "conveyer_belt_load_error_no_box_loaded"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_LOAD_ERROR_NO_BOX_LOADED);
+			}
+			if(input == "conveyer_belt_load_error_box_adready_prsesent"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_LOAD_ERROR_BOX_ADREADY_PRSESENT);
+			}
+			if(input == "conveyer_belt_load_error_no_response_from_station"){
+				return RobotinoConveyerBeltEventType(CONVEYER_BELT_LOAD_ERROR_NO_RESPONSE_FROM_STATION);
+			}
+			// default (if none of the preceding options match)
+			return RobotinoConveyerBeltEventType();
 		}
 		
 		// helper method to easily implement output stream

@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommObjectRecognitionObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		SimpleObjectState(CommObjectRecognitionObjectsIDL::SimpleObjectState e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommObjectRecognitionObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "SimpleObjectState::";
+			}
 			switch (value) {
 				case UNKOWN:
-					result = "SimpleObjectState::UNKOWN";
+					result += "UNKOWN";
 					break;
 				case OBJECT_FOUND:
-					result = "SimpleObjectState::OBJECT_FOUND";
+					result += "OBJECT_FOUND";
 					break;
 				case OBJECT_NOT_FOUND:
-					result = "SimpleObjectState::OBJECT_NOT_FOUND";
+					result += "OBJECT_NOT_FOUND";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static SimpleObjectState from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "simpleobjectstate::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "unkown"){
+				return SimpleObjectState(UNKOWN);
+			}
+			if(input == "object_found"){
+				return SimpleObjectState(OBJECT_FOUND);
+			}
+			if(input == "object_not_found"){
+				return SimpleObjectState(OBJECT_NOT_FOUND);
+			}
+			// default (if none of the preceding options match)
+			return SimpleObjectState();
 		}
 		
 		// helper method to easily implement output stream

@@ -22,7 +22,7 @@ extern "C" int finiSequencerHLCoordinationServer(const std::string& ciInstanceNa
 
 //SWITCH FUNCTION
 
-extern "C" std::string switchSequencerHLCoordinationServer(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString)
+extern "C" std::string switchSequencerHLCoordinationServer(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode)
 {
-	return SEQUENCERHLCOORDINATIONSERVER_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,inString);
+	return SEQUENCERHLCOORDINATIONSERVER_MODULE::instance()->switchCi(ciInstanceName,componentName,componentInstanceName,service,parameter,eventMode);
 }

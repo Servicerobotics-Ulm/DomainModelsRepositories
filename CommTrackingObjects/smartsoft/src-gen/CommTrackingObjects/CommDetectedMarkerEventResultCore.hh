@@ -17,7 +17,7 @@
 #define COMMTRACKINGOBJECTS_COMMDETECTEDMARKEREVENTRESULT_CORE_H_
 
 #include "CommTrackingObjects/CommDetectedMarkerEventResultData.hh"
-#include "CommTrackingObjects/CommDetectedMarker.hh"
+#include "CommTrackingObjects/CommDetectedMarkerList.hh"
 
 #include <iostream>
 #include <string>
@@ -66,47 +66,8 @@ public:
 	// User Interface
 	
 	// getter and setter for element Markers
-	/**
-	 * Getter methods for element idl_CommDetectedMarkerEventResult.markers of type vector<CommTrackingObjects::CommDetectedMarker>
-	 */
-	inline std::vector<CommTrackingObjects::CommDetectedMarker> getMarkersCopy() const { 
-		return std::vector<CommTrackingObjects::CommDetectedMarker>(idl_CommDetectedMarkerEventResult.markers.begin(), idl_CommDetectedMarkerEventResult.markers.end());
-	}
-	inline CommTrackingObjects::CommDetectedMarker getMarkersElemAtPos(const size_t &pos) const {
-		return CommTrackingObjects::CommDetectedMarker(idl_CommDetectedMarkerEventResult.markers[pos]);
-	}
-	inline size_t getMarkersSize() const { return idl_CommDetectedMarkerEventResult.markers.size(); }
-	inline bool isMarkersEmpty() const { return idl_CommDetectedMarkerEventResult.markers.empty(); }
-	/**
-	 * Setter methods for idl_CommDetectedMarkerEventResult.markers of type vector<CommTrackingObjects::CommDetectedMarker>
-	 */
-	inline CommDetectedMarkerEventResultCore& setMarkers(const std::vector<CommTrackingObjects::CommDetectedMarker> &markers) { 
-		idl_CommDetectedMarkerEventResult.markers.assign(markers.begin(), markers.end());
-		return *this;
-	}
-	inline bool setMarkersElemAtPos(const size_t &pos, const CommTrackingObjects::CommDetectedMarker &elem) {
-		if(pos < idl_CommDetectedMarkerEventResult.markers.size()) {
-			idl_CommDetectedMarkerEventResult.markers[pos] = elem;
-			return true;
-		}
-		return false;
-	}
-	inline bool insertMarkersVectorAtPos(const size_t &pos, const std::vector<CommTrackingObjects::CommDetectedMarker> &data) {
-		if(pos < idl_CommDetectedMarkerEventResult.markers.size()) {
-			idl_CommDetectedMarkerEventResult.markers.insert(idl_CommDetectedMarkerEventResult.markers.begin()+pos, data.begin(), data.end());
-			return true;
-		}
-		return false;
-	}
-	inline void resizeMarkers(const size_t &size) { idl_CommDetectedMarkerEventResult.markers.resize(size); }
-	inline bool eraseMarkersElemsAtPos(const size_t &pos, const size_t &nbr_elems) {
-		if( (pos+nbr_elems) <= idl_CommDetectedMarkerEventResult.markers.size() ) {
-			idl_CommDetectedMarkerEventResult.markers.erase(idl_CommDetectedMarkerEventResult.markers.begin()+pos, idl_CommDetectedMarkerEventResult.markers.begin()+pos+nbr_elems);
-			return true;
-		}
-		return false;
-	}
-	inline void clearMarkers() { idl_CommDetectedMarkerEventResult.markers.clear(); }
+	inline CommTrackingObjects::CommDetectedMarkerList getMarkers() const { return CommTrackingObjects::CommDetectedMarkerList(idl_CommDetectedMarkerEventResult.markers); }
+	inline CommDetectedMarkerEventResultCore& setMarkers(const CommTrackingObjects::CommDetectedMarkerList &markers) { idl_CommDetectedMarkerEventResult.markers = markers; return *this; }
 };
 
 } /* namespace CommTrackingObjects */

@@ -14,13 +14,14 @@
 
 #include "CommCorridorNavigationPoseAnswerJSON.hh"
 
+#include <CommNavigationObjects/enumNodeRequestAnserType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationPoseAnswer& obj, nlohmann::json& j)
 {
 	// result: NodeRequestAnserType
-	j["result"] = obj.result;
+	j["result"] = CommNavigationObjects::NodeRequestAnserType(obj.result).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationPoseAnswer& o
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNavigationPoseAnswer& obj)
 {
 	// result: NodeRequestAnserType
-	if(j.contains("result") && j["result"].is_number_integer()) {
-		obj.result = j["result"].get<int>();
+	if(j.contains("result") && j["result"].is_string()) {
+		obj.result = CommNavigationObjects::NodeRequestAnserType::from_string(j["result"].get<std::string>());
 	}
 }
 

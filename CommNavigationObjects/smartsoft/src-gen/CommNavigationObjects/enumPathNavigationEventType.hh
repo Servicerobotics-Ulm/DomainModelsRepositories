@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -51,7 +52,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PathNavigationEventType(CommNavigationObjectsIDL::PathNavigationEventType e) {
 			value = e;
 		}
@@ -68,32 +69,69 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PathNavigationEventType::";
+			}
 			switch (value) {
 				case GOAL_UNKNOWN:
-					result = "PathNavigationEventType::GOAL_UNKNOWN";
+					result += "GOAL_UNKNOWN";
 					break;
 				case START_TOO_FAR:
-					result = "PathNavigationEventType::START_TOO_FAR";
+					result += "START_TOO_FAR";
 					break;
 				case GOAL_REACHED:
-					result = "PathNavigationEventType::GOAL_REACHED";
+					result += "GOAL_REACHED";
 					break;
 				case GOAL_NOT_REACHED:
-					result = "PathNavigationEventType::GOAL_NOT_REACHED";
+					result += "GOAL_NOT_REACHED";
 					break;
 				case NO_PATH_FOUND:
-					result = "PathNavigationEventType::NO_PATH_FOUND";
+					result += "NO_PATH_FOUND";
 					break;
 				case FATAL_ERROR:
-					result = "PathNavigationEventType::FATAL_ERROR";
+					result += "FATAL_ERROR";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PathNavigationEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "pathnavigationeventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "goal_unknown"){
+				return PathNavigationEventType(GOAL_UNKNOWN);
+			}
+			if(input == "start_too_far"){
+				return PathNavigationEventType(START_TOO_FAR);
+			}
+			if(input == "goal_reached"){
+				return PathNavigationEventType(GOAL_REACHED);
+			}
+			if(input == "goal_not_reached"){
+				return PathNavigationEventType(GOAL_NOT_REACHED);
+			}
+			if(input == "no_path_found"){
+				return PathNavigationEventType(NO_PATH_FOUND);
+			}
+			if(input == "fatal_error"){
+				return PathNavigationEventType(FATAL_ERROR);
+			}
+			// default (if none of the preceding options match)
+			return PathNavigationEventType();
 		}
 		
 		// helper method to easily implement output stream

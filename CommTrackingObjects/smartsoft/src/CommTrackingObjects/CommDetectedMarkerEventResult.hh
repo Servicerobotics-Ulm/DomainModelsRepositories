@@ -49,7 +49,6 @@ class CommDetectedMarkerEventResult : public CommDetectedMarkerEventResultCore {
 		//
 		// feel free to add customized methods here
 		//
-		void set_CommDetectedMarkerList(CommTrackingObjects::CommDetectedMarkerList& markers);
 };
 
 inline std::ostream &operator<<(std::ostream &os, const CommDetectedMarkerEventResult &co)

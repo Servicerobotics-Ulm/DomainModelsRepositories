@@ -14,6 +14,8 @@
 
 #include "CommBatteryParameterJSON.hh"
 
+#include <CommBasicObjects/enumComparisonState.hh>
+#include <CommBasicObjects/enumComparisonState.hh>
 
 namespace CommBasicObjectsIDL {
 
@@ -24,9 +26,9 @@ void to_json(const CommBasicObjectsIDL::CommBatteryParameter& obj, nlohmann::jso
 	// lowerThreshold: Double
 	j["lowerThreshold"] = obj.lowerThreshold;
 	// desiredState: ComparisonState
-	j["desiredState"] = obj.desiredState;
+	j["desiredState"] = CommBasicObjects::ComparisonState(obj.desiredState).to_string(false);
 	// currentState: ComparisonState
-	j["currentState"] = obj.currentState;
+	j["currentState"] = CommBasicObjects::ComparisonState(obj.currentState).to_string(false);
 }
 
 /**
@@ -46,12 +48,12 @@ void from_json(const nlohmann::json& j, CommBasicObjectsIDL::CommBatteryParamete
 		obj.lowerThreshold = j["lowerThreshold"].get<double>();
 	}
 	// desiredState: ComparisonState
-	if(j.contains("desiredState") && j["desiredState"].is_number_integer()) {
-		obj.desiredState = j["desiredState"].get<int>();
+	if(j.contains("desiredState") && j["desiredState"].is_string()) {
+		obj.desiredState = CommBasicObjects::ComparisonState::from_string(j["desiredState"].get<std::string>());
 	}
 	// currentState: ComparisonState
-	if(j.contains("currentState") && j["currentState"].is_number_integer()) {
-		obj.currentState = j["currentState"].get<int>();
+	if(j.contains("currentState") && j["currentState"].is_string()) {
+		obj.currentState = CommBasicObjects::ComparisonState::from_string(j["currentState"].get<std::string>());
 	}
 }
 

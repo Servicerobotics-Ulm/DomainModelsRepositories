@@ -14,13 +14,14 @@
 
 #include "CommCorridorNavigationPoseRequestEventParameterJSON.hh"
 
+#include <CommNavigationObjects/enumNodeRequestAnserType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationPoseRequestEventParameter& obj, nlohmann::json& j)
 {
 	// oldState: NodeRequestAnserType
-	j["oldState"] = obj.oldState;
+	j["oldState"] = CommNavigationObjects::NodeRequestAnserType(obj.oldState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationPoseRequestEv
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNavigationPoseRequestEventParameter& obj)
 {
 	// oldState: NodeRequestAnserType
-	if(j.contains("oldState") && j["oldState"].is_number_integer()) {
-		obj.oldState = j["oldState"].get<int>();
+	if(j.contains("oldState") && j["oldState"].is_string()) {
+		obj.oldState = CommNavigationObjects::NodeRequestAnserType::from_string(j["oldState"].get<std::string>());
 	}
 }
 

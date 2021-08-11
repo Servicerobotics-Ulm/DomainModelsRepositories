@@ -14,18 +14,14 @@
 
 #include "CommDetectedMarkerEventResultJSON.hh"
 
-#include "CommTrackingObjectsJSON/CommDetectedMarkerJSON.hh"
+#include "CommTrackingObjectsJSON/CommDetectedMarkerListJSON.hh"
 
 namespace CommTrackingObjectsIDL {
 
 void to_json(const CommTrackingObjectsIDL::CommDetectedMarkerEventResult& obj, nlohmann::json& j)
 {
-	// markers: CommDetectedMarker[]
-	for(size_t idx=0; idx < obj.markers.size(); idx++) {
-		nlohmann::json array_element;
-		to_json(obj.markers.at(idx), array_element);
-		j["markers"].emplace_back(array_element);
-	}
+	// markers: CommDetectedMarkerList
+	to_json(obj.markers, j["markers"]);
 }
 
 /**
@@ -36,17 +32,10 @@ void to_json(const CommTrackingObjectsIDL::CommDetectedMarkerEventResult& obj, n
  */
 void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::CommDetectedMarkerEventResult& obj)
 {
-	// markers: CommDetectedMarker[]
-	if(j.contains("markers") && j["markers"].is_array()) {
-		auto jmarkers = j["markers"];
-		obj.markers.resize(jmarkers.size());
-		for(size_t idx=0; idx < jmarkers.size(); idx++) {
-			// convert the json array values individually
-			if(jmarkers.at(idx).is_object()) {
-				// from_json(jmarkers.at(idx), obj.markers.at(idx));
-				obj.markers[idx] = jmarkers[idx].get<CommTrackingObjectsIDL::CommDetectedMarker>();
-			}
-		}
+	// markers: CommDetectedMarkerList
+	if(j.contains("markers") && j["markers"].is_object()) {
+		//from_json(j["markers"], obj.markers);
+		obj.markers = j["markers"].get<CommTrackingObjectsIDL::CommDetectedMarkerList>();
 	}
 }
 

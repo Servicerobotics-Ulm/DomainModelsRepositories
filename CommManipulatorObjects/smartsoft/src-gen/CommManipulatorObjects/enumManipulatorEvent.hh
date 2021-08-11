@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -38,7 +39,8 @@ namespace CommManipulatorObjects {
 			VALUE_OUT_OF_RANGE = 3,
 			GOAL_REACHED = 4,
 			GOAL_NOT_REACHED = 5,
-			UNKNOWN = 6
+			ERROR = 6,
+			UNKNOWN = 7
 		};
 		
 		// default constructor
@@ -51,7 +53,7 @@ namespace CommManipulatorObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		ManipulatorEvent(CommManipulatorObjectsIDL::ManipulatorEvent e) {
 			value = e;
 		}
@@ -68,32 +70,75 @@ namespace CommManipulatorObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "ManipulatorEvent::";
+			}
 			switch (value) {
 				case COLLISION:
-					result = "ManipulatorEvent::COLLISION";
+					result += "COLLISION";
 					break;
 				case NO_SOLUTION_FOUND:
-					result = "ManipulatorEvent::NO_SOLUTION_FOUND";
+					result += "NO_SOLUTION_FOUND";
 					break;
 				case VALUE_OUT_OF_RANGE:
-					result = "ManipulatorEvent::VALUE_OUT_OF_RANGE";
+					result += "VALUE_OUT_OF_RANGE";
 					break;
 				case GOAL_REACHED:
-					result = "ManipulatorEvent::GOAL_REACHED";
+					result += "GOAL_REACHED";
 					break;
 				case GOAL_NOT_REACHED:
-					result = "ManipulatorEvent::GOAL_NOT_REACHED";
+					result += "GOAL_NOT_REACHED";
+					break;
+				case ERROR:
+					result += "ERROR";
 					break;
 				case UNKNOWN:
-					result = "ManipulatorEvent::UNKNOWN";
+					result += "UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static ManipulatorEvent from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "manipulatorevent::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "collision"){
+				return ManipulatorEvent(COLLISION);
+			}
+			if(input == "no_solution_found"){
+				return ManipulatorEvent(NO_SOLUTION_FOUND);
+			}
+			if(input == "value_out_of_range"){
+				return ManipulatorEvent(VALUE_OUT_OF_RANGE);
+			}
+			if(input == "goal_reached"){
+				return ManipulatorEvent(GOAL_REACHED);
+			}
+			if(input == "goal_not_reached"){
+				return ManipulatorEvent(GOAL_NOT_REACHED);
+			}
+			if(input == "error"){
+				return ManipulatorEvent(ERROR);
+			}
+			if(input == "unknown"){
+				return ManipulatorEvent(UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return ManipulatorEvent();
 		}
 		
 		// helper method to easily implement output stream

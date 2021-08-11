@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		NavigationNodeRequestType(CommNavigationObjectsIDL::NavigationNodeRequestType e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "NavigationNodeRequestType::";
+			}
 			switch (value) {
 				case FREENODE:
-					result = "NavigationNodeRequestType::FREENODE";
+					result += "FREENODE";
 					break;
 				case ACQUIRENODE:
-					result = "NavigationNodeRequestType::ACQUIRENODE";
+					result += "ACQUIRENODE";
 					break;
 				case FREEALLNODES:
-					result = "NavigationNodeRequestType::FREEALLNODES";
+					result += "FREEALLNODES";
 					break;
 				case FREEALLNODESBUT:
-					result = "NavigationNodeRequestType::FREEALLNODESBUT";
+					result += "FREEALLNODESBUT";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static NavigationNodeRequestType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "navigationnoderequesttype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "freenode"){
+				return NavigationNodeRequestType(FREENODE);
+			}
+			if(input == "acquirenode"){
+				return NavigationNodeRequestType(ACQUIRENODE);
+			}
+			if(input == "freeallnodes"){
+				return NavigationNodeRequestType(FREEALLNODES);
+			}
+			if(input == "freeallnodesbut"){
+				return NavigationNodeRequestType(FREEALLNODESBUT);
+			}
+			// default (if none of the preceding options match)
+			return NavigationNodeRequestType();
 		}
 		
 		// helper method to easily implement output stream

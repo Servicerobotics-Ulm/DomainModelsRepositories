@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -59,7 +60,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		MapperTagType(CommNavigationObjectsIDL::MapperTagType e) {
 			value = e;
 		}
@@ -76,56 +77,117 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "MapperTagType::";
+			}
 			switch (value) {
 				case MAPPER_CUR_PARAMETER:
-					result = "MapperTagType::MAPPER_CUR_PARAMETER";
+					result += "MAPPER_CUR_PARAMETER";
 					break;
 				case MAPPER_CUR_LTM:
-					result = "MapperTagType::MAPPER_CUR_LTM";
+					result += "MAPPER_CUR_LTM";
 					break;
 				case MAPPER_CUR_SAVE:
-					result = "MapperTagType::MAPPER_CUR_SAVE";
+					result += "MAPPER_CUR_SAVE";
 					break;
 				case MAPPER_CUR_LOAD:
-					result = "MapperTagType::MAPPER_CUR_LOAD";
+					result += "MAPPER_CUR_LOAD";
 					break;
 				case MAPPER_CUR_LOAD_LTM:
-					result = "MapperTagType::MAPPER_CUR_LOAD_LTM";
+					result += "MAPPER_CUR_LOAD_LTM";
 					break;
 				case MAPPER_CTR_SAVE_XPM:
-					result = "MapperTagType::MAPPER_CTR_SAVE_XPM";
+					result += "MAPPER_CTR_SAVE_XPM";
 					break;
 				case MAPPER_LTM_PARAMETER:
-					result = "MapperTagType::MAPPER_LTM_PARAMETER";
+					result += "MAPPER_LTM_PARAMETER";
 					break;
 				case MAPPER_LTM_INITIALIZE:
-					result = "MapperTagType::MAPPER_LTM_INITIALIZE";
+					result += "MAPPER_LTM_INITIALIZE";
 					break;
 				case MAPPER_LTM_SAVE:
-					result = "MapperTagType::MAPPER_LTM_SAVE";
+					result += "MAPPER_LTM_SAVE";
 					break;
 				case MAPPER_LTM_LOAD:
-					result = "MapperTagType::MAPPER_LTM_LOAD";
+					result += "MAPPER_LTM_LOAD";
 					break;
 				case MAPPER_LTM_SAVE_XPM:
-					result = "MapperTagType::MAPPER_LTM_SAVE_XPM";
+					result += "MAPPER_LTM_SAVE_XPM";
 					break;
 				case MAPPER_LTM_SAVE_YAML_PGM:
-					result = "MapperTagType::MAPPER_LTM_SAVE_YAML_PGM";
+					result += "MAPPER_LTM_SAVE_YAML_PGM";
 					break;
 				case MAPPER_LTM_SAVE_YAML_PPM:
-					result = "MapperTagType::MAPPER_LTM_SAVE_YAML_PPM";
+					result += "MAPPER_LTM_SAVE_YAML_PPM";
 					break;
 				case MAPPER_LTM_LOAD_YAML:
-					result = "MapperTagType::MAPPER_LTM_LOAD_YAML";
+					result += "MAPPER_LTM_LOAD_YAML";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static MapperTagType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "mappertagtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "mapper_cur_parameter"){
+				return MapperTagType(MAPPER_CUR_PARAMETER);
+			}
+			if(input == "mapper_cur_ltm"){
+				return MapperTagType(MAPPER_CUR_LTM);
+			}
+			if(input == "mapper_cur_save"){
+				return MapperTagType(MAPPER_CUR_SAVE);
+			}
+			if(input == "mapper_cur_load"){
+				return MapperTagType(MAPPER_CUR_LOAD);
+			}
+			if(input == "mapper_cur_load_ltm"){
+				return MapperTagType(MAPPER_CUR_LOAD_LTM);
+			}
+			if(input == "mapper_ctr_save_xpm"){
+				return MapperTagType(MAPPER_CTR_SAVE_XPM);
+			}
+			if(input == "mapper_ltm_parameter"){
+				return MapperTagType(MAPPER_LTM_PARAMETER);
+			}
+			if(input == "mapper_ltm_initialize"){
+				return MapperTagType(MAPPER_LTM_INITIALIZE);
+			}
+			if(input == "mapper_ltm_save"){
+				return MapperTagType(MAPPER_LTM_SAVE);
+			}
+			if(input == "mapper_ltm_load"){
+				return MapperTagType(MAPPER_LTM_LOAD);
+			}
+			if(input == "mapper_ltm_save_xpm"){
+				return MapperTagType(MAPPER_LTM_SAVE_XPM);
+			}
+			if(input == "mapper_ltm_save_yaml_pgm"){
+				return MapperTagType(MAPPER_LTM_SAVE_YAML_PGM);
+			}
+			if(input == "mapper_ltm_save_yaml_ppm"){
+				return MapperTagType(MAPPER_LTM_SAVE_YAML_PPM);
+			}
+			if(input == "mapper_ltm_load_yaml"){
+				return MapperTagType(MAPPER_LTM_LOAD_YAML);
+			}
+			// default (if none of the preceding options match)
+			return MapperTagType();
 		}
 		
 		// helper method to easily implement output stream

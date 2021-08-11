@@ -89,7 +89,7 @@ public:
 		return false;
 	}
 	inline bool insertAnalogInputValuesVectorAtPos(const size_t &pos, const std::vector<float> &data) {
-		if(pos < idl_CommIOValues.analogInputValues.size()) {
+		if(pos <= idl_CommIOValues.analogInputValues.size()) {
 			idl_CommIOValues.analogInputValues.insert(idl_CommIOValues.analogInputValues.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -128,7 +128,7 @@ public:
 		return false;
 	}
 	inline bool insertDigitalInputValuesVectorAtPos(const size_t &pos, const std::vector<bool> &data) {
-		if(pos < idl_CommIOValues.digitalInputValues.size()) {
+		if(pos <= idl_CommIOValues.digitalInputValues.size()) {
 			idl_CommIOValues.digitalInputValues.insert(idl_CommIOValues.digitalInputValues.begin()+pos, data.begin(), data.end());
 			return true;
 		}

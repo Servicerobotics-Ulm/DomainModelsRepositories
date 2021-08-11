@@ -14,13 +14,14 @@
 
 #include "CommFileMoverEventResultJSON.hh"
 
+#include <CommBasicObjects/enumFileMoverEventType.hh>
 
 namespace CommBasicObjectsIDL {
 
 void to_json(const CommBasicObjectsIDL::CommFileMoverEventResult& obj, nlohmann::json& j)
 {
 	// state: FileMoverEventType
-	j["state"] = obj.state;
+	j["state"] = CommBasicObjects::FileMoverEventType(obj.state).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommBasicObjectsIDL::CommFileMoverEventResult& obj, nlohmann:
 void from_json(const nlohmann::json& j, CommBasicObjectsIDL::CommFileMoverEventResult& obj)
 {
 	// state: FileMoverEventType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommBasicObjects::FileMoverEventType::from_string(j["state"].get<std::string>());
 	}
 }
 

@@ -14,13 +14,14 @@
 
 #include "CommVacummGripperStateJSON.hh"
 
+#include <CommManipulatorObjects/enumVacuumGraspState.hh>
 
 namespace CommManipulatorObjectsIDL {
 
 void to_json(const CommManipulatorObjectsIDL::CommVacummGripperState& obj, nlohmann::json& j)
 {
 	// state: VacuumGraspState
-	j["state"] = obj.state;
+	j["state"] = CommManipulatorObjects::VacuumGraspState(obj.state).to_string(false);
 	// vacuumLevel: Double
 	j["vacuumLevel"] = obj.vacuumLevel;
 }
@@ -34,8 +35,8 @@ void to_json(const CommManipulatorObjectsIDL::CommVacummGripperState& obj, nlohm
 void from_json(const nlohmann::json& j, CommManipulatorObjectsIDL::CommVacummGripperState& obj)
 {
 	// state: VacuumGraspState
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommManipulatorObjects::VacuumGraspState::from_string(j["state"].get<std::string>());
 	}
 	// vacuumLevel: Double
 	if(j.contains("vacuumLevel") && j["vacuumLevel"].is_number_float()) {

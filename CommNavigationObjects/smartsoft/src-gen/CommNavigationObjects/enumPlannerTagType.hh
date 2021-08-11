@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PlannerTagType(CommNavigationObjectsIDL::PlannerTagType e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PlannerTagType::";
+			}
 			switch (value) {
 				case PLANNER_DELETE_GOAL:
-					result = "PlannerTagType::PLANNER_DELETE_GOAL";
+					result += "PLANNER_DELETE_GOAL";
 					break;
 				case PLANNER_SET_DESTINATION_LINE:
-					result = "PlannerTagType::PLANNER_SET_DESTINATION_LINE";
+					result += "PLANNER_SET_DESTINATION_LINE";
 					break;
 				case PLANNER_SET_DESTINATION_CIRCLE:
-					result = "PlannerTagType::PLANNER_SET_DESTINATION_CIRCLE";
+					result += "PLANNER_SET_DESTINATION_CIRCLE";
 					break;
 				case PLANNER_ID:
-					result = "PlannerTagType::PLANNER_ID";
+					result += "PLANNER_ID";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PlannerTagType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "plannertagtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "planner_delete_goal"){
+				return PlannerTagType(PLANNER_DELETE_GOAL);
+			}
+			if(input == "planner_set_destination_line"){
+				return PlannerTagType(PLANNER_SET_DESTINATION_LINE);
+			}
+			if(input == "planner_set_destination_circle"){
+				return PlannerTagType(PLANNER_SET_DESTINATION_CIRCLE);
+			}
+			if(input == "planner_id"){
+				return PlannerTagType(PLANNER_ID);
+			}
+			// default (if none of the preceding options match)
+			return PlannerTagType();
 		}
 		
 		// helper method to easily implement output stream

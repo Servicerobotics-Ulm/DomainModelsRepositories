@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommBasicObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		FileMoverEventType(CommBasicObjectsIDL::FileMoverEventType e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommBasicObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "FileMoverEventType::";
+			}
 			switch (value) {
 				case TYPE_FILE_UNKNOWN:
-					result = "FileMoverEventType::TYPE_FILE_UNKNOWN";
+					result += "TYPE_FILE_UNKNOWN";
 					break;
 				case TYPE_FILE_SUCCESS:
-					result = "FileMoverEventType::TYPE_FILE_SUCCESS";
+					result += "TYPE_FILE_SUCCESS";
 					break;
 				case TYPE_FILE_ERROR:
-					result = "FileMoverEventType::TYPE_FILE_ERROR";
+					result += "TYPE_FILE_ERROR";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static FileMoverEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "filemovereventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "type_file_unknown"){
+				return FileMoverEventType(TYPE_FILE_UNKNOWN);
+			}
+			if(input == "type_file_success"){
+				return FileMoverEventType(TYPE_FILE_SUCCESS);
+			}
+			if(input == "type_file_error"){
+				return FileMoverEventType(TYPE_FILE_ERROR);
+			}
+			// default (if none of the preceding options match)
+			return FileMoverEventType();
 		}
 		
 		// helper method to easily implement output stream

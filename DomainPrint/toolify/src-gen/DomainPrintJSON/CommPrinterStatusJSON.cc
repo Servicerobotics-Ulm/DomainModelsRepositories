@@ -14,13 +14,14 @@
 
 #include "CommPrinterStatusJSON.hh"
 
+#include <DomainPrint/enumPrinterStatusEnum.hh>
 
 namespace DomainPrintIDL {
 
 void to_json(const DomainPrintIDL::CommPrinterStatus& obj, nlohmann::json& j)
 {
 	// status: PrinterStatusEnum
-	j["status"] = obj.status;
+	j["status"] = DomainPrint::PrinterStatusEnum(obj.status).to_string(false);
 	// statusRIBWARN: Boolean
 	j["statusRIBWARN"] = obj.statusRIBWARN;
 	// statusLBLWARN: Boolean
@@ -36,8 +37,8 @@ void to_json(const DomainPrintIDL::CommPrinterStatus& obj, nlohmann::json& j)
 void from_json(const nlohmann::json& j, DomainPrintIDL::CommPrinterStatus& obj)
 {
 	// status: PrinterStatusEnum
-	if(j.contains("status") && j["status"].is_number_integer()) {
-		obj.status = j["status"].get<int>();
+	if(j.contains("status") && j["status"].is_string()) {
+		obj.status = DomainPrint::PrinterStatusEnum::from_string(j["status"].get<std::string>());
 	}
 	// statusRIBWARN: Boolean
 	if(j.contains("statusRIBWARN") && j["statusRIBWARN"].is_boolean()) {

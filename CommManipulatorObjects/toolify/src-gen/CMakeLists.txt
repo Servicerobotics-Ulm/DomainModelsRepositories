@@ -12,7 +12,12 @@ IF(TARGET nlohmann_json::nlohmann_json)
 	# find depndency CommManipulatorObjectsJSON
 	FIND_PACKAGE(CommBasicObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
 	
-	ADD_LIBRARY(${PROJECT_NAME} SHARED ${JSON_SRCS})
+	IF(WIN32)
+		ADD_LIBRARY(${PROJECT_NAME} STATIC ${JSON_SRCS})
+	ELSE(WIN32)
+		ADD_LIBRARY(${PROJECT_NAME} SHARED ${JSON_SRCS})
+	ENDIF(WIN32)
+	
 	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommManipulatorObjects nlohmann_json::nlohmann_json)
 	# link depndency CommBasicObjects
 	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjectsJSON)

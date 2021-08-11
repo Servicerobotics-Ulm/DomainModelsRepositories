@@ -112,7 +112,7 @@ public:
 		return false;
 	}
 	inline bool insertIntersec_pathVectorAtPos(const size_t &pos, const std::vector<int> &data) {
-		if(pos < idl_CommNavigationGraphVertex.intersec_path.size()) {
+		if(pos <= idl_CommNavigationGraphVertex.intersec_path.size()) {
 			idl_CommNavigationGraphVertex.intersec_path.insert(idl_CommNavigationGraphVertex.intersec_path.begin()+pos, data.begin(), data.end());
 			return true;
 		}

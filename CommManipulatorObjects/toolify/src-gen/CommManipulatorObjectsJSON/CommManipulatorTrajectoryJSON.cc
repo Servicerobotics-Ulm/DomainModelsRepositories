@@ -17,6 +17,7 @@
 #include "CommManipulatorObjectsJSON/CommJointValuesJSON.hh"
 #include "CommBasicObjectsJSON/CommPose3dJSON.hh"
 #include "CommManipulatorObjectsJSON/CommGripperTrajectoryJSON.hh"
+#include <CommManipulatorObjects/enumManipulatorTrajectoryFlag.hh>
 
 namespace CommManipulatorObjectsIDL {
 
@@ -33,7 +34,7 @@ void to_json(const CommManipulatorObjectsIDL::CommManipulatorTrajectory& obj, nl
 	// gripper_angles: CommGripperTrajectory
 	to_json(obj.gripper_angles, j["gripper_angles"]);
 	// flag: ManipulatorTrajectoryFlag
-	j["flag"] = obj.flag;
+	j["flag"] = CommManipulatorObjects::ManipulatorTrajectoryFlag(obj.flag).to_string(false);
 }
 
 /**
@@ -67,8 +68,8 @@ void from_json(const nlohmann::json& j, CommManipulatorObjectsIDL::CommManipulat
 		obj.gripper_angles = j["gripper_angles"].get<CommManipulatorObjectsIDL::CommGripperTrajectory>();
 	}
 	// flag: ManipulatorTrajectoryFlag
-	if(j.contains("flag") && j["flag"].is_number_integer()) {
-		obj.flag = j["flag"].get<int>();
+	if(j.contains("flag") && j["flag"].is_string()) {
+		obj.flag = CommManipulatorObjects::ManipulatorTrajectoryFlag::from_string(j["flag"].get<std::string>());
 	}
 }
 

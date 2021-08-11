@@ -12,16 +12,16 @@ IF(SeRoNetSDK_FOUND)
 	FILE(GLOB OPCUA_SRCS ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.cc)
 	FILE(GLOB OPCUA_HDRS ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.hh)
 	# find depndency CommObjectRecognitionObjectsOpcUa
-	FIND_PACKAGE(CommManipulatorObjectsOpcUa PATHS $ENV{SMART_ROOT_ACE}/modules $ENV{SMART_ROOT_ACE})
-	# find depndency CommObjectRecognitionObjectsOpcUa
 	FIND_PACKAGE(CommBasicObjectsOpcUa PATHS $ENV{SMART_ROOT_ACE}/modules $ENV{SMART_ROOT_ACE})
+	# find depndency CommObjectRecognitionObjectsOpcUa
+	FIND_PACKAGE(CommManipulatorObjectsOpcUa PATHS $ENV{SMART_ROOT_ACE}/modules $ENV{SMART_ROOT_ACE})
 	
 	ADD_LIBRARY(${PROJECT_NAME} SHARED ${OPCUA_SRCS})
 	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommObjectRecognitionObjects SeRoNetSDK::SeRoNetSDK)
-	# link depndency CommManipulatorObjects
-	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommManipulatorObjectsOpcUa)
 	# link depndency CommBasicObjects
 	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjectsOpcUa)
+	# link depndency CommManipulatorObjects
+	TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommManipulatorObjectsOpcUa)
 	TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 	$<INSTALL_INTERFACE:include>

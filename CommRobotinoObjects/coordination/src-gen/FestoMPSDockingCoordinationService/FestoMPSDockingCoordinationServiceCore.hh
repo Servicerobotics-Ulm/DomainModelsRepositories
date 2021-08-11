@@ -24,7 +24,7 @@ public:
 	void addNewModuleInstance(const std::string& name);
 	int initCiInstance(SmartACE::SmartComponent * component, const std::string& ciInstanceName, const std::map< std::string, CiConnection, ciLessLibC> &ciConnectionsMap);
 	int finiCiInstance(const std::string& ciInstanceName);
-	std::string switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString);
+	std::string switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode);
 
  };
 #endif /* FESTOMPSDOCKINGCOORDINATIONSERVICECORE_H_ */

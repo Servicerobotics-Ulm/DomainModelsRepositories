@@ -15,14 +15,14 @@
 //--------------------------------------------------------------------------
 #include "CommTrackingObjects/CommDetectedMarkerEventParameterACE.hh"
 #include <ace/SString.h>
+#include "CommTrackingObjects/CommDetectedMarkerListACE.hh"
 
 // serialization operator for element CommDetectedMarkerEventParameter
 ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommTrackingObjectsIDL::CommDetectedMarkerEventParameter &data)
 {
 	ACE_CDR::Boolean good_bit = true;
-	// serialize list-element tag_ids
-	good_bit = good_bit && cdr << ACE_Utils::truncate_cast<ACE_CDR::ULong>(data.tag_ids.size());
-	good_bit = good_bit && cdr.write_ulong_array(data.tag_ids.data(), data.tag_ids.size());
+	// serialize list-element markers
+	good_bit = good_bit && cdr << data.markers;
 	
 	return good_bit;
 }
@@ -31,11 +31,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommTrackingObjectsIDL::Co
 ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommTrackingObjectsIDL::CommDetectedMarkerEventParameter &data)
 {
 	ACE_CDR::Boolean good_bit = true;
-	// deserialize list-type element tag_ids
-	ACE_CDR::ULong data_tag_idsNbr;
-	good_bit = good_bit && cdr >> data_tag_idsNbr;
-	data.tag_ids.resize(data_tag_idsNbr);
-	good_bit = good_bit && cdr.read_ulong_array(data.tag_ids.data(), data_tag_idsNbr);
+	// deserialize type element markers
+	good_bit = good_bit && cdr >> data.markers;
 	
 	return good_bit;
 }

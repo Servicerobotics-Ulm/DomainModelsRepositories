@@ -92,7 +92,7 @@ public:
 		return false;
 	}
 	inline bool insertJoint_anglesVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommManipulatorState.joint_angles.size()) {
+		if(pos <= idl_CommManipulatorState.joint_angles.size()) {
 			idl_CommManipulatorState.joint_angles.insert(idl_CommManipulatorState.joint_angles.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -111,6 +111,10 @@ public:
 	// getter and setter for element Pose_tcp
 	inline CommBasicObjects::CommPose3d getPose_tcp() const { return CommBasicObjects::CommPose3d(idl_CommManipulatorState.pose_tcp); }
 	inline CommManipulatorStateCore& setPose_tcp(const CommBasicObjects::CommPose3d &pose_tcp) { idl_CommManipulatorState.pose_tcp = pose_tcp; return *this; }
+	
+	// getter and setter for element Motion_constraints
+	inline unsigned char getMotion_constraints() const { return idl_CommManipulatorState.motion_constraints; }
+	inline CommManipulatorStateCore& setMotion_constraints(const unsigned char &motion_constraints) { idl_CommManipulatorState.motion_constraints = motion_constraints; return *this; }
 	
 	// getter and setter for element Pose_manipulator
 	inline CommBasicObjects::CommPose3d getPose_manipulator() const { return CommBasicObjects::CommPose3d(idl_CommManipulatorState.pose_manipulator); }

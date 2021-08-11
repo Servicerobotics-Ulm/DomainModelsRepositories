@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -52,7 +53,7 @@ namespace CommManipulationPlannerObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		ManipulationPlannerEvent(CommManipulationPlannerObjectsIDL::ManipulationPlannerEvent e) {
 			value = e;
 		}
@@ -69,35 +70,75 @@ namespace CommManipulationPlannerObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "ManipulationPlannerEvent::";
+			}
 			switch (value) {
 				case MANIPULATOR_SYNC_FAIL:
-					result = "ManipulationPlannerEvent::MANIPULATOR_SYNC_FAIL";
+					result += "MANIPULATOR_SYNC_FAIL";
 					break;
 				case NO_IK_SOLUTION_FOUND:
-					result = "ManipulationPlannerEvent::NO_IK_SOLUTION_FOUND";
+					result += "NO_IK_SOLUTION_FOUND";
 					break;
 				case NO_PATH_FOUND:
-					result = "ManipulationPlannerEvent::NO_PATH_FOUND";
+					result += "NO_PATH_FOUND";
 					break;
 				case PATH_FOUND:
-					result = "ManipulationPlannerEvent::PATH_FOUND";
+					result += "PATH_FOUND";
 					break;
 				case PLANNING_PATH:
-					result = "ManipulationPlannerEvent::PLANNING_PATH";
+					result += "PLANNING_PATH";
 					break;
 				case LOAD_OBJREC_DATA_DONE:
-					result = "ManipulationPlannerEvent::LOAD_OBJREC_DATA_DONE";
+					result += "LOAD_OBJREC_DATA_DONE";
 					break;
 				case UNKNOWN:
-					result = "ManipulationPlannerEvent::UNKNOWN";
+					result += "UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static ManipulationPlannerEvent from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "manipulationplannerevent::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "manipulator_sync_fail"){
+				return ManipulationPlannerEvent(MANIPULATOR_SYNC_FAIL);
+			}
+			if(input == "no_ik_solution_found"){
+				return ManipulationPlannerEvent(NO_IK_SOLUTION_FOUND);
+			}
+			if(input == "no_path_found"){
+				return ManipulationPlannerEvent(NO_PATH_FOUND);
+			}
+			if(input == "path_found"){
+				return ManipulationPlannerEvent(PATH_FOUND);
+			}
+			if(input == "planning_path"){
+				return ManipulationPlannerEvent(PLANNING_PATH);
+			}
+			if(input == "load_objrec_data_done"){
+				return ManipulationPlannerEvent(LOAD_OBJREC_DATA_DONE);
+			}
+			if(input == "unknown"){
+				return ManipulationPlannerEvent(UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return ManipulationPlannerEvent();
 		}
 		
 		// helper method to easily implement output stream

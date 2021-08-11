@@ -14,13 +14,14 @@
 
 #include "PTUGoalEventStateJSON.hh"
 
+#include <DomainPTU/enumPTUMoveStatus.hh>
 
 namespace DomainPTUIDL {
 
 void to_json(const DomainPTUIDL::PTUGoalEventState& obj, nlohmann::json& j)
 {
 	// newState: PTUMoveStatus
-	j["newState"] = obj.newState;
+	j["newState"] = DomainPTU::PTUMoveStatus(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const DomainPTUIDL::PTUGoalEventState& obj, nlohmann::json& j)
 void from_json(const nlohmann::json& j, DomainPTUIDL::PTUGoalEventState& obj)
 {
 	// newState: PTUMoveStatus
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = DomainPTU::PTUMoveStatus::from_string(j["newState"].get<std::string>());
 	}
 }
 

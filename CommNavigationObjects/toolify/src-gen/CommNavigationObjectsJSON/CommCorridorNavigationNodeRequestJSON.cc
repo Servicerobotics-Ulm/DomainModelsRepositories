@@ -14,6 +14,7 @@
 
 #include "CommCorridorNavigationNodeRequestJSON.hh"
 
+#include <CommNavigationObjects/enumNavigationNodeRequestType.hh>
 #include "CommNavigationObjectsJSON/CommCorridorNodeJSON.hh"
 
 namespace CommNavigationObjectsIDL {
@@ -21,7 +22,7 @@ namespace CommNavigationObjectsIDL {
 void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationNodeRequest& obj, nlohmann::json& j)
 {
 	// requestType: NavigationNodeRequestType
-	j["requestType"] = obj.requestType;
+	j["requestType"] = CommNavigationObjects::NavigationNodeRequestType(obj.requestType).to_string(false);
 	// nodesList: CommCorridorNode[]
 	for(size_t idx=0; idx < obj.nodesList.size(); idx++) {
 		nlohmann::json array_element;
@@ -41,8 +42,8 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationNodeRequest& 
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNavigationNodeRequest& obj)
 {
 	// requestType: NavigationNodeRequestType
-	if(j.contains("requestType") && j["requestType"].is_number_integer()) {
-		obj.requestType = j["requestType"].get<int>();
+	if(j.contains("requestType") && j["requestType"].is_string()) {
+		obj.requestType = CommNavigationObjects::NavigationNodeRequestType::from_string(j["requestType"].get<std::string>());
 	}
 	// nodesList: CommCorridorNode[]
 	if(j.contains("nodesList") && j["nodesList"].is_array()) {

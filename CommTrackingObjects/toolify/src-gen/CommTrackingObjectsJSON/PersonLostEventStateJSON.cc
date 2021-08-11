@@ -14,13 +14,14 @@
 
 #include "PersonLostEventStateJSON.hh"
 
+#include <CommTrackingObjects/enumPersonLostEventType.hh>
 
 namespace CommTrackingObjectsIDL {
 
 void to_json(const CommTrackingObjectsIDL::PersonLostEventState& obj, nlohmann::json& j)
 {
 	// newState: PersonLostEventType
-	j["newState"] = obj.newState;
+	j["newState"] = CommTrackingObjects::PersonLostEventType(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommTrackingObjectsIDL::PersonLostEventState& obj, nlohmann::
 void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::PersonLostEventState& obj)
 {
 	// newState: PersonLostEventType
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = CommTrackingObjects::PersonLostEventType::from_string(j["newState"].get<std::string>());
 	}
 }
 

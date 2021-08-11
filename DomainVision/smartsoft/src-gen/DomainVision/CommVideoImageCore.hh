@@ -95,7 +95,7 @@ public:
 		return false;
 	}
 	inline bool insertDataVectorAtPos(const size_t &pos, const std::vector<unsigned char> &data) {
-		if(pos < idl_CommVideoImage.data.size()) {
+		if(pos <= idl_CommVideoImage.data.size()) {
 			idl_CommVideoImage.data.insert(idl_CommVideoImage.data.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -150,7 +150,7 @@ public:
 		return false;
 	}
 	inline bool insertIntrinsic_mVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommVideoImage.intrinsic_m.size()) {
+		if(pos <= idl_CommVideoImage.intrinsic_m.size()) {
 			idl_CommVideoImage.intrinsic_m.insert(idl_CommVideoImage.intrinsic_m.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -189,7 +189,7 @@ public:
 		return false;
 	}
 	inline bool insertDistortion_mVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommVideoImage.distortion_m.size()) {
+		if(pos <= idl_CommVideoImage.distortion_m.size()) {
 			idl_CommVideoImage.distortion_m.insert(idl_CommVideoImage.distortion_m.begin()+pos, data.begin(), data.end());
 			return true;
 		}

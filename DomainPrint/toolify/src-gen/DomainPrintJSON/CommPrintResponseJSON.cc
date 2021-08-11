@@ -14,6 +14,7 @@
 
 #include "CommPrintResponseJSON.hh"
 
+#include <DomainPrint/enumPrintResponseResultEnum.hh>
 
 namespace DomainPrintIDL {
 
@@ -22,7 +23,7 @@ void to_json(const DomainPrintIDL::CommPrintResponse& obj, nlohmann::json& j)
 	// resultValue: String
 	j["resultValue"] = obj.resultValue;
 	// result: PrintResponseResultEnum
-	j["result"] = obj.result;
+	j["result"] = DomainPrint::PrintResponseResultEnum(obj.result).to_string(false);
 }
 
 /**
@@ -38,8 +39,8 @@ void from_json(const nlohmann::json& j, DomainPrintIDL::CommPrintResponse& obj)
 		obj.resultValue = j["resultValue"].get<std::string>();
 	}
 	// result: PrintResponseResultEnum
-	if(j.contains("result") && j["result"].is_number_integer()) {
-		obj.result = j["result"].get<int>();
+	if(j.contains("result") && j["result"].is_string()) {
+		obj.result = DomainPrint::PrintResponseResultEnum::from_string(j["result"].get<std::string>());
 	}
 }
 

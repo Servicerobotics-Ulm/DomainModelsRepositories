@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -53,7 +54,7 @@ namespace DomainPTU {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PTUMoveStatus(DomainPTUIDL::PTUMoveStatus e) {
 			value = e;
 		}
@@ -70,38 +71,81 @@ namespace DomainPTU {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PTUMoveStatus::";
+			}
 			switch (value) {
 				case GOAL_REACHED:
-					result = "PTUMoveStatus::GOAL_REACHED";
+					result += "GOAL_REACHED";
 					break;
 				case GOAL_NOT_REACHED:
-					result = "PTUMoveStatus::GOAL_NOT_REACHED";
+					result += "GOAL_NOT_REACHED";
 					break;
 				case TILT_OUT_OF_RANGE:
-					result = "PTUMoveStatus::TILT_OUT_OF_RANGE";
+					result += "TILT_OUT_OF_RANGE";
 					break;
 				case PAN_OUT_OF_RANGE:
-					result = "PTUMoveStatus::PAN_OUT_OF_RANGE";
+					result += "PAN_OUT_OF_RANGE";
 					break;
 				case PAN_TILT_OUT_OF_RANGE:
-					result = "PTUMoveStatus::PAN_TILT_OUT_OF_RANGE";
+					result += "PAN_TILT_OUT_OF_RANGE";
 					break;
 				case HALTED:
-					result = "PTUMoveStatus::HALTED";
+					result += "HALTED";
 					break;
 				case FAILURE:
-					result = "PTUMoveStatus::FAILURE";
+					result += "FAILURE";
 					break;
 				case UNKNOWN:
-					result = "PTUMoveStatus::UNKNOWN";
+					result += "UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PTUMoveStatus from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "ptumovestatus::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "goal_reached"){
+				return PTUMoveStatus(GOAL_REACHED);
+			}
+			if(input == "goal_not_reached"){
+				return PTUMoveStatus(GOAL_NOT_REACHED);
+			}
+			if(input == "tilt_out_of_range"){
+				return PTUMoveStatus(TILT_OUT_OF_RANGE);
+			}
+			if(input == "pan_out_of_range"){
+				return PTUMoveStatus(PAN_OUT_OF_RANGE);
+			}
+			if(input == "pan_tilt_out_of_range"){
+				return PTUMoveStatus(PAN_TILT_OUT_OF_RANGE);
+			}
+			if(input == "halted"){
+				return PTUMoveStatus(HALTED);
+			}
+			if(input == "failure"){
+				return PTUMoveStatus(FAILURE);
+			}
+			if(input == "unknown"){
+				return PTUMoveStatus(UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return PTUMoveStatus();
 		}
 		
 		// helper method to easily implement output stream

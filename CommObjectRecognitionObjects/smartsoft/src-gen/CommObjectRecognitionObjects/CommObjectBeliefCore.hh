@@ -104,7 +104,7 @@ public:
 		return false;
 	}
 	inline bool insertCovVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommObjectBelief.cov.size()) {
+		if(pos <= idl_CommObjectBelief.cov.size()) {
 			idl_CommObjectBelief.cov.insert(idl_CommObjectBelief.cov.begin()+pos, data.begin(), data.end());
 			return true;
 		}

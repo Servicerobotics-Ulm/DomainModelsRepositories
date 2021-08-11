@@ -16,16 +16,14 @@
 #ifndef COMMTRACKINGOBJECTS_COMMDETECTEDMARKEREVENTRESULT_DATA_H_
 #define COMMTRACKINGOBJECTS_COMMDETECTEDMARKEREVENTRESULT_DATA_H_
 
-#include "CommTrackingObjects/CommDetectedMarkerData.hh"
+#include "CommTrackingObjects/CommDetectedMarkerListData.hh"
 
-#include <vector>
 
 namespace CommTrackingObjectsIDL 
 {
-	typedef std::vector<CommTrackingObjectsIDL::CommDetectedMarker> CommDetectedMarkerEventResult_markers_type;
 	struct CommDetectedMarkerEventResult
 	{
-		CommDetectedMarkerEventResult_markers_type markers;
+		CommTrackingObjectsIDL::CommDetectedMarkerList markers;
   	};
 };
 

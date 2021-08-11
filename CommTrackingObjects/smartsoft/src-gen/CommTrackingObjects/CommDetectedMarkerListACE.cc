@@ -33,6 +33,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommTrackingObjectsIDL::Co
 	good_bit = good_bit && cdr << data.sensor_pose;
 	// serialize list-element base_state
 	good_bit = good_bit && cdr << data.base_state;
+	// serialize list-element single_pose
+	good_bit = good_bit && cdr.write_boolean(data.single_pose);
 	// serialize list-element valid
 	good_bit = good_bit && cdr.write_boolean(data.valid);
 	
@@ -56,6 +58,8 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommTrackingObjectsIDL::CommDetec
 	good_bit = good_bit && cdr >> data.sensor_pose;
 	// deserialize type element base_state
 	good_bit = good_bit && cdr >> data.base_state;
+	// deserialize type element single_pose
+	good_bit = good_bit && cdr.read_boolean(data.single_pose);
 	// deserialize type element valid
 	good_bit = good_bit && cdr.read_boolean(data.valid);
 	

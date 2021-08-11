@@ -113,7 +113,7 @@ public:
 		return false;
 	}
 	inline bool insertDataVectorAtPos(const size_t &pos, const std::vector<unsigned char> &data) {
-		if(pos < idl_CommDepthImage.data.size()) {
+		if(pos <= idl_CommDepthImage.data.size()) {
 			idl_CommDepthImage.data.insert(idl_CommDepthImage.data.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -152,7 +152,7 @@ public:
 		return false;
 	}
 	inline bool insertIntrinsic_mVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommDepthImage.intrinsic_m.size()) {
+		if(pos <= idl_CommDepthImage.intrinsic_m.size()) {
 			idl_CommDepthImage.intrinsic_m.insert(idl_CommDepthImage.intrinsic_m.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -191,7 +191,7 @@ public:
 		return false;
 	}
 	inline bool insertExtrinsic_mVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommDepthImage.extrinsic_m.size()) {
+		if(pos <= idl_CommDepthImage.extrinsic_m.size()) {
 			idl_CommDepthImage.extrinsic_m.insert(idl_CommDepthImage.extrinsic_m.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -230,7 +230,7 @@ public:
 		return false;
 	}
 	inline bool insertStereo_mVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommDepthImage.stereo_m.size()) {
+		if(pos <= idl_CommDepthImage.stereo_m.size()) {
 			idl_CommDepthImage.stereo_m.insert(idl_CommDepthImage.stereo_m.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -269,7 +269,7 @@ public:
 		return false;
 	}
 	inline bool insertDistortion_mVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommDepthImage.distortion_m.size()) {
+		if(pos <= idl_CommDepthImage.distortion_m.size()) {
 			idl_CommDepthImage.distortion_m.insert(idl_CommDepthImage.distortion_m.begin()+pos, data.begin(), data.end());
 			return true;
 		}

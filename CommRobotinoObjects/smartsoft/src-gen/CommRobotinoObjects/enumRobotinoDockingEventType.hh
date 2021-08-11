@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -55,7 +56,7 @@ namespace CommRobotinoObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		RobotinoDockingEventType(CommRobotinoObjectsIDL::RobotinoDockingEventType e) {
 			value = e;
 		}
@@ -72,44 +73,93 @@ namespace CommRobotinoObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "RobotinoDockingEventType::";
+			}
 			switch (value) {
 				case DOCKING_UNKNOWN:
-					result = "RobotinoDockingEventType::DOCKING_UNKNOWN";
+					result += "DOCKING_UNKNOWN";
 					break;
 				case IR_DOCKING_DONE:
-					result = "RobotinoDockingEventType::IR_DOCKING_DONE";
+					result += "IR_DOCKING_DONE";
 					break;
 				case LASER_DOCKING_DONE:
-					result = "RobotinoDockingEventType::LASER_DOCKING_DONE";
+					result += "LASER_DOCKING_DONE";
 					break;
 				case IR_DOCKING_NOT_DONE:
-					result = "RobotinoDockingEventType::IR_DOCKING_NOT_DONE";
+					result += "IR_DOCKING_NOT_DONE";
 					break;
 				case LASER_DOCKING_NOT_DONE:
-					result = "RobotinoDockingEventType::LASER_DOCKING_NOT_DONE";
+					result += "LASER_DOCKING_NOT_DONE";
 					break;
 				case LASER_DOCKING_ERROR:
-					result = "RobotinoDockingEventType::LASER_DOCKING_ERROR";
+					result += "LASER_DOCKING_ERROR";
 					break;
 				case IR_DOCKING_ERROR:
-					result = "RobotinoDockingEventType::IR_DOCKING_ERROR";
+					result += "IR_DOCKING_ERROR";
 					break;
 				case UN_DOCKING_NOT_DONE:
-					result = "RobotinoDockingEventType::UN_DOCKING_NOT_DONE";
+					result += "UN_DOCKING_NOT_DONE";
 					break;
 				case UN_DOCKING_DONE:
-					result = "RobotinoDockingEventType::UN_DOCKING_DONE";
+					result += "UN_DOCKING_DONE";
 					break;
 				case UN_DOCKING_ERROR:
-					result = "RobotinoDockingEventType::UN_DOCKING_ERROR";
+					result += "UN_DOCKING_ERROR";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static RobotinoDockingEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "robotinodockingeventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "docking_unknown"){
+				return RobotinoDockingEventType(DOCKING_UNKNOWN);
+			}
+			if(input == "ir_docking_done"){
+				return RobotinoDockingEventType(IR_DOCKING_DONE);
+			}
+			if(input == "laser_docking_done"){
+				return RobotinoDockingEventType(LASER_DOCKING_DONE);
+			}
+			if(input == "ir_docking_not_done"){
+				return RobotinoDockingEventType(IR_DOCKING_NOT_DONE);
+			}
+			if(input == "laser_docking_not_done"){
+				return RobotinoDockingEventType(LASER_DOCKING_NOT_DONE);
+			}
+			if(input == "laser_docking_error"){
+				return RobotinoDockingEventType(LASER_DOCKING_ERROR);
+			}
+			if(input == "ir_docking_error"){
+				return RobotinoDockingEventType(IR_DOCKING_ERROR);
+			}
+			if(input == "un_docking_not_done"){
+				return RobotinoDockingEventType(UN_DOCKING_NOT_DONE);
+			}
+			if(input == "un_docking_done"){
+				return RobotinoDockingEventType(UN_DOCKING_DONE);
+			}
+			if(input == "un_docking_error"){
+				return RobotinoDockingEventType(UN_DOCKING_ERROR);
+			}
+			// default (if none of the preceding options match)
+			return RobotinoDockingEventType();
 		}
 		
 		// helper method to easily implement output stream

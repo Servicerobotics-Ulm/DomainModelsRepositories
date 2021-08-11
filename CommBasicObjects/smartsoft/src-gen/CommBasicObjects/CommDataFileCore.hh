@@ -100,7 +100,7 @@ public:
 		return false;
 	}
 	inline bool insertDataVectorAtPos(const size_t &pos, const std::vector<char> &data) {
-		if(pos < idl_CommDataFile.data.size()) {
+		if(pos <= idl_CommDataFile.data.size()) {
 			idl_CommDataFile.data.insert(idl_CommDataFile.data.begin()+pos, data.begin(), data.end());
 			return true;
 		}

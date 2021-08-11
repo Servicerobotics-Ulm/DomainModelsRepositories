@@ -15,18 +15,14 @@
 //--------------------------------------------------------------------------
 #include "CommTrackingObjects/CommDetectedMarkerEventResultACE.hh"
 #include <ace/SString.h>
-#include "CommTrackingObjects/CommDetectedMarkerACE.hh"
+#include "CommTrackingObjects/CommDetectedMarkerListACE.hh"
 
 // serialization operator for element CommDetectedMarkerEventResult
 ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommTrackingObjectsIDL::CommDetectedMarkerEventResult &data)
 {
 	ACE_CDR::Boolean good_bit = true;
 	// serialize list-element markers
-	good_bit = good_bit && cdr << ACE_Utils::truncate_cast<ACE_CDR::ULong>(data.markers.size());
-	std::vector<CommTrackingObjectsIDL::CommDetectedMarker>::const_iterator data_markersIt;
-	for(data_markersIt=data.markers.begin(); data_markersIt!=data.markers.end(); data_markersIt++) {
-		good_bit = good_bit && cdr << *data_markersIt;
-	}
+	good_bit = good_bit && cdr << data.markers;
 	
 	return good_bit;
 }
@@ -35,15 +31,8 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommTrackingObjectsIDL::Co
 ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommTrackingObjectsIDL::CommDetectedMarkerEventResult &data)
 {
 	ACE_CDR::Boolean good_bit = true;
-	// deserialize list-type element markers
-	ACE_CDR::ULong data_markersNbr;
-	good_bit = good_bit && cdr >> data_markersNbr;
-	data.markers.clear();
-	CommTrackingObjectsIDL::CommDetectedMarker data_markersItem;
-	for(ACE_CDR::ULong i=0; i<data_markersNbr; ++i) {
-		good_bit = good_bit && cdr >> data_markersItem;
-		data.markers.push_back(data_markersItem);
-	}
+	// deserialize type element markers
+	good_bit = good_bit && cdr >> data.markers;
 	
 	return good_bit;
 }

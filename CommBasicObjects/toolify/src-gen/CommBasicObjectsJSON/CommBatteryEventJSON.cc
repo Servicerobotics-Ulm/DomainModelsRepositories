@@ -14,6 +14,7 @@
 
 #include "CommBatteryEventJSON.hh"
 
+#include <CommBasicObjects/enumComparisonState.hh>
 
 namespace CommBasicObjectsIDL {
 
@@ -22,7 +23,7 @@ void to_json(const CommBasicObjectsIDL::CommBatteryEvent& obj, nlohmann::json& j
 	// chargeValue: Double
 	j["chargeValue"] = obj.chargeValue;
 	// state: ComparisonState
-	j["state"] = obj.state;
+	j["state"] = CommBasicObjects::ComparisonState(obj.state).to_string(false);
 }
 
 /**
@@ -38,8 +39,8 @@ void from_json(const nlohmann::json& j, CommBasicObjectsIDL::CommBatteryEvent& o
 		obj.chargeValue = j["chargeValue"].get<double>();
 	}
 	// state: ComparisonState
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommBasicObjects::ComparisonState::from_string(j["state"].get<std::string>());
 	}
 }
 

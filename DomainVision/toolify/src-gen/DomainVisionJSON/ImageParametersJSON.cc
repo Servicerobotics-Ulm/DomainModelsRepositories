@@ -14,6 +14,7 @@
 
 #include "ImageParametersJSON.hh"
 
+#include <DomainVision/enumFormatType.hh>
 
 namespace DomainVisionIDL {
 
@@ -24,7 +25,7 @@ void to_json(const DomainVisionIDL::ImageParameters& obj, nlohmann::json& j)
 	// height: UInt32
 	j["height"] = obj.height;
 	// format: FormatType
-	j["format"] = obj.format;
+	j["format"] = DomainVision::FormatType(obj.format).to_string(false);
 	// depth: UInt32
 	j["depth"] = obj.depth;
 	// size: UInt32
@@ -48,8 +49,8 @@ void from_json(const nlohmann::json& j, DomainVisionIDL::ImageParameters& obj)
 		obj.height = j["height"].get<unsigned int>();
 	}
 	// format: FormatType
-	if(j.contains("format") && j["format"].is_number_integer()) {
-		obj.format = j["format"].get<int>();
+	if(j.contains("format") && j["format"].is_string()) {
+		obj.format = DomainVision::FormatType::from_string(j["format"].get<std::string>());
 	}
 	// depth: UInt32
 	if(j.contains("depth") && j["depth"].is_number_unsigned()) {

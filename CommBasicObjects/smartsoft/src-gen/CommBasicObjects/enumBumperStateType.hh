@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommBasicObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		BumperStateType(CommBasicObjectsIDL::BumperStateType e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommBasicObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "BumperStateType::";
+			}
 			switch (value) {
 				case BUMPER_NOT_SUPPORTED:
-					result = "BumperStateType::BUMPER_NOT_SUPPORTED";
+					result += "BUMPER_NOT_SUPPORTED";
 					break;
 				case BUMPER_NOT_PRESSED:
-					result = "BumperStateType::BUMPER_NOT_PRESSED";
+					result += "BUMPER_NOT_PRESSED";
 					break;
 				case BUMPER_PRESSED:
-					result = "BumperStateType::BUMPER_PRESSED";
+					result += "BUMPER_PRESSED";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static BumperStateType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "bumperstatetype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "bumper_not_supported"){
+				return BumperStateType(BUMPER_NOT_SUPPORTED);
+			}
+			if(input == "bumper_not_pressed"){
+				return BumperStateType(BUMPER_NOT_PRESSED);
+			}
+			if(input == "bumper_pressed"){
+				return BumperStateType(BUMPER_PRESSED);
+			}
+			// default (if none of the preceding options match)
+			return BumperStateType();
 		}
 		
 		// helper method to easily implement output stream

@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -52,7 +53,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		DockingEventType(CommNavigationObjectsIDL::DockingEventType e) {
 			value = e;
 		}
@@ -69,35 +70,75 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "DockingEventType::";
+			}
 			switch (value) {
 				case DOCKING_UNKNOWN:
-					result = "DockingEventType::DOCKING_UNKNOWN";
+					result += "DOCKING_UNKNOWN";
 					break;
 				case DOCKING_DONE:
-					result = "DockingEventType::DOCKING_DONE";
+					result += "DOCKING_DONE";
 					break;
 				case DOCKING_NOT_DONE:
-					result = "DockingEventType::DOCKING_NOT_DONE";
+					result += "DOCKING_NOT_DONE";
 					break;
 				case DOCKING_ERROR:
-					result = "DockingEventType::DOCKING_ERROR";
+					result += "DOCKING_ERROR";
 					break;
 				case UN_DOCKING_NOT_DONE:
-					result = "DockingEventType::UN_DOCKING_NOT_DONE";
+					result += "UN_DOCKING_NOT_DONE";
 					break;
 				case UN_DOCKING_DONE:
-					result = "DockingEventType::UN_DOCKING_DONE";
+					result += "UN_DOCKING_DONE";
 					break;
 				case UN_DOCKING_ERROR:
-					result = "DockingEventType::UN_DOCKING_ERROR";
+					result += "UN_DOCKING_ERROR";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static DockingEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "dockingeventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "docking_unknown"){
+				return DockingEventType(DOCKING_UNKNOWN);
+			}
+			if(input == "docking_done"){
+				return DockingEventType(DOCKING_DONE);
+			}
+			if(input == "docking_not_done"){
+				return DockingEventType(DOCKING_NOT_DONE);
+			}
+			if(input == "docking_error"){
+				return DockingEventType(DOCKING_ERROR);
+			}
+			if(input == "un_docking_not_done"){
+				return DockingEventType(UN_DOCKING_NOT_DONE);
+			}
+			if(input == "un_docking_done"){
+				return DockingEventType(UN_DOCKING_DONE);
+			}
+			if(input == "un_docking_error"){
+				return DockingEventType(UN_DOCKING_ERROR);
+			}
+			// default (if none of the preceding options match)
+			return DockingEventType();
 		}
 		
 		// helper method to easily implement output stream

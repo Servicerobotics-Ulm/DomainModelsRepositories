@@ -87,7 +87,7 @@ public:
 		return false;
 	}
 	inline bool insertDigitalInputValuesVectorAtPos(const size_t &pos, const std::vector<bool> &data) {
-		if(pos < idl_CommDigitalInputEventResult.digitalInputValues.size()) {
+		if(pos <= idl_CommDigitalInputEventResult.digitalInputValues.size()) {
 			idl_CommDigitalInputEventResult.digitalInputValues.insert(idl_CommDigitalInputEventResult.digitalInputValues.begin()+pos, data.begin(), data.end());
 			return true;
 		}

@@ -14,13 +14,14 @@
 
 #include "CommRemoteOperatorEventJSON.hh"
 
+#include <CommRobotinoObjects/enumRemoteOperatorEventType.hh>
 
 namespace CommRobotinoObjectsIDL {
 
 void to_json(const CommRobotinoObjectsIDL::CommRemoteOperatorEvent& obj, nlohmann::json& j)
 {
 	// state: RemoteOperatorEventType
-	j["state"] = obj.state;
+	j["state"] = CommRobotinoObjects::RemoteOperatorEventType(obj.state).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommRobotinoObjectsIDL::CommRemoteOperatorEvent& obj, nlohman
 void from_json(const nlohmann::json& j, CommRobotinoObjectsIDL::CommRemoteOperatorEvent& obj)
 {
 	// state: RemoteOperatorEventType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommRobotinoObjects::RemoteOperatorEventType::from_string(j["state"].get<std::string>());
 	}
 }
 

@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -57,7 +58,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PlannerEventType(CommNavigationObjectsIDL::PlannerEventType e) {
 			value = e;
 		}
@@ -74,50 +75,105 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PlannerEventType::";
+			}
 			switch (value) {
 				case PLANNER_NO_ERROR:
-					result = "PlannerEventType::PLANNER_NO_ERROR";
+					result += "PLANNER_NO_ERROR";
 					break;
 				case PLANNER_UNKNOWN_ERROR:
-					result = "PlannerEventType::PLANNER_UNKNOWN_ERROR";
+					result += "PLANNER_UNKNOWN_ERROR";
 					break;
 				case PLANNER_NO_GOAL_AVAILABLE:
-					result = "PlannerEventType::PLANNER_NO_GOAL_AVAILABLE";
+					result += "PLANNER_NO_GOAL_AVAILABLE";
 					break;
 				case PLANNER_GOAL_OK:
-					result = "PlannerEventType::PLANNER_GOAL_OK";
+					result += "PLANNER_GOAL_OK";
 					break;
 				case PLANNER_GOAL_NOT_MARKED:
-					result = "PlannerEventType::PLANNER_GOAL_NOT_MARKED";
+					result += "PLANNER_GOAL_NOT_MARKED";
 					break;
 				case PLANNER_START_OCCUPIED_OBSTACLE:
-					result = "PlannerEventType::PLANNER_START_OCCUPIED_OBSTACLE";
+					result += "PLANNER_START_OCCUPIED_OBSTACLE";
 					break;
 				case PLANNER_START_OCCUPIED_GOAL:
-					result = "PlannerEventType::PLANNER_START_OCCUPIED_GOAL";
+					result += "PLANNER_START_OCCUPIED_GOAL";
 					break;
 				case PLANNER_NO_PATH:
-					result = "PlannerEventType::PLANNER_NO_PATH";
+					result += "PLANNER_NO_PATH";
 					break;
 				case PLANNER_PATH_FOUND:
-					result = "PlannerEventType::PLANNER_PATH_FOUND";
+					result += "PLANNER_PATH_FOUND";
 					break;
 				case PLANNER_WRONG_MAPID:
-					result = "PlannerEventType::PLANNER_WRONG_MAPID";
+					result += "PLANNER_WRONG_MAPID";
 					break;
 				case PLANNER_INVALID_MAP:
-					result = "PlannerEventType::PLANNER_INVALID_MAP";
+					result += "PLANNER_INVALID_MAP";
 					break;
 				case PLANNER_UNKNOWN:
-					result = "PlannerEventType::PLANNER_UNKNOWN";
+					result += "PLANNER_UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PlannerEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "plannereventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "planner_no_error"){
+				return PlannerEventType(PLANNER_NO_ERROR);
+			}
+			if(input == "planner_unknown_error"){
+				return PlannerEventType(PLANNER_UNKNOWN_ERROR);
+			}
+			if(input == "planner_no_goal_available"){
+				return PlannerEventType(PLANNER_NO_GOAL_AVAILABLE);
+			}
+			if(input == "planner_goal_ok"){
+				return PlannerEventType(PLANNER_GOAL_OK);
+			}
+			if(input == "planner_goal_not_marked"){
+				return PlannerEventType(PLANNER_GOAL_NOT_MARKED);
+			}
+			if(input == "planner_start_occupied_obstacle"){
+				return PlannerEventType(PLANNER_START_OCCUPIED_OBSTACLE);
+			}
+			if(input == "planner_start_occupied_goal"){
+				return PlannerEventType(PLANNER_START_OCCUPIED_GOAL);
+			}
+			if(input == "planner_no_path"){
+				return PlannerEventType(PLANNER_NO_PATH);
+			}
+			if(input == "planner_path_found"){
+				return PlannerEventType(PLANNER_PATH_FOUND);
+			}
+			if(input == "planner_wrong_mapid"){
+				return PlannerEventType(PLANNER_WRONG_MAPID);
+			}
+			if(input == "planner_invalid_map"){
+				return PlannerEventType(PLANNER_INVALID_MAP);
+			}
+			if(input == "planner_unknown"){
+				return PlannerEventType(PLANNER_UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return PlannerEventType();
 		}
 		
 		// helper method to easily implement output stream

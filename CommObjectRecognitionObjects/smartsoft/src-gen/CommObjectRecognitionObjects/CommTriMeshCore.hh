@@ -87,7 +87,7 @@ public:
 		return false;
 	}
 	inline bool insertVertices_p1VectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommTriMesh.vertices_p1.size()) {
+		if(pos <= idl_CommTriMesh.vertices_p1.size()) {
 			idl_CommTriMesh.vertices_p1.insert(idl_CommTriMesh.vertices_p1.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -126,7 +126,7 @@ public:
 		return false;
 	}
 	inline bool insertVertices_p2VectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommTriMesh.vertices_p2.size()) {
+		if(pos <= idl_CommTriMesh.vertices_p2.size()) {
 			idl_CommTriMesh.vertices_p2.insert(idl_CommTriMesh.vertices_p2.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -165,7 +165,7 @@ public:
 		return false;
 	}
 	inline bool insertVertices_p3VectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommTriMesh.vertices_p3.size()) {
+		if(pos <= idl_CommTriMesh.vertices_p3.size()) {
 			idl_CommTriMesh.vertices_p3.insert(idl_CommTriMesh.vertices_p3.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -204,7 +204,7 @@ public:
 		return false;
 	}
 	inline bool insertPoints_xVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommTriMesh.points_x.size()) {
+		if(pos <= idl_CommTriMesh.points_x.size()) {
 			idl_CommTriMesh.points_x.insert(idl_CommTriMesh.points_x.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -243,7 +243,7 @@ public:
 		return false;
 	}
 	inline bool insertPoints_yVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommTriMesh.points_y.size()) {
+		if(pos <= idl_CommTriMesh.points_y.size()) {
 			idl_CommTriMesh.points_y.insert(idl_CommTriMesh.points_y.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -282,7 +282,7 @@ public:
 		return false;
 	}
 	inline bool insertPoints_zVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommTriMesh.points_z.size()) {
+		if(pos <= idl_CommTriMesh.points_z.size()) {
 			idl_CommTriMesh.points_z.insert(idl_CommTriMesh.points_z.begin()+pos, data.begin(), data.end());
 			return true;
 		}

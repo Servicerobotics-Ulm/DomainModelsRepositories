@@ -87,7 +87,7 @@ public:
 		return false;
 	}
 	inline bool insertValuesVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommJointValues.values.size()) {
+		if(pos <= idl_CommJointValues.values.size()) {
 			idl_CommJointValues.values.insert(idl_CommJointValues.values.begin()+pos, data.begin(), data.end());
 			return true;
 		}

@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -53,7 +54,7 @@ namespace CommTrackingObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		LeaderEventType(CommTrackingObjectsIDL::LeaderEventType e) {
 			value = e;
 		}
@@ -70,38 +71,81 @@ namespace CommTrackingObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "LeaderEventType::";
+			}
 			switch (value) {
 				case TOO_CLOSE:
-					result = "LeaderEventType::TOO_CLOSE";
+					result += "TOO_CLOSE";
 					break;
 				case LEADER_IMAGE_SUCCESS:
-					result = "LeaderEventType::LEADER_IMAGE_SUCCESS";
+					result += "LEADER_IMAGE_SUCCESS";
 					break;
 				case LEADER_FOUND:
-					result = "LeaderEventType::LEADER_FOUND";
+					result += "LEADER_FOUND";
 					break;
 				case TOO_MANY_PERSONS:
-					result = "LeaderEventType::TOO_MANY_PERSONS";
+					result += "TOO_MANY_PERSONS";
 					break;
 				case NO_FACES_FOUND:
-					result = "LeaderEventType::NO_FACES_FOUND";
+					result += "NO_FACES_FOUND";
 					break;
 				case TOO_FEW_HANDS:
-					result = "LeaderEventType::TOO_FEW_HANDS";
+					result += "TOO_FEW_HANDS";
 					break;
 				case WAVE_DETECTED:
-					result = "LeaderEventType::WAVE_DETECTED";
+					result += "WAVE_DETECTED";
 					break;
 				case UNKNOWN:
-					result = "LeaderEventType::UNKNOWN";
+					result += "UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static LeaderEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "leadereventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "too_close"){
+				return LeaderEventType(TOO_CLOSE);
+			}
+			if(input == "leader_image_success"){
+				return LeaderEventType(LEADER_IMAGE_SUCCESS);
+			}
+			if(input == "leader_found"){
+				return LeaderEventType(LEADER_FOUND);
+			}
+			if(input == "too_many_persons"){
+				return LeaderEventType(TOO_MANY_PERSONS);
+			}
+			if(input == "no_faces_found"){
+				return LeaderEventType(NO_FACES_FOUND);
+			}
+			if(input == "too_few_hands"){
+				return LeaderEventType(TOO_FEW_HANDS);
+			}
+			if(input == "wave_detected"){
+				return LeaderEventType(WAVE_DETECTED);
+			}
+			if(input == "unknown"){
+				return LeaderEventType(UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return LeaderEventType();
 		}
 		
 		// helper method to easily implement output stream

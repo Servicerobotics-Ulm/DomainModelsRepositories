@@ -14,6 +14,8 @@
 
 #include "CommDepthImageJSON.hh"
 
+#include <DomainVision/enumDepthFormatType.hh>
+#include <DomainVision/enumImageDistortionModel.hh>
 
 namespace DomainVisionIDL {
 
@@ -24,7 +26,7 @@ void to_json(const DomainVisionIDL::CommDepthImage& obj, nlohmann::json& j)
 	// height: UInt32
 	j["height"] = obj.height;
 	// format: DepthFormatType
-	j["format"] = obj.format;
+	j["format"] = DomainVision::DepthFormatType(obj.format).to_string(false);
 	// pixel_size: UInt32
 	j["pixel_size"] = obj.pixel_size;
 	// min_distcance: Double
@@ -42,7 +44,7 @@ void to_json(const DomainVisionIDL::CommDepthImage& obj, nlohmann::json& j)
 	// distortion_m: Double[]
 	j["distortion_m"] = obj.distortion_m;
 	// distortion_model: ImageDistortionModel
-	j["distortion_model"] = obj.distortion_model;
+	j["distortion_model"] = DomainVision::ImageDistortionModel(obj.distortion_model).to_string(false);
 	// seq_count: UInt32
 	j["seq_count"] = obj.seq_count;
 	// is_valid: Boolean
@@ -66,8 +68,8 @@ void from_json(const nlohmann::json& j, DomainVisionIDL::CommDepthImage& obj)
 		obj.height = j["height"].get<unsigned int>();
 	}
 	// format: DepthFormatType
-	if(j.contains("format") && j["format"].is_number_integer()) {
-		obj.format = j["format"].get<int>();
+	if(j.contains("format") && j["format"].is_string()) {
+		obj.format = DomainVision::DepthFormatType::from_string(j["format"].get<std::string>());
 	}
 	// pixel_size: UInt32
 	if(j.contains("pixel_size") && j["pixel_size"].is_number_unsigned()) {
@@ -102,8 +104,8 @@ void from_json(const nlohmann::json& j, DomainVisionIDL::CommDepthImage& obj)
 		obj.distortion_m = j["distortion_m"].get<std::vector<double>>();
 	}
 	// distortion_model: ImageDistortionModel
-	if(j.contains("distortion_model") && j["distortion_model"].is_number_integer()) {
-		obj.distortion_model = j["distortion_model"].get<int>();
+	if(j.contains("distortion_model") && j["distortion_model"].is_string()) {
+		obj.distortion_model = DomainVision::ImageDistortionModel::from_string(j["distortion_model"].get<std::string>());
 	}
 	// seq_count: UInt32
 	if(j.contains("seq_count") && j["seq_count"].is_number_unsigned()) {

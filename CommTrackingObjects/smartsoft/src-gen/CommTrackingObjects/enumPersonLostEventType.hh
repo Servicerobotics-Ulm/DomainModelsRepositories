@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommTrackingObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PersonLostEventType(CommTrackingObjectsIDL::PersonLostEventType e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommTrackingObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PersonLostEventType::";
+			}
 			switch (value) {
 				case PERSON_LOST:
-					result = "PersonLostEventType::PERSON_LOST";
+					result += "PERSON_LOST";
 					break;
 				case PERSON_FOUND:
-					result = "PersonLostEventType::PERSON_FOUND";
+					result += "PERSON_FOUND";
 					break;
 				case PERSON_LOST_CROWD:
-					result = "PersonLostEventType::PERSON_LOST_CROWD";
+					result += "PERSON_LOST_CROWD";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PersonLostEventType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "personlosteventtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "person_lost"){
+				return PersonLostEventType(PERSON_LOST);
+			}
+			if(input == "person_found"){
+				return PersonLostEventType(PERSON_FOUND);
+			}
+			if(input == "person_lost_crowd"){
+				return PersonLostEventType(PERSON_LOST_CROWD);
+			}
+			// default (if none of the preceding options match)
+			return PersonLostEventType();
 		}
 		
 		// helper method to easily implement output stream

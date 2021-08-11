@@ -14,6 +14,7 @@
 
 #include "CommGripperStateJSON.hh"
 
+#include <CommManipulatorObjects/enumGripperGraspState.hh>
 
 namespace CommManipulatorObjectsIDL {
 
@@ -24,7 +25,7 @@ void to_json(const CommManipulatorObjectsIDL::CommGripperState& obj, nlohmann::j
 	// is_valid: Boolean
 	j["is_valid"] = obj.is_valid;
 	// graspState: GripperGraspState
-	j["graspState"] = obj.graspState;
+	j["graspState"] = CommManipulatorObjects::GripperGraspState(obj.graspState).to_string(false);
 	// graspState_valid: Boolean
 	j["graspState_valid"] = obj.graspState_valid;
 }
@@ -46,8 +47,8 @@ void from_json(const nlohmann::json& j, CommManipulatorObjectsIDL::CommGripperSt
 		obj.is_valid = j["is_valid"].get<bool>();
 	}
 	// graspState: GripperGraspState
-	if(j.contains("graspState") && j["graspState"].is_number_integer()) {
-		obj.graspState = j["graspState"].get<int>();
+	if(j.contains("graspState") && j["graspState"].is_string()) {
+		obj.graspState = CommManipulatorObjects::GripperGraspState::from_string(j["graspState"].get<std::string>());
 	}
 	// graspState_valid: Boolean
 	if(j.contains("graspState_valid") && j["graspState_valid"].is_boolean()) {

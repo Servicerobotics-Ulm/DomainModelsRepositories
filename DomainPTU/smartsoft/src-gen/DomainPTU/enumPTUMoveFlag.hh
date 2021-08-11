@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -53,7 +54,7 @@ namespace DomainPTU {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PTUMoveFlag(DomainPTUIDL::PTUMoveFlag e) {
 			value = e;
 		}
@@ -70,38 +71,81 @@ namespace DomainPTU {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PTUMoveFlag::";
+			}
 			switch (value) {
 				case PAN_RELATIVE:
-					result = "PTUMoveFlag::PAN_RELATIVE";
+					result += "PAN_RELATIVE";
 					break;
 				case PAN_ABSOLUTE:
-					result = "PTUMoveFlag::PAN_ABSOLUTE";
+					result += "PAN_ABSOLUTE";
 					break;
 				case TILT_RELATIVE:
-					result = "PTUMoveFlag::TILT_RELATIVE";
+					result += "TILT_RELATIVE";
 					break;
 				case TILT_ABSOLUTE:
-					result = "PTUMoveFlag::TILT_ABSOLUTE";
+					result += "TILT_ABSOLUTE";
 					break;
 				case PAN_TILT_RELATIVE:
-					result = "PTUMoveFlag::PAN_TILT_RELATIVE";
+					result += "PAN_TILT_RELATIVE";
 					break;
 				case PAN_TILT_ABSOLUTE:
-					result = "PTUMoveFlag::PAN_TILT_ABSOLUTE";
+					result += "PAN_TILT_ABSOLUTE";
 					break;
 				case POSITION_ROBOT:
-					result = "PTUMoveFlag::POSITION_ROBOT";
+					result += "POSITION_ROBOT";
 					break;
 				case POSITION_WORLD:
-					result = "PTUMoveFlag::POSITION_WORLD";
+					result += "POSITION_WORLD";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PTUMoveFlag from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "ptumoveflag::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "pan_relative"){
+				return PTUMoveFlag(PAN_RELATIVE);
+			}
+			if(input == "pan_absolute"){
+				return PTUMoveFlag(PAN_ABSOLUTE);
+			}
+			if(input == "tilt_relative"){
+				return PTUMoveFlag(TILT_RELATIVE);
+			}
+			if(input == "tilt_absolute"){
+				return PTUMoveFlag(TILT_ABSOLUTE);
+			}
+			if(input == "pan_tilt_relative"){
+				return PTUMoveFlag(PAN_TILT_RELATIVE);
+			}
+			if(input == "pan_tilt_absolute"){
+				return PTUMoveFlag(PAN_TILT_ABSOLUTE);
+			}
+			if(input == "position_robot"){
+				return PTUMoveFlag(POSITION_ROBOT);
+			}
+			if(input == "position_world"){
+				return PTUMoveFlag(POSITION_WORLD);
+			}
+			// default (if none of the preceding options match)
+			return PTUMoveFlag();
 		}
 		
 		// helper method to easily implement output stream

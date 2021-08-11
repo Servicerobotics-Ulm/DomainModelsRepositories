@@ -14,13 +14,14 @@
 
 #include "RobotinoDockingEventStateJSON.hh"
 
+#include <CommRobotinoObjects/enumRobotinoDockingEventType.hh>
 
 namespace CommRobotinoObjectsIDL {
 
 void to_json(const CommRobotinoObjectsIDL::RobotinoDockingEventState& obj, nlohmann::json& j)
 {
 	// newState: RobotinoDockingEventType
-	j["newState"] = obj.newState;
+	j["newState"] = CommRobotinoObjects::RobotinoDockingEventType(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommRobotinoObjectsIDL::RobotinoDockingEventState& obj, nlohm
 void from_json(const nlohmann::json& j, CommRobotinoObjectsIDL::RobotinoDockingEventState& obj)
 {
 	// newState: RobotinoDockingEventType
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = CommRobotinoObjects::RobotinoDockingEventType::from_string(j["newState"].get<std::string>());
 	}
 }
 

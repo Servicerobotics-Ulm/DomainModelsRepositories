@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -50,7 +51,7 @@ namespace CommManipulatorObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		VacuumGraspState(CommManipulatorObjectsIDL::VacuumGraspState e) {
 			value = e;
 		}
@@ -67,29 +68,63 @@ namespace CommManipulatorObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "VacuumGraspState::";
+			}
 			switch (value) {
 				case VACUUM_REACHED:
-					result = "VacuumGraspState::VACUUM_REACHED";
+					result += "VACUUM_REACHED";
 					break;
 				case VACUUM_NOT_REACHED:
-					result = "VacuumGraspState::VACUUM_NOT_REACHED";
+					result += "VACUUM_NOT_REACHED";
 					break;
 				case VACUUM_OK:
-					result = "VacuumGraspState::VACUUM_OK";
+					result += "VACUUM_OK";
 					break;
 				case VACUUM_LOST:
-					result = "VacuumGraspState::VACUUM_LOST";
+					result += "VACUUM_LOST";
 					break;
 				case VACUUM_UNKNOWN:
-					result = "VacuumGraspState::VACUUM_UNKNOWN";
+					result += "VACUUM_UNKNOWN";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static VacuumGraspState from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "vacuumgraspstate::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "vacuum_reached"){
+				return VacuumGraspState(VACUUM_REACHED);
+			}
+			if(input == "vacuum_not_reached"){
+				return VacuumGraspState(VACUUM_NOT_REACHED);
+			}
+			if(input == "vacuum_ok"){
+				return VacuumGraspState(VACUUM_OK);
+			}
+			if(input == "vacuum_lost"){
+				return VacuumGraspState(VACUUM_LOST);
+			}
+			if(input == "vacuum_unknown"){
+				return VacuumGraspState(VACUUM_UNKNOWN);
+			}
+			// default (if none of the preceding options match)
+			return VacuumGraspState();
 		}
 		
 		// helper method to easily implement output stream

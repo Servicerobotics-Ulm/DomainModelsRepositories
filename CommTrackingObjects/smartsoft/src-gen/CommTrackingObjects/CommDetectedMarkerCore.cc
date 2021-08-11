@@ -44,6 +44,10 @@ namespace CommTrackingObjects
 		hashes.push_back(getCompiledHash());
 		// get hash value(s) for CommBasicObjects::CommPose3d(idl_CommDetectedMarker.pose)
 		CommBasicObjects::CommPose3d::getAllHashValues(hashes);
+		// get hash value(s) for CommBasicObjects::CommPose3d(idl_CommDetectedMarker.sensor_pose)
+		CommBasicObjects::CommPose3d::getAllHashValues(hashes);
+		// get hash value(s) for CommBasicObjects::CommBaseState(idl_CommDetectedMarker.base_state)
+		CommBasicObjects::CommBaseState::getAllHashValues(hashes);
 	}
 	
 	void CommDetectedMarkerCore::checkAllHashValues(std::list<std::string> &hashes)
@@ -63,6 +67,10 @@ namespace CommTrackingObjects
 		
 		// check hash value(s) for CommBasicObjects::CommPose3d(idl_CommDetectedMarker.pose)
 		CommBasicObjects::CommPose3d::checkAllHashValues(hashes);
+		// check hash value(s) for CommBasicObjects::CommPose3d(idl_CommDetectedMarker.sensor_pose)
+		CommBasicObjects::CommPose3d::checkAllHashValues(hashes);
+		// check hash value(s) for CommBasicObjects::CommBaseState(idl_CommDetectedMarker.base_state)
+		CommBasicObjects::CommBaseState::checkAllHashValues(hashes);
 	}
 	
 	#ifdef ENABLE_HASH
@@ -72,6 +80,8 @@ namespace CommTrackingObjects
 		
 		boost::hash_combine(seed, data.id);
 		seed += CommBasicObjects::CommPose3d::generateDataHash(data.pose);
+		seed += CommBasicObjects::CommPose3d::generateDataHash(data.sensor_pose);
+		seed += CommBasicObjects::CommBaseState::generateDataHash(data.base_state);
 		
 		return seed;
 	}
@@ -83,6 +93,8 @@ namespace CommTrackingObjects
 	{  
 		setId(0);
 		setPose(CommBasicObjects::CommPose3d());
+		setSensor_pose(CommBasicObjects::CommPose3d());
+		setBase_state(CommBasicObjects::CommBaseState());
 	}
 	
 	CommDetectedMarkerCore::CommDetectedMarkerCore(const DATATYPE &data)
@@ -97,6 +109,8 @@ namespace CommTrackingObjects
 	  os << "CommDetectedMarker(";
 	  os << getId() << " ";
 	  getPose().to_ostream(os);
+	  getSensor_pose().to_ostream(os);
+	  getBase_state().to_ostream(os);
 	  os << ") ";
 	}
 	
@@ -106,12 +120,20 @@ namespace CommTrackingObjects
 		os << indent << "<pose>";
 		getPose().to_xml(os, indent);
 		os << indent << "</pose>";
+		os << indent << "<sensor_pose>";
+		getSensor_pose().to_xml(os, indent);
+		os << indent << "</sensor_pose>";
+		os << indent << "<base_state>";
+		getBase_state().to_xml(os, indent);
+		os << indent << "</base_state>";
 	}
 	
 	// restore from xml stream
 	void CommDetectedMarkerCore::from_xml(std::istream &is) {
 		static const Smart::KnuthMorrisPratt kmp_id("<id>");
 		static const Smart::KnuthMorrisPratt kmp_pose("<pose>");
+		static const Smart::KnuthMorrisPratt kmp_sensor_pose("<sensor_pose>");
+		static const Smart::KnuthMorrisPratt kmp_base_state("<base_state>");
 		
 		if(kmp_id.search(is)) {
 			unsigned int idItem;
@@ -122,6 +144,16 @@ namespace CommTrackingObjects
 			CommBasicObjects::CommPose3d poseItem;
 			poseItem.from_xml(is);
 			setPose(poseItem);
+		}
+		if(kmp_sensor_pose.search(is)) {
+			CommBasicObjects::CommPose3d sensor_poseItem;
+			sensor_poseItem.from_xml(is);
+			setSensor_pose(sensor_poseItem);
+		}
+		if(kmp_base_state.search(is)) {
+			CommBasicObjects::CommBaseState base_stateItem;
+			base_stateItem.from_xml(is);
+			setBase_state(base_stateItem);
 		}
 	}
 	

@@ -14,6 +14,7 @@
 
 #include "CommManipulationPlannerEventStateJSON.hh"
 
+#include <CommManipulationPlannerObjects/enumManipulationPlannerEvent.hh>
 #include "CommBasicObjectsJSON/CommPose3dJSON.hh"
 
 namespace CommManipulationPlannerObjectsIDL {
@@ -21,7 +22,7 @@ namespace CommManipulationPlannerObjectsIDL {
 void to_json(const CommManipulationPlannerObjectsIDL::CommManipulationPlannerEventState& obj, nlohmann::json& j)
 {
 	// event: ManipulationPlannerEvent
-	j["event"] = obj.event;
+	j["event"] = CommManipulationPlannerObjects::ManipulationPlannerEvent(obj.event).to_string(false);
 	// pose: CommPose3d
 	to_json(obj.pose, j["pose"]);
 }
@@ -35,8 +36,8 @@ void to_json(const CommManipulationPlannerObjectsIDL::CommManipulationPlannerEve
 void from_json(const nlohmann::json& j, CommManipulationPlannerObjectsIDL::CommManipulationPlannerEventState& obj)
 {
 	// event: ManipulationPlannerEvent
-	if(j.contains("event") && j["event"].is_number_integer()) {
-		obj.event = j["event"].get<int>();
+	if(j.contains("event") && j["event"].is_string()) {
+		obj.event = CommManipulationPlannerObjects::ManipulationPlannerEvent::from_string(j["event"].get<std::string>());
 	}
 	// pose: CommPose3d
 	if(j.contains("pose") && j["pose"].is_object()) {

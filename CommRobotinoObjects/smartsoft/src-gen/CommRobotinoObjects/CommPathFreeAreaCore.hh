@@ -95,7 +95,7 @@ public:
 		return false;
 	}
 	inline bool insertRobotIDsVectorAtPos(const size_t &pos, const std::vector<int> &data) {
-		if(pos < idl_CommPathFreeArea.robotIDs.size()) {
+		if(pos <= idl_CommPathFreeArea.robotIDs.size()) {
 			idl_CommPathFreeArea.robotIDs.insert(idl_CommPathFreeArea.robotIDs.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -134,7 +134,7 @@ public:
 		return false;
 	}
 	inline bool insertNodeXvectorVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommPathFreeArea.nodeXvector.size()) {
+		if(pos <= idl_CommPathFreeArea.nodeXvector.size()) {
 			idl_CommPathFreeArea.nodeXvector.insert(idl_CommPathFreeArea.nodeXvector.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -173,7 +173,7 @@ public:
 		return false;
 	}
 	inline bool insertNodeYvectorVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommPathFreeArea.nodeYvector.size()) {
+		if(pos <= idl_CommPathFreeArea.nodeYvector.size()) {
 			idl_CommPathFreeArea.nodeYvector.insert(idl_CommPathFreeArea.nodeYvector.begin()+pos, data.begin(), data.end());
 			return true;
 		}

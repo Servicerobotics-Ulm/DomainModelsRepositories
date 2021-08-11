@@ -14,6 +14,8 @@
 
 #include "CommExternalProgramResponseJSON.hh"
 
+#include <DomainExternalSystems/enumExternalProgramStatus.hh>
+#include <DomainExternalSystems/enumExternalProgramResult.hh>
 #include "DomainExternalSystemsJSON/CommExternalProgramArgumentJSON.hh"
 
 namespace DomainExternalSystemsIDL {
@@ -21,9 +23,9 @@ namespace DomainExternalSystemsIDL {
 void to_json(const DomainExternalSystemsIDL::CommExternalProgramResponse& obj, nlohmann::json& j)
 {
 	// status: ExternalProgramStatus
-	j["status"] = obj.status;
+	j["status"] = DomainExternalSystems::ExternalProgramStatus(obj.status).to_string(false);
 	// result: ExternalProgramResult
-	j["result"] = obj.result;
+	j["result"] = DomainExternalSystems::ExternalProgramResult(obj.result).to_string(false);
 	// resultArgs: CommExternalProgramArgument[]
 	for(size_t idx=0; idx < obj.resultArgs.size(); idx++) {
 		nlohmann::json array_element;
@@ -41,12 +43,12 @@ void to_json(const DomainExternalSystemsIDL::CommExternalProgramResponse& obj, n
 void from_json(const nlohmann::json& j, DomainExternalSystemsIDL::CommExternalProgramResponse& obj)
 {
 	// status: ExternalProgramStatus
-	if(j.contains("status") && j["status"].is_number_integer()) {
-		obj.status = j["status"].get<int>();
+	if(j.contains("status") && j["status"].is_string()) {
+		obj.status = DomainExternalSystems::ExternalProgramStatus::from_string(j["status"].get<std::string>());
 	}
 	// result: ExternalProgramResult
-	if(j.contains("result") && j["result"].is_number_integer()) {
-		obj.result = j["result"].get<int>();
+	if(j.contains("result") && j["result"].is_string()) {
+		obj.result = DomainExternalSystems::ExternalProgramResult::from_string(j["result"].get<std::string>());
 	}
 	// resultArgs: CommExternalProgramArgument[]
 	if(j.contains("resultArgs") && j["resultArgs"].is_array()) {

@@ -14,13 +14,14 @@
 
 #include "PlannerEventStateJSON.hh"
 
+#include <CommNavigationObjects/enumPlannerEventType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::PlannerEventState& obj, nlohmann::json& j)
 {
 	// newState: PlannerEventType
-	j["newState"] = obj.newState;
+	j["newState"] = CommNavigationObjects::PlannerEventType(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::PlannerEventState& obj, nlohmann::j
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::PlannerEventState& obj)
 {
 	// newState: PlannerEventType
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = CommNavigationObjects::PlannerEventType::from_string(j["newState"].get<std::string>());
 	}
 }
 

@@ -112,7 +112,7 @@ public:
 		return false;
 	}
 	inline bool insertCovVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommTrackingGoal.cov.size()) {
+		if(pos <= idl_CommTrackingGoal.cov.size()) {
 			idl_CommTrackingGoal.cov.insert(idl_CommTrackingGoal.cov.begin()+pos, data.begin(), data.end());
 			return true;
 		}

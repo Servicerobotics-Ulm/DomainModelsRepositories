@@ -1,8 +1,6 @@
 #include "ConveyerBeltCoordinationServiceCore.hh"
-#include <cstdio>
 #include <string>
-#include <cstring>
-#include <cstdlib>
+#include <ace/OS.h>
 
 #include <smartNumericCorrelationId.h>
 
@@ -72,7 +70,7 @@
 	}
 }
 
-std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString){
+std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode){
 	std::map<std::string, ConveyerBeltCoordinationService>::const_iterator iter = ciInstanceMap.find(ciInstanceName);
 	
 	if(ciInstanceName == "NIL" && ciInstanceMap.size() == 1){
@@ -82,54 +80,39 @@ std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciI
 	
 	if(iter != ciInstanceMap.end()){
 		
-		//std::cout<<"switchConveyerBeltCoordinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchConveyerBeltCoordinationService - compInstName: "<<componentInstanceName<<" parameter: "<<parameter<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
 	
 			
 			// param
-			if(strcasecmp(service.c_str(), "param") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "param") == 0 )
 			{
-				outString.str(queryParam(componentInstanceName, inString));
+				outString.str(queryParam(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "state") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "state") == 0 )
 			{
-				outString.str(setState(componentInstanceName, inString));
+				outString.str(setState(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "getstate") == 0 )
 			{
 				outString.str(getState(componentInstanceName));
 			}
-			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
 			{
-				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+				outString.str(waitForLifeCycleState(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "loadevent-activate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "loadevent-activate") == 0 )
 			{
 				Smart::StatusCode status;
 				Smart::EventIdPtr id = nullptr;
-				char *input  = (char *)NULL;
-				char *pointer = (char *)NULL;
-				char *param1  = (char *)NULL;
-				char *eventParam  = (char *)NULL;
-				
-				pointer = input = strdup(inString.c_str());
-				do
-				{
-					param1 = strsep(&input," ()\"\n");
-				} while ((param1 != NULL) && (strlen(param1)==0));
-				
-				do
-				{
-					eventParam = strsep(&input," ()\"\n");
-				} while ((eventParam != NULL) && (strlen(eventParam)==0));
 				
 				CommRobotinoObjects::CommRobotinoConveyerBeltEventParameter param;
-				param = iter->second.conveyerBeltCoordinationServiceloadeventEventHandlerCore->activateEventParam(eventParam);
+				param = iter->second.conveyerBeltCoordinationServiceloadeventEventHandlerCore->activateEventParam(parameter);
 					
 				// CONTINOUS
-				if( strcasecmp(param1, "CONTINUOUS") == 0 )
+				if( ACE_OS::strcasecmp(eventMode.c_str(), "CONTINUOUS") == 0 )
 				{
 					status = iter->second.conveyerBeltCoordinationServiceloadeventClient->activate(Smart::continuous, param, id);
 					outString.str("");
@@ -154,7 +137,7 @@ std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciI
 				} // CONTINOUS
 					
 				// SINGLE
-				else if( strcasecmp(param1, "SINGLE") == 0 )
+				else if( ACE_OS::strcasecmp(eventMode.c_str(), "SINGLE") == 0 )
 				{
 					status = iter->second.conveyerBeltCoordinationServiceloadeventClient->activate(Smart::single, param, id);
 					outString.str("");
@@ -180,25 +163,22 @@ std::string ConveyerBeltCoordinationServiceCore::switchCi(const std::string& ciI
 			}
 					
 			// goal event deactivate
-			if(strcasecmp(service.c_str(), "loadevent-deactivate") == 0)
+			if(ACE_OS::strcasecmp(service.c_str(), "loadevent-deactivate") == 0)
 			{
 				Smart::StatusCode status;
-				char *input  = (char *)NULL;
-				char *pointer = (char *)NULL;
-				char *param1  = (char *)NULL;
-					
-				pointer = input = strdup(inString.c_str());
-				do
-				{
-					param1 = strsep(&input," ()\"\n");
-				} while ((param1 != NULL) && (strlen(param1)==0));
-					
-				std::string str(param1);
-				// remove " "
-				str = str.substr(1, str.length()-2);
-				// TODO: <alex> this seems to be quite a hack, as ID is not always an int and will not work with other middlewares as ACE
-				Smart::EventIdPtr id = std::make_shared<Smart::NumericCorrelationId>(atoi( param1 ));
-					
+				
+				Smart::EventIdPtr id = NULL;
+				
+				try {
+					// TODO: <alex> this seems to be quite a hack, as ID is not always an int and will not work with other middlewares as ACE
+					id = std::make_shared<Smart::NumericCorrelationId>(std::stoi( parameter ));
+				}
+				catch (...) {
+					std::cout<<"[FleetManagerCoordinationServiceCore] id int conversion error!"<<std::endl;
+					outString << "(error (unknown error))";
+					return outString.str();
+				}
+				
 				status = iter->second.conveyerBeltCoordinationServiceloadeventClient->deactivate(id);
 				outString.str("");
 				switch(status)

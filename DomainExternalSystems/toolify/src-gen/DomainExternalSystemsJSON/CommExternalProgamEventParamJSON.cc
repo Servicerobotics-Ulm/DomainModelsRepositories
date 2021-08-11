@@ -14,13 +14,14 @@
 
 #include "CommExternalProgamEventParamJSON.hh"
 
+#include <DomainExternalSystems/enumExternalProgramStatus.hh>
 
 namespace DomainExternalSystemsIDL {
 
 void to_json(const DomainExternalSystemsIDL::CommExternalProgamEventParam& obj, nlohmann::json& j)
 {
 	// status: ExternalProgramStatus
-	j["status"] = obj.status;
+	j["status"] = DomainExternalSystems::ExternalProgramStatus(obj.status).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const DomainExternalSystemsIDL::CommExternalProgamEventParam& obj, 
 void from_json(const nlohmann::json& j, DomainExternalSystemsIDL::CommExternalProgamEventParam& obj)
 {
 	// status: ExternalProgramStatus
-	if(j.contains("status") && j["status"].is_number_integer()) {
-		obj.status = j["status"].get<int>();
+	if(j.contains("status") && j["status"].is_string()) {
+		obj.status = DomainExternalSystems::ExternalProgramStatus::from_string(j["status"].get<std::string>());
 	}
 }
 

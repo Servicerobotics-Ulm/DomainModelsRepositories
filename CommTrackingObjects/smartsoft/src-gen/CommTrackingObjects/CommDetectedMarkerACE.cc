@@ -15,6 +15,7 @@
 //--------------------------------------------------------------------------
 #include "CommTrackingObjects/CommDetectedMarkerACE.hh"
 #include <ace/SString.h>
+#include "CommBasicObjects/CommBaseStateACE.hh"
 #include "CommBasicObjects/CommPose3dACE.hh"
 
 // serialization operator for element CommDetectedMarker
@@ -25,6 +26,10 @@ ACE_CDR::Boolean operator<<(ACE_OutputCDR &cdr, const CommTrackingObjectsIDL::Co
 	good_bit = good_bit && cdr.write_ulong(data.id);
 	// serialize list-element pose
 	good_bit = good_bit && cdr << data.pose;
+	// serialize list-element sensor_pose
+	good_bit = good_bit && cdr << data.sensor_pose;
+	// serialize list-element base_state
+	good_bit = good_bit && cdr << data.base_state;
 	
 	return good_bit;
 }
@@ -37,6 +42,10 @@ ACE_CDR::Boolean operator>>(ACE_InputCDR &cdr, CommTrackingObjectsIDL::CommDetec
 	good_bit = good_bit && cdr.read_ulong(data.id);
 	// deserialize type element pose
 	good_bit = good_bit && cdr >> data.pose;
+	// deserialize type element sensor_pose
+	good_bit = good_bit && cdr >> data.sensor_pose;
+	// deserialize type element base_state
+	good_bit = good_bit && cdr >> data.base_state;
 	
 	return good_bit;
 }

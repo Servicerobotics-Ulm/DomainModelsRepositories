@@ -140,7 +140,7 @@ public:
 		return false;
 	}
 	inline bool insertDistancesVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommIRScan.distances.size()) {
+		if(pos <= idl_CommIRScan.distances.size()) {
 			idl_CommIRScan.distances.insert(idl_CommIRScan.distances.begin()+pos, data.begin(), data.end());
 			return true;
 		}
@@ -183,7 +183,7 @@ public:
 		return false;
 	}
 	inline bool insertRaw_readingsVectorAtPos(const size_t &pos, const std::vector<double> &data) {
-		if(pos < idl_CommIRScan.raw_readings.size()) {
+		if(pos <= idl_CommIRScan.raw_readings.size()) {
 			idl_CommIRScan.raw_readings.insert(idl_CommIRScan.raw_readings.begin()+pos, data.begin(), data.end());
 			return true;
 		}

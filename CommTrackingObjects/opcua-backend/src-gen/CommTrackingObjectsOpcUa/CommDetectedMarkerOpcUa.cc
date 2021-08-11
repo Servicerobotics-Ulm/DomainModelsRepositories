@@ -7,6 +7,8 @@
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ElementArray.hpp>
 
 #include "CommBasicObjectsOpcUa/CommPose3dOpcUa.hh"
+#include "CommBasicObjectsOpcUa/CommPose3dOpcUa.hh"
+#include "CommBasicObjectsOpcUa/CommBaseStateOpcUa.hh"
 
 namespace SeRoNet {
 namespace CommunicationObjects {
@@ -24,6 +26,14 @@ IDescription::shp_t SelfDescription(CommTrackingObjectsIDL::CommDetectedMarker *
 	// add pose
 	ret->add(
 		SelfDescription(&(obj->pose), "Pose")
+	);
+	// add sensor_pose
+	ret->add(
+		SelfDescription(&(obj->sensor_pose), "Sensor_pose")
+	);
+	// add base_state
+	ret->add(
+		SelfDescription(&(obj->base_state), "Base_state")
 	);
 	return ret;
 } // end SelfDescription

@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -56,7 +57,7 @@ namespace DomainPTU {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		PTUTagType(DomainPTUIDL::PTUTagType e) {
 			value = e;
 		}
@@ -73,47 +74,99 @@ namespace DomainPTU {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "PTUTagType::";
+			}
 			switch (value) {
 				case UNSET:
-					result = "PTUTagType::UNSET";
+					result += "UNSET";
 					break;
 				case RESET:
-					result = "PTUTagType::RESET";
+					result += "RESET";
 					break;
 				case ACCELERATION_PAN:
-					result = "PTUTagType::ACCELERATION_PAN";
+					result += "ACCELERATION_PAN";
 					break;
 				case ACCLERATION_TILT:
-					result = "PTUTagType::ACCLERATION_TILT";
+					result += "ACCLERATION_TILT";
 					break;
 				case SPEED_PAN:
-					result = "PTUTagType::SPEED_PAN";
+					result += "SPEED_PAN";
 					break;
 				case SPEED_TILT:
-					result = "PTUTagType::SPEED_TILT";
+					result += "SPEED_TILT";
 					break;
 				case SPEED_LIMIT_PAN:
-					result = "PTUTagType::SPEED_LIMIT_PAN";
+					result += "SPEED_LIMIT_PAN";
 					break;
 				case SPEED_LIMIT_TILT:
-					result = "PTUTagType::SPEED_LIMIT_TILT";
+					result += "SPEED_LIMIT_TILT";
 					break;
 				case START_UP_SPEED_PAN:
-					result = "PTUTagType::START_UP_SPEED_PAN";
+					result += "START_UP_SPEED_PAN";
 					break;
 				case START_UP_SPEED_TILT:
-					result = "PTUTagType::START_UP_SPEED_TILT";
+					result += "START_UP_SPEED_TILT";
 					break;
 				case SENSOR_OFFSET:
-					result = "PTUTagType::SENSOR_OFFSET";
+					result += "SENSOR_OFFSET";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static PTUTagType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "ptutagtype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "unset"){
+				return PTUTagType(UNSET);
+			}
+			if(input == "reset"){
+				return PTUTagType(RESET);
+			}
+			if(input == "acceleration_pan"){
+				return PTUTagType(ACCELERATION_PAN);
+			}
+			if(input == "accleration_tilt"){
+				return PTUTagType(ACCLERATION_TILT);
+			}
+			if(input == "speed_pan"){
+				return PTUTagType(SPEED_PAN);
+			}
+			if(input == "speed_tilt"){
+				return PTUTagType(SPEED_TILT);
+			}
+			if(input == "speed_limit_pan"){
+				return PTUTagType(SPEED_LIMIT_PAN);
+			}
+			if(input == "speed_limit_tilt"){
+				return PTUTagType(SPEED_LIMIT_TILT);
+			}
+			if(input == "start_up_speed_pan"){
+				return PTUTagType(START_UP_SPEED_PAN);
+			}
+			if(input == "start_up_speed_tilt"){
+				return PTUTagType(START_UP_SPEED_TILT);
+			}
+			if(input == "sensor_offset"){
+				return PTUTagType(SENSOR_OFFSET);
+			}
+			// default (if none of the preceding options match)
+			return PTUTagType();
 		}
 		
 		// helper method to easily implement output stream

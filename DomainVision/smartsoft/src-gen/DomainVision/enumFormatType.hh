@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -56,7 +57,7 @@ namespace DomainVision {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		FormatType(DomainVisionIDL::FormatType e) {
 			value = e;
 		}
@@ -73,47 +74,99 @@ namespace DomainVision {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "FormatType::";
+			}
 			switch (value) {
 				case GREY:
-					result = "FormatType::GREY";
+					result += "GREY";
 					break;
 				case RGB565:
-					result = "FormatType::RGB565";
+					result += "RGB565";
 					break;
 				case RGB555:
-					result = "FormatType::RGB555";
+					result += "RGB555";
 					break;
 				case RGB24:
-					result = "FormatType::RGB24";
+					result += "RGB24";
 					break;
 				case RGB32:
-					result = "FormatType::RGB32";
+					result += "RGB32";
 					break;
 				case YUV422:
-					result = "FormatType::YUV422";
+					result += "YUV422";
 					break;
 				case YUYV:
-					result = "FormatType::YUYV";
+					result += "YUYV";
 					break;
 				case UYVY:
-					result = "FormatType::UYVY";
+					result += "UYVY";
 					break;
 				case YUV420P:
-					result = "FormatType::YUV420P";
+					result += "YUV420P";
 					break;
 				case YUV422P:
-					result = "FormatType::YUV422P";
+					result += "YUV422P";
 					break;
 				case YUV411P:
-					result = "FormatType::YUV411P";
+					result += "YUV411P";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static FormatType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "formattype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "grey"){
+				return FormatType(GREY);
+			}
+			if(input == "rgb565"){
+				return FormatType(RGB565);
+			}
+			if(input == "rgb555"){
+				return FormatType(RGB555);
+			}
+			if(input == "rgb24"){
+				return FormatType(RGB24);
+			}
+			if(input == "rgb32"){
+				return FormatType(RGB32);
+			}
+			if(input == "yuv422"){
+				return FormatType(YUV422);
+			}
+			if(input == "yuyv"){
+				return FormatType(YUYV);
+			}
+			if(input == "uyvy"){
+				return FormatType(UYVY);
+			}
+			if(input == "yuv420p"){
+				return FormatType(YUV420P);
+			}
+			if(input == "yuv422p"){
+				return FormatType(YUV422P);
+			}
+			if(input == "yuv411p"){
+				return FormatType(YUV411P);
+			}
+			// default (if none of the preceding options match)
+			return FormatType();
 		}
 		
 		// helper method to easily implement output stream

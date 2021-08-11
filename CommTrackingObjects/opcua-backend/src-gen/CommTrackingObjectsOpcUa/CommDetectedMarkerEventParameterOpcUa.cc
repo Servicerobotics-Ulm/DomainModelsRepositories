@@ -6,6 +6,7 @@
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/SelfDescriptionArray.hpp>
 #include <SeRoNetSDK/SeRoNet/CommunicationObjects/Description/ElementArray.hpp>
 
+#include "CommTrackingObjectsOpcUa/CommDetectedMarkerListOpcUa.hh"
 
 namespace SeRoNet {
 namespace CommunicationObjects {
@@ -16,9 +17,9 @@ template <>
 IDescription::shp_t SelfDescription(CommTrackingObjectsIDL::CommDetectedMarkerEventParameter *obj, std::string name)
 {
 	auto ret = std::make_shared<SeRoNet::CommunicationObjects::Description::ComplexType>(name);
-	// add tag_ids
+	// add markers
 	ret->add(
-		SelfDescription(&(obj->tag_ids), "Tag_ids")
+		SelfDescription(&(obj->markers), "Markers")
 	);
 	return ret;
 } // end SelfDescription

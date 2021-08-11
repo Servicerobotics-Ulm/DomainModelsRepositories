@@ -14,13 +14,14 @@
 
 #include "LeaderEventStateJSON.hh"
 
+#include <CommTrackingObjects/enumLeaderEventType.hh>
 
 namespace CommTrackingObjectsIDL {
 
 void to_json(const CommTrackingObjectsIDL::LeaderEventState& obj, nlohmann::json& j)
 {
 	// type: LeaderEventType
-	j["type"] = obj.type;
+	j["type"] = CommTrackingObjects::LeaderEventType(obj.type).to_string(false);
 	// goal_x: Int32
 	j["goal_x"] = obj.goal_x;
 	// goal_y: Int32
@@ -36,8 +37,8 @@ void to_json(const CommTrackingObjectsIDL::LeaderEventState& obj, nlohmann::json
 void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::LeaderEventState& obj)
 {
 	// type: LeaderEventType
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommTrackingObjects::LeaderEventType::from_string(j["type"].get<std::string>());
 	}
 	// goal_x: Int32
 	if(j.contains("goal_x") && j["goal_x"].is_number_integer()) {

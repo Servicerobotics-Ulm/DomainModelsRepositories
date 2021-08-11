@@ -32,6 +32,8 @@ void to_json(const CommTrackingObjectsIDL::CommDetectedMarkerList& obj, nlohmann
 	to_json(obj.sensor_pose, j["sensor_pose"]);
 	// base_state: CommBaseState
 	to_json(obj.base_state, j["base_state"]);
+	// single_pose: Boolean
+	j["single_pose"] = obj.single_pose;
 	// valid: Boolean
 	j["valid"] = obj.valid;
 }
@@ -65,6 +67,10 @@ void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::CommDetectedMark
 	if(j.contains("base_state") && j["base_state"].is_object()) {
 		//from_json(j["base_state"], obj.base_state);
 		obj.base_state = j["base_state"].get<CommBasicObjectsIDL::CommBaseState>();
+	}
+	// single_pose: Boolean
+	if(j.contains("single_pose") && j["single_pose"].is_boolean()) {
+		obj.single_pose = j["single_pose"].get<bool>();
 	}
 	// valid: Boolean
 	if(j.contains("valid") && j["valid"].is_boolean()) {

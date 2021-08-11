@@ -1,8 +1,6 @@
 #include "TTSCorrdinationServiceCore.hh"
-#include <cstdio>
 #include <string>
-#include <cstring>
-#include <cstdlib>
+#include <ace/OS.h>
 
 #include <smartNumericCorrelationId.h>
 
@@ -97,7 +95,7 @@
 	}
 }
 
-std::string TTSCorrdinationServiceCore::switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& inString){
+std::string TTSCorrdinationServiceCore::switchCi(const std::string& ciInstanceName, const std::string& componentName, const std::string& componentInstanceName, const std::string& service, const std::string& parameter, const std::string& eventMode){
 	std::map<std::string, TTSCorrdinationService>::const_iterator iter = ciInstanceMap.find(ciInstanceName);
 	
 	if(ciInstanceName == "NIL" && ciInstanceMap.size() == 1){
@@ -107,35 +105,35 @@ std::string TTSCorrdinationServiceCore::switchCi(const std::string& ciInstanceNa
 	
 	if(iter != ciInstanceMap.end()){
 		
-		//std::cout<<"switchTTSCorrdinationService - compInstName: "<<componentInstanceName<<" inString: "<<inString<<" service: "<<service<<std::endl;
+		//std::cout<<"switchTTSCorrdinationService - compInstName: "<<componentInstanceName<<" parameter: "<<parameter<<" service: "<<service<<std::endl;
 		
 		std::ostringstream outString;
 		outString << "(error (unknown error))";
 	
 			
 			// param
-			if(strcasecmp(service.c_str(), "param") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "param") == 0 )
 			{
-				outString.str(queryParam(componentInstanceName, inString));
+				outString.str(queryParam(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "state") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "state") == 0 )
 			{
-				outString.str(setState(componentInstanceName, inString));
+				outString.str(setState(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "getstate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "getstate") == 0 )
 			{
 				outString.str(getState(componentInstanceName));
 			}
-			if(strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "waitforlifecyclestate") == 0 )
 			{
-				outString.str(waitForLifeCycleState(componentInstanceName, inString));
+				outString.str(waitForLifeCycleState(componentInstanceName, parameter));
 			}
-			if(strcasecmp(service.c_str(), "say") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "say") == 0 )
 			{
 				DomainSpeech::CommSpeechOutputMessage com;
 				
 				Smart::StatusCode status;
-				com = iter->second.tTSCorrdinationServicesaySendHandler->handleSend(inString);
+				com = iter->second.tTSCorrdinationServicesaySendHandler->handleSend(parameter);
 
 				// everything is ok
 				status = iter->second.tTSCorrdinationServicesayClient->send(com);
@@ -159,13 +157,13 @@ std::string TTSCorrdinationServiceCore::switchCi(const std::string& ciInstanceNa
 								break;
 				}
 			}
-			if(strcasecmp(service.c_str(), "sayWait") == 0 )
+			if(ACE_OS::strcasecmp(service.c_str(), "sayWait") == 0 )
 			{
 				DomainSpeech::CommSpeechOutputMessage request;
 				CommBasicObjects::CommPropertySet answer;
 				
 				Smart::StatusCode status;
-				request = iter->second.tTSCorrdinationServicesayWaitQueryHandler->handleRequest(inString);
+				request = iter->second.tTSCorrdinationServicesayWaitQueryHandler->handleRequest(parameter);
 				
 				status = iter->second.tTSCorrdinationServicesayWaitClient->query(request,answer);
 				outString.str("");

@@ -17,6 +17,7 @@
 #define COMMTRACKINGOBJECTS_COMMDETECTEDMARKEREVENTPARAMETER_CORE_H_
 
 #include "CommTrackingObjects/CommDetectedMarkerEventParameterData.hh"
+#include "CommTrackingObjects/CommDetectedMarkerList.hh"
 
 #include <iostream>
 #include <string>
@@ -64,44 +65,9 @@ public:
 	
 	// User Interface
 	
-	// getter and setter for element Tag_ids
-	/**
-	 * Getter methods for idl_CommDetectedMarkerEventParameter.tag_ids of type vector<unsigned int>
-	 */
-	inline std::vector<unsigned int>& getTag_idsRef() { return idl_CommDetectedMarkerEventParameter.tag_ids; }
-	inline std::vector<unsigned int> getTag_idsCopy() const {
-		return std::vector<unsigned int>(idl_CommDetectedMarkerEventParameter.tag_ids.begin(), idl_CommDetectedMarkerEventParameter.tag_ids.end());
-	}
-	inline unsigned int getTag_idsElemAtPos(const size_t &pos) const { return idl_CommDetectedMarkerEventParameter.tag_ids[pos]; }
-	inline size_t getTag_idsSize() const { return idl_CommDetectedMarkerEventParameter.tag_ids.size(); }
-	inline bool isTag_idsEmpty() const { return idl_CommDetectedMarkerEventParameter.tag_ids.empty(); }
-	/**
-	 * Setter methods for idl_CommDetectedMarkerEventParameter.tag_ids of type vector<unsigned int>
-	 */
-	inline CommDetectedMarkerEventParameterCore& setTag_ids(const std::vector<unsigned int> &tag_ids) { idl_CommDetectedMarkerEventParameter.tag_ids = tag_ids; return *this; }
-	inline bool setTag_idsElemAtPos(const size_t &pos, const unsigned int &elem) {
-		if(pos < idl_CommDetectedMarkerEventParameter.tag_ids.size()) {
-			idl_CommDetectedMarkerEventParameter.tag_ids[pos] = elem;
-			return true;
-		}
-		return false;
-	}
-	inline bool insertTag_idsVectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommDetectedMarkerEventParameter.tag_ids.size()) {
-			idl_CommDetectedMarkerEventParameter.tag_ids.insert(idl_CommDetectedMarkerEventParameter.tag_ids.begin()+pos, data.begin(), data.end());
-			return true;
-		}
-		return false;
-	}
-	inline void resizeTag_ids(const size_t &size) { idl_CommDetectedMarkerEventParameter.tag_ids.resize(size); }
-	inline bool eraseTag_idsElemsAtPos(const size_t &pos, const size_t &nbr_elems) {
-		if( (pos+nbr_elems) <= idl_CommDetectedMarkerEventParameter.tag_ids.size() ) {
-			idl_CommDetectedMarkerEventParameter.tag_ids.erase(idl_CommDetectedMarkerEventParameter.tag_ids.begin()+pos, idl_CommDetectedMarkerEventParameter.tag_ids.begin()+pos+nbr_elems);
-			return true;
-		}
-		return false;
-	}
-	inline void clearTag_ids() { idl_CommDetectedMarkerEventParameter.tag_ids.clear(); }
+	// getter and setter for element Markers
+	inline CommTrackingObjects::CommDetectedMarkerList getMarkers() const { return CommTrackingObjects::CommDetectedMarkerList(idl_CommDetectedMarkerEventParameter.markers); }
+	inline CommDetectedMarkerEventParameterCore& setMarkers(const CommTrackingObjects::CommDetectedMarkerList &markers) { idl_CommDetectedMarkerEventParameter.markers = markers; return *this; }
 };
 
 } /* namespace CommTrackingObjects */

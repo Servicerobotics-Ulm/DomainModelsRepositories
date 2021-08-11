@@ -14,13 +14,14 @@
 
 #include "CommNavigationTopologyConnectionJSON.hh"
 
+#include <CommNavigationObjects/enumNavigationConnectonType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommNavigationTopologyConnection& obj, nlohmann::json& j)
 {
 	// type: NavigationConnectonType
-	j["type"] = obj.type;
+	j["type"] = CommNavigationObjects::NavigationConnectonType(obj.type).to_string(false);
 	// locationId: UInt32
 	j["locationId"] = obj.locationId;
 	// fromPart: UInt32
@@ -38,8 +39,8 @@ void to_json(const CommNavigationObjectsIDL::CommNavigationTopologyConnection& o
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommNavigationTopologyConnection& obj)
 {
 	// type: NavigationConnectonType
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommNavigationObjects::NavigationConnectonType::from_string(j["type"].get<std::string>());
 	}
 	// locationId: UInt32
 	if(j.contains("locationId") && j["locationId"].is_number_unsigned()) {

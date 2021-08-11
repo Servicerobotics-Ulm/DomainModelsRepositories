@@ -154,30 +154,35 @@ CommObjectsRepository CommTrackingObjects version 1.0.0 {
 	CommObject CommDetectedMarker{
 		id: UInt32= 0		
 		pose: CommPose3d //pose in sensor		
+		sensor_pose : CommPose3d //sensor offset robot
+		base_state : CommBaseState
 	}
 	
 	/*CommObject for representing collection of CommDetectedMarker*/
-	CommObject CommDetectedMarkerList {		
-		markers: CommDetectedMarker[*]		
+	CommObject CommDetectedMarkerList {
+		markers: CommDetectedMarker[*]
 		sensor_pose : CommPose3d //sensor offset robot
 		base_state : CommBaseState
+		
+		//single pose for all contained markers
+		single_pose : Boolean = true
 		valid : Boolean = false		
 	}	
 	
 	/*contains markers which will be fired in event i.e Result = State && Parameter*/
 	CommObject CommDetectedMarkerEventResult {
 			
-		markers: CommDetectedMarker[*]
+		markers: CommDetectedMarkerList
 	}
 	
 	/*contains markers found*/
 	CommObject CommDetectedMarkerEventState {
 		
-		markers: CommDetectedMarker[*]
+		markers: CommDetectedMarkerList
 	}	
 	
 	/* contains tag ids requested*/
 	CommObject CommDetectedMarkerEventParameter {
-		tag_ids: UInt32[*]
+		markers: CommDetectedMarkerList
 	}
 }

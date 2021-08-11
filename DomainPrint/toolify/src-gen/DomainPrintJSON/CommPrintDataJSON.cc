@@ -14,6 +14,7 @@
 
 #include "CommPrintDataJSON.hh"
 
+#include <DomainPrint/enumPrintDataEnum.hh>
 
 namespace DomainPrintIDL {
 
@@ -22,7 +23,7 @@ void to_json(const DomainPrintIDL::CommPrintData& obj, nlohmann::json& j)
 	// data: String
 	j["data"] = obj.data;
 	// format: PrintDataEnum
-	j["format"] = obj.format;
+	j["format"] = DomainPrint::PrintDataEnum(obj.format).to_string(false);
 }
 
 /**
@@ -38,8 +39,8 @@ void from_json(const nlohmann::json& j, DomainPrintIDL::CommPrintData& obj)
 		obj.data = j["data"].get<std::string>();
 	}
 	// format: PrintDataEnum
-	if(j.contains("format") && j["format"].is_number_integer()) {
-		obj.format = j["format"].get<int>();
+	if(j.contains("format") && j["format"].is_string()) {
+		obj.format = DomainPrint::PrintDataEnum::from_string(j["format"].get<std::string>());
 	}
 }
 

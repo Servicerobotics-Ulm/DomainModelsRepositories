@@ -14,6 +14,8 @@
 
 #include "CommCorridorNodeJSON.hh"
 
+#include <CommNavigationObjects/enumNODE_TYPE.hh>
+#include <CommNavigationObjects/enumNODE_STATUS.hh>
 
 namespace CommNavigationObjectsIDL {
 
@@ -32,9 +34,9 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNode& obj, nlohmann::js
 	// width: Double
 	j["width"] = obj.width;
 	// type: NODE_TYPE
-	j["type"] = obj.type;
+	j["type"] = CommNavigationObjects::NODE_TYPE(obj.type).to_string(false);
 	// sts: NODE_STATUS
-	j["sts"] = obj.sts;
+	j["sts"] = CommNavigationObjects::NODE_STATUS(obj.sts).to_string(false);
 	// robotID: String
 	j["robotID"] = obj.robotID;
 }
@@ -72,12 +74,12 @@ void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNo
 		obj.width = j["width"].get<double>();
 	}
 	// type: NODE_TYPE
-	if(j.contains("type") && j["type"].is_number_integer()) {
-		obj.type = j["type"].get<int>();
+	if(j.contains("type") && j["type"].is_string()) {
+		obj.type = CommNavigationObjects::NODE_TYPE::from_string(j["type"].get<std::string>());
 	}
 	// sts: NODE_STATUS
-	if(j.contains("sts") && j["sts"].is_number_integer()) {
-		obj.sts = j["sts"].get<int>();
+	if(j.contains("sts") && j["sts"].is_string()) {
+		obj.sts = CommNavigationObjects::NODE_STATUS::from_string(j["sts"].get<std::string>());
 	}
 	// robotID: String
 	if(j.contains("robotID") && j["robotID"].is_string()) {

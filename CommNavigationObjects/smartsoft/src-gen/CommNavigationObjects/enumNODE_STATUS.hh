@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -48,7 +49,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		NODE_STATUS(CommNavigationObjectsIDL::NODE_STATUS e) {
 			value = e;
 		}
@@ -65,23 +66,51 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "NODE_STATUS::";
+			}
 			switch (value) {
 				case OCCUPIED:
-					result = "NODE_STATUS::OCCUPIED";
+					result += "OCCUPIED";
 					break;
 				case AVAILABLE:
-					result = "NODE_STATUS::AVAILABLE";
+					result += "AVAILABLE";
 					break;
 				case OK:
-					result = "NODE_STATUS::OK";
+					result += "OK";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static NODE_STATUS from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "node_status::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "occupied"){
+				return NODE_STATUS(OCCUPIED);
+			}
+			if(input == "available"){
+				return NODE_STATUS(AVAILABLE);
+			}
+			if(input == "ok"){
+				return NODE_STATUS(OK);
+			}
+			// default (if none of the preceding options match)
+			return NODE_STATUS();
 		}
 		
 		// helper method to easily implement output stream

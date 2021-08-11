@@ -14,13 +14,14 @@
 
 #include "CommDetectedMarkerEventParameterJSON.hh"
 
+#include "CommTrackingObjectsJSON/CommDetectedMarkerListJSON.hh"
 
 namespace CommTrackingObjectsIDL {
 
 void to_json(const CommTrackingObjectsIDL::CommDetectedMarkerEventParameter& obj, nlohmann::json& j)
 {
-	// tag_ids: UInt32[]
-	j["tag_ids"] = obj.tag_ids;
+	// markers: CommDetectedMarkerList
+	to_json(obj.markers, j["markers"]);
 }
 
 /**
@@ -31,9 +32,10 @@ void to_json(const CommTrackingObjectsIDL::CommDetectedMarkerEventParameter& obj
  */
 void from_json(const nlohmann::json& j, CommTrackingObjectsIDL::CommDetectedMarkerEventParameter& obj)
 {
-	// tag_ids: UInt32[]
-	if(j.contains("tag_ids") && j["tag_ids"].is_array()) {
-		obj.tag_ids = j["tag_ids"].get<std::vector<unsigned int>>();
+	// markers: CommDetectedMarkerList
+	if(j.contains("markers") && j["markers"].is_object()) {
+		//from_json(j["markers"], obj.markers);
+		obj.markers = j["markers"].get<CommTrackingObjectsIDL::CommDetectedMarkerList>();
 	}
 }
 

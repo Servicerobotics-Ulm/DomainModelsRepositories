@@ -14,13 +14,14 @@
 
 #include "CommCdlRobotBlockedEventParameterJSON.hh"
 
+#include <CommNavigationObjects/enumCdlRobotBlockEventType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommCdlRobotBlockedEventParameter& obj, nlohmann::json& j)
 {
 	// oldState: CdlRobotBlockEventType
-	j["oldState"] = obj.oldState;
+	j["oldState"] = CommNavigationObjects::CdlRobotBlockEventType(obj.oldState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::CommCdlRobotBlockedEventParameter& 
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCdlRobotBlockedEventParameter& obj)
 {
 	// oldState: CdlRobotBlockEventType
-	if(j.contains("oldState") && j["oldState"].is_number_integer()) {
-		obj.oldState = j["oldState"].get<int>();
+	if(j.contains("oldState") && j["oldState"].is_string()) {
+		obj.oldState = CommNavigationObjects::CdlRobotBlockEventType::from_string(j["oldState"].get<std::string>());
 	}
 }
 

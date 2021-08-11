@@ -20,6 +20,7 @@
 
 #include <string>
 #include <iostream>
+#include <locale>
 
 // SmartUtils used in from_xml method
 #include "smartKnuthMorrisPratt.hh"
@@ -49,7 +50,7 @@ namespace CommNavigationObjects {
 			value = static_cast<int>(e);
 		}
 		
-		// copy constructor for IDL type
+		// copy constructor for IDL type (which is typically int)
 		NodeRequestAnserType(CommNavigationObjectsIDL::NodeRequestAnserType e) {
 			value = e;
 		}
@@ -66,26 +67,57 @@ namespace CommNavigationObjects {
 			return this->value == t;
 		}
 		
-		std::string to_string() const {
+		std::string to_string(const bool &use_fqn=true) const {
 			std::string result = "";
+			if(use_fqn == true) {
+				result = "NodeRequestAnserType::";
+			}
 			switch (value) {
 				case STATE_UNKNOWN:
-					result = "NodeRequestAnserType::STATE_UNKNOWN";
+					result += "STATE_UNKNOWN";
 					break;
 				case SUCCESS:
-					result = "NodeRequestAnserType::SUCCESS";
+					result += "SUCCESS";
 					break;
 				case FAIL:
-					result = "NodeRequestAnserType::FAIL";
+					result += "FAIL";
 					break;
 				case ERROR_NONODE:
-					result = "NodeRequestAnserType::ERROR_NONODE";
+					result += "ERROR_NONODE";
 					break;
 				default:
-					result = "ENUM_VALUE_UNDEFINED";
+					result += "ENUM_VALUE_UNDEFINED";
 					break;
 			};
 			return result;
+		}
+		
+		static NodeRequestAnserType from_string(const std::string &value) {
+			std::string input = value;
+			std::locale l;
+			for(auto &c: input) {
+				// convert all characters to lower case (so string comparison works regardless of small/capital letters)
+				c = std::tolower(c,l);
+			}
+			std::string base_name = "noderequestansertype::";
+			if(input.compare(0, base_name.length(), base_name) == 0) {
+				// remove basename from comparing the actual enumeration
+				input.erase(0,base_name.length());
+			}
+			if(input == "state_unknown"){
+				return NodeRequestAnserType(STATE_UNKNOWN);
+			}
+			if(input == "success"){
+				return NodeRequestAnserType(SUCCESS);
+			}
+			if(input == "fail"){
+				return NodeRequestAnserType(FAIL);
+			}
+			if(input == "error_nonode"){
+				return NodeRequestAnserType(ERROR_NONODE);
+			}
+			// default (if none of the preceding options match)
+			return NodeRequestAnserType();
 		}
 		
 		// helper method to easily implement output stream

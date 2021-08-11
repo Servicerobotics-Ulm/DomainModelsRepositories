@@ -23,6 +23,7 @@ FIND_PACKAGE(AceSmartSoft PATHS $ENV{SMART_ROOT_ACE} PATH_SUFFIXES modules)
 
 # find dependency CommBasicObjects
 FIND_PACKAGE(CommBasicObjects PATHS $ENV{SMART_ROOT_ACE}/modules)
+FIND_PACKAGE(CommBasicObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
 
 # these are the regular includes (add your own includes, if needed)
 INCLUDE_DIRECTORIES(
@@ -45,9 +46,9 @@ ENDIF()
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} AceSmartSoftKernel)
 
 # link libraryDomainExternalSystems
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} DomainExternalSystems)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} DomainExternalSystems DomainExternalSystemsJSON)
 # link libraryCommBasicObjects
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjects)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjects CommBasicObjectsJSON)
 
 # automatically install the component target
 # automatically run "make install" after regular "make" for the communication object

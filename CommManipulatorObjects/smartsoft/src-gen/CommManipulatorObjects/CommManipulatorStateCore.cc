@@ -80,6 +80,7 @@ namespace CommManipulatorObjects
 			boost::hash_combine(seed, *data_joint_anglesIt);
 		}
 		seed += CommBasicObjects::CommPose3d::generateDataHash(data.pose_tcp);
+		boost::hash_combine(seed, data.motion_constraints);
 		seed += CommBasicObjects::CommPose3d::generateDataHash(data.pose_manipulator);
 		boost::hash_combine(seed, data.is_valid);
 		
@@ -94,6 +95,7 @@ namespace CommManipulatorObjects
 		setId(0);
 		setJoint_angles(std::vector<double>());
 		setPose_tcp(CommBasicObjects::CommPose3d());
+		setMotion_constraints(0);
 		setPose_manipulator(CommBasicObjects::CommPose3d());
 		setIs_valid(false);
 	}
@@ -115,6 +117,7 @@ namespace CommManipulatorObjects
 	  	os << *joint_anglesIt << " ";
 	  }
 	  getPose_tcp().to_ostream(os);
+	  os << getMotion_constraints() << " ";
 	  getPose_manipulator().to_ostream(os);
 	  os << getIs_valid() << " ";
 	  os << ") ";
@@ -136,6 +139,7 @@ namespace CommManipulatorObjects
 		os << indent << "<pose_tcp>";
 		getPose_tcp().to_xml(os, indent);
 		os << indent << "</pose_tcp>";
+		os << indent << "<motion_constraints>" << getMotion_constraints() << "</motion_constraints>";
 		os << indent << "<pose_manipulator>";
 		getPose_manipulator().to_xml(os, indent);
 		os << indent << "</pose_manipulator>";
@@ -150,6 +154,7 @@ namespace CommManipulatorObjects
 		static const Smart::KnuthMorrisPratt kmp_joint_anglesList("<joint_anglesList n=\"");
 		static const Smart::KnuthMorrisPratt kmp_joint_angles("\">");
 		static const Smart::KnuthMorrisPratt kmp_pose_tcp("<pose_tcp>");
+		static const Smart::KnuthMorrisPratt kmp_motion_constraints("<motion_constraints>");
 		static const Smart::KnuthMorrisPratt kmp_pose_manipulator("<pose_manipulator>");
 		static const Smart::KnuthMorrisPratt kmp_is_valid("<is_valid>");
 		
@@ -176,6 +181,11 @@ namespace CommManipulatorObjects
 			CommBasicObjects::CommPose3d pose_tcpItem;
 			pose_tcpItem.from_xml(is);
 			setPose_tcp(pose_tcpItem);
+		}
+		if(kmp_motion_constraints.search(is)) {
+			unsigned char motion_constraintsItem;
+			is >> motion_constraintsItem;
+			setMotion_constraints(motion_constraintsItem);
 		}
 		if(kmp_pose_manipulator.search(is)) {
 			CommBasicObjects::CommPose3d pose_manipulatorItem;

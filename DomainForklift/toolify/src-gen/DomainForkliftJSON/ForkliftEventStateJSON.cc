@@ -14,13 +14,14 @@
 
 #include "ForkliftEventStateJSON.hh"
 
+#include <DomainForklift/enumForkliftEventType.hh>
 
 namespace DomainForkliftIDL {
 
 void to_json(const DomainForkliftIDL::ForkliftEventState& obj, nlohmann::json& j)
 {
 	// newState: ForkliftEventType
-	j["newState"] = obj.newState;
+	j["newState"] = DomainForklift::ForkliftEventType(obj.newState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const DomainForkliftIDL::ForkliftEventState& obj, nlohmann::json& j
 void from_json(const nlohmann::json& j, DomainForkliftIDL::ForkliftEventState& obj)
 {
 	// newState: ForkliftEventType
-	if(j.contains("newState") && j["newState"].is_number_integer()) {
-		obj.newState = j["newState"].get<int>();
+	if(j.contains("newState") && j["newState"].is_string()) {
+		obj.newState = DomainForklift::ForkliftEventType::from_string(j["newState"].get<std::string>());
 	}
 }
 

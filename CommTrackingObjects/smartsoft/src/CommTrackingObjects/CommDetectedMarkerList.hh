@@ -56,6 +56,11 @@ class CommDetectedMarkerList : public CommDetectedMarkerListCore {
 		CommBasicObjects::CommPose3d get_tag_pose_in_sensor_frame_by_tag_id(unsigned int tag_id) const;
 		CommBasicObjects::CommPose3d get_tag_pose_in_robot_frame_by_tag_id(unsigned int tag_id) const;
 		CommBasicObjects::CommPose3d get_tag_pose_in_world_frame_by_tag_id(unsigned int tag_id) const;
+
+		bool getTagIndexByID(unsigned int tag_id, size_t& index) const;
+
+		bool getTagByID(unsigned int id, CommTrackingObjects::CommDetectedMarker& tag) const;
+		bool setTagByID(unsigned int id, const CommTrackingObjects::CommDetectedMarker tag);
 };
 
 inline std::ostream &operator<<(std::ostream &os, const CommDetectedMarkerList &co)

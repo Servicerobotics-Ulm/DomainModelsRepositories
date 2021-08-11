@@ -16,6 +16,7 @@
 #ifndef COMMTRACKINGOBJECTS_COMMDETECTEDMARKER_DATA_H_
 #define COMMTRACKINGOBJECTS_COMMDETECTEDMARKER_DATA_H_
 
+#include "CommBasicObjects/CommBaseStateData.hh"
 #include "CommBasicObjects/CommPose3dData.hh"
 
 
@@ -25,6 +26,8 @@ namespace CommTrackingObjectsIDL
 	{
 		unsigned int id;
 		CommBasicObjectsIDL::CommPose3d pose;
+		CommBasicObjectsIDL::CommPose3d sensor_pose;
+		CommBasicObjectsIDL::CommBaseState base_state;
   	};
 };
 

@@ -91,7 +91,7 @@ public:
 		return false;
 	}
 	inline bool insertPerson_idVectorAtPos(const size_t &pos, const std::vector<unsigned int> &data) {
-		if(pos < idl_CommPersonDetectionEventResult.person_id.size()) {
+		if(pos <= idl_CommPersonDetectionEventResult.person_id.size()) {
 			idl_CommPersonDetectionEventResult.person_id.insert(idl_CommPersonDetectionEventResult.person_id.begin()+pos, data.begin(), data.end());
 			return true;
 		}

@@ -14,13 +14,14 @@
 
 #include "CommCorridorNavigationGoalEventParameterJSON.hh"
 
+#include <CommNavigationObjects/enumPathNavigationEventType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationGoalEventParameter& obj, nlohmann::json& j)
 {
 	// oldState: PathNavigationEventType
-	j["oldState"] = obj.oldState;
+	j["oldState"] = CommNavigationObjects::PathNavigationEventType(obj.oldState).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::CommCorridorNavigationGoalEventPara
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCorridorNavigationGoalEventParameter& obj)
 {
 	// oldState: PathNavigationEventType
-	if(j.contains("oldState") && j["oldState"].is_number_integer()) {
-		obj.oldState = j["oldState"].get<int>();
+	if(j.contains("oldState") && j["oldState"].is_string()) {
+		obj.oldState = CommNavigationObjects::PathNavigationEventType::from_string(j["oldState"].get<std::string>());
 	}
 }
 

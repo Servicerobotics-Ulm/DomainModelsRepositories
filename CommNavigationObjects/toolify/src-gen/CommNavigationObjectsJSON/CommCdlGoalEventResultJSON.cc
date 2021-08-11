@@ -14,13 +14,14 @@
 
 #include "CommCdlGoalEventResultJSON.hh"
 
+#include <CommNavigationObjects/enumCdlGoalEventType.hh>
 
 namespace CommNavigationObjectsIDL {
 
 void to_json(const CommNavigationObjectsIDL::CommCdlGoalEventResult& obj, nlohmann::json& j)
 {
 	// state: CdlGoalEventType
-	j["state"] = obj.state;
+	j["state"] = CommNavigationObjects::CdlGoalEventType(obj.state).to_string(false);
 }
 
 /**
@@ -32,8 +33,8 @@ void to_json(const CommNavigationObjectsIDL::CommCdlGoalEventResult& obj, nlohma
 void from_json(const nlohmann::json& j, CommNavigationObjectsIDL::CommCdlGoalEventResult& obj)
 {
 	// state: CdlGoalEventType
-	if(j.contains("state") && j["state"].is_number_integer()) {
-		obj.state = j["state"].get<int>();
+	if(j.contains("state") && j["state"].is_string()) {
+		obj.state = CommNavigationObjects::CdlGoalEventType::from_string(j["state"].get<std::string>());
 	}
 }
 
