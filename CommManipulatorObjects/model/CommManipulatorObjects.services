@@ -1,7 +1,11 @@
 ServiceDefRepository CommManipulatorObjects version 1.0 {
 	
-	JoiningServiceDefinition SendTrajectoryService {
-		SendPattern <DataType=CommManipulatorObjects.CommManipulatorTrajectory>
+	RequestAnswerServiceDefinition InverseKinematicsQuery {
+		QueryPattern < RequestType=CommManipulatorObjects.CommInverseKinematicsRequest AnswerType=CommManipulatorObjects.CommInverseKinematicsResponse>
+	}
+	
+	JoiningServiceDefinition ManipulationTrajectoryService {
+		SendPattern <DataType=CommManipulatorObjects.CommManipulationTrajectory>
 	}
 	
 	JoiningServiceDefinition SendManipulatorRequestScan3dService {
@@ -61,15 +65,15 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 		> 
 	}
 	
-	CoordinationServiceDefinition ManipulatorCoordinationService {
+	CoordinationServiceDefinition ManipulationCoordinationService {
 		ParameterPattern < CommManipulatorObjects.ManipulatorParameter >
-		StatePattern < lifecycle ComponentLifecycle with CommManipulatorObjects.ManipulatorStates >
+		StatePattern < lifecycle ComponentLifecycle with CommManipulatorObjects.ManipulatorModes >
 		CommunicationServiceUsage manipulatorevent uses ManipulatorEventService
 		CommunicationServiceUsage manipulatorstate uses MobileManipulatorStateQueryService
 		CommunicationServiceUsage manipulatorprograms uses MobileManipulatorProgramQueryService
 		CommunicationServiceUsage ioquery uses CommBasicObjects.CommIOValuesQueryService
 		CommunicationServiceUsage ioevent uses CommBasicObjects.CommDigitalInputEvent
-		CommunicationServiceUsage trajectory uses SendTrajectoryService
+		CommunicationServiceUsage trajectory uses ManipulationTrajectoryService
 	}
 	
 	CoordinationServiceDefinition WelderCoordinationService {
@@ -95,5 +99,20 @@ ServiceDefRepository CommManipulatorObjects version 1.0 {
 		ParameterPattern < CommManipulatorObjects.VacuumGripperParameter >
 		StatePattern < lifecycle ComponentLifecycle with CommBasicObjects.BasicModes >
 		CommunicationServiceUsage gripperevent uses VacuumGripperEventService
+	}
+	
+	//DEPRECATED
+	JoiningServiceDefinition SendTrajectoryService {
+		SendPattern <DataType=CommManipulatorObjects.CommManipulatorTrajectory>
+	}
+	CoordinationServiceDefinition ManipulatorCoordinationService {
+		ParameterPattern < CommManipulatorObjects.ManipulatorParameter >
+		StatePattern < lifecycle ComponentLifecycle with CommManipulatorObjects.ManipulatorStates >
+		CommunicationServiceUsage manipulatorevent uses ManipulatorEventService
+		CommunicationServiceUsage manipulatorstate uses MobileManipulatorStateQueryService
+		CommunicationServiceUsage manipulatorprograms uses MobileManipulatorProgramQueryService
+		CommunicationServiceUsage ioquery uses CommBasicObjects.CommIOValuesQueryService
+		CommunicationServiceUsage ioevent uses CommBasicObjects.CommDigitalInputEvent
+		CommunicationServiceUsage trajectory uses SendTrajectoryService
 	}
 }

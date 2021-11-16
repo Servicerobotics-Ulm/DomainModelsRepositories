@@ -1,4 +1,8 @@
 ComponentModeRepository CommManipulatorObjects {
+	ComponentModeCollection ManipulatorModes {
+		ComponentModeDefinition Active;
+	}
+	//DEPRECATED
 	ComponentModeCollection ManipulatorStates {
 		ComponentModeDefinition Trajectory;
 		ComponentModeDefinition Demonstration;

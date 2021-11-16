@@ -1,0 +1,30 @@
+SkillDefinitionRepository DomainRobotFleetNavigation { 
+	
+	CoordinationModuleDefinition navPath {
+		SkillDefinition goto {
+			in {
+				
+			}
+			out {
+				
+			}
+			results {
+				SUCCESS value = "SUCCESS"
+			}
+		}
+	}
+	
+	CoordinationModuleDefinition navPathClient {
+		SkillDefinition goto {
+			in {
+				
+			}
+			out {
+				
+			}
+			results {
+				SUCCESS value = "SUCCESS"
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"name": "DomainRobotFleetNavigation",
+	"shortDescription": "A short description for the DomainRobotFleetNavigation datasheet",
+	"type": "Toolify",
+	"description": "",
+	"purposes": ["Example"],
+	"supplier": "No supplier specified",
+	"homepage": "http://www.example.com"
+}

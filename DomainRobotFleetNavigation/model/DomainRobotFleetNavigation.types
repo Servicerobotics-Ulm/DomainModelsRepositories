@@ -1,0 +1,54 @@
+CommObjectsRepository DomainRobotFleetNavigation version 1 . 0
+{
+	/*CommObject CommNavPath {
+		nodes: CommNode [*]
+        edges: CommEdge [*]
+	}
+	
+	CommObject CommEdge {
+		start_id: Int32
+        end_id: Int32
+        width: Double  
+	}*/
+	
+	CommObject CommNavPath {
+		path: CommPath [*]
+	}
+	
+	CommObject CommPath {
+		id: Int32
+		direction: Int32
+		width: Double
+		node: CommNode [*]
+	}
+
+	CommObject CommNode {
+		id: Int32
+		x: Double
+		y: Double
+		reserved: Boolean
+	}
+	
+	CommObject CommShortestPathRequest {
+		from: Int32
+		to: Int32
+	}
+	
+	CommObject CommShortestPathAnswer {
+		path: CommNode [*]
+	}
+	
+	CommObject CommNodeStatusUpdateRequest {
+		id: Int32
+		type: StatusUpdateType
+	}
+	
+	Enumeration StatusUpdateType {
+		FREENODE
+		ACQUIRENODE
+	}
+	
+	CommObject CommNodeStatusUpdateAnswer {
+		success: Boolean
+	}
+}

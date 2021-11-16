@@ -32,7 +32,7 @@ SkillDefinitionRepository CommManipulatorObjects {
 			}
 		}
 		
-		SkillDefinition moveCirular{
+		SkillDefinition moveCircular{
 			in {
 				viaX : Double
 				viaY : Double

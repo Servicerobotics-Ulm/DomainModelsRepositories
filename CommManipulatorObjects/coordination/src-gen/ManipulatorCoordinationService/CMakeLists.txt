@@ -45,10 +45,10 @@ ENDIF()
 # SmartSoftKernel is one of the default dependencies for each component
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} AceSmartSoftKernel)
 
-# link libraryCommBasicObjects
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjects CommBasicObjectsJSON)
 # link libraryCommManipulatorObjects
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommManipulatorObjects CommManipulatorObjectsJSON)
+# link libraryCommBasicObjects
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjects CommBasicObjectsJSON)
 
 # automatically install the component target
 # automatically run "make install" after regular "make" for the communication object

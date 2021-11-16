@@ -39,8 +39,10 @@ namespace CommManipulatorObjects {
 			VALUE_OUT_OF_RANGE = 3,
 			GOAL_REACHED = 4,
 			GOAL_NOT_REACHED = 5,
-			ERROR = 6,
-			UNKNOWN = 7
+			INTERMEDIATE_GOAL_REACHED = 6,
+			CANCELLED = 7,
+			ERROR = 8,
+			UNKNOWN = 9
 		};
 		
 		// default constructor
@@ -91,6 +93,12 @@ namespace CommManipulatorObjects {
 				case GOAL_NOT_REACHED:
 					result += "GOAL_NOT_REACHED";
 					break;
+				case INTERMEDIATE_GOAL_REACHED:
+					result += "INTERMEDIATE_GOAL_REACHED";
+					break;
+				case CANCELLED:
+					result += "CANCELLED";
+					break;
 				case ERROR:
 					result += "ERROR";
 					break;
@@ -130,6 +138,12 @@ namespace CommManipulatorObjects {
 			}
 			if(input == "goal_not_reached"){
 				return ManipulatorEvent(GOAL_NOT_REACHED);
+			}
+			if(input == "intermediate_goal_reached"){
+				return ManipulatorEvent(INTERMEDIATE_GOAL_REACHED);
+			}
+			if(input == "cancelled"){
+				return ManipulatorEvent(CANCELLED);
 			}
 			if(input == "error"){
 				return ManipulatorEvent(ERROR);

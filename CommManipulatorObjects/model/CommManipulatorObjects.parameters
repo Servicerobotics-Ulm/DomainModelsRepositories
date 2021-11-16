@@ -1,6 +1,11 @@
 ParameterSetRepository CommManipulatorObjects {
 	
 	ParameterSet ManipulatorParameter {
+		
+		Trigger START_FREEDRIVE { }
+		Trigger STOP_FREEDRIVE { }
+		Trigger CANCEL_MOTION {	}
+		
 		Trigger MOVE_LINEAR {
 			goalX :  Double 
 			goalY :  Double
@@ -49,6 +54,19 @@ ParameterSetRepository CommManipulatorObjects {
 			
 		}
 		
+		Trigger ADD_TCP {
+			name:String
+			x : Double
+			y : Double
+			z : Double
+			rX :  Double
+			rY :  Double
+			rZ :  Double
+		}
+		Trigger SET_ACTIVE_TCP {
+			name: String
+		}
+
 		Trigger SET_TCP {
 			x : Double
 			y : Double
@@ -58,6 +76,17 @@ ParameterSetRepository CommManipulatorObjects {
 			rZ :  Double
 		}
 		
+		Trigger ADD_TOOL {
+			name:String
+			center_of_grav: Float[3]
+			weight: Float
+			inertia: Float[6]
+		}
+		Trigger SET_ACTIVE_TOOL {
+			name: String
+		}
+		
+		
 		Trigger LOAD_PROGRAM {
 			name : String
 		}
@@ -65,6 +94,8 @@ ParameterSetRepository CommManipulatorObjects {
 		Trigger START_PROGRAM {
 			
 		}
+		
+		Trigger STOP_PROGRAM { }
 	}
 	
 	ParameterSet WelderParameter {

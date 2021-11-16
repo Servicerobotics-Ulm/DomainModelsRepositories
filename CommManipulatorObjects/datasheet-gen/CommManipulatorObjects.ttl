@@ -39,6 +39,12 @@
 ##### Communication Objects
 # see https://robmosys.eu/wiki/modeling:metamodels:commobject 
 # Note: this will later not be provided by the software component
+:CommCartesianManipulationTarget a robmosys:CommunicationObject;
+	rdfs:label "CommCartesianManipulationTarget";
+	t1:shortDescription "CommunicationObject CommCartesianManipulationTarget";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+.
+
 :CommGrasp a robmosys:CommunicationObject;
 	rdfs:label "CommGrasp";
 	t1:shortDescription "CommunicationObject CommGrasp";
@@ -69,9 +75,33 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
 .
 
+:CommInverseKinematicsRequest a robmosys:CommunicationObject;
+	rdfs:label "CommInverseKinematicsRequest";
+	t1:shortDescription "CommunicationObject CommInverseKinematicsRequest";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+.
+
+:CommInverseKinematicsResponse a robmosys:CommunicationObject;
+	rdfs:label "CommInverseKinematicsResponse";
+	t1:shortDescription "CommunicationObject CommInverseKinematicsResponse";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+.
+
+:CommJointManipulationTarget a robmosys:CommunicationObject;
+	rdfs:label "CommJointManipulationTarget";
+	t1:shortDescription "CommunicationObject CommJointManipulationTarget";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+.
+
 :CommJointValues a robmosys:CommunicationObject;
 	rdfs:label "CommJointValues";
 	t1:shortDescription "CommunicationObject CommJointValues";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+.
+
+:CommManipulationTrajectory a robmosys:CommunicationObject;
+	rdfs:label "CommManipulationTrajectory";
+	t1:shortDescription "CommunicationObject CommManipulationTrajectory";
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
 .
 
@@ -206,6 +236,35 @@
 		a robmosys:PushPattern;
 		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
 		t1:dataType :CommGripperState;
+	];
+.
+
+:InverseKinematicsQuery a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "InverseKinematicsQuery";
+	t1:shortDescription "ServiceDefinition InverseKinematicsQuery";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+	t1:commPatternUsage [
+		a robmosys:QueryPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:requestType :CommInverseKinematicsRequest;
+		t1:answerType :CommInverseKinematicsResponse;
+	];
+.
+
+:ManipulationTrajectoryService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "ManipulationTrajectoryService";
+	t1:shortDescription "ServiceDefinition ManipulationTrajectoryService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommManipulatorObjects>;
+	t1:commPatternUsage [
+		a robmosys:SendPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:dataType :CommManipulationTrajectory;
 	];
 .
 

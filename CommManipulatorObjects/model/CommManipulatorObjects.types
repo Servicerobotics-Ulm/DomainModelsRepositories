@@ -7,11 +7,64 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		base_state: CommBaseState
 	}
 	
-	CommObject CommManipulatorTrajectory {
-		joint_angles: CommJointValues[*]
-		pose_tcp: CommPose3d
-		gripper_angles: CommGripperTrajectory
-		flag: ManipulatorTrajectoryFlag
+	CommObject CommInverseKinematicsRequest {
+		tcp_pose: CommPose3d
+		is_relative:Boolean = false
+		motion_constraints: UInt8
+	}
+	CommObject CommInverseKinematicsResponse {
+		joint_angles: Float[*]
+		is_valid: Boolean = false
+	} 
+	
+	Enumeration CartesianManipulationTargetReferenceFrame {
+		MANIPULATOR = 0
+		MOBILE_BASE = 1
+	}
+	
+	CommObject CommCartesianManipulationTarget {
+		tcp_pose: CommPose3d
+		reference_frame : CartesianManipulationTargetReferenceFrame = MANIPULATOR
+		is_relative:Boolean = false
+		motion_type: BasicRobotMotionType
+		reach_type: TargetVelocityTimeFlag
+		velocity: Float // in [m/s]
+		acceleration: Float // in [m/s^2]
+		reach_time: Float = .0 // in [s]
+		blending_radius: Float = .0 // in [m]
+		motion_constraints: UInt8
+	}
+	
+	CommObject CommJointManipulationTarget {
+		joint_angles: Float[*]
+		is_relative:Boolean = false
+		motion_type: BasicRobotMotionType
+		reach_type: TargetVelocityTimeFlag
+		velocity: Float // in [rad/s]
+		acceleration: Float // in [rad/s^2]
+		reach_time: Float = .0 // in [s]
+		blending_radius: Float = .0 // in [m]
+	}
+	
+	CommObject CommManipulationTrajectory {
+		joint_angles: CommJointManipulationTarget[*]
+		tcp_poses: CommCartesianManipulationTarget[*]
+		type: ManipulatorTrajectoryFlag
+	}
+	
+	Enumeration ManipulatorTrajectoryFlag {
+		JOINT_ANGLES
+		POSE_TCP
+	}
+	
+	Enumeration BasicRobotMotionType {
+		LINEAR
+		JOINT_SPACE
+	}
+	
+	Enumeration TargetVelocityTimeFlag {
+		VELOCITY
+		TIME
 	}
 	
 	CommObject CommManipulatorState {
@@ -80,17 +133,14 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		joint_angles: CommJointValues[*]
 	}
 	
-	Enumeration ManipulatorTrajectoryFlag {
-		JOINT_ANGLES
-		POSE_TCP
-	}
-	
 	Enumeration ManipulatorEvent {
 		COLLISION
 		NO_SOLUTION_FOUND
 		VALUE_OUT_OF_RANGE
 		GOAL_REACHED
 		GOAL_NOT_REACHED
+		INTERMEDIATE_GOAL_REACHED
+		CANCELLED
 		ERROR
 		UNKNOWN
 	}
@@ -100,11 +150,6 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		GRIPPER_GOAL_NOT_REACHED
 		GRIPPER_GOAL_REACHED_EMPTY
 		GRIPPER_UNKNOWN
-	}
-	
-	CommObject CommJointValues {
-		values: Double[*]
-		time: Float
 	}
 	
 	Enumeration GripperGraspState {
@@ -147,4 +192,15 @@ CommObjectsRepository CommManipulatorObjects version 1.0 {
 		valid : Boolean=false
 	}
 	
+	//DEPRECATED
+	CommObject CommManipulatorTrajectory {
+		joint_angles: CommJointValues[*]
+		pose_tcp: CommPose3d
+		gripper_angles: CommGripperTrajectory
+		flag: ManipulatorTrajectoryFlag
+	}
+	CommObject CommJointValues {
+		values: Double[*]
+		time: Float
+	}
 }

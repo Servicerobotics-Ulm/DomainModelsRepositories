@@ -61,7 +61,6 @@ CommBasicObjects::CommPose3d CommDetectedMarkerList::get_tag_pose_in_sensor_fram
 
 CommBasicObjects::CommPose3d CommDetectedMarkerList::get_tag_pose_in_robot_frame_by_index(size_t index) const
 {
-
 	arma::mat measurment = static_cast<CommBasicObjects::CommPose3d>(idl_CommDetectedMarkerList.markers.at(index).pose).getHomogeneousMatrix(1.0);
 	arma::mat sensorPose;
 	if(getSingle_pose() == true){

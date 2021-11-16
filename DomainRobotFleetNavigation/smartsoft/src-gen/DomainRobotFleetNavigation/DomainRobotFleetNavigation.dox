@@ -1,0 +1,114 @@
+/** 
+\class DomainRobotFleetNavigation::CommNavPathCore
+
+Structure of Communication Object:
+- path: DomainRobotFleetNavigation::CommPath[*] 
+
+\class DomainRobotFleetNavigation::CommPathCore
+
+Structure of Communication Object:
+- id: Int32 
+- direction: Int32 
+- width: Double 
+- node: DomainRobotFleetNavigation::CommNode[*] 
+
+\class DomainRobotFleetNavigation::CommNodeCore
+
+Structure of Communication Object:
+- id: Int32 
+- x: Double 
+- y: Double 
+- reserved: Boolean 
+
+\class DomainRobotFleetNavigation::CommShortestPathRequestCore
+
+Structure of Communication Object:
+- from: Int32 
+- to: Int32 
+
+\class DomainRobotFleetNavigation::CommShortestPathAnswerCore
+
+Structure of Communication Object:
+- path: DomainRobotFleetNavigation::CommNode[*] 
+
+\class DomainRobotFleetNavigation::CommNodeStatusUpdateRequestCore
+
+Structure of Communication Object:
+- id: Int32 
+- type: DomainRobotFleetNavigation::StatusUpdateType 
+
+\class DomainRobotFleetNavigation::CommNodeStatusUpdateAnswerCore
+
+Structure of Communication Object:
+- success: Boolean 
+
+\class DomainRobotFleetNavigation::StatusUpdateType
+
+Structure of Enumeration:
+- FREENODE 
+- ACQUIRENODE 
+
+
+
+
+@defgroup DomainRobotFleetNavigation
+@ingroup commObjGroup
+@{
+\page DomainRobotFleetNavigationPage DomainRobotFleetNavigation
+Class Reference: DomainRobotFleetNavigation
+<hr>
+
+@section CommNavPath CommNavPath
+- path: @ref CommPath[*] (CommObj) 
+
+Class Reference: DomainRobotFleetNavigation::CommNavPathCore
+<hr>
+@section CommPath CommPath
+- id: Int32  
+- direction: Int32  
+- width: Double  
+- node: @ref CommNode[*] (CommObj) 
+
+Class Reference: DomainRobotFleetNavigation::CommPathCore
+<hr>
+@section CommNode CommNode
+- id: Int32  
+- x: Double  
+- y: Double  
+- reserved: Boolean  
+
+Class Reference: DomainRobotFleetNavigation::CommNodeCore
+<hr>
+@section CommShortestPathRequest CommShortestPathRequest
+- from: Int32  
+- to: Int32  
+
+Class Reference: DomainRobotFleetNavigation::CommShortestPathRequestCore
+<hr>
+@section CommShortestPathAnswer CommShortestPathAnswer
+- path: @ref CommNode[*] (CommObj) 
+
+Class Reference: DomainRobotFleetNavigation::CommShortestPathAnswerCore
+<hr>
+@section CommNodeStatusUpdateRequest CommNodeStatusUpdateRequest
+- id: Int32  
+- type: @ref StatusUpdateType (Enum) 
+
+Class Reference: DomainRobotFleetNavigation::CommNodeStatusUpdateRequestCore
+<hr>
+@section CommNodeStatusUpdateAnswer CommNodeStatusUpdateAnswer
+- success: Boolean  
+
+Class Reference: DomainRobotFleetNavigation::CommNodeStatusUpdateAnswerCore
+<hr>
+@section StatusUpdateType StatusUpdateType
+- FREENODE 
+- ACQUIRENODE 
+
+Class Reference: DomainRobotFleetNavigation::StatusUpdateType
+<hr>
+
+
+@}
+*/
+

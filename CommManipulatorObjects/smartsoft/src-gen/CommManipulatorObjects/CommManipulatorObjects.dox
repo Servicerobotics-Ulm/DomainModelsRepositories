@@ -5,13 +5,51 @@ Structure of Communication Object:
 - manipulator_state: CommManipulatorObjects::CommManipulatorState 
 - base_state: CommBasicObjects::CommBaseState 
 
-\class CommManipulatorObjects::CommManipulatorTrajectoryCore
+\class CommManipulatorObjects::CommInverseKinematicsRequestCore
 
 Structure of Communication Object:
-- joint_angles: CommManipulatorObjects::CommJointValues[*] 
-- pose_tcp: CommBasicObjects::CommPose3d 
-- gripper_angles: CommManipulatorObjects::CommGripperTrajectory 
-- flag: CommManipulatorObjects::ManipulatorTrajectoryFlag 
+- tcp_pose: CommBasicObjects::CommPose3d 
+- is_relative: Boolean  = false 
+- motion_constraints: UInt8 
+
+\class CommManipulatorObjects::CommInverseKinematicsResponseCore
+
+Structure of Communication Object:
+- joint_angles: Float[*] 
+- is_valid: Boolean  = false 
+
+\class CommManipulatorObjects::CommCartesianManipulationTargetCore
+
+Structure of Communication Object:
+- tcp_pose: CommBasicObjects::CommPose3d 
+- reference_frame: CommManipulatorObjects::CartesianManipulationTargetReferenceFrame  = MANIPULATOR 
+- is_relative: Boolean  = false 
+- motion_type: CommManipulatorObjects::BasicRobotMotionType 
+- reach_type: CommManipulatorObjects::TargetVelocityTimeFlag 
+- velocity: Float 
+- acceleration: Float 
+- reach_time: Float  = 0.0 
+- blending_radius: Float  = 0.0 
+- motion_constraints: UInt8 
+
+\class CommManipulatorObjects::CommJointManipulationTargetCore
+
+Structure of Communication Object:
+- joint_angles: Float[*] 
+- is_relative: Boolean  = false 
+- motion_type: CommManipulatorObjects::BasicRobotMotionType 
+- reach_type: CommManipulatorObjects::TargetVelocityTimeFlag 
+- velocity: Float 
+- acceleration: Float 
+- reach_time: Float  = 0.0 
+- blending_radius: Float  = 0.0 
+
+\class CommManipulatorObjects::CommManipulationTrajectoryCore
+
+Structure of Communication Object:
+- joint_angles: CommManipulatorObjects::CommJointManipulationTarget[*] 
+- tcp_poses: CommManipulatorObjects::CommCartesianManipulationTarget[*] 
+- type: CommManipulatorObjects::ManipulatorTrajectoryFlag 
 
 \class CommManipulatorObjects::CommManipulatorStateCore
 
@@ -89,12 +127,6 @@ Structure of Communication Object:
 Structure of Communication Object:
 - joint_angles: CommManipulatorObjects::CommJointValues[*] 
 
-\class CommManipulatorObjects::CommJointValuesCore
-
-Structure of Communication Object:
-- values: Double[*] 
-- time: Float 
-
 \class CommManipulatorObjects::CommVacummGripperStateCore
 
 Structure of Communication Object:
@@ -125,11 +157,43 @@ Structure of Communication Object:
 - width: Double 
 - valid: Boolean  = false 
 
+\class CommManipulatorObjects::CommManipulatorTrajectoryCore
+
+Structure of Communication Object:
+- joint_angles: CommManipulatorObjects::CommJointValues[*] 
+- pose_tcp: CommBasicObjects::CommPose3d 
+- gripper_angles: CommManipulatorObjects::CommGripperTrajectory 
+- flag: CommManipulatorObjects::ManipulatorTrajectoryFlag 
+
+\class CommManipulatorObjects::CommJointValuesCore
+
+Structure of Communication Object:
+- values: Double[*] 
+- time: Float 
+
+\class CommManipulatorObjects::CartesianManipulationTargetReferenceFrame
+
+Structure of Enumeration:
+- MANIPULATOR 
+- MOBILE_BASE 
+
 \class CommManipulatorObjects::ManipulatorTrajectoryFlag
 
 Structure of Enumeration:
 - JOINT_ANGLES 
 - POSE_TCP 
+
+\class CommManipulatorObjects::BasicRobotMotionType
+
+Structure of Enumeration:
+- LINEAR 
+- JOINT_SPACE 
+
+\class CommManipulatorObjects::TargetVelocityTimeFlag
+
+Structure of Enumeration:
+- VELOCITY 
+- TIME 
 
 \class CommManipulatorObjects::ManipulatorEvent
 
@@ -139,6 +203,8 @@ Structure of Enumeration:
 - VALUE_OUT_OF_RANGE 
 - GOAL_REACHED 
 - GOAL_NOT_REACHED 
+- INTERMEDIATE_GOAL_REACHED 
+- CANCELLED 
 - ERROR 
 - UNKNOWN 
 
@@ -181,13 +247,51 @@ Class Reference: CommManipulatorObjects
 
 Class Reference: CommManipulatorObjects::CommMobileManipulatorStateCore
 <hr>
-@section CommManipulatorTrajectory CommManipulatorTrajectory
-- joint_angles: @ref CommJointValues[*] (CommObj) 
-- pose_tcp: @ref CommPose3d (CommObj) 
-- gripper_angles: @ref CommGripperTrajectory (CommObj) 
-- flag: @ref ManipulatorTrajectoryFlag (Enum) 
+@section CommInverseKinematicsRequest CommInverseKinematicsRequest
+- tcp_pose: @ref CommPose3d (CommObj) 
+- is_relative: Boolean   = false 
+- motion_constraints: UInt8  
 
-Class Reference: CommManipulatorObjects::CommManipulatorTrajectoryCore
+Class Reference: CommManipulatorObjects::CommInverseKinematicsRequestCore
+<hr>
+@section CommInverseKinematicsResponse CommInverseKinematicsResponse
+- joint_angles: Float[*]  
+- is_valid: Boolean   = false 
+
+Class Reference: CommManipulatorObjects::CommInverseKinematicsResponseCore
+<hr>
+@section CommCartesianManipulationTarget CommCartesianManipulationTarget
+- tcp_pose: @ref CommPose3d (CommObj) 
+- reference_frame: @ref CartesianManipulationTargetReferenceFrame (Enum)  = MANIPULATOR 
+- is_relative: Boolean   = false 
+- motion_type: @ref BasicRobotMotionType (Enum) 
+- reach_type: @ref TargetVelocityTimeFlag (Enum) 
+- velocity: Float  
+- acceleration: Float  
+- reach_time: Float   = 0.0 
+- blending_radius: Float   = 0.0 
+- motion_constraints: UInt8  
+
+Class Reference: CommManipulatorObjects::CommCartesianManipulationTargetCore
+<hr>
+@section CommJointManipulationTarget CommJointManipulationTarget
+- joint_angles: Float[*]  
+- is_relative: Boolean   = false 
+- motion_type: @ref BasicRobotMotionType (Enum) 
+- reach_type: @ref TargetVelocityTimeFlag (Enum) 
+- velocity: Float  
+- acceleration: Float  
+- reach_time: Float   = 0.0 
+- blending_radius: Float   = 0.0 
+
+Class Reference: CommManipulatorObjects::CommJointManipulationTargetCore
+<hr>
+@section CommManipulationTrajectory CommManipulationTrajectory
+- joint_angles: @ref CommJointManipulationTarget[*] (CommObj) 
+- tcp_poses: @ref CommCartesianManipulationTarget[*] (CommObj) 
+- type: @ref ManipulatorTrajectoryFlag (Enum) 
+
+Class Reference: CommManipulatorObjects::CommManipulationTrajectoryCore
 <hr>
 @section CommManipulatorState CommManipulatorState
 - id: UInt32  
@@ -265,12 +369,6 @@ Class Reference: CommManipulatorObjects::CommGripperStateCore
 
 Class Reference: CommManipulatorObjects::CommGripperTrajectoryCore
 <hr>
-@section CommJointValues CommJointValues
-- values: Double[*]  
-- time: Float  
-
-Class Reference: CommManipulatorObjects::CommJointValuesCore
-<hr>
 @section CommVacummGripperState CommVacummGripperState
 - state: @ref VacuumGraspState (Enum) 
 - vacuumLevel: Double  
@@ -301,11 +399,43 @@ Class Reference: CommManipulatorObjects::CommVacuumGripperEventStateCore
 
 Class Reference: CommManipulatorObjects::CommGraspCore
 <hr>
+@section CommManipulatorTrajectory CommManipulatorTrajectory
+- joint_angles: @ref CommJointValues[*] (CommObj) 
+- pose_tcp: @ref CommPose3d (CommObj) 
+- gripper_angles: @ref CommGripperTrajectory (CommObj) 
+- flag: @ref ManipulatorTrajectoryFlag (Enum) 
+
+Class Reference: CommManipulatorObjects::CommManipulatorTrajectoryCore
+<hr>
+@section CommJointValues CommJointValues
+- values: Double[*]  
+- time: Float  
+
+Class Reference: CommManipulatorObjects::CommJointValuesCore
+<hr>
+@section CartesianManipulationTargetReferenceFrame CartesianManipulationTargetReferenceFrame
+- MANIPULATOR 
+- MOBILE_BASE 
+
+Class Reference: CommManipulatorObjects::CartesianManipulationTargetReferenceFrame
+<hr>
 @section ManipulatorTrajectoryFlag ManipulatorTrajectoryFlag
 - JOINT_ANGLES 
 - POSE_TCP 
 
 Class Reference: CommManipulatorObjects::ManipulatorTrajectoryFlag
+<hr>
+@section BasicRobotMotionType BasicRobotMotionType
+- LINEAR 
+- JOINT_SPACE 
+
+Class Reference: CommManipulatorObjects::BasicRobotMotionType
+<hr>
+@section TargetVelocityTimeFlag TargetVelocityTimeFlag
+- VELOCITY 
+- TIME 
+
+Class Reference: CommManipulatorObjects::TargetVelocityTimeFlag
 <hr>
 @section ManipulatorEvent ManipulatorEvent
 - COLLISION 
@@ -313,6 +443,8 @@ Class Reference: CommManipulatorObjects::ManipulatorTrajectoryFlag
 - VALUE_OUT_OF_RANGE 
 - GOAL_REACHED 
 - GOAL_NOT_REACHED 
+- INTERMEDIATE_GOAL_REACHED 
+- CANCELLED 
 - ERROR 
 - UNKNOWN 
 
