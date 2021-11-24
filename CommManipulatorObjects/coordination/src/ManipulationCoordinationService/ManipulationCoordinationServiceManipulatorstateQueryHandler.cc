@@ -1,7 +1,5 @@
 #include "ManipulationCoordinationServiceManipulatorstateQueryHandler.hh"
 
-#include "CommBasicObjectsJSON/CommVoidJSON.hh"
-#include "CommManipulatorObjectsJSON/CommMobileManipulatorStateJSON.hh"
 
 #include <iomanip>
 

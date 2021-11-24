@@ -1,8 +1,5 @@
 #include "ManipulationCoordinationServiceManipulatorprogramsQueryHandler.hh"
 
-#include "CommBasicObjectsJSON/CommVoidJSON.hh"
-#include "CommManipulatorObjectsJSON/CommMobileManipulatorProgramsJSON.hh"
-
 #include <iomanip>
 
 #include <sstream>

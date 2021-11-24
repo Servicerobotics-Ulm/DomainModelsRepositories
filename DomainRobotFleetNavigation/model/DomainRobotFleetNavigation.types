@@ -15,6 +15,11 @@ CommObjectsRepository DomainRobotFleetNavigation version 1 . 0
 		path: CommPath [*]
 	}
 	
+	CommObject CommCorridorPath {
+		nodes: CommNode [*]
+		widths: Double [*]
+	}
+	
 	CommObject CommPath {
 		id: Int32
 		direction: Int32

@@ -1,7 +1,6 @@
 #include "NavPathCoordinationServiceQueryShortestPathQueryHandler.hh"
 
-#include "DomainRobotFleetNavigationJSON/CommShortestPathRequestJSON.hh"
-#include "DomainRobotFleetNavigationJSON/CommShortestPathAnswerJSON.hh"
+#include <nlohmann/json.hpp>
 
 #ifndef LISP_SEPARATOR
 #define LISP_SEPARATOR " ()\"\n"
@@ -15,9 +14,9 @@
 DomainRobotFleetNavigation::CommShortestPathRequest NavPathCoordinationServiceQueryShortestPathQueryHandler::handleRequest(const std::string& inString){
 	DomainRobotFleetNavigation::CommShortestPathRequest request;
 	// parse the inString into an nlohmann::json object
-	nlohmann::json data = nlohmann::json::parse(inString);
+	//nlohmann::json data = nlohmann::json::parse(inString);
 	// convert the parsed nlohmann::json object into the request communication object
-	DomainRobotFleetNavigationIDL::from_json(data, request.set());
+	//DomainRobotFleetNavigationIDL::from_json(data, request.set());
 	// return the coverted result object
 
 	std::cout << "RECEIVED: " << inString << std::endl;
@@ -48,8 +47,8 @@ DomainRobotFleetNavigation::CommShortestPathRequest NavPathCoordinationServiceQu
 	return request;
 }
 
-std::string NavPathCoordinationServiceQueryShortestPathQueryHandler::handleAnswer(const DomainRobotFleetNavigation::CommShortestPathAnswer& answer){
+std::string NavPathCoordinationServiceQueryShortestPathQueryHandler::handleAnswer(const DomainRobotFleetNavigation::CommCorridorPath& answer){
 	nlohmann::json data;
-	DomainRobotFleetNavigationIDL::to_json(answer.get(), data);
+	//DomainRobotFleetNavigationIDL::to_json(answer.get(), data);
 	return data.dump();
 }

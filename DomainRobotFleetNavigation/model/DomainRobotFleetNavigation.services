@@ -6,7 +6,9 @@ ServiceDefRepository DomainRobotFleetNavigation version 1 . 0
 	
 	RequestAnswerServiceDefinition ShortestPathRequestService {
 		QueryPattern < RequestType = DomainRobotFleetNavigation.CommShortestPathRequest
-		AnswerType=DomainRobotFleetNavigation.CommShortestPathAnswer>
+		//AnswerType=DomainRobotFleetNavigation.CommShortestPathAnswer>
+		//AnswerType=DomainRobotFleetNavigation.CommNavPath>
+		AnswerType=DomainRobotFleetNavigation.CommCorridorPath>
 	}
 	
 	RequestAnswerServiceDefinition NodeStatusUpdateService {
@@ -23,6 +25,6 @@ ServiceDefRepository DomainRobotFleetNavigation version 1 . 0
 	
 	CoordinationServiceDefinition NavPathClientCoordinationService {
 		StatePattern < lifecycle ComponentLifecycle >
-		ParameterPattern < CommNavigationObjects.CorridorNavigationClientParams > 
+		ParameterPattern < CommNavigationObjects.CorridorNavigationClientParams >
 	}
 }
