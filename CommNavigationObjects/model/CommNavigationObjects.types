@@ -26,6 +26,26 @@
 #import CommBasicObjects.*;
 
 CommObjectsRepository CommNavigationObjects version 1.0.0 {
+	CommObject CommBundledNavigationEventParameter {
+		locationName: String = ""
+		previousState: BundledNavigationGoalState = GOAL_UNDEFINED
+	}
+	CommObject CommBundledNavigationEventState {
+		locationName: String
+		goalState: BundledNavigationGoalState
+	}
+	CommObject CommBundledNavigationEventResult {
+		locationName: String
+		goalState: BundledNavigationGoalState
+	}
+	
+	Enumeration BundledNavigationGoalState {
+		GOAL_UNDEFINED
+		GOAL_REACHED
+		GOAL_CANCELED
+		GOAL_NOT_REACHABLE
+	}
+	
 	CommObject CommPlannerEventParameter {
 		oldState: PlannerEventType
 	}

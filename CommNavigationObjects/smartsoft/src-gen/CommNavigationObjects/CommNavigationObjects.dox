@@ -1,4 +1,22 @@
 /** 
+\class CommNavigationObjects::CommBundledNavigationEventParameterCore
+
+Structure of Communication Object:
+- locationName: String  = "" 
+- previousState: CommNavigationObjects::BundledNavigationGoalState  = GOAL_UNDEFINED 
+
+\class CommNavigationObjects::CommBundledNavigationEventStateCore
+
+Structure of Communication Object:
+- locationName: String 
+- goalState: CommNavigationObjects::BundledNavigationGoalState 
+
+\class CommNavigationObjects::CommBundledNavigationEventResultCore
+
+Structure of Communication Object:
+- locationName: String 
+- goalState: CommNavigationObjects::BundledNavigationGoalState 
+
 \class CommNavigationObjects::CommPlannerEventParameterCore
 
 Structure of Communication Object:
@@ -299,6 +317,14 @@ Structure of Communication Object:
 - finalGoalX: Double 
 - finalGoalY: Double 
 
+\class CommNavigationObjects::BundledNavigationGoalState
+
+Structure of Enumeration:
+- GOAL_UNDEFINED 
+- GOAL_REACHED 
+- GOAL_CANCELED 
+- GOAL_NOT_REACHABLE 
+
 \class CommNavigationObjects::OctomapTagType
 
 Structure of Enumeration:
@@ -485,6 +511,24 @@ Structure of Enumeration:
 Class Reference: CommNavigationObjects
 <hr>
 
+@section CommBundledNavigationEventParameter CommBundledNavigationEventParameter
+- locationName: String   = "" 
+- previousState: @ref BundledNavigationGoalState (Enum)  = GOAL_UNDEFINED 
+
+Class Reference: CommNavigationObjects::CommBundledNavigationEventParameterCore
+<hr>
+@section CommBundledNavigationEventState CommBundledNavigationEventState
+- locationName: String  
+- goalState: @ref BundledNavigationGoalState (Enum) 
+
+Class Reference: CommNavigationObjects::CommBundledNavigationEventStateCore
+<hr>
+@section CommBundledNavigationEventResult CommBundledNavigationEventResult
+- locationName: String  
+- goalState: @ref BundledNavigationGoalState (Enum) 
+
+Class Reference: CommNavigationObjects::CommBundledNavigationEventResultCore
+<hr>
 @section CommPlannerEventParameter CommPlannerEventParameter
 - oldState: @ref PlannerEventType (Enum) 
 
@@ -784,6 +828,14 @@ Class Reference: CommNavigationObjects::CommNavigationGraphCore
 - finalGoalY: Double  
 
 Class Reference: CommNavigationObjects::CommPlannerGoalListCore
+<hr>
+@section BundledNavigationGoalState BundledNavigationGoalState
+- GOAL_UNDEFINED 
+- GOAL_REACHED 
+- GOAL_CANCELED 
+- GOAL_NOT_REACHABLE 
+
+Class Reference: CommNavigationObjects::BundledNavigationGoalState
 <hr>
 @section OctomapTagType OctomapTagType
 - RESET 

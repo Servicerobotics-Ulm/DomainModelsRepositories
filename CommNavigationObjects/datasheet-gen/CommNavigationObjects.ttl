@@ -45,6 +45,24 @@
 	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
 .
 
+:CommBundledNavigationEventParameter a robmosys:CommunicationObject;
+	rdfs:label "CommBundledNavigationEventParameter";
+	t1:shortDescription "CommunicationObject CommBundledNavigationEventParameter";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommBundledNavigationEventResult a robmosys:CommunicationObject;
+	rdfs:label "CommBundledNavigationEventResult";
+	t1:shortDescription "CommunicationObject CommBundledNavigationEventResult";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
+:CommBundledNavigationEventState a robmosys:CommunicationObject;
+	rdfs:label "CommBundledNavigationEventState";
+	t1:shortDescription "CommunicationObject CommBundledNavigationEventState";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+.
+
 :CommCdlGoalEventParameter a robmosys:CommunicationObject;
 	rdfs:label "CommCdlGoalEventParameter";
 	t1:shortDescription "CommunicationObject CommCdlGoalEventParameter";
@@ -315,6 +333,22 @@
 		t1:eventType :CommBatteryEvent;
 		t1:activationType :CommBatteryParameter;
 		t1:eventStateType :CommBatteryState;
+	];
+.
+
+:BundledNavigationEventService a robmosys:ServiceDefinition;
+	rdf:type rdfs:Class;
+	rdf:type sh:NodeShape;
+	rdfs:subClassOf robmosys:AbstractService;
+	rdfs:label "BundledNavigationEventService";
+	t1:shortDescription "ServiceDefinition BundledNavigationEventService";
+	t1:memberOfRepository <http://www.servicerobotik-ulm.de/DomainModels/CommNavigationObjects>;
+	t1:commPatternUsage [
+		a robmosys:EventPattern;
+		# FIXME: check the namespace: it will be wrong when elements from other repos are used.
+		t1:eventType :CommBundledNavigationEventResult;
+		t1:activationType :CommBundledNavigationEventParameter;
+		t1:eventStateType :CommBundledNavigationEventState;
 	];
 .
 

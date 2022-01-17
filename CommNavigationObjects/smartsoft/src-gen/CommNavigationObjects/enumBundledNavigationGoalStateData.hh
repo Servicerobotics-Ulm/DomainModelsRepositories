@@ -13,5 +13,13 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
+#ifndef COMMNAVIGATIONOBJECTS_BUNDLEDNAVIGATIONGOALSTATE_ENUM_DATA_H_
+#define COMMNAVIGATIONOBJECTS_BUNDLEDNAVIGATIONGOALSTATE_ENUM_DATA_H_
 
-// Generated with SmartMDSD Toolchain Version 3.14.1.qualifier
+//#include <ace/CDR_Stream.h>
+
+namespace CommNavigationObjectsIDL {
+	typedef int BundledNavigationGoalState;
+};
+
+#endif

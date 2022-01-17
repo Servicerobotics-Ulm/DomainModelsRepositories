@@ -13,5 +13,20 @@
 // Please do not modify this file. It will be re-generated
 // running the code generator.
 //--------------------------------------------------------------------------
+#ifndef COMMNAVIGATIONOBJECTS_COMMBUNDLEDNAVIGATIONEVENTSTATE_DATA_H_
+#define COMMNAVIGATIONOBJECTS_COMMBUNDLEDNAVIGATIONEVENTSTATE_DATA_H_
 
-// Generated with SmartMDSD Toolchain Version 3.14.1.qualifier
+#include "CommNavigationObjects/enumBundledNavigationGoalStateData.hh"
+
+#include <string>
+
+namespace CommNavigationObjectsIDL 
+{
+	struct CommBundledNavigationEventState
+	{
+		std::string locationName;
+		CommNavigationObjectsIDL::BundledNavigationGoalState goalState;
+  	};
+};
+
+#endif /* COMMNAVIGATIONOBJECTS_COMMBUNDLEDNAVIGATIONEVENTSTATE_DATA_H_ */

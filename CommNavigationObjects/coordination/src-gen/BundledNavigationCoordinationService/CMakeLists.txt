@@ -15,23 +15,26 @@
 #--------------------------------------------------------------------------
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
-PROJECT(MapperCoordinationService)
+PROJECT(BundledNavigationCoordinationService)
 
 # find SmartSoft package
 #FIND_SMARTSOFT(3.0)
 FIND_PACKAGE(AceSmartSoft PATHS $ENV{SMART_ROOT_ACE} PATH_SUFFIXES modules)
 
+# find dependency CommBasicObjects
+FIND_PACKAGE(CommBasicObjects PATHS $ENV{SMART_ROOT_ACE}/modules)
+FIND_PACKAGE(CommBasicObjectsJSON PATHS $ENV{SMART_ROOT_ACE}/modules)
 
 # these are the regular includes (add your own includes, if needed)
 INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_LIST_DIR}
   ${CMAKE_CURRENT_LIST_DIR}/../
-  ${CMAKE_CURRENT_LIST_DIR}/../../src/MapperCoordinationService
+  ${CMAKE_CURRENT_LIST_DIR}/../../src/BundledNavigationCoordinationService
 )
 
 # collect the toolchain-generated source-files
 FILE(GLOB_RECURSE SRC ${CMAKE_CURRENT_LIST_DIR}/*.cc)
-FILE(GLOB_RECURSE SRC_GEN ${CMAKE_CURRENT_LIST_DIR}/../../src/MapperCoordinationService/*.cc)
+FILE(GLOB_RECURSE SRC_GEN ${CMAKE_CURRENT_LIST_DIR}/../../src/BundledNavigationCoordinationService/*.cc)
 
 IF(WIN32)
 	ADD_LIBRARY(${PROJECT_NAME} STATIC ${SRC} ${SRC_GEN})
@@ -42,6 +45,8 @@ ENDIF()
 # SmartSoftKernel is one of the default dependencies for each component
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} AceSmartSoftKernel)
 
+# link libraryCommBasicObjects
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommBasicObjects CommBasicObjectsJSON)
 # link libraryCommNavigationObjects
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} CommNavigationObjects CommNavigationObjectsJSON)
 

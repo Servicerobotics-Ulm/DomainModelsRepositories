@@ -29,6 +29,25 @@
 
 ParameterSetRepository CommNavigationObjects {
 	
+	ParameterSet BundledNavigationParameters {
+		Trigger ADD_NAVIGATION_GOAL {
+			/// goal name
+			name: String
+			/// x coordinate in [m]
+			pos_x: Double
+			/// y coordinate in [m]
+			pos_y: Double
+			/// orientation in [rad]
+			orientation: Double
+		}
+		Trigger CANCEL_NAVIGATION_GOAL {
+			/// goal name
+			name: String
+		}
+		
+		Trigger START_NAVIGATION { }
+		Trigger PAUSE_NAVIGATION { }
+	}
 	
 	ParameterSet CdlParameter {
 		/**

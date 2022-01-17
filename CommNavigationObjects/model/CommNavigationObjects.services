@@ -26,6 +26,17 @@
 ServiceDefRepository CommNavigationObjects version 1.0
 {
 	/**
+	 * Bundled Navigation services
+	 */
+	ForkingServiceDefinition BundledNavigationEventService {
+		EventPattern < 
+			ActivationType = CommNavigationObjects.CommBundledNavigationEventParameter
+			EventStateType = CommNavigationObjects.CommBundledNavigationEventState
+			EventType = CommNavigationObjects.CommBundledNavigationEventResult
+		>
+	}
+	
+	/**
 	 * Base-related service-definitions
 	 */
 	JoiningServiceDefinition NavigationVelocityService {
@@ -185,6 +196,12 @@ ServiceDefRepository CommNavigationObjects version 1.0
 	 * Coordination service-definitions
 	 */
 	 
+	CoordinationServiceDefinition BundledNavigationCoordinationService {
+		StatePattern < lifecycle ComponentLifecycle >
+		ParameterPattern < CommNavigationObjects.BundledNavigationParameters >
+		CommunicationServiceUsage baseState uses CommBasicObjects.BaseStateQueryService
+		CommunicationServiceUsage goalEvent uses BundledNavigationEventService
+	}
  	CoordinationServiceDefinition BaseCoordinationService {
 		StatePattern < lifecycle ComponentLifecycle with CommBasicObjects.RobotBaseModes >
 		ParameterPattern < CommBasicObjects.BaseParams >
@@ -203,6 +220,7 @@ ServiceDefRepository CommNavigationObjects version 1.0
 	CoordinationServiceDefinition MapperCoordinationService {
 		ParameterPattern < CommNavigationObjects.MapperParams >
 		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.MapperStates >
+		CommunicationServiceUsage ltmMapData uses LongTermGridMapQueryService
 	}
 
 	CoordinationServiceDefinition PlannerCoordinationService {
