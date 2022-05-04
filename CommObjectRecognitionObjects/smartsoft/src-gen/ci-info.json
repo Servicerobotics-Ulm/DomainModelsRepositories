@@ -1,5 +1,0 @@
-{
-	"id" : "CommObjectRecognitionObjects",
-	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects","CommManipulatorObjects" ]
-}

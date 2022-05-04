@@ -1,5 +1,0 @@
-{
-	"id" : "DomainSpeech",
-	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects" ]
-}

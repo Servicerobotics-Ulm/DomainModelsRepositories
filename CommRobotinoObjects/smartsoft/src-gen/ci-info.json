@@ -1,5 +1,0 @@
-{
-	"id" : "CommRobotinoObjects",
-	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects" ]
-}

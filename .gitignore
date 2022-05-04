@@ -2,3 +2,5 @@ build/
 bin/
 Debug/
 language.settings.xml
+datasheet-gen/
+src-gen/

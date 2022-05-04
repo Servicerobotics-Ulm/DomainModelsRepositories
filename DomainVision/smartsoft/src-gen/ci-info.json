@@ -1,5 +1,0 @@
-{
-	"id" : "DomainVision",
-	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects" ]
-}

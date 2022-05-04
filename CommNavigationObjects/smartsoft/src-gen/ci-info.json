@@ -1,5 +1,0 @@
-{
-	"id" : "CommNavigationObjects",
-	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects" ]
-}

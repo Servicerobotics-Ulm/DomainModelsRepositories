@@ -1,9 +1,0 @@
-{
-	"name": "DomainPrint",
-	"shortDescription": "Domain models for printing",
-	"type": "Toolify",
-	"description": "",
-	"purposes": ["Print"],
-	"supplier": "No supplier specified",
-	"homepage": "http://www.example.com"
-}

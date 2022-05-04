@@ -1,5 +1,0 @@
-{
-	"id" : "DomainPrint",
-	"type" : "DomainModel",
-	"dependprojects" : [ "CommBasicObjects" ]
-}
