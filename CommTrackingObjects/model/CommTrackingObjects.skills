@@ -1,0 +1,22 @@
+SkillDefinitionRepository CommTrackingObjects {
+	
+	CoordinationModuleDefinition PersonFollowingModule {
+		SkillDefinition detectPersons {
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+		SkillDefinition stopPersonFollowing {
+			results {
+				SUCCESS value = ""
+			}
+		}
+		
+		SkillDefinition followPerson {
+			results {
+				SUCCESS value = ""
+			}
+		}
+	}
+}

@@ -7,6 +7,9 @@ std::string SequencerHLCoordinationServerHLCommandServerEventHandler::handleEven
 	//std::ostringstream ss;
 	//ss << "("<< std::setprecision( 2 ) << answer_data<<")";
 	//outString = ss.str();
+	std::ostringstream ss;
+	ss << r.getMsg();
+	outString = ss.str();
 	return outString;
 }
 
@@ -15,5 +18,6 @@ CommBasicObjects::CommSkillMsg SequencerHLCoordinationServerHLCommandServerEvent
 	
 	//fill the event activation (parameter) commObject with the data provided via the inString (from TCL)
 	//e.g. param.setLisp(inString);
+	param.setMsg(parameterString);
 	return param;
 }

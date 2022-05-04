@@ -3,6 +3,7 @@
 	<name>DomainRobotFleetNavigation</name>
 	<comment></comment>
 	<projects>
+		<project>CommBasicObjects</project>
 		<project>CommNavigationObjects</project>
 	</projects>
 	<buildSpec>

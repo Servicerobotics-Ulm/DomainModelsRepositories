@@ -9,7 +9,7 @@ std::string Seq2SeqComCoordinationServiceTaskEventEventHandler::handleEvent(cons
 	//outString = ss.str();
 	//std::cout << "SEQ2SEQ evt:" << r.getMsg() << std::endl;
 	outString = r.getMsg();
-	//std::cout << "SEQ2SEQ event rcvd: :" << outString << std::endl;
+	std::cout << "SEQ2SEQ event rcvd: :" << outString << std::endl;
 	return outString;
 }
 

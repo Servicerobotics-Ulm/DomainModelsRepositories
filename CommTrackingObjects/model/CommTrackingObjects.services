@@ -53,7 +53,7 @@ ServiceDefRepository CommTrackingObjects version 1.0
 	}
 	
 	CoordinationServiceDefinition TrackerCoordinateService{
-		ParameterPattern < EmptyDefaultParameterSet >
+		ParameterPattern < CommTrackingObjects.TrackingParam >
 		StatePattern <lifecycle ComponentLifecycle with CommTrackingObjects.TrackerModes>
 		
 	}

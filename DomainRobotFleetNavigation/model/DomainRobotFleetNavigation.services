@@ -16,15 +16,21 @@ ServiceDefRepository DomainRobotFleetNavigation version 1 . 0
 		AnswerType=DomainRobotFleetNavigation.CommNodeStatusUpdateAnswer>
 	}
 	
+	RequestAnswerServiceDefinition ClosestFreeNodeService {
+		QueryPattern < RequestType = CommBasicObjects.CommPosition3d
+		AnswerType=DomainRobotFleetNavigation.CommNode>
+	}
 	CoordinationServiceDefinition NavPathCoordinationService {
 		StatePattern < lifecycle ComponentLifecycle >
 		ParameterPattern < EmptyDefaultParameterSet > 
 		CommunicationServiceUsage sendPath uses NavPathService
 		CommunicationServiceUsage queryShortestPath uses ShortestPathRequestService
+		CommunicationServiceUsage queryClosestFreeNode uses ClosestFreeNodeService
 	}
 	
 	CoordinationServiceDefinition NavPathClientCoordinationService {
 		StatePattern < lifecycle ComponentLifecycle >
 		ParameterPattern < CommNavigationObjects.CorridorNavigationClientParams >
+		CommunicationServiceUsage queryClosestFreeNode uses ClosestFreeNodeService
 	}
 }
