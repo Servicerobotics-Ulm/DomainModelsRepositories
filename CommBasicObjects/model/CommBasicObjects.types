@@ -93,6 +93,11 @@ CommObjectsRepository CommBasicObjects version 1.0.0 {
 		wZ: Double = .0
 		timeStamp: CommTimeStamp
 	}
+	CommObject CommNavigationPose2D {
+		x: Double = .0
+		y: Double = .0
+		azimuth: Double = .0
+	}	
 	CommObject CommNavigationVelocity {
 		vX: Double = .0
 		vY: Double = .0
