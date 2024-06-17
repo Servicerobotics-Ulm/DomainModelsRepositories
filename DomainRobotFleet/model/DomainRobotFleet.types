@@ -3,5 +3,6 @@ CommObjectsRepository DomainRobotFleet version 1 . 0
 
 	CommObject Dummy {
 		dummy: Int8
+		dummyPose: CommBasicObjects.CommBasePose
 	}
 }
