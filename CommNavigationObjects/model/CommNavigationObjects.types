@@ -45,7 +45,6 @@ CommObjectsRepository CommNavigationObjects version 1.0.0 {
 		GOAL_CANCELED
 		GOAL_NOT_REACHABLE
 	}
-	
 	CommObject CommPlannerEventParameter {
 		oldState: PlannerEventType
 	}
@@ -465,5 +464,4 @@ CommObjectsRepository CommNavigationObjects version 1.0.0 {
 		finalGoalX : Double
 		finalGoalY : Double
 	}
-	
 }

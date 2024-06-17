@@ -1,4 +1,4 @@
-SkillDefinitionRepository CommNavigationObjects {
+SkillDefinitionRepository CommNavigationObjects { 
 	
 	CoordinationModuleDefinition MobileBaseModule {
 		
@@ -217,4 +217,5 @@ SkillDefinitionRepository CommNavigationObjects {
 	CoordinationModuleDefinition RobotDockingModule {
 		
 	}
+
 }

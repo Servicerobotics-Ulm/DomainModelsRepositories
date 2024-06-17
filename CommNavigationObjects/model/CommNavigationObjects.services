@@ -42,6 +42,9 @@ ServiceDefRepository CommNavigationObjects version 1.0
 	JoiningServiceDefinition NavigationVelocityService {
 		SendPattern <DataType=CommBasicObjects.CommNavigationVelocity>
 	}
+	JoiningServiceDefinition NavigationPose2DService {
+		SendPattern <DataType=CommBasicObjects.CommNavigationPose2D>
+	}	
 
 	JoiningServiceDefinition LocalizationUpdateService {
 		SendPattern < DataType = CommBasicObjects.CommBasePositionUpdate >
@@ -219,8 +222,7 @@ ServiceDefRepository CommNavigationObjects version 1.0
 
 	CoordinationServiceDefinition MapperCoordinationService {
 		ParameterPattern < CommNavigationObjects.MapperParams >
-		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.MapperStates >
-		CommunicationServiceUsage ltmMapData uses LongTermGridMapQueryService
+		StatePattern < lifecycle ComponentLifecycle with CommNavigationObjects.MappingStates >
 	}
 
 	CoordinationServiceDefinition PlannerCoordinationService {
@@ -258,5 +260,4 @@ ServiceDefRepository CommNavigationObjects version 1.0
 		ParameterPattern < CommNavigationObjects.PurePursuitNavigationParameter >
 		CommunicationServiceUsage goalEvent uses GoalEventService
 	}
-
 }
